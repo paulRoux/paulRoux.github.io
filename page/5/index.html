@@ -331,7 +331,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://roux.top/2017/12/12/线程池/">
+    <link itemprop="mainEntityOfPage" href="http://roux.top/2017/12/12/前缀-后缀-中缀/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Vkey">
@@ -350,7 +350,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/12/12/线程池/" itemprop="url">线程池浅析</a></h1>
+                <a class="post-title-link" href="/2017/12/12/前缀-后缀-中缀/" itemprop="url">前缀、中缀、后缀表达式转换详解</a></h1>
         
 
         <div class="post-meta">
@@ -385,8 +385,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/网络编程/" itemprop="url" rel="index">
-                    <span itemprop="name">网络编程</span>
+                  <a href="/categories/数据结构/" itemprop="url" rel="index">
+                    <span itemprop="name">数据结构</span>
                   </a>
                 </span>
 
@@ -404,8 +404,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2017/12/12/线程池/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://roux.top/2017/12/12/线程池/" class="cy_cmt_count" data-xid="2017/12/12/线程池/" itemprop="commentsCount" ></span>
+                <a href="/2017/12/12/前缀-后缀-中缀/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://roux.top/2017/12/12/前缀-后缀-中缀/" class="cy_cmt_count" data-xid="2017/12/12/前缀-后缀-中缀/" itemprop="commentsCount" ></span>
                 </a>
               
             
@@ -413,7 +413,7 @@
 
           
           
-             <span id="/2017/12/12/线程池/" class="leancloud_visitors" data-flag-title="线程池浅析">
+             <span id="/2017/12/12/前缀-后缀-中缀/" class="leancloud_visitors" data-flag-title="前缀、中缀、后缀表达式转换详解">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -445,15 +445,12 @@
 
       
         
-          <h4 id="池"><a href="#池" class="headerlink" title="池"></a>池</h4><ul>
-<li><p>由于服务器的硬件资源“充裕”，那么提高服务器性能的一个很直接的方法就是以空间换时间，即“浪费”服务器的硬件资源，以换取其运行效率。这就是池的概念。池是一组资源的集合，这组资源在服务器启动之初就完全被创建并初始化，这称为静态资源分配。当服务器进入正是运行阶段，即开始处理客户请求的时候，如果它需要相关的资源，就可以直接从池中获取，无需动态分配。很显然，直接从池中取得所需资源比动态分配资源的速度要快得多，因为分配系统资源的系统调用都是很耗时的。当服务器处理完一个客户连接后，可以把相关的资源放回池中，无需执行系统调用来释放资源。从最终效果来看，池相当于服务器管理系统资源的应用设施，它避免了服务器对内核的频繁访问。</p>
-</li>
-<li><p>池可以分为多种，常见的有内存池、进程池、线程池和连接池。</p>
-</li>
+          <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><ul>
+<li>前面学过树的遍历及转换，感触不是很深，今天回头来看，另有感悟。这种感悟也是得益于大神的博文，记录于此。</li>
 </ul>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/12/12/线程池/#more" rel="contents">
+            <a class="btn" href="/2017/12/12/前缀-后缀-中缀/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1028,7 +1025,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://roux.top/2017/12/02/自旋锁/">
+    <link itemprop="mainEntityOfPage" href="http://roux.top/2017/12/02/悲观锁与乐观锁/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Vkey">
@@ -1047,7 +1044,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/12/02/自旋锁/" itemprop="url">自旋锁与互斥锁</a></h1>
+                <a class="post-title-link" href="/2017/12/02/悲观锁与乐观锁/" itemprop="url">乐观锁与悲观锁</a></h1>
         
 
         <div class="post-meta">
@@ -1082,8 +1079,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/网络编程/" itemprop="url" rel="index">
-                    <span itemprop="name">网络编程</span>
+                  <a href="/categories/Database/" itemprop="url" rel="index">
+                    <span itemprop="name">Database</span>
                   </a>
                 </span>
 
@@ -1101,8 +1098,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2017/12/02/自旋锁/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://roux.top/2017/12/02/自旋锁/" class="cy_cmt_count" data-xid="2017/12/02/自旋锁/" itemprop="commentsCount" ></span>
+                <a href="/2017/12/02/悲观锁与乐观锁/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://roux.top/2017/12/02/悲观锁与乐观锁/" class="cy_cmt_count" data-xid="2017/12/02/悲观锁与乐观锁/" itemprop="commentsCount" ></span>
                 </a>
               
             
@@ -1110,7 +1107,7 @@
 
           
           
-             <span id="/2017/12/02/自旋锁/" class="leancloud_visitors" data-flag-title="自旋锁与互斥锁">
+             <span id="/2017/12/02/悲观锁与乐观锁/" class="leancloud_visitors" data-flag-title="乐观锁与悲观锁">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1143,15 +1140,14 @@
       
         
           <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><ul>
-<li><p>互斥锁</p>
-<ul>
-<li>互斥锁是一种实现线程同步的机制：<strong>当一个线程尝试获取互斥锁，如果互斥锁已经被占用则该线程会被挂起进入睡眠状态，直到被唤醒</strong>。线程被挂起时，CPU会将该线程当前的处理状态保存到内存中，等到唤醒时从内存中读取上次的处理状态，这个CPU切换线程处理状态的过程被称为“上下文切换”。上下文切换是一个非常耗时的操作，它需要相当多的CPU指令才能完成。但在早期单核处理器中，只能通过这个方式来完成，毕竟一口锅不能同时炒两盘不一样的菜。</li>
-</ul>
+<li><p>最近学习遇到了”锁”这个有趣的知识，以前也只是听过各种”锁”，感觉很多而且杂乱，现在就将他们进行整理学习。</p>
+</li>
+<li><p>乐观锁和悲观锁本质上只是一种思想，在实现的时候悲观锁还是利用了数据库提供的”锁”机制(也只有数据库层提供的”锁”机制才能真正保证数据访问的排他性，否则，即使在本系统中实现了加”锁”机制，也无法保证外部系统不会修改数据)，乐观锁则会记录和检查数据版本。这两种”锁”多用于关系数据库的并发控制。</p>
 </li>
 </ul>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/12/02/自旋锁/#more" rel="contents">
+            <a class="btn" href="/2017/12/02/悲观锁与乐观锁/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>

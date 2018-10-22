@@ -1057,7 +1057,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://roux.top/2017/10/28/dup与dup2详解/">
+    <link itemprop="mainEntityOfPage" href="http://roux.top/2017/10/28/page cache和address_space/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Vkey">
@@ -1076,7 +1076,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/10/28/dup与dup2详解/" itemprop="url">dup与dup2详解</a></h1>
+                <a class="post-title-link" href="/2017/10/28/page cache和address_space/" itemprop="url">页缓存page cache和地址空间address_space</a></h1>
         
 
         <div class="post-meta">
@@ -1111,8 +1111,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/网络编程/" itemprop="url" rel="index">
-                    <span itemprop="name">网络编程</span>
+                  <a href="/categories/OS/" itemprop="url" rel="index">
+                    <span itemprop="name">OS</span>
                   </a>
                 </span>
 
@@ -1130,8 +1130,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2017/10/28/dup与dup2详解/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://roux.top/2017/10/28/dup与dup2详解/" class="cy_cmt_count" data-xid="2017/10/28/dup与dup2详解/" itemprop="commentsCount" ></span>
+                <a href="/2017/10/28/page cache和address_space/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://roux.top/2017/10/28/page cache和address_space/" class="cy_cmt_count" data-xid="2017/10/28/page cache和address_space/" itemprop="commentsCount" ></span>
                 </a>
               
             
@@ -1139,7 +1139,7 @@
 
           
           
-             <span id="/2017/10/28/dup与dup2详解/" class="leancloud_visitors" data-flag-title="dup与dup2详解">
+             <span id="/2017/10/28/page cache和address_space/" class="leancloud_visitors" data-flag-title="页缓存page cache和地址空间address_space">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1172,19 +1172,12 @@
       
         
           <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><ul>
-<li><p>三个Linux默认的描述符</p>
-<ul>
-<li>0：标准输入</li>
-<li>1：标准输出</li>
-<li>2：标准错误</li>
-</ul>
+<li><p>在学习 mmap 的时候，看到物理地址和进程虚拟地址建立–的映射关系的时候，遇到页缓存 page cache 和地址空间 address_space，不清楚，故查阅资料，学习并做此总结</p>
 </li>
-<li><p>dup和dup2的作用都是用来复制一个文件的描述符，它们经常用来重定向进程的stdin、stdout和stderr</p>
-</li>
-</ul>
+<li><p>在 Linux 操作系统中，当应用程序需要读取文件中的数据时，操作系统先分配一些内存，将数据从存储设备读入到这些内存中，然后再将数据分发给应用程序；当需要往文件中写数据时，操作系统先分配内存接收用户数据，然后再将数据从内存写到磁盘上。文件 Cache 管理指的就是对这些由操作系统分配，并用来存储文件数据的内存的管理。 Cache 管理的优劣通过两个指标衡量：一是 Cache 命中率，Cache 命中时数据可以直接从内存中获取，不再需要访问低速外设，因而可以显著提高性能；二是有效 Cache 的比率，有效 Cache 是指真正会被访问到的 Cache 项，如果有效 Cache 的比率偏低，则相当部分磁盘带宽会被浪费到读取无用 Cache 上，而且无用 Cache 会间接导致系统内存紧张，最后可能会严重影响性能</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/10/28/dup与dup2详解/#more" rel="contents">
+            <a class="btn" href="/2017/10/28/page cache和address_space/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
