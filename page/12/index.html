@@ -266,9 +266,43 @@
       
 
       
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
     </ul>
   
 
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
   
 </nav>
 
@@ -297,7 +331,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://roux.top/2017/10/26/popen函数/">
+    <link itemprop="mainEntityOfPage" href="http://roux.top/2017/10/26/nologin和false的区别/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Vkey">
@@ -316,7 +350,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/10/26/popen函数/" itemprop="url">一次命令行与程序间的交流</a></h1>
+                <a class="post-title-link" href="/2017/10/26/nologin和false的区别/" itemprop="url">linux下/sbin/nologin和/bin/false的区别</a></h1>
         
 
         <div class="post-meta">
@@ -351,8 +385,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/网络编程/" itemprop="url" rel="index">
-                    <span itemprop="name">网络编程</span>
+                  <a href="/categories/OS/" itemprop="url" rel="index">
+                    <span itemprop="name">OS</span>
                   </a>
                 </span>
 
@@ -370,8 +404,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2017/10/26/popen函数/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://roux.top/2017/10/26/popen函数/" class="cy_cmt_count" data-xid="2017/10/26/popen函数/" itemprop="commentsCount" ></span>
+                <a href="/2017/10/26/nologin和false的区别/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://roux.top/2017/10/26/nologin和false的区别/" class="cy_cmt_count" data-xid="2017/10/26/nologin和false的区别/" itemprop="commentsCount" ></span>
                 </a>
               
             
@@ -379,7 +413,7 @@
 
           
           
-             <span id="/2017/10/26/popen函数/" class="leancloud_visitors" data-flag-title="一次命令行与程序间的交流">
+             <span id="/2017/10/26/nologin和false的区别/" class="leancloud_visitors" data-flag-title="linux下/sbin/nologin和/bin/false的区别">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -411,21 +445,12 @@
 
       
         
-          <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><ul>
-<li><p>最近学习刚好遇到一个问题：在程序里面传递一个命令来让终端命令行执行，然后将结果返回到主程序，主程序用返回的结果来操作。</p>
-</li>
-<li><p>思路：</p>
-<ul>
-<li>我在一开始想的是直接在终端执行命令然后写到一个临时文件(读取完就删除)里面，然后主程序读取文件的内容进行操作，但是考虑到我的程序要承受高并发操作(而且每次执行一下，都要创建一个临时文件，这种开销太大)，并且每次都要对磁盘进行操作，遇见大数据量的话效率太低，所以这种办法行不通</li>
-<li>放弃了第一种方法，然后我想到的是利用子进程调用exec()函数来完成，但是最后的结果返回到父进程没有想通，无果。</li>
-<li>后面我想到管道这个ipc方法，创建一个子进程继续利用exec()函数来执行命令，然后将执行的结果输出到管道的输入端，父进程读取即可，这是个方法。</li>
-<li>然后我考虑这种方法的替代方案，无果，网上查询资料发现有函数popen()可以实现，故记录。</li>
-</ul>
-</li>
+          <h4 id="linux下-sbin-nologin和-bin-false的区别"><a href="#linux下-sbin-nologin和-bin-false的区别" class="headerlink" title="linux下/sbin/nologin和/bin/false的区别"></a>linux下/sbin/nologin和/bin/false的区别</h4><ul>
+<li><code>/bin/false</code>是最严格的禁止 login 选项，一切服务都不能用。而<code>/sbin/nologin</code>只是不允许 login 系统，但可以使用其他 ftp 等服务。如果想要用 false 在禁止 login 的同时允许 ftp，则必须在<code>/etc/shells</code>里增加一行<code>/bin/false</code>。</li>
 </ul>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/10/26/popen函数/#more" rel="contents">
+            <a class="btn" href="/2017/10/26/nologin和false的区别/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -480,7 +505,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://roux.top/2017/10/25/Linux中的零拷贝技术/">
+    <link itemprop="mainEntityOfPage" href="http://roux.top/2017/10/25/文件读写过程/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Vkey">
@@ -499,7 +524,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/10/25/Linux中的零拷贝技术/" itemprop="url">Linux 中的零拷贝技术</a></h1>
+                <a class="post-title-link" href="/2017/10/25/文件读写过程/" itemprop="url">从内核文件系统看文件读写过程</a></h1>
         
 
         <div class="post-meta">
@@ -534,8 +559,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/网络编程/" itemprop="url" rel="index">
-                    <span itemprop="name">网络编程</span>
+                  <a href="/categories/OS/" itemprop="url" rel="index">
+                    <span itemprop="name">OS</span>
                   </a>
                 </span>
 
@@ -553,8 +578,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2017/10/25/Linux中的零拷贝技术/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://roux.top/2017/10/25/Linux中的零拷贝技术/" class="cy_cmt_count" data-xid="2017/10/25/Linux中的零拷贝技术/" itemprop="commentsCount" ></span>
+                <a href="/2017/10/25/文件读写过程/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://roux.top/2017/10/25/文件读写过程/" class="cy_cmt_count" data-xid="2017/10/25/文件读写过程/" itemprop="commentsCount" ></span>
                 </a>
               
             
@@ -562,7 +587,7 @@
 
           
           
-             <span id="/2017/10/25/Linux中的零拷贝技术/" class="leancloud_visitors" data-flag-title="Linux 中的零拷贝技术">
+             <span id="/2017/10/25/文件读写过程/" class="leancloud_visitors" data-flag-title="从内核文件系统看文件读写过程">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -594,15 +619,13 @@
 
       
         
-          <h4 id="Linux-中的零拷贝函数"><a href="#Linux-中的零拷贝函数" class="headerlink" title="Linux 中的零拷贝函数"></a>Linux 中的零拷贝函数</h4><ul>
-<li><p><a href="https://www.ibm.com/developerworks/cn/linux/l-cn-directio/index.html" target="_blank" rel="noopener">直接IO</a></p>
-<p>  如果应用程序可以直接访问网络接口存储，那么在应用程序访问数据之前存储总线就不需要被遍历，数据传输所引起的开销将会是最小的。应用程序或者运行在用户模式下的库函数可以直接访问硬件设备的存储，操作系统内核除了进行必要的虚拟存储配置工作之外，不参与数据传输过程中的其它任何事情。直接 I/O 使得数据可以直接在应用程序和外围设备之间进行传输，完全不需要操作系统内核页缓存的支持</p>
-<p>  <img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/%E7%9B%B4%E6%8E%A5IO.jpg" alt=""></p>
+          <h4 id="系统调用"><a href="#系统调用" class="headerlink" title="系统调用"></a>系统调用</h4><ul>
+<li><p>操作系统的主要功能是为管理硬件资源和为应用程序开发人员提供良好的环境，但是计算机系统的各种硬件资源是有限的，因此为了保证每一个进程都能安全的执行。处理器设有两种模式：“用户模式”与“内核模式”。一些容易发生安全问题的操作都被限制在只有内核模式下才可以执行，例如I/O操作，修改基址寄存器内容等。而连接用户模式和内核模式的接口称之为系统调用。</p>
 </li>
-</ul>
+<li><p>应用程序代码运行在用户模式下，当应用程序需要实现内核模式下的指令时，先向操作系统发送调用请求。操作系统收到请求后，执行系统调用接口，使处理器进入内核模式。当处理器处理完系统调用操作后，操作系统会让处理器返回用户模式，继续执行用户代码。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/10/25/Linux中的零拷贝技术/#more" rel="contents">
+            <a class="btn" href="/2017/10/25/文件读写过程/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -834,7 +857,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://roux.top/2017/10/25/文件读写过程/">
+    <link itemprop="mainEntityOfPage" href="http://roux.top/2017/10/25/Linux中的零拷贝技术/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Vkey">
@@ -853,7 +876,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/10/25/文件读写过程/" itemprop="url">从内核文件系统看文件读写过程</a></h1>
+                <a class="post-title-link" href="/2017/10/25/Linux中的零拷贝技术/" itemprop="url">Linux 中的零拷贝技术</a></h1>
         
 
         <div class="post-meta">
@@ -888,8 +911,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/OS/" itemprop="url" rel="index">
-                    <span itemprop="name">OS</span>
+                  <a href="/categories/网络编程/" itemprop="url" rel="index">
+                    <span itemprop="name">网络编程</span>
                   </a>
                 </span>
 
@@ -907,8 +930,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2017/10/25/文件读写过程/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://roux.top/2017/10/25/文件读写过程/" class="cy_cmt_count" data-xid="2017/10/25/文件读写过程/" itemprop="commentsCount" ></span>
+                <a href="/2017/10/25/Linux中的零拷贝技术/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://roux.top/2017/10/25/Linux中的零拷贝技术/" class="cy_cmt_count" data-xid="2017/10/25/Linux中的零拷贝技术/" itemprop="commentsCount" ></span>
                 </a>
               
             
@@ -916,7 +939,7 @@
 
           
           
-             <span id="/2017/10/25/文件读写过程/" class="leancloud_visitors" data-flag-title="从内核文件系统看文件读写过程">
+             <span id="/2017/10/25/Linux中的零拷贝技术/" class="leancloud_visitors" data-flag-title="Linux 中的零拷贝技术">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -948,13 +971,15 @@
 
       
         
-          <h4 id="系统调用"><a href="#系统调用" class="headerlink" title="系统调用"></a>系统调用</h4><ul>
-<li><p>操作系统的主要功能是为管理硬件资源和为应用程序开发人员提供良好的环境，但是计算机系统的各种硬件资源是有限的，因此为了保证每一个进程都能安全的执行。处理器设有两种模式：“用户模式”与“内核模式”。一些容易发生安全问题的操作都被限制在只有内核模式下才可以执行，例如I/O操作，修改基址寄存器内容等。而连接用户模式和内核模式的接口称之为系统调用。</p>
+          <h4 id="Linux-中的零拷贝函数"><a href="#Linux-中的零拷贝函数" class="headerlink" title="Linux 中的零拷贝函数"></a>Linux 中的零拷贝函数</h4><ul>
+<li><p><a href="https://www.ibm.com/developerworks/cn/linux/l-cn-directio/index.html" target="_blank" rel="noopener">直接IO</a></p>
+<p>  如果应用程序可以直接访问网络接口存储，那么在应用程序访问数据之前存储总线就不需要被遍历，数据传输所引起的开销将会是最小的。应用程序或者运行在用户模式下的库函数可以直接访问硬件设备的存储，操作系统内核除了进行必要的虚拟存储配置工作之外，不参与数据传输过程中的其它任何事情。直接 I/O 使得数据可以直接在应用程序和外围设备之间进行传输，完全不需要操作系统内核页缓存的支持</p>
+<p>  <img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/%E7%9B%B4%E6%8E%A5IO.jpg" alt=""></p>
 </li>
-<li><p>应用程序代码运行在用户模式下，当应用程序需要实现内核模式下的指令时，先向操作系统发送调用请求。操作系统收到请求后，执行系统调用接口，使处理器进入内核模式。当处理器处理完系统调用操作后，操作系统会让处理器返回用户模式，继续执行用户代码。</p>
+</ul>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/10/25/文件读写过程/#more" rel="contents">
+            <a class="btn" href="/2017/10/25/Linux中的零拷贝技术/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1009,7 +1034,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://roux.top/2017/10/24/stat系列函数/">
+    <link itemprop="mainEntityOfPage" href="http://roux.top/2017/10/24/文件权限判断/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Vkey">
@@ -1028,7 +1053,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/10/24/stat系列函数/" itemprop="url">stat系列函数</a></h1>
+                <a class="post-title-link" href="/2017/10/24/文件权限判断/" itemprop="url">Linux下文件权限判断和目录操作</a></h1>
         
 
         <div class="post-meta">
@@ -1082,8 +1107,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2017/10/24/stat系列函数/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://roux.top/2017/10/24/stat系列函数/" class="cy_cmt_count" data-xid="2017/10/24/stat系列函数/" itemprop="commentsCount" ></span>
+                <a href="/2017/10/24/文件权限判断/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://roux.top/2017/10/24/文件权限判断/" class="cy_cmt_count" data-xid="2017/10/24/文件权限判断/" itemprop="commentsCount" ></span>
                 </a>
               
             
@@ -1091,7 +1116,7 @@
 
           
           
-             <span id="/2017/10/24/stat系列函数/" class="leancloud_visitors" data-flag-title="stat系列函数">
+             <span id="/2017/10/24/文件权限判断/" class="leancloud_visitors" data-flag-title="Linux下文件权限判断和目录操作">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1123,15 +1148,15 @@
 
       
         
-          <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><ul>
-<li><p>说明：</p>
-<ul>
-<li>stat系列函数有三种情况:分别对应文件名称(stat)、文件描述符(fstat)和符号链接文件(lstat)</li>
-<li><p>stat结构：(不同的Linux下有小的区别，不影响使用)</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stat</span> &#123;</span></span><br><span class="line">        <span class="keyword">mode_t</span>    st_mode;    <span class="comment">// 文件权限和文件类型信息</span></span><br><span class="line">        <span class="keyword">ino_t</span>     st_ino;     <span class="comment">// 与该文件关联的inode</span></span><br><span class="line">        <span class="keyword">dev_t</span>     st_dev;     <span class="comment">// 保存文件的设备 number(filesystem)</span></span><br><span class="line">        <span class="keyword">dev_t</span>     st_rdev;    <span class="comment">// 若此文件为装置设备文件, 则为其设备编号</span></span><br><span class="line">        <span class="keyword">nlink_t</span>   st_nlink;   <span class="comment">// 该文件上硬连接的个数</span></span><br><span class="line">        <span class="keyword">uid_t</span>     st_uid;     <span class="comment">// 文件属主的UID号</span></span><br><span class="line">        <span class="keyword">gid_t</span>     st_gid;     <span class="comment">// 文件属主的GID号</span></span><br><span class="line">        <span class="keyword">off_t</span>     st_size;    <span class="comment">// 普通文件的大小</span></span><br><span class="line">        <span class="keyword">time_t</span>    st_atime;   <span class="comment">// 文件上一次被访问的时间</span></span><br><span class="line">        <span class="keyword">time_t</span>    st_mtime;   <span class="comment">// 文件的内容上一次被修改的时间</span></span><br><span class="line">        <span class="keyword">time_t</span>    st_ctime;   <span class="comment">// 文件的权限、属主、组或内容上一次被修改的时间</span></span><br><span class="line">        <span class="keyword">long</span>      st_blksize; <span class="comment">// I/O 文件系统的I/O 缓冲区大小</span></span><br><span class="line">        <span class="keyword">long</span>      st_blocks;  <span class="comment">// 占用文件区块的个数, 每一区块大小为512 个字节</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+          <h4 id="access函数"><a href="#access函数" class="headerlink" title="access函数"></a>access函数</h4><ul>
+<li><p>说明：按照实际用户ID和实际组进行访问权限测试</p>
+</li>
+<li><p>头文件：<code>#include &lt;unistd.h&gt;</code></p>
+</li>
+<li><p>原型：<code>int access(const char *pathname, int mode)</code></p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/10/24/stat系列函数/#more" rel="contents">
+            <a class="btn" href="/2017/10/24/文件权限判断/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1515,6 +1540,323 @@
 
 
   
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
 
 
 
