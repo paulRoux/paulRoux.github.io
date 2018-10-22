@@ -297,7 +297,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://roux.top/2017/10/26/nologin和false的区别/">
+    <link itemprop="mainEntityOfPage" href="http://roux.top/2017/10/26/popen函数/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Vkey">
@@ -316,7 +316,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/10/26/nologin和false的区别/" itemprop="url">linux下/sbin/nologin和/bin/false的区别</a></h1>
+                <a class="post-title-link" href="/2017/10/26/popen函数/" itemprop="url">一次命令行与程序间的交流</a></h1>
         
 
         <div class="post-meta">
@@ -351,8 +351,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/OS/" itemprop="url" rel="index">
-                    <span itemprop="name">OS</span>
+                  <a href="/categories/网络编程/" itemprop="url" rel="index">
+                    <span itemprop="name">网络编程</span>
                   </a>
                 </span>
 
@@ -370,8 +370,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2017/10/26/nologin和false的区别/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://roux.top/2017/10/26/nologin和false的区别/" class="cy_cmt_count" data-xid="2017/10/26/nologin和false的区别/" itemprop="commentsCount" ></span>
+                <a href="/2017/10/26/popen函数/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://roux.top/2017/10/26/popen函数/" class="cy_cmt_count" data-xid="2017/10/26/popen函数/" itemprop="commentsCount" ></span>
                 </a>
               
             
@@ -379,7 +379,7 @@
 
           
           
-             <span id="/2017/10/26/nologin和false的区别/" class="leancloud_visitors" data-flag-title="linux下/sbin/nologin和/bin/false的区别">
+             <span id="/2017/10/26/popen函数/" class="leancloud_visitors" data-flag-title="一次命令行与程序间的交流">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -411,12 +411,198 @@
 
       
         
-          <h4 id="linux下-sbin-nologin和-bin-false的区别"><a href="#linux下-sbin-nologin和-bin-false的区别" class="headerlink" title="linux下/sbin/nologin和/bin/false的区别"></a>linux下/sbin/nologin和/bin/false的区别</h4><ul>
-<li><code>/bin/false</code>是最严格的禁止 login 选项，一切服务都不能用。而<code>/sbin/nologin</code>只是不允许 login 系统，但可以使用其他 ftp 等服务。如果想要用 false 在禁止 login 的同时允许 ftp，则必须在<code>/etc/shells</code>里增加一行<code>/bin/false</code>。</li>
+          <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><ul>
+<li><p>最近学习刚好遇到一个问题：在程序里面传递一个命令来让终端命令行执行，然后将结果返回到主程序，主程序用返回的结果来操作。</p>
+</li>
+<li><p>思路：</p>
+<ul>
+<li>我在一开始想的是直接在终端执行命令然后写到一个临时文件(读取完就删除)里面，然后主程序读取文件的内容进行操作，但是考虑到我的程序要承受高并发操作(而且每次执行一下，都要创建一个临时文件，这种开销太大)，并且每次都要对磁盘进行操作，遇见大数据量的话效率太低，所以这种办法行不通</li>
+<li>放弃了第一种方法，然后我想到的是利用子进程调用exec()函数来完成，但是最后的结果返回到父进程没有想通，无果。</li>
+<li>后面我想到管道这个ipc方法，创建一个子进程继续利用exec()函数来执行命令，然后将执行的结果输出到管道的输入端，父进程读取即可，这是个方法。</li>
+<li>然后我考虑这种方法的替代方案，无果，网上查询资料发现有函数popen()可以实现，故记录。</li>
+</ul>
+</li>
 </ul>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/10/26/nologin和false的区别/#more" rel="contents">
+            <a class="btn" href="/2017/10/26/popen函数/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+<div>
+  
+</div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://roux.top/2017/10/25/Linux中的零拷贝技术/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vkey">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/assets/img/header.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vkey Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/25/Linux中的零拷贝技术/" itemprop="url">Linux 中的零拷贝技术</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-25T00:00:00+08:00">
+                2017-10-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/网络编程/" itemprop="url" rel="index">
+                    <span itemprop="name">网络编程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2017/10/25/Linux中的零拷贝技术/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://roux.top/2017/10/25/Linux中的零拷贝技术/" class="cy_cmt_count" data-xid="2017/10/25/Linux中的零拷贝技术/" itemprop="commentsCount" ></span>
+                </a>
+              
+            
+          
+
+          
+          
+             <span id="/2017/10/25/Linux中的零拷贝技术/" class="leancloud_visitors" data-flag-title="Linux 中的零拷贝技术">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h4 id="Linux-中的零拷贝函数"><a href="#Linux-中的零拷贝函数" class="headerlink" title="Linux 中的零拷贝函数"></a>Linux 中的零拷贝函数</h4><ul>
+<li><p><a href="https://www.ibm.com/developerworks/cn/linux/l-cn-directio/index.html" target="_blank" rel="noopener">直接IO</a></p>
+<p>  如果应用程序可以直接访问网络接口存储，那么在应用程序访问数据之前存储总线就不需要被遍历，数据传输所引起的开销将会是最小的。应用程序或者运行在用户模式下的库函数可以直接访问硬件设备的存储，操作系统内核除了进行必要的虚拟存储配置工作之外，不参与数据传输过程中的其它任何事情。直接 I/O 使得数据可以直接在应用程序和外围设备之间进行传输，完全不需要操作系统内核页缓存的支持</p>
+<p>  <img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/%E7%9B%B4%E6%8E%A5IO.jpg" alt=""></p>
+</li>
+</ul>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/10/25/Linux中的零拷贝技术/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -823,7 +1009,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://roux.top/2017/10/25/Linux中的零拷贝技术/">
+    <link itemprop="mainEntityOfPage" href="http://roux.top/2017/10/24/stat系列函数/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Vkey">
@@ -842,184 +1028,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/10/25/Linux中的零拷贝技术/" itemprop="url">Linux 中的零拷贝技术</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-25T00:00:00+08:00">
-                2017-10-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/网络编程/" itemprop="url" rel="index">
-                    <span itemprop="name">网络编程</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-comment-o"></i>
-              </span>
-              
-                <a href="/2017/10/25/Linux中的零拷贝技术/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://roux.top/2017/10/25/Linux中的零拷贝技术/" class="cy_cmt_count" data-xid="2017/10/25/Linux中的零拷贝技术/" itemprop="commentsCount" ></span>
-                </a>
-              
-            
-          
-
-          
-          
-             <span id="/2017/10/25/Linux中的零拷贝技术/" class="leancloud_visitors" data-flag-title="Linux 中的零拷贝技术">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h4 id="Linux-中的零拷贝函数"><a href="#Linux-中的零拷贝函数" class="headerlink" title="Linux 中的零拷贝函数"></a>Linux 中的零拷贝函数</h4><ul>
-<li><p><a href="https://www.ibm.com/developerworks/cn/linux/l-cn-directio/index.html" target="_blank" rel="noopener">直接IO</a></p>
-<p>  如果应用程序可以直接访问网络接口存储，那么在应用程序访问数据之前存储总线就不需要被遍历，数据传输所引起的开销将会是最小的。应用程序或者运行在用户模式下的库函数可以直接访问硬件设备的存储，操作系统内核除了进行必要的虚拟存储配置工作之外，不参与数据传输过程中的其它任何事情。直接 I/O 使得数据可以直接在应用程序和外围设备之间进行传输，完全不需要操作系统内核页缓存的支持</p>
-<p>  <img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/%E7%9B%B4%E6%8E%A5IO.jpg" alt=""></p>
-</li>
-</ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/10/25/Linux中的零拷贝技术/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-<div>
-  
-</div>
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://roux.top/2017/10/24/文件权限判断/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Vkey">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/assets/img/header.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Vkey Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/24/文件权限判断/" itemprop="url">Linux下文件权限判断和目录操作</a></h1>
+                <a class="post-title-link" href="/2017/10/24/stat系列函数/" itemprop="url">stat系列函数</a></h1>
         
 
         <div class="post-meta">
@@ -1073,8 +1082,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2017/10/24/文件权限判断/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://roux.top/2017/10/24/文件权限判断/" class="cy_cmt_count" data-xid="2017/10/24/文件权限判断/" itemprop="commentsCount" ></span>
+                <a href="/2017/10/24/stat系列函数/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://roux.top/2017/10/24/stat系列函数/" class="cy_cmt_count" data-xid="2017/10/24/stat系列函数/" itemprop="commentsCount" ></span>
                 </a>
               
             
@@ -1082,7 +1091,7 @@
 
           
           
-             <span id="/2017/10/24/文件权限判断/" class="leancloud_visitors" data-flag-title="Linux下文件权限判断和目录操作">
+             <span id="/2017/10/24/stat系列函数/" class="leancloud_visitors" data-flag-title="stat系列函数">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1114,15 +1123,15 @@
 
       
         
-          <h4 id="access函数"><a href="#access函数" class="headerlink" title="access函数"></a>access函数</h4><ul>
-<li><p>说明：按照实际用户ID和实际组进行访问权限测试</p>
-</li>
-<li><p>头文件：<code>#include &lt;unistd.h&gt;</code></p>
-</li>
-<li><p>原型：<code>int access(const char *pathname, int mode)</code></p>
+          <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><ul>
+<li><p>说明：</p>
+<ul>
+<li>stat系列函数有三种情况:分别对应文件名称(stat)、文件描述符(fstat)和符号链接文件(lstat)</li>
+<li><p>stat结构：(不同的Linux下有小的区别，不影响使用)</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stat</span> &#123;</span></span><br><span class="line">        <span class="keyword">mode_t</span>    st_mode;    <span class="comment">// 文件权限和文件类型信息</span></span><br><span class="line">        <span class="keyword">ino_t</span>     st_ino;     <span class="comment">// 与该文件关联的inode</span></span><br><span class="line">        <span class="keyword">dev_t</span>     st_dev;     <span class="comment">// 保存文件的设备 number(filesystem)</span></span><br><span class="line">        <span class="keyword">dev_t</span>     st_rdev;    <span class="comment">// 若此文件为装置设备文件, 则为其设备编号</span></span><br><span class="line">        <span class="keyword">nlink_t</span>   st_nlink;   <span class="comment">// 该文件上硬连接的个数</span></span><br><span class="line">        <span class="keyword">uid_t</span>     st_uid;     <span class="comment">// 文件属主的UID号</span></span><br><span class="line">        <span class="keyword">gid_t</span>     st_gid;     <span class="comment">// 文件属主的GID号</span></span><br><span class="line">        <span class="keyword">off_t</span>     st_size;    <span class="comment">// 普通文件的大小</span></span><br><span class="line">        <span class="keyword">time_t</span>    st_atime;   <span class="comment">// 文件上一次被访问的时间</span></span><br><span class="line">        <span class="keyword">time_t</span>    st_mtime;   <span class="comment">// 文件的内容上一次被修改的时间</span></span><br><span class="line">        <span class="keyword">time_t</span>    st_ctime;   <span class="comment">// 文件的权限、属主、组或内容上一次被修改的时间</span></span><br><span class="line">        <span class="keyword">long</span>      st_blksize; <span class="comment">// I/O 文件系统的I/O 缓冲区大小</span></span><br><span class="line">        <span class="keyword">long</span>      st_blocks;  <span class="comment">// 占用文件区块的个数, 每一区块大小为512 个字节</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/10/24/文件权限判断/#more" rel="contents">
+            <a class="btn" href="/2017/10/24/stat系列函数/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
