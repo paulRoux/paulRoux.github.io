@@ -1,0 +1,1347 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "a12c511f"
+    });
+  daovoice('update');
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="I/O复用," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Vkey Blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="前言 用户空间与内核空间   现在操作系统都是采用虚拟存储器，那么对32位操作系统而言，它的寻址空间（虚拟存储空间）为4G（2的32次方）。操作系统的核心是内核，独立于普通的应用程序，可以访问受保护的内存空间，也有访问底层硬件设备的所有权限。为了保证用户进程不能直接操作内核（kernel），保证内核的安全，操作系统将虚拟空间划分为两部分，一部分为内核空间，一部分为用户空间。针对linux操作系统而">
+<meta name="keywords" content="I&#x2F;O复用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="I&#x2F;O复用及同步、异步、阻塞、非阻塞">
+<meta property="og:url" content="http://roux.top/2017/11/16/IO复用及同(异)步和(非)阻塞/index.html">
+<meta property="og:site_name" content="Vkey Blog">
+<meta property="og:description" content="前言 用户空间与内核空间   现在操作系统都是采用虚拟存储器，那么对32位操作系统而言，它的寻址空间（虚拟存储空间）为4G（2的32次方）。操作系统的核心是内核，独立于普通的应用程序，可以访问受保护的内存空间，也有访问底层硬件设备的所有权限。为了保证用户进程不能直接操作内核（kernel），保证内核的安全，操作系统将虚拟空间划分为两部分，一部分为内核空间，一部分为用户空间。针对linux操作系统而">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://raw.githubusercontent.com/paulRoux/Pictures/master/%E9%98%BB%E5%A1%9EIO.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/paulRoux/Pictures/master/%E9%9D%9E%E9%98%BB%E5%A1%9EIO.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/paulRoux/Pictures/master/IO%E5%A4%8D%E7%94%A8.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/paulRoux/Pictures/master/%E4%BF%A1%E5%8F%B7%E9%A9%B1%E5%8A%A8IO.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/paulRoux/Pictures/master/%E5%BC%82%E6%AD%A5IO.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/paulRoux/Pictures/master/IO%E6%A8%A1%E5%9E%8B%E6%AF%94%E8%BE%83.png">
+<meta property="og:updated_time" content="2018-04-22T05:49:20.355Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="I&#x2F;O复用及同步、异步、阻塞、非阻塞">
+<meta name="twitter:description" content="前言 用户空间与内核空间   现在操作系统都是采用虚拟存储器，那么对32位操作系统而言，它的寻址空间（虚拟存储空间）为4G（2的32次方）。操作系统的核心是内核，独立于普通的应用程序，可以访问受保护的内存空间，也有访问底层硬件设备的所有权限。为了保证用户进程不能直接操作内核（kernel），保证内核的安全，操作系统将虚拟空间划分为两部分，一部分为内核空间，一部分为用户空间。针对linux操作系统而">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/paulRoux/Pictures/master/%E9%98%BB%E5%A1%9EIO.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"输入关键字","hits_empty":"没有找到与『${query}』相关的内容！","hits_stats":"${hits}条相关记录，共耗时：${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://roux.top/2017/11/16/IO复用及同(异)步和(非)阻塞/"/>
+
+
+
+
+
+  <title>I/O复用及同步、异步、阻塞、非阻塞 | Vkey Blog</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-107736373-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <!--
+    <a href="https://github.com/paulRoux"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
+    -->
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vkey Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-书单">
+          <a href="/book" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            书单
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://roux.top/2017/11/16/IO复用及同(异)步和(非)阻塞/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vkey">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/assets/img/header.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vkey Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">I/O复用及同步、异步、阻塞、非阻塞</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-16T00:00:00+08:00">
+                2017-11-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/网络编程/" itemprop="url" rel="index">
+                    <span itemprop="name">网络编程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2017/11/16/IO复用及同(异)步和(非)阻塞/#SOHUCS" itemprop="discussionUrl">
+                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2017/11/16/IO复用及同(异)步和(非)阻塞/" itemprop="commentsCount"></span>
+                </a>
+              
+            
+          
+
+          
+          
+             <span id="/2017/11/16/IO复用及同(异)步和(非)阻塞/" class="leancloud_visitors" data-flag-title="I/O复用及同步、异步、阻塞、非阻塞">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><ul>
+<li><p>用户空间与内核空间</p>
+<p>  现在操作系统都是采用虚拟存储器，那么对32位操作系统而言，它的寻址空间（虚拟存储空间）为4G（2的32次方）。操作系统的核心是内核，独立于普通的应用程序，可以访问受保护的内存空间，也有访问底层硬件设备的所有权限。为了保证用户进程不能直接操作内核（kernel），保证内核的安全，操作系统将虚拟空间划分为两部分，一部分为内核空间，一部分为用户空间。针对linux操作系统而言，将最高的1G字节（从虚拟地址0xC0000000到0xFFFFFFFF），供内核使用，称为内核空间，而将较低的3G字节（从虚拟地址0x00000000到0xBFFFFFFF），供各个进程使用，称为用户空间。</p>
+  <a id="more"></a>
+</li>
+<li><p>进程切换</p>
+<ul>
+<li>为了控制进程的执行，内核必须有能力挂起正在CPU上运行的进程，并恢复以前挂起的某个进程的执行。这种行为被称为进程切换。因此可以说，任何进程都是在操作系统内核的支持下运行的，是与内核紧密相关的。</li>
+<li>从一个进程的运行转到另一个进程上运行，这个过程中经过下面这些变化：<ul>
+<li>保存处理机上下文，包括程序计数器和其他寄存器。</li>
+<li>更新PCB(进程控制块)信息。</li>
+<li>把进程的PCB(进程控制块)移入相应的队列，如就绪、在某事件阻塞等队列。</li>
+<li>选择另一个进程执行，并更新其PCB(进程控制块)。</li>
+<li>更新内存管理的数据结构。</li>
+<li>恢复处理机上下文。</li>
+</ul>
+</li>
+<li>具体参考：<a href="http://guojing.me/linux-kernel-architecture/posts/process-switch/" target="_blank" rel="noopener">进程切换</a></li>
+</ul>
+</li>
+</ul>
+<h4 id="同步与异步"><a href="#同步与异步" class="headerlink" title="同步与异步"></a>同步与异步</h4><ul>
+<li><p>同步和异步，这两个概念与消息的通知机制有关。也就是同步与异步主要是从消息通知机制角度来说的。</p>
+<ul>
+<li><p>所谓同步就是一个任务的完成需要依赖另外一个任务时，只有等待被依赖的任务完成后，依赖的任务才能算完成，这是一种可靠的任务序列。要么成功都成功，失败都失败，两个任务的状态可以保持一致。</p>
+</li>
+<li><p>所谓异步是不需要等待被依赖的任务完成，只是通知被依赖的任务要完成什么工作，依赖的任务也立即执行，只要自己完成了整个任务就算完成了。至于被依赖的任务最终是否真正完成，依赖它的任务无法确定，所以它是不可靠的任务序列。</p>
+</li>
+</ul>
+</li>
+<li><p>异步的概念和同步相对。当一个同步调用发出后，调用者要一直等待返回消息（结果）通知后，才能进行后续的执行；当一个异步过程调用发出后，调用者不能立刻得到返回消息（结果）。实际处理这个调用的部件在完成后，通过状态、通知和回调来通知调用者。<code>使用哪一种通知机制，依赖于执行部件的实现，除非执行部件提供多种选择，否则不受调用者控制</code></p>
+<ul>
+<li>如果执行部件用状态来通知，那么调用者就需要每隔一定时间检查一次，效率就很低（有些初学多线程编程的人，总喜欢用一个循环去检查某个变量的值，这其实是一种很严重的错误）；</li>
+<li>如果是使用通知的方式，效率则很高，因为执行部件几乎不需要做额外的操作。至于回调函数，其实和通知没太多区别。</li>
+</ul>
+</li>
+<li><p>比如我去银行办理业务，可能会有两种方式：</p>
+<ul>
+<li>选择排队等候</li>
+<li><p>另种选择取一个小纸条上面有我的号码，等到排到我这一号时由柜台的人通知我轮到我去办理业务了</p>
+</li>
+<li><p>第一种：前者(排队等候)就是同步等待消息通知，也就是我要一直在等待银行办理业务情况；</p>
+</li>
+<li><p>第二种：后者(等待别人通知)就是异步等待消息通知。在异步消息处理中，等待消息通知者(在这个例子中就是等待办理业务的人)往往注册一个回调机制，在所等待的事件被触发时由触发机制(在这里是柜台的人)通过某种机制(在这里是写在小纸条上的号码，喊号)找到等待该事件的人。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="阻塞与非阻塞"><a href="#阻塞与非阻塞" class="headerlink" title="阻塞与非阻塞"></a>阻塞与非阻塞</h4><ul>
+<li><p>阻塞和非阻塞这两个概念与程序（线程）等待消息通知(无所谓同步或者异步)时的状态有关。也就是说阻塞与非阻塞主要是程序（线程）等待消息通知时的状态角度来说的。</p>
+<ul>
+<li><p>阻塞调用是指调用结果返回之前，当前线程会被挂起，一直处于等待消息通知，不能够执行其他业务。函数只有在得到结果之后才会返回。</p>
+</li>
+<li><p>非阻塞和阻塞的概念相对应，指在不能立刻得到结果之前，该函数不会阻塞当前线程，而会立刻返回。虽然表面上看非阻塞的方式可以明显的提高CPU的利用率，但是也带了另外一种后果就是系统的线程切换增加。增加的CPU执行时间能不能补偿系统的切换成本需要好好评估。</p>
+</li>
+</ul>
+</li>
+<li><p>注意：</p>
+<ul>
+<li><p>对于同步调用来说，很多时候当前线程可能还是激活的，只是从逻辑上当前函数没有返回而已，此时，这个线程可能也会处理其他的消息。</p>
+<ol>
+<li><p>如果这个线程在等待当前函数返回时，仍在执行其他消息处理，那这种情况就叫做同步非阻塞</p>
+</li>
+<li><p>如果这个线程在等待当前函数返回时，没有执行其他消息处理，而是处于挂起等待状态，那这种情况就叫做同步阻塞</p>
+<ul>
+<li>所以同步的实现方式会有两种：同步阻塞、同步非阻塞；同理，异步也会有两种实现：异步阻塞、异步非阻塞</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>对于阻塞调用来说，则当前线程就会被挂起等待当前函数返回</p>
+</li>
+</ul>
+</li>
+<li><p>继续上面的那个银行办理业务的例子</p>
+<ul>
+<li><p>不论是排队还是使用号码等待通知，如果在这个等待的过程中，等待者除了等待消息通知之外不能做其它的事情，那么该机制就是阻塞的，表现在程序中,也就是该程序一直阻塞在该函数调用处不能继续往下执行。</p>
+</li>
+<li><p>相反，有的人喜欢在银行办理这些业务的时候一边打打电话发发短信一边等待，这样的状态就是非阻塞的，因为他(等待者)没有阻塞在这个消息通知上，而是一边做自己的事情一边等待。</p>
+</li>
+<li><p>但是需要注意了，同步非阻塞形式实际上是效率低下的，想象一下你一边打着电话一边还需要抬头看到底队伍排到你了没有。如果把打电话和观察排队的位置看成是程序的两个操作的话，这个程序需要在这两种不同的行为之间来回的切换，效率可想而知是低下的；而异步非阻塞形式却没有这样的问题，因为打电话是你(等待者)的事情，而通知你则是柜台(消息触发机制)的事情，程序没有在两种不同的操作中来回切换。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="同步、异步、阻塞、非阻塞"><a href="#同步、异步、阻塞、非阻塞" class="headerlink" title="同步、异步、阻塞、非阻塞"></a>同步、异步、阻塞、非阻塞</h4><ul>
+<li><p>同步、异步、阻塞、非阻塞，是分3个层次的：CPU层次；线程层次；程序员感知层次。</p>
+<ul>
+<li><p>CPU层次</p>
+<ul>
+<li>在CPU层次，或者说操作系统进行IO和任务调度的层次，现代操作系统通常使用异步非阻塞方式进行IO（有少部分IO可能会使用同步非阻塞轮询），即发出IO请求之后，并不等待IO操作完成，而是继续执行下面的指令（非阻塞），IO操作和CPU指令互不干扰（异步），最后通过中断的方式来通知IO操作完成结果。</li>
+</ul>
+</li>
+<li><p>线程层次</p>
+<ul>
+<li>在线程层次，或者说操作系统调度单元的层次，操作系统为了减轻程序员的思考负担，将底层的异步非阻塞的IO方式进行封装，把相关系统调用（如read，write等）以同步的方式展现出来。然而，同步阻塞的IO会使线程挂起，同步非阻塞的IO会消耗CPU资源在轮询上。为了解决这一问题，就有3种思路：<ol>
+<li>多线程（同步阻塞）；</li>
+<li>IO多路复用（select，poll，epoll）（同步非阻塞，严格地来讲，是把阻塞点改变了位置）；</li>
+<li>直接暴露出异步的IO接口，如kernel-aio和IOCP（异步非阻塞）。</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p>程序员感知层次</p>
+<ul>
+<li>在Linux中，上面提到的第2种思路用得比较广泛，也是比较理想的解决方案。然而，直接使用select之类的接口，依然比较复杂，所以各种库和框架百花齐放，都试图对IO多路复用进行封装。此时，库和框架提供的API又可以选择是以同步的方式还是异步的方式来展现。如python的asyncio库中，就通过协程，提供了同步阻塞式的API；如node.js中，就通过回调函数，提供了异步非阻塞式的API。总结因此，我们在讨论同步、异步、阻塞、非阻塞时，必须先明确是在哪个层次进行讨论。比如node.js，我们可以说她在程序员感知层次提供了异步非阻塞的API，也可以说在Linux下，她在线程层次以同步非阻塞的epoll来实现。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>示例：老张爱喝茶，废话不说，煮开水。</p>
+<ul>
+<li><p>出场人物：老张，水壶两把（普通水壶，简称水壶；会响的水壶，简称响水壶）。</p>
+</li>
+<li><p>同步阻塞形式</p>
+<ul>
+<li>老张把水壶放到火上，立等水开。（同步阻塞）<ul>
+<li>老张觉得自己有点傻</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>同步非阻塞形式</p>
+<ul>
+<li>老张把水壶放到火上，去客厅看电视，时不时去厨房看看水开没有。（同步非阻塞）<ul>
+<li>老张还是觉得自己有点傻，于是变高端了，买了把会响笛的那种水壶。水开之后，能大声发出嘀~~~~的噪音。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>异步阻塞形式</p>
+<ul>
+<li>老张把响水壶放到火上，立等水开。（异步阻塞）<ul>
+<li>老张觉得这样傻等意义不大</li>
+<li>异步操作是可以被阻塞住的，只不过它不是在处理消息时阻塞，而是在等待消息通知时被阻塞。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>异步非阻塞形式<ul>
+<li>老张把响水壶放到火上，去客厅看电视，水壶响之前不再去看它了，响了再去拿壶。（异步非阻塞）<ul>
+<li>老张觉得自己聪明了。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>总结</p>
+<ul>
+<li><p>所谓同步异步，只是对于水壶而言。</p>
+<ul>
+<li>普通水壶，同步；响水壶，异步。</li>
+<li>虽然都能干活，但响水壶可以在自己完工之后，提示老张水开了。这是普通水壶所不能及的。</li>
+<li>同步只能让调用者去轮询自己（情况2中），造成老张效率的低下。</li>
+</ul>
+</li>
+<li><p>所谓阻塞非阻塞，仅仅对于老张而言。</p>
+<ul>
+<li>立等的老张，阻塞；看电视的老张，非阻塞。</li>
+<li>情况1和情况3中老张就是阻塞的，媳妇喊他都不知道。虽然3中响水壶是异步的，可对于立等的老张没有太大的意义。所以一般异步是配合非阻塞使用的，这样才能发挥异步的效用。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>同步和异步仅仅是关注的消息如何通知的机制，而阻塞与非阻塞关注的是等待消息通知时的状态。也就是说，同步的情况下，是由处理消息者自己去等待消息是否被触发，而异步的情况下是由触发机制来通知处理消息者，所以在异步机制中，处理消息者和触发机制之间就需要一个连接的桥梁(上面例子桥梁就是能响的水壶的响声)</p>
+</li>
+</ul>
+<h4 id="I-O复用技术"><a href="#I-O复用技术" class="headerlink" title="I/O复用技术"></a>I/O复用技术</h4><ul>
+<li><p>I/O多路复用是指内核一旦发现进程指定的一个或者多个I/O条件准备就绪(通过轮询的机制)，它就通知该进程。I/O复用适用于以下场合：</p>
+<ul>
+<li>当客户处理多个描述符（一般是交互式输入或网络套接字），必须使用I/O复用</li>
+<li>当一个客户处理多个套接字时，这种情况很少见，但也可能出现</li>
+<li>当一个TCP服务器既要处理监听套接字，又要处理已连接套接字，一般就要使用I/O复用</li>
+<li>如果一个服务器既要使用TCP，又要使用UDP，一般就要使用I/O复用</li>
+<li>如果一个服务器要处理多个服务或者多个协议，一般就要使用I/O复用</li>
+</ul>
+</li>
+<li><p>与多线程和多进程技术相比，I/O复用技术的最大优势就是系统开销小，系统不必创建进程/线程，也不必维护这些进程/进程，从而大大减小了系统的开销。</p>
+</li>
+</ul>
+<h4 id="I-O模型"><a href="#I-O模型" class="headerlink" title="I/O模型"></a>I/O模型</h4><ul>
+<li><p>Unix下常见的I/O模型有五种，分别是：阻塞式I/O，非阻塞式I/O，I/O复用，信号驱动式I/O和异步I/O。</p>
+</li>
+<li><p>Unix下对于一个输入操作，通常包含两个不同的阶段：</p>
+<ul>
+<li>等待数据准备好</li>
+<li>从内核向进程复制数据</li>
+</ul>
+</li>
+<li><p>例如：对于一次read函数操作来说，数据先会被拷贝到操作系统内核的缓冲区去，然后才会从操作系统内核的缓冲区拷贝到应用程序的地址空间。(比如对于一次socket流传输来说，首先等待网络上的数据到达，然后复制到内核的某个缓冲区，然后再把内核缓冲区的数据复制到进程缓冲区)</p>
+</li>
+</ul>
+<h4 id="阻塞式I-O模型"><a href="#阻塞式I-O模型" class="headerlink" title="阻塞式I/O模型"></a>阻塞式I/O模型</h4><ul>
+<li><p>趣解模型</p>
+<p>  假定一个特定的场景，你的一个好朋友找你借钱，你身上没有充足的现金，于是，你要去银行取钱，银行人多，你只能在那里排队，在这段时间内，你不能离开队伍去干你自己的事情。时间都浪费在排队上面了。这就是典型的阻塞式I/O模型。</p>
+</li>
+<li><p>网络模型</p>
+<p>  默认情况下，所有的套接字都时阻塞的，以数据报套接字为例<br>  <img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/%E9%98%BB%E5%A1%9EIO.png" alt="阻塞I/O"><br>  如上图，我们把recvfrom函数视为系统调用，进程调用recvform函数后就阻塞于此，等待数据报的到达，一直到内核把数据报准备好后，就将数据从内核复制到用户进程，随后用户进程再对这些数据进行处理。</p>
+<p>  这种模型的好处就是，能够及时获得数据，没有延迟，但是就像上面趣解模型中讲到，对用户来说，这段时间一直要处于等到状态，不能去做其他的事情，在性能方面付出了代价。</p>
+</li>
+</ul>
+<h4 id="非阻塞式I-O模型"><a href="#非阻塞式I-O模型" class="headerlink" title="非阻塞式I/O模型"></a>非阻塞式I/O模型</h4><ul>
+<li><p>趣解模型</p>
+<p>  还是去银行取钱，假设你无法忍受一直在那里排队，而是去旁边的商场逛逛，然后隔一段时间回来看看还有在排队没，有的话再继续去逛逛，直到有一次你回来看到没有人排队了为止。这就是非阻塞式I/O模型。</p>
+</li>
+<li><p>网络模型</p>
+<p>  进程把一个套接字设置成非阻塞是在通知内核：当所请求的I/O操作非得把本进程投入睡眠才能完成时，不要把本进程投入睡眠，而是返回一个错误。<br>  <img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/%E9%9D%9E%E9%98%BB%E5%A1%9EIO.png" alt=""><br>  如上图所示，前三次询问都返回一个错误，即内核没有数据报准备好，到第四次调用recvform函数时，数据被准备好了，它被复制到应用进程缓存区，于是recvform成功返回，应用进程随后处理数据。</p>
+<ul>
+<li><p>优点在于：应用进程不必阻塞在recvfrom调用中，而是可以去处理其他事情</p>
+</li>
+<li><p>缺点在于：如趣解模型中所说，你来回跑银行带来了很大的延时，可能在你来回的路上叫到了你的号。在网络模型中即可以表现在任务完成的响应延迟增大了，隔一段时间轮询一次recvform，数据报可能在两次轮询之间的任意时间内准备好，这将会导致整体数据吞吐量的降低。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="I-O复用模型"><a href="#I-O复用模型" class="headerlink" title="I/O复用模型"></a>I/O复用模型</h4><ul>
+<li><p>趣解模型</p>
+<p>  现在，银行都会按一个显示屏，上面会显示轮到几号客户了。这个时候，你就不用每次都去跑进去看还有排队没，而是远远的看看显示屏上轮到你没有，如果显示了你的名字，你就去取钱就行了。这就是I/O复用模型</p>
+</li>
+<li><p>网络模型</p>
+<p>  有了I/O复用技术，我们可以调用select或poll类型的函数，阻塞在这两个系统调用中的某一个之上，而不是阻塞在真正的I/O系统调用上。<br>  <img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/IO%E5%A4%8D%E7%94%A8.png" alt=""><br>  如上图所示，进程受阻于select调用，等待可能多个套接字中的任一个变为可读。当select返回套接字可读这一条件时，应用进程就调用recvfrom把所读的数据报复制到应用进程缓冲区。</p>
+<p>  进程阻塞在select，如果进程还有其他的任务的话就能体现到I/O复用技术的好处，那个任务先返回可读条件，就去执行哪个任务。从单一的等待变成多个任务的同时等待。</p>
+<p>  这种模型较之前的模型来说，可以不必多次轮询内核，而是等到内核的通知。</p>
+</li>
+</ul>
+<h4 id="信号驱动式I-O模型"><a href="#信号驱动式I-O模型" class="headerlink" title="信号驱动式I/O模型"></a>信号驱动式I/O模型</h4><ul>
+<li><p>趣解模型</p>
+<p>  你还是不满意银行的服务，虽然不必排队，但你在商场逛的也不放心啊，你还是要盯着显示屏，深怕没有看到显示屏上面你的名字，于是，银行也退出了全新的服务，你去银行取钱的时候，银行目前人多不能及时处理你的业务，而是叫你留下手机号，等到空闲的时候就短信通知你可以去取钱了。这就是信号驱动式I/O模型。</p>
+</li>
+<li><p>网络模型</p>
+<p>  我们可以用信号，让内核在描述符就绪时发送SIGIO信号告知我们。<br>  <img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/%E4%BF%A1%E5%8F%B7%E9%A9%B1%E5%8A%A8IO.png" alt=""><br>  如上图所示，进程建立SIGIO的信号处理程序（就要趣解模型中的留下手机号），并通过sigaction系统调用安装一个信号处理函数，该系统调用将立即返回，进程继续工作，知道数据报准备好后，内核产生一个SIGIO信号，告知应用进程以及准备好，于是就在信号处理程序中调用recvfrom读取数据报，并通知主循环数据已准备好待处理，也可以立即通知主循环让他读取数据报。</p>
+<p>  这种模型的好处就是，在数据报没有准备好的期间，应用进程不必阻塞，继续执行主循环，只要等待来自信号处理函数的通知即可。</p>
+</li>
+</ul>
+<h4 id="异步I-O模型"><a href="#异步I-O模型" class="headerlink" title="异步I/O模型"></a>异步I/O模型</h4><ul>
+<li><p>趣解模型</p>
+<p>  你细细的想了想自己取钱时为了什么，无非时借给你的朋友，银行都退出了网上银行服务，你只需要知道你的好朋友的银行卡号，然后在网银中申请转账，银行后台会给你处理，然后把钱打到你朋友的账户下面，等这些都处理好后，银行会给你发一条短信，告诉你转账成功，这个时候你就可以跟你的好朋友说，钱已经打给你了。这就是异步I/O模型，取钱借钱的繁琐事就交给银行后台给你处理吧。</p>
+</li>
+<li><p>网络模型</p>
+<p>  POSIX规范中提供一些函数，这些函数的工作机制是：告知内核启动某个操作，并让内核在整个操作完成后通知我们。<br>  <img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/%E5%BC%82%E6%AD%A5IO.png" alt=""><br>  如上图所示，我们调用 aioread 函数(POSIX异步I/O函数以 aio 或 lio_ 开头)，给内核传递描述符，缓冲区指针，缓冲区大小和文件偏移，并告诉内核完成整个操作后通知我们。</p>
+<p>  不同于信号驱动式I/O模型，信号是在数据已复制到进程缓冲区才产生的。</p>
+</li>
+</ul>
+<h4 id="各种I-O模型的比较"><a href="#各种I-O模型的比较" class="headerlink" title="各种I/O模型的比较"></a>各种I/O模型的比较</h4><ul>
+<li><p>以一张图来说明五种I/O操作的差异：<br>  <img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/IO%E6%A8%A1%E5%9E%8B%E6%AF%94%E8%BE%83.png" alt=""></p>
+<ul>
+<li><p>同步I/O操作：导致请求进程阻塞，直到I/O操作完成</p>
+</li>
+<li><p>异步I/O操作：不导致进程阻塞</p>
+<p>前四种都属于同步I/O操作慢系统都会阻塞与recvfrom操作，而异步I/O不会。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><ul>
+<li>联系与解释：<ul>
+<li><a href="http://yaocoder.blog.51cto.com/2668309/1308899" target="_blank" rel="noopener">http://yaocoder.blog.51cto.com/2668309/1308899</a></li>
+<li><a href="http://www.jianshu.com/p/02f76566fd90" target="_blank" rel="noopener">http://www.jianshu.com/p/02f76566fd90</a></li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+  
+</div>
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>谢谢你请我吃糖果!</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/assets/img/weixin.png" alt="Vkey 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/assets/img/zhifubao.jpg" alt="Vkey 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Vkey
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://roux.top/2017/11/16/IO复用及同(异)步和(非)阻塞/" title="I/O复用及同步、异步、阻塞、非阻塞">http://roux.top/2017/11/16/IO复用及同(异)步和(非)阻塞/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/I-O复用/" <i class="fa fa-tag"></i> I/O复用</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/15/随笔17.11.15/" rel="next" title="随笔2017.11.15">
+                <i class="fa fa-chevron-left"></i> 随笔2017.11.15
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/11/17/poll函数/" rel="prev" title="poll函数">
+                poll函数 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="SOHUCS"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/assets/img/header.jpeg"
+                alt="Vkey" />
+            
+              <p class="site-author-name" itemprop="name">Vkey</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">73</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/paulRoux" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://blog.csdn.net/xingerr" target="_blank" title="CSDN">
+                    
+                      <i class="fa fa-fw fa-globe"></i>CSDN</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://twitter.com/Vkey_roux" target="_blank" title="Twitter">
+                    
+                      <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://blog.csdn.net/gc348342215" title="隔壁的豆豆" target="_blank">隔壁的豆豆</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#同步与异步"><span class="nav-number">2.</span> <span class="nav-text">同步与异步</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#阻塞与非阻塞"><span class="nav-number">3.</span> <span class="nav-text">阻塞与非阻塞</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#同步、异步、阻塞、非阻塞"><span class="nav-number">4.</span> <span class="nav-text">同步、异步、阻塞、非阻塞</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#I-O复用技术"><span class="nav-number">5.</span> <span class="nav-text">I/O复用技术</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#I-O模型"><span class="nav-number">6.</span> <span class="nav-text">I/O模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#阻塞式I-O模型"><span class="nav-number">7.</span> <span class="nav-text">阻塞式I/O模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#非阻塞式I-O模型"><span class="nav-number">8.</span> <span class="nav-text">非阻塞式I/O模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#I-O复用模型"><span class="nav-number">9.</span> <span class="nav-text">I/O复用模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#信号驱动式I-O模型"><span class="nav-number">10.</span> <span class="nav-text">信号驱动式I/O模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#异步I-O模型"><span class="nav-number">11.</span> <span class="nav-text">异步I/O模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#各种I-O模型的比较"><span class="nav-number">12.</span> <span class="nav-text">各种I/O模型的比较</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-number">13.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+<div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vkey</span>
+
+  
+</div>
+
+
+
+  	<div class="powered-by">
+	<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+	  我思故我在！
+	</span>
+	</div>
+
+<!--
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+-->
+
+
+
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">感谢你来看我！</span>
+</div>
+
+
+<!--
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.3</div>
+-->
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+  
+    <script type="text/javascript">
+    (function(){
+      var appid = 'cytg0VXXf';
+      var conf = '16b9ee30c84ee9a52ae3219b1b4f3a0a';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      if (width < 960) {
+      window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){
+        window.changyan.api.config({appid:appid,conf:conf})});
+      }
+    })();
+    </script>
+    <script type="text/javascript" src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js"></script>
+  
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("PAelBObBJJ1wxPLcqGh7Xi7f-gzGzoHsz", "CvEKFxTr48P32AWq1lhkwl7A");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+
+<!--页面点击小红心-->
+<script type="text/javascript" src="/js/src/love.js"></script>
+
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https'){
+   bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+  }
+  else{
+  bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+  }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>

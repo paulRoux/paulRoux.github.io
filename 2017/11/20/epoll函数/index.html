@@ -1,0 +1,1352 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "a12c511f"
+    });
+  daovoice('update');
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="I/O复用," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Vkey Blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="前言 epoll是什么  epoll 是Linux下多路复用IO接口 select/poll 的增强版本，它能显著提高程序在大量并发连接中只有少量活跃的情况下的系统CPU利用率，因为它会复用文件描述符集用来传递结果而不用迫使开发者每次等待事件之前都必须重新准备要被侦听的文件描述符集合，另一点原因就是获取事件的时候，它无须遍历整个被侦听的描述符集，只要遍历那些被内核IO事件异步唤醒而加入Ready队">
+<meta name="keywords" content="I&#x2F;O复用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="epoll函数">
+<meta property="og:url" content="http://roux.top/2017/11/20/epoll函数/index.html">
+<meta property="og:site_name" content="Vkey Blog">
+<meta property="og:description" content="前言 epoll是什么  epoll 是Linux下多路复用IO接口 select/poll 的增强版本，它能显著提高程序在大量并发连接中只有少量活跃的情况下的系统CPU利用率，因为它会复用文件描述符集用来传递结果而不用迫使开发者每次等待事件之前都必须重新准备要被侦听的文件描述符集合，另一点原因就是获取事件的时候，它无须遍历整个被侦听的描述符集，只要遍历那些被内核IO事件异步唤醒而加入Ready队">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://raw.githubusercontent.com/paulRoux/Pictures/master/epoll/epoll%E7%9A%84LT%E6%A8%A1%E5%BC%8F%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/paulRoux/Pictures/master/epoll/epoll%E7%9A%84ET%E6%A8%A1%E5%BC%8F%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/paulRoux/Pictures/master/epoll/%E4%B8%89%E7%A7%8D%E5%87%BD%E6%95%B0%E7%9A%84%E5%AF%B9%E6%AF%94.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/paulRoux/Pictures/master/epoll/%E4%B8%89%E7%A7%8D%E5%87%BD%E6%95%B0%E7%9A%84%E6%95%88%E7%8E%87.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/paulRoux/Pictures/master/epoll/%E4%B8%89%E7%A7%8D%E5%87%BD%E6%95%B0%E7%9A%84%E8%BF%9E%E6%8E%A5%E6%95%B0.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/paulRoux/Pictures/master/epoll/%E4%B8%89%E7%A7%8D%E5%87%BD%E6%95%B0%E7%9A%84%E6%B6%88%E6%81%AF%E4%BC%A0%E9%80%92.png">
+<meta property="og:updated_time" content="2018-04-22T05:48:54.383Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="epoll函数">
+<meta name="twitter:description" content="前言 epoll是什么  epoll 是Linux下多路复用IO接口 select/poll 的增强版本，它能显著提高程序在大量并发连接中只有少量活跃的情况下的系统CPU利用率，因为它会复用文件描述符集用来传递结果而不用迫使开发者每次等待事件之前都必须重新准备要被侦听的文件描述符集合，另一点原因就是获取事件的时候，它无须遍历整个被侦听的描述符集，只要遍历那些被内核IO事件异步唤醒而加入Ready队">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/paulRoux/Pictures/master/epoll/epoll%E7%9A%84LT%E6%A8%A1%E5%BC%8F%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"输入关键字","hits_empty":"没有找到与『${query}』相关的内容！","hits_stats":"${hits}条相关记录，共耗时：${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://roux.top/2017/11/20/epoll函数/"/>
+
+
+
+
+
+  <title>epoll函数 | Vkey Blog</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-107736373-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <!--
+    <a href="https://github.com/paulRoux"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
+    -->
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vkey Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-书单">
+          <a href="/book" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            书单
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://roux.top/2017/11/20/epoll函数/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vkey">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/assets/img/header.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vkey Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">epoll函数</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-20T00:00:00+08:00">
+                2017-11-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/网络编程/" itemprop="url" rel="index">
+                    <span itemprop="name">网络编程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2017/11/20/epoll函数/#SOHUCS" itemprop="discussionUrl">
+                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2017/11/20/epoll函数/" itemprop="commentsCount"></span>
+                </a>
+              
+            
+          
+
+          
+          
+             <span id="/2017/11/20/epoll函数/" class="leancloud_visitors" data-flag-title="epoll函数">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><ul>
+<li><p>epoll是什么</p>
+<ul>
+<li><p>epoll 是Linux下多路复用IO接口 <a href="http://roux.top/2017/11/18/select%E5%87%BD%E6%95%B0/">select</a>/<a href="http://roux.top/2017/11/17/poll%E5%87%BD%E6%95%B0/">poll</a> 的增强版本，它能显著提高程序在大量并发连接中只有少量活跃的情况下的系统CPU利用率，因为它会复用文件描述符集用来传递结果而不用迫使开发者每次等待事件之前都必须重新准备要被侦听的文件描述符集合，另一点原因就是获取事件的时候，它无须遍历整个被侦听的描述符集，只要遍历那些被内核IO事件异步唤醒而加入Ready队列的描述符集合就行了。</p>
+<a id="more"></a></li>
+<li>epoll除了提供 select/poll 那种IO事件的电平触发 （Level Triggered）外，还提供了边沿触发（Edge Triggered），这就使得用户空间程序有可能缓存IO状态，减少 <code>epoll_wait/epoll_pwait</code> 的调用，提高应用程序效率。</li>
+</ul>
+</li>
+</ul>
+<h4 id="epoll函数"><a href="#epoll函数" class="headerlink" title="epoll函数"></a>epoll函数</h4><ul>
+<li><p>说明：epoll对IO接口进行多路复用，提高CPU的利用率</p>
+</li>
+<li><p>头文件：<code>#include &lt;sys/epoll.h&gt;</code></p>
+</li>
+<li><p>函数1：<code>int epoll_create1(int flags);</code>(向内核注册并打开一个 epoll 描述符)</p>
+<ul>
+<li><p>这个函数是在linux 2.6.27中加入的，它和 epoll_create 差不多，不同的是 epoll_create1 函数的参数是 flag，当 flag 是 0 时，表示和 epoll_create 函数完全一样，不需要 size 的提示了。</p>
+<ul>
+<li><p>当 <code>flag = EPOLL_CLOEXEC</code>，创建的epfd会设置<code>FD_CLOEXEC</code>(一般使用这种)</p>
+<ul>
+<li>FD_CLOEXEC：它是 fd 的一个标识说明，用来设置文件 close-on-exec 状态的。当 close-on-exec 状态为 0 时，调用 exec 时，fd <strong>不会被关闭</strong>；状态非零时则<strong>会被关闭</strong>，这样做可以防止 fd 泄露给执行 exec 后的进程。</li>
+</ul>
+</li>
+<li><p>当 <code>flag = EPOLL_NONBLOCK</code>，创建的 epfd 会设置为非阻塞</p>
+</li>
+</ul>
+</li>
+<li><p><code>int epoll_create(int size);</code></p>
+<ul>
+<li><p>创建一个 epoll 的句柄，size用来告诉内核这个监听的数目最大值。</p>
+</li>
+<li><p>当创建好 epoll 句柄后，它就是会占用一个 fd 值，所以在使用完 epoll 后，必须调用 close() 关闭，否则可能导致 fd 被耗尽。</p>
+</li>
+<li><p>注意：是数量的最大值，不是 fd 的最大值(通知内核需要监听 size 个fd)。</p>
+</li>
+<li><p>自从Linux2.6.8版本以后，size值其实是没什么用的，不过要大于0，因为内核可以动态的分配大小，所以不需要 size 这个提示了。</p>
+</li>
+</ul>
+</li>
+<li><p>为什么使用 <code>epoll_create1</code> 函数而不用以前的 <code>epoll_create</code> 函数：</p>
+<ul>
+<li><code>epoll_create</code> 的参数 size 是老版本的实现，<strong>使用的是 hash 表</strong>, size 应该是用来算 bucket 数目，后面因为<strong>使用红黑树</strong>，这个参数不再使用, 可以忽略。</li>
+</ul>
+</li>
+<li><p>返回值：成功返回一个非负的文件描述符，出错返回-1，并设置errno：</p>
+<ul>
+<li>EINVAL : 无效的标志</li>
+<li>EMFILE : 用户打开的文件超过了限制</li>
+<li>ENFILE : 系统打开的文件超过了限制</li>
+<li>ENOMEM : 没有足够的内存完成当前操作</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>函数2：<code>int epoll_ctl(int epfd, int op, int fd, struct epoll_event *event);</code>(epoll 的事件注册函数)</p>
+<ul>
+<li><p>epfd参数：<code>epoll_create1</code> 函数返回的的 epoll 描述符</p>
+</li>
+<li><p>op参数：操作值(想要注册的动作)</p>
+<ul>
+<li>EPOLL_CTL_ADD： 注册目标fd到epfd中，同时关联内部event到fd上</li>
+<li>EPOLL_CTL_MOD： 修改已经注册到fd的监听事件</li>
+<li>EPOLL_CTL_DEL： 从epfd中删除/移除已注册的fd，event可以被忽略，也可以为NULL</li>
+</ul>
+</li>
+<li><p>fd参数：需要监听的套接字描述符</p>
+</li>
+<li><p>event参数：设定监听事件的结构体</p>
+  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">union</span> epoll_data &#123;</span><br><span class="line">    <span class="keyword">void</span>        *ptr;</span><br><span class="line">    <span class="keyword">int</span>          fd;</span><br><span class="line">    <span class="keyword">__uint32_t</span>   u32;</span><br><span class="line">    <span class="keyword">__uint64_t</span>   u64;</span><br><span class="line">&#125; <span class="keyword">epoll_data_t</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">epoll_event</span> &#123;</span></span><br><span class="line">    <span class="keyword">__uint32_t</span>   events; <span class="comment">/* Epoll events */</span></span><br><span class="line">    <span class="keyword">epoll_data_t</span> data;   <span class="comment">/* User data variable */</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>data是一个联合体，能够存储fd或其它数据，我们需要根据自己的需求定制。events表示监控的事件的集合，是一个状态值，通过状态位来表示，可以设置如下事件：</p>
+<ul>
+<li>EPOLLIN ：表示对应的文件描述符可以读（包括对端SOCKET正常关闭）；</li>
+<li>EPOLLOUT：表示对应的文件描述符可以写；</li>
+<li>EPOLLPRI：表示对应的文件描述符有紧急的数据可读（这里应该表示有带外数据到来）；</li>
+<li>EPOLLERR：表示对应的文件描述符发生错误；</li>
+<li>EPOLLHUP：表示对应的文件描述符被挂断；(并不代表对端结束了连接,通常情况下 EPOLLHUP 表示的是本端挂断)</li>
+<li>EPOLLET： 将EPOLL设为边缘触发(Edge Triggered)模式，这是相对于水平触发(Level Triggered)来说的。</li>
+<li>EPOLLONESHOT：只监听一次事件，当监听完这次事件之后，就会把这个fd从epoll的队列中删除。如果还需要继续监听这个socket的话，需要再次把这个fd加入到EPOLL队列里</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>返回值：成功返回0，失败返回-1，并设置errno：</p>
+<ul>
+<li>EBADF : epfd 或者 fd 不是一个有效的文件描述符</li>
+<li>EEXIST : op 为 EPOLL_CTL_ADD，但 fd 已经被监控</li>
+<li>EINVAL : epfd 是无效的 epoll 文件描述符</li>
+<li>ENOENT : op 为 EPOLL_CTL_MOD 或者 EPOLL_CTL_DEL，并且 fd 未被监控</li>
+<li>ENOMEM : 没有足够的内存完成当前操作</li>
+<li>ENOSPC : epoll 实例超过了 <code>/proc/sys/fs/epoll/max_user_watches</code> 中限制的监听数量</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>函数3：<code>int epoll_wait(int epfd, struct epoll_event *events, int maxevents, int timeout);</code> <code>int epoll_pwait(int epfd, struct epoll_event *events, int maxevents, int timeout,  const sigset_t *sigmask);</code></p>
+<ul>
+<li><p>epfd参数：epoll 的描述符( <code>epoll_create1</code> 函数的返回值)</p>
+</li>
+<li><p>events参数：events 指针携带有 <code>epoll_data_t</code> 数据</p>
+</li>
+<li><p>maxevents参数：告诉内核 events 有多大，该值必须大于0，但是这个 maxevents 的值不能大于创建 <code>epoll_create()</code> 时的 <code>size</code></p>
+</li>
+<li><p>timeout参数(毫秒)：表示超时时间。0 表示不等待立即返回，-1 代表永久阻塞，大于 0 表示等待的最大时间</p>
+</li>
+<li><p><code>epoll_pwait(since linux 2.6.19)</code>允许一个应用程序安全的等待，直到 fd 设备准备就绪，或者捕获到一个信号量。其中 <code></code>sigmask 表示要捕获的信号量。</p>
+</li>
+<li><p>返回值：成功返回准备好事件要求的描述符的个数，返回0代表在超时时间内没有准备好的描述符；失败返回 -1 并设置 errno:</p>
+<ul>
+<li>EBADF：epfd 不是一个有效的描述符</li>
+<li>EFAULT：events 指向的内存区域没有写的权限</li>
+<li>EINTR：在事件发生任何请求或超时过期之前，调用被信号处理程序中断</li>
+<li>EINVAL：epfd 不是一个 epoll 描述符，或者 maxevents 参数小于或等于 0</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>示例：</p>
+</li>
+<li><p>这里使用伪代码，具体实现的代码请<a href="https://github.com/paulRoux/socket/tree/master/%E6%B5%8B%E8%AF%95/epoll" target="_blank" rel="noopener">移步</a></p>
+  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">epfd = epoll_create1(EPOLL_CLOEXEC);</span><br><span class="line">event.events = EPOLLET | EPOLLIN;</span><br><span class="line">event.data.fd = serverfd;</span><br><span class="line">epoll_ctl(epfd, EPOLL_CTL_ADD, serverfd, &amp;event);</span><br><span class="line"><span class="comment">// 主循环</span></span><br><span class="line"><span class="keyword">while</span>(<span class="literal">true</span>) &#123;</span><br><span class="line">    <span class="comment">// 这里的timeout很重要，实际使用中灵活调整</span></span><br><span class="line">    count = epoll_wait(epfd, &amp;events, MAXEVENTS, timeout);</span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; count; ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span>(events[i].events &amp; EPOLLERR || events[i].events &amp; EPOLLHUP)</span><br><span class="line">            <span class="comment">// 处理错误</span></span><br><span class="line">        <span class="keyword">if</span>(events[i].data.fd == serverfd)</span><br><span class="line">            <span class="comment">// 为接入的连接注册事件</span></span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(events[i].events &amp; EPOLLIN)</span><br><span class="line">            <span class="comment">// 处理可读的缓冲区</span></span><br><span class="line">            read(events[i].data.fd, buf, len);</span><br><span class="line">            event.events = EPOLLET | EPOLLOUT;</span><br><span class="line">            event.data.fd = events[i].data.fd;</span><br><span class="line">            epoll_ctl(epfd, EPOLL_CTL_MOD, events[i].data.fd, &amp;event);</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="comment">// 处理可写的缓冲区</span></span><br><span class="line">            write(events[i].data.fd, buf, len);</span><br><span class="line">            <span class="comment">// 后续可以关闭fd或者MOD至EPOLLOUT</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h4><ul>
+<li><p>为什么用epoll</p>
+<ul>
+<li><p>支持监听大数目的socket描述符</p>
+<ul>
+<li><p>一个进程内，select能打开的fd是有限制的，由宏<code>FD_SETSIZE</code> 设置，默认值是 1024.在某些时候，这个数值是远远不够用的。解决办法有两种，一是修改宏然后重新编译内核，但与此同时会引起网络效率的下降；二是使用多进程来解决，但是创建多个进程是有代价的，而且进程间数据同步没有多线程间方便。</p>
+</li>
+<li><p>epoll没有这个限制，它所支持的最大 fd 上限远远大于1024，在1GB内存的机器上是10万左右（具体数目可以cat/proc/sys/fs/file-max查看）</p>
+  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//我的是centos6.9，内存2GB</span></span><br><span class="line">[roux@Vkey mnt]$ cat /proc/sys/fs/file-max </span><br><span class="line"><span class="number">187510</span></span><br><span class="line">[roux@Vkey mnt]$</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<ol start="2">
+<li><p>效率的提高</p>
+<ul>
+<li><p>select 函数每次都当监听的套接组有事件产生时就会返回，但却不能将有事件产生的套接字筛选出来，而是改变其在套接组的标志量，所以每次监听到事件，都需要将套接组整个遍历一遍。时间复杂度是O(n)。当fd数目增加时，效率会线性下降。</p>
+</li>
+<li><p>epoll 函数每次会将监听套结字中产生事件的套接字加到一列表中，然后我们可以直接对此列表进行操作，而没有产生事件的套接字会被过滤掉，极大的提高了IO效率。这一点尤其在套接字监听数量巨大而活跃数量很少的时候很明显。</p>
+</li>
+</ul>
+</li>
+<li><p>内存处理</p>
+<ul>
+<li>不管是哪种I/O机制，都无法避免fd在操作过程中拷贝的问题，而 epoll 使用了 mmap (是指文件/对象的内存映射，被映射到多个内存页上)，所以同一块内存(共享内存)就可以避免这个问题(详细看前面的零拷贝技术及 mmap)。</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>epoll的工作方式</p>
+<ul>
+<li><p>epoll有两种触发模式，LT(Level-Triggered，水平触发)，ET(Edge–Triggered边缘触发)。其中LT编程模型和poll是一样的。</p>
+</li>
+<li><p>LT(level triggered) 是<strong>默认/缺省的工作方式</strong>，同时支持  <code>block</code> 和 <code>no_block socket</code>。这种工作方式下，内核会通知你一个 fd 是否就绪，然后才可以对这个就绪的 fd 进行I/O操作。就算你没有任何操作，系统还是会继续提示 fd 已经就绪，不过这种工作方式出错会比较小，传统的 select/poll 就是这种工作方式的代表。(水平触发，只要有数据可以读，不管怎样都会通知)</p>
+</li>
+<li><p>ET(edge-triggered) 是<strong>高速工作方式<em> </em></strong>，<strong>仅支持 <code>no_block socket</code>(非阻塞)</strong>，这种工作方式下，当 fd 从未就绪变为就绪时，内核会通知 fd 已经就绪，并且内核认为你知道该 fd 已经就绪，不会再次通知了，除非因为某些操作导致fd就绪状态发生变化。如果一直不对这个 fd 进行I/O操作，导致 fd 变为未就绪时，内核同样不会发送更多的通知，因为 only once。所以这种方式下，出错率比较高，需要增加一些检测程序。(边缘触发，只有状态发生变化时才会通知，可以理解为电平变化)</p>
+</li>
+<li><p>举例：</p>
+<ul>
+<li><p>LT 水平触发</p>
+<p>  儿子：“妈妈，我收到了5000元压岁钱。”<br>  妈妈：“恩，省着点花！”<br>  儿子：“妈妈，我今天买了个ipad，花了3000元。”<br>  妈妈：“噢，这东西真贵。”<br>  儿子：“妈妈，我今天买好多吃的，还剩1000元。”<br>  妈妈：“用完了这些钱，我可不会再给你了。”<br>  儿子：“妈妈，那1000元我没花，零花钱够用了。”<br>  妈妈：“恩，这才是明智的做法！”<br>  儿子：“妈妈，那1000元我没花，我要攒起来。”<br>  妈妈：“恩，加油！”</p>
+<ul>
+<li>是不是没完没了？只要儿子手中还有钱，他就会一直汇报，这就是LT模式。有钱就是1，没钱就是0，那么只要儿子还有钱，这种事件就是1-&gt;1类型事件，自然是LT。</li>
+</ul>
+</li>
+<li><p>ET 边缘触发</p>
+<p>  儿子：“妈妈，我收到了5000元压岁钱。”<br>  妈妈：“恩，省着点花！”<br>  儿子：“……”<br>  妈妈：“你倒是说话啊？压岁钱呢？！”</p>
+<ul>
+<li>这个就是ET模式，简洁得有点过头，但很高效！虽然妈妈可能并不这么认为。。。儿子从没钱到有钱，是一个0-&gt;1的过程，因此为ET。儿子和妈妈说过自己拿到了压岁钱就完事了，至于怎么花钱，还剩多少钱，一概不说。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>LT 模式和 ET 模式的区别是 ET 模式是高电平到低电平切换的时候或者低电平切换高电平才会触发。</p>
+<ul>
+<li><p>EPOLLIN事件:</p>
+<ul>
+<li>内核的输入缓冲区 为空 低电平</li>
+<li>内核的输入缓冲区 不为空 高电平（一直触发EPOLLIN）</li>
+</ul>
+</li>
+<li><p>EPOLLOUT事件:</p>
+<ul>
+<li>内核发送缓冲区不满 高电平(一直触发EPOLLOUT)</li>
+<li>内核发送缓冲区满 低电平</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>关于 LT 及 ET 的详细知识请<a href="http://blog.csdn.net/shell_albert/article/details/8438357" target="_blank" rel="noopener">点击此处</a></p>
+</li>
+</ul>
+</li>
+<li><p>什么时候关注EPOLLOUT事件呢？(如果在得到一个套接字马上关注，就会出现busy loop的状态)</p>
+<ul>
+<li><p>LT 模式：在write的时候关注EPOLLOUT事件，如果数据没有写完，我们就需要把未发送完的数据添加到应用层缓冲区，然后关注这个连接套接字的EPOLLOUT事件，等到EPOLLOUT事件到来，取出应用层缓冲区的数据发送，如果应用层缓冲区数据发送完成，取消关注EPOLLOUT事件。</p>
+<p>  <img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/epoll/epoll%E7%9A%84LT%E6%A8%A1%E5%BC%8F%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B.png" alt="LT"></p>
+</li>
+<li><p>ET 模式：ET表示边缘触发，是电平从低到高或者从高到低才会触发。我们一开始就可以关注EPOLLIN事件和EPOLLOUT事件，不会出现busy loop。所以当接收缓冲区处于高电平状态时，一定要一次性把数据全部读完。因为如果一次没有读完，接收缓冲区仍然处于高电平状态，下次不会在触发EPOLLIN事件。同理，发送缓冲区的处理类似。</p>
+<p>  <img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/epoll/epoll%E7%9A%84ET%E6%A8%A1%E5%BC%8F%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B.png" alt=""></p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h4><ul>
+<li><p>epoll 和 select/poll 本质上是一样的，性能上提升较大，都属于I/O多路复用模型（I/O Multiplexing Model），和阻塞，非阻塞两大I/O模型是并列的。只是对于事件处理函数角度而言，看起来是异步的（实际上是同步的回调而已）。和 epoll 组合使用大多数是非堵塞I/O方式，这时候就是同步非堵塞，也可以有堵塞I/O的情况。比如多线程server可以在 accept 上采用堵塞I/O，accept后的 socket 用 epoll 管理非堵塞的读写事件。</p>
+</li>
+<li><p>使用 epoll 一定要加 <code>定时器</code>，否则后患无穷</p>
+</li>
+<li><p>联合体 data 中的那个 ptr 是很有用的，只不过这就意味着你将该对象的生命周期交给了 epoll，不排除会有潜在bug的影响，需要辅以timeout</p>
+</li>
+<li><p>多线程环境下使用epoll，多考虑 <code>EPOLLONESHOT</code></p>
+</li>
+<li><p>EPOLLLT 也是一个不错的选择，除非你的框架能够确保每次事件触发后，都读/写至 EAGAIN</p>
+</li>
+<li><p>使用前请仔细阅读 <code>man 7 epoll</code></p>
+</li>
+</ul>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><ul>
+<li><p>epoll 实现机制(简单介绍)</p>
+<ul>
+<li><p>epoll在被内核初始化时（操作系统启动），同时会开辟出epoll自己的内核高速cache区，用于安置每一个我们想监控的socket。<strong>这些socket会以红黑树的形式保存在内核cache里，以支持快速的查找、插入、删除。</strong></p>
+</li>
+<li><p>这个内核高速cache区，就是建立连续的物理内存页，然后在之上建立 slab 层。<strong>简单的说，就是物理上分配好你想要的size的内存对象，每次使用时都是使用空闲的已分配好的对象。</strong></p>
+</li>
+<li><p>epoll的高效就在于，当我们调用 <code>epoll_ ctl</code> 往里塞入百万个句柄时，<code>epoll_ wait</code> 仍然可以飞快的返回，并有效的将发生事件的句柄给我们用户。</p>
+<ul>
+<li>这是由于我们在调用 <code>epoll_ create</code> 时，内核除了帮我们在epoll文件系统里建了个file结点，在内核cache里建了个红黑树用于存储以后 <code>epoll_ ctl</code> 传来的socket外，<strong>还会再建立一个list链表，用于存储准备就绪的事件.</strong></li>
+</ul>
+</li>
+<li><p>当 <code>epoll_ wait</code> 调用时，仅仅观察这个list链表里有没有数据即可。有数据就返回，没有数据就sleep，等到timeout时间到后即使链表没数据也返回。所以，<code>epoll_wait</code> 非常高效。 而且，通常情况下即使我们要监控百万计的句柄，大多一次也只返回很少量的准备就绪句柄而已，所以，<code>epoll_wait</code> 仅需要从内核态copy少量的句柄到用户态而已。</p>
+</li>
+<li><p><strong>那么，这个准备就绪list链表是怎么维护的呢？</strong></p>
+<ul>
+<li><p>当我们执行 <code>epoll_ctl</code> 时，除了把socket放到epoll文件系统里file对象对应的红黑树上之外，<strong>还会给内核中断处理程序注册一个回调函数</strong>，告诉内核，如果这个句柄的中断到了，就把它放到准备就绪list链表里。</p>
+</li>
+<li><p>所以，当一个socket上有数据到了，内核在把网卡上的数据copy到内核中后就来把socket插入到准备就绪链表里了。<strong>如此，一颗红黑树，一张准备就绪句柄链表，少量的内核cache，就帮我们解决了大并发下的socket处理问题。</strong></p>
+</li>
+</ul>
+</li>
+<li><p><strong>执行 <code>epoll_ create</code> 时，创建了红黑树和就绪链表，执行 <code>epoll_ ctl</code> 时，如果增加socket句柄，则检查在红黑树中是否存在，存在立即返回，不存在则添加到树干上，然后向内核注册回调函数，用于当中断事件来临时向准备就绪链表中插入数据。执行 <code>epoll_wait</code> 时立刻返回准备就绪链表里的数据即可。</strong></p>
+</li>
+</ul>
+</li>
+<li><p>三种IO复用函数的分析</p>
+<p>  <img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/epoll/%E4%B8%89%E7%A7%8D%E5%87%BD%E6%95%B0%E7%9A%84%E5%AF%B9%E6%AF%94.png" alt="对比"></p>
+<p>  <img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/epoll/%E4%B8%89%E7%A7%8D%E5%87%BD%E6%95%B0%E7%9A%84%E6%95%88%E7%8E%87.png" alt="效率"></p>
+<p>  <img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/epoll/%E4%B8%89%E7%A7%8D%E5%87%BD%E6%95%B0%E7%9A%84%E8%BF%9E%E6%8E%A5%E6%95%B0.png" alt="链接"></p>
+<p>  <img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/epoll/%E4%B8%89%E7%A7%8D%E5%87%BD%E6%95%B0%E7%9A%84%E6%B6%88%E6%81%AF%E4%BC%A0%E9%80%92.png" alt="传递"></p>
+</li>
+</ul>
+<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><ul>
+<li><p>链接：</p>
+<ul>
+<li><a href="http://blog.csdn.net/lixungogogo/article/details/52226479" target="_blank" rel="noopener">http://blog.csdn.net/lixungogogo/article/details/52226479</a></li>
+<li><a href="https://www.cppfans.org/1418.html" target="_blank" rel="noopener">https://www.cppfans.org/1418.html</a></li>
+<li><a href="https://www.yuanmas.com/info/mZzgRrExOK.html" target="_blank" rel="noopener">https://www.yuanmas.com/info/mZzgRrExOK.html</a></li>
+<li><a href="http://blog.lucode.net/linux/epoll-tutorial.html" target="_blank" rel="noopener">http://blog.lucode.net/linux/epoll-tutorial.html</a></li>
+<li><a href="http://www.liudesheng.com/2016/12/13/%E5%A4%A7%E5%B9%B6%E5%8F%91%E6%9C%8D%E5%8A%A1%E5%99%A8/%E5%9B%9B%E3%80%81epoll%E5%87%BD%E6%95%B0/" target="_blank" rel="noopener">http://www.liudesheng.com/2016/12/13/%E5%A4%A7%E5%B9%B6%E5%8F%91%E6%9C%8D%E5%8A%A1%E5%99%A8/%E5%9B%9B%E3%80%81epoll%E5%87%BD%E6%95%B0/</a></li>
+<li><a href="https://www.cppfans.org/1417.html" target="_blank" rel="noopener">https://www.cppfans.org/1417.html</a></li>
+<li><a href="http://blog.csdn.net/xiajun07061225/article/details/9250579" target="_blank" rel="noopener">http://blog.csdn.net/xiajun07061225/article/details/9250579</a></li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+  
+</div>
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>谢谢你请我吃糖果!</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/assets/img/weixin.png" alt="Vkey 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/assets/img/zhifubao.jpg" alt="Vkey 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Vkey
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://roux.top/2017/11/20/epoll函数/" title="epoll函数">http://roux.top/2017/11/20/epoll函数/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/I-O复用/" <i class="fa fa-tag"></i> I/O复用</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/19/NULL/" rel="next" title="nil/Nil/NULL/NUL/nullptr/NSNull">
+                <i class="fa fa-chevron-left"></i> nil/Nil/NULL/NUL/nullptr/NSNull
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/11/21/arena/" rel="prev" title="glibc内存分配之arena">
+                glibc内存分配之arena <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="SOHUCS"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/assets/img/header.jpeg"
+                alt="Vkey" />
+            
+              <p class="site-author-name" itemprop="name">Vkey</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">73</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/paulRoux" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://blog.csdn.net/xingerr" target="_blank" title="CSDN">
+                    
+                      <i class="fa fa-fw fa-globe"></i>CSDN</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://twitter.com/Vkey_roux" target="_blank" title="Twitter">
+                    
+                      <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://blog.csdn.net/gc348342215" title="隔壁的豆豆" target="_blank">隔壁的豆豆</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#epoll函数"><span class="nav-number">2.</span> <span class="nav-text">epoll函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#说明"><span class="nav-number">3.</span> <span class="nav-text">说明</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#注意"><span class="nav-number">4.</span> <span class="nav-text">注意</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考"><span class="nav-number">6.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+<div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vkey</span>
+
+  
+</div>
+
+
+
+  	<div class="powered-by">
+	<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+	  我思故我在！
+	</span>
+	</div>
+
+<!--
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+-->
+
+
+
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">感谢你来看我！</span>
+</div>
+
+
+<!--
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.3</div>
+-->
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+  
+    <script type="text/javascript">
+    (function(){
+      var appid = 'cytg0VXXf';
+      var conf = '16b9ee30c84ee9a52ae3219b1b4f3a0a';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      if (width < 960) {
+      window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){
+        window.changyan.api.config({appid:appid,conf:conf})});
+      }
+    })();
+    </script>
+    <script type="text/javascript" src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js"></script>
+  
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("PAelBObBJJ1wxPLcqGh7Xi7f-gzGzoHsz", "CvEKFxTr48P32AWq1lhkwl7A");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+
+<!--页面点击小红心-->
+<script type="text/javascript" src="/js/src/love.js"></script>
+
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https'){
+   bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+  }
+  else{
+  bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+  }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>

@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "a12c511f"
+    });
+  daovoice('update');
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="I/O复用," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Vkey Blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="poll函数 说明：等待一个文件上的某些事件(与select功能类似)  头文件：#include &amp;lt;poll.h&amp;gt;  原型：int poll(struct pollfd *fds, nfds_t nfds, int timeout);">
+<meta name="keywords" content="I&#x2F;O复用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="poll函数">
+<meta property="og:url" content="http://roux.top/2017/11/17/poll函数/index.html">
+<meta property="og:site_name" content="Vkey Blog">
+<meta property="og:description" content="poll函数 说明：等待一个文件上的某些事件(与select功能类似)  头文件：#include &amp;lt;poll.h&amp;gt;  原型：int poll(struct pollfd *fds, nfds_t nfds, int timeout);">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-04-22T05:49:50.575Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="poll函数">
+<meta name="twitter:description" content="poll函数 说明：等待一个文件上的某些事件(与select功能类似)  头文件：#include &amp;lt;poll.h&amp;gt;  原型：int poll(struct pollfd *fds, nfds_t nfds, int timeout);">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"输入关键字","hits_empty":"没有找到与『${query}』相关的内容！","hits_stats":"${hits}条相关记录，共耗时：${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://roux.top/2017/11/17/poll函数/"/>
+
+
+
+
+
+  <title>poll函数 | Vkey Blog</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-107736373-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <!--
+    <a href="https://github.com/paulRoux"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
+    -->
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vkey Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-书单">
+          <a href="/book" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            书单
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://roux.top/2017/11/17/poll函数/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vkey">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/assets/img/header.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vkey Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">poll函数</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-17T00:00:00+08:00">
+                2017-11-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/网络编程/" itemprop="url" rel="index">
+                    <span itemprop="name">网络编程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2017/11/17/poll函数/#SOHUCS" itemprop="discussionUrl">
+                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2017/11/17/poll函数/" itemprop="commentsCount"></span>
+                </a>
+              
+            
+          
+
+          
+          
+             <span id="/2017/11/17/poll函数/" class="leancloud_visitors" data-flag-title="poll函数">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="poll函数"><a href="#poll函数" class="headerlink" title="poll函数"></a>poll函数</h4><ul>
+<li><p>说明：等待一个文件上的某些事件(与select功能类似)</p>
+</li>
+<li><p>头文件：<code>#include &lt;poll.h&gt;</code></p>
+</li>
+<li><p>原型：<code>int poll(struct pollfd *fds, nfds_t nfds, int timeout);</code></p>
+  <a id="more"></a>
+<ul>
+<li><p>fds指针</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">pollfd</span> &#123;</span></span><br><span class="line">           <span class="keyword">int</span>   fd;         <span class="comment">/* file descriptor */</span></span><br><span class="line">           <span class="keyword">short</span> events;     <span class="comment">/* requested events */</span></span><br><span class="line">           <span class="keyword">short</span> revents;    <span class="comment">/* returned events */</span></span><br><span class="line">       &#125;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>pollfd结构体成员的fd设置为需要关注的描述符，当fd被赋值为-1（负数）时，表示忽略 events，revents事件也将被设置成0。</p>
+</li>
+<li><p>poll与select不同（select函数在调用之后，会清空检测描述符的数组），每当调用这个函数之后，系统不会清空这个数组，而是将有状态变化的描述符结构的revents变量状态变化，操作起来比较方便。</p>
+</li>
+<li><p>events是需要设置进去对fd的关注事件（关注可读、可写、异常），属于掩码（可以或），比如设置成POLLIN | POLLOUT，关注可读可写。</p>
+</li>
+<li><p>revents是由内核通知的，函数返回的时候，会设置对应的fd实际发生的事件，比如fd有可读的事件，设置POLLIN(下面的表格鉴于渲染的时候会发生错误，故不用)</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">常量  | 说明  | 是否可以作为输入 | 是否可以作为输出</span><br><span class="line">----- | ----- | ----------------- | ------------ |</span><br><span class="line">POLLIN | 普通或优先级带数据可读  | 是  |  是</span><br><span class="line">    </span><br><span class="line">POLLRDNORM | 普通数据可读（等价POLLIN与POLLRDBAND的逻辑或，与linux版本有关） |  是  |  是</span><br><span class="line">    </span><br><span class="line">POLLRDBAND | 优先级带数据可读（linux中一般不用） |  是  |  是</span><br><span class="line">    </span><br><span class="line">POLLPRI | 高优先级数据可读  |  是  |  是</span><br><span class="line">    </span><br><span class="line">POLLOUT | 普通数据可写  |  是  |  是</span><br><span class="line">    </span><br><span class="line">POLLWRNORM | 普通数据可写（等价POLLOUT，与linux版本有关）|  是  |  是</span><br><span class="line">    </span><br><span class="line">POLLWRBAND | 优先级数据可写 |  是  |  是</span><br><span class="line">    </span><br><span class="line">POLLRDHUP | Linux2<span class="number">.6</span><span class="number">.17</span>以上才支持，需要声明_GNU_SOURCE，tcp被被对方关闭连接，对方关闭了写操作  |  是  |  是</span><br><span class="line">    </span><br><span class="line">POLLERR | 发生错误  |  否  |  是</span><br><span class="line">    </span><br><span class="line">POLLHUP | 发生挂起  |  否  |  是</span><br><span class="line">    </span><br><span class="line">POLLNVAL | 描述符不是一个打开的文件  |  否  |  是</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code>    - 表格中的最后三个是不能作为events事件注册进去的，只能放到revents结果中
+
+- nfds参数：描述符个数，结构体pollfd数组元素的个数
+
+- timeout参数：指定等待的毫秒数，无论I/O是否准备好，poll都会返回。
+
+    - 参数设置为-1时，表示永远阻塞等待。
+    2. 0表示立即返回，不阻塞(立即返回并列出准备好I/O的文件描述符，并不等待其它的事件)。
+    3. 大于0时，表示等待指定数目的毫秒数。
+</code></pre><ul>
+<li><p>返回值：</p>
+<ul>
+<li><p>大于0：表示结构体数组fds中有fd描述符的状态发生变化，或可以读取、或可以写入、或出错。并且返回的值表示这些状态有变化的socket描述符的总数量；此时可以对fds数组进行遍历，以寻找那些revents不空的描述符，然后判断这个里面有哪些事件以读取数据。</p>
+</li>
+<li><p>等于0：表示没有描述符有状态变化，并且调用超时。</p>
+</li>
+<li><p>小于0：此时表示有错误发生，此时全局变量errno保存错误码。</p>
+</li>
+</ul>
+</li>
+<li><p>错误代码：</p>
+<ul>
+<li><p>EBADF: 一个或多个结构体中指定的文件描述符无效。</p>
+</li>
+<li><p>EFAULT: fds指针指向的地址超出进程的地址空间。</p>
+</li>
+<li><p>EINTR: 请求的事件之前产生一个信号，调用可以重新发起。</p>
+</li>
+<li><p>EINVAL: nfds参数超出PLIMIT_NOFILE值。</p>
+</li>
+<li><p>ENOMEM: 可用内存不足，无法完成请求。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="内核追踪-比较效率"><a href="#内核追踪-比较效率" class="headerlink" title="内核追踪-比较效率"></a>内核追踪-比较效率</h4><ul>
+<li><p>select 内核追踪</p>
+<ul>
+<li><p>内核代码是参考2.6.12版本的内核</p>
+  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">asmlinkage <span class="keyword">long</span> <span class="title">sys_select</span><span class="params">(<span class="keyword">int</span> n, fd_set __user *inp, fd_set __user *outp, fd_set __user *<span class="built_in">exp</span>, struct timeval __user *tvp)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    .....</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    n 是需要监听描述符集中，最大描述加1，然后，开始申请内存</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    ret = -ENOMEM;</span><br><span class="line">    size = FDS_BYTES(n);</span><br><span class="line">    bits = select_bits_alloc(size);</span><br><span class="line">    <span class="keyword">if</span> (!bits)</span><br><span class="line">       <span class="keyword">goto</span> out_nofds;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//设置指针，指向特定的内存，所以，才可以往fds 中个指针填充数据</span></span><br><span class="line">    fds.in      = (<span class="keyword">unsigned</span> <span class="keyword">long</span> *)  bits;</span><br><span class="line">    fds.out     = (<span class="keyword">unsigned</span> <span class="keyword">long</span> *) (bits +   size);</span><br><span class="line">    fds.ex      = (<span class="keyword">unsigned</span> <span class="keyword">long</span> *) (bits + <span class="number">2</span>*size);</span><br><span class="line">    fds.res_in  = (<span class="keyword">unsigned</span> <span class="keyword">long</span> *) (bits + <span class="number">3</span>*size);</span><br><span class="line">    fds.res_out = (<span class="keyword">unsigned</span> <span class="keyword">long</span> *) (bits + <span class="number">4</span>*size);</span><br><span class="line">    fds.res_ex  = (<span class="keyword">unsigned</span> <span class="keyword">long</span> *) (bits + <span class="number">5</span>*size);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//用用户空间获取相应的参数值</span></span><br><span class="line">    <span class="keyword">if</span> ((ret = get_fd_set(n, inp, fds.in)) ||</span><br><span class="line">        (ret = get_fd_set(n, outp, fds.out)) ||</span><br><span class="line">        (ret = get_fd_set(n, <span class="built_in">exp</span>, fds.ex)))</span><br><span class="line">       <span class="keyword">goto</span> out;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//清空需要返回给用户态的参数</span></span><br><span class="line">    zero_fd_set(n, fds.res_in);</span><br><span class="line">    zero_fd_set(n, fds.res_out);</span><br><span class="line">    zero_fd_set(n, fds.res_ex);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//这里就是重点调用do_select() 函数来轮询，该函数轮询结束之后，返回，</span></span><br><span class="line">    <span class="comment">//然后，就可以把fds 中相应的属性返回给应用程序。</span></span><br><span class="line">    <span class="comment">//do_select() 也是通过schedule_time() 调度返回的，那么休眠被唤醒之后，可能是被一些信号触发唤醒，</span></span><br><span class="line">    <span class="comment">//那么，下面就调用signal_pending(); 来检测信号是否异常。</span></span><br><span class="line">    ret = do_select(n, &amp;fds, &amp;timeout);</span><br><span class="line"></span><br><span class="line">    ......</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*最终调用 do_select(); 函数，该函数的主要框架如下：*/</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">do_select</span><span class="params">(<span class="keyword">int</span> n, fd_set_bits *fds, <span class="keyword">long</span> *timeout)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    .....</span><br><span class="line"></span><br><span class="line">    <span class="comment">//此时，进入一个死循环，退出循环的条件有:</span></span><br><span class="line">    <span class="comment">//1 -- retval != 0，就是说，监听的文件描述符有信号可以处理。</span></span><br><span class="line">    <span class="comment">//2 -- timeout == 0, 超时了。</span></span><br><span class="line">    <span class="comment">//3 -- signal_pending(); 检测到当前的进程接受到信号处理。</span></span><br><span class="line">    <span class="comment">//4 -- wait-&gt;error 记录的错误事件不为，表示有错误处理。</span></span><br><span class="line">    <span class="keyword">for</span> (;;) &#123;</span><br><span class="line"></span><br><span class="line">       ......</span><br><span class="line"></span><br><span class="line">       <span class="comment">//设置当前的进程的可中断的休眠状态</span></span><br><span class="line">       set_current_state(TASK_INTERRUPTIBLE);</span><br><span class="line">       ......</span><br><span class="line">       <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; n; ++rinp, ++routp, ++rexp) &#123;</span><br><span class="line"></span><br><span class="line">           ......</span><br><span class="line"></span><br><span class="line">           <span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; __NFDBITS; ++j, ++i, bit &lt;&lt;= <span class="number">1</span>) &#123;</span><br><span class="line"></span><br><span class="line">                  .....</span><br><span class="line"></span><br><span class="line">                  <span class="comment">//调用fd 文件描述符对应的驱动程序的poll 函数指针指向的函数。</span></span><br><span class="line">                  <span class="comment">//如果fd 是一个网络套接，而且使用TCP 协议，那么，该函数指针就指向tcp_poll(); 函数。</span></span><br><span class="line">                  mask = (*f_op-&gt;poll)(file, retval ? <span class="literal">NULL</span> : wait);</span><br><span class="line"></span><br><span class="line">                  ......</span><br><span class="line"></span><br><span class="line">              &#125;</span><br><span class="line"></span><br><span class="line">           &#125;<span class="comment">//end of 第3 层for 循环</span></span><br><span class="line"></span><br><span class="line">           ......</span><br><span class="line"></span><br><span class="line">       &#125;<span class="comment">//end of 第2 层for 循环</span></span><br><span class="line"></span><br><span class="line">       <span class="comment">//上面的for() 循环调用了cond_resched() 来调度CPU，那么，可能在睡眠的时候被产生信号触发返回，</span></span><br><span class="line">       <span class="comment">//所以，这里还需要调用signal_pending() 检测是否是被信号触发返回。所以，在select()函数中是可以被信号中断返回，              //在pselect()函数中就可以屏蔽相应的信号。</span></span><br><span class="line">       <span class="comment">//如果retval &gt;=1 表示有信号处理，所以，推出循环。</span></span><br><span class="line">       <span class="keyword">if</span> (retval || !__timeout || signal_pending(current))</span><br><span class="line">           <span class="keyword">break</span>;</span><br><span class="line">       <span class="keyword">if</span>(table.error) &#123;</span><br><span class="line">           retval = table.error;</span><br><span class="line">           <span class="keyword">break</span>;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="comment">//具有定时唤醒进程的调度CPU</span></span><br><span class="line">       <span class="comment">//而且，返回的时间是离__timeout 还剩下多少时间，如果已经超过__timeout，就返回0</span></span><br><span class="line">       __timeout = schedule_timeout(__timeout);</span><br><span class="line">    &#125;<span class="comment">//end of for(;;);</span></span><br><span class="line"></span><br><span class="line">    .....</span><br><span class="line"></span><br><span class="line">    *timeout = __timeout;    <span class="comment">//更新参数timeout 为新的时间</span></span><br><span class="line">    <span class="keyword">return</span> retval;    <span class="comment">//返回有多少个信号需要处理</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>可以看到，主要是通过“三重循环”来查询套接口是否有信息可以处理。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>poll内核追踪</p>
+<ul>
+<li><p>内核代码是参考2.6.12版本的内核</p>
+  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">asmlinkage <span class="keyword">long</span> <span class="title">sys_poll</span><span class="params">(struct pollfd __user * ufds, <span class="keyword">unsigned</span> <span class="keyword">int</span> nfds, <span class="keyword">long</span> timeout)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ......</span><br><span class="line"></span><br><span class="line">    <span class="comment">//申请内存空间，存放用户层传递过来的参数</span></span><br><span class="line">    <span class="keyword">while</span>(i!=<span class="number">0</span>) &#123;</span><br><span class="line">       <span class="class"><span class="keyword">struct</span> <span class="title">poll_list</span> *<span class="title">pp</span>;</span></span><br><span class="line">       pp = kmalloc(<span class="keyword">sizeof</span>(struct poll_list)+</span><br><span class="line">              <span class="keyword">sizeof</span>(struct pollfd)*</span><br><span class="line">              (i&gt;POLLFD_PER_PAGE?POLLFD_PER_PAGE:i),</span><br><span class="line">                  GFP_KERNEL);</span><br><span class="line">       <span class="keyword">if</span>(pp==<span class="literal">NULL</span>)</span><br><span class="line">           <span class="keyword">goto</span> out_fds;</span><br><span class="line">       pp-&gt;next=<span class="literal">NULL</span>;</span><br><span class="line">       pp-&gt;len = (i&gt;POLLFD_PER_PAGE?POLLFD_PER_PAGE:i);</span><br><span class="line">       <span class="keyword">if</span> (head == <span class="literal">NULL</span>)</span><br><span class="line">           head = pp;</span><br><span class="line">       <span class="keyword">else</span></span><br><span class="line">           walk-&gt;next = pp;</span><br><span class="line"></span><br><span class="line">       walk = pp;</span><br><span class="line">       <span class="keyword">if</span> (copy_from_user(pp-&gt;entries, ufds + nfds-i,</span><br><span class="line">              <span class="keyword">sizeof</span>(struct pollfd)*pp-&gt;len)) &#123;</span><br><span class="line">           err = -EFAULT;</span><br><span class="line">           <span class="keyword">goto</span> out_fds;</span><br><span class="line">       &#125;</span><br><span class="line">       i -= pp-&gt;len;</span><br><span class="line">    &#125;<span class="comment">//end of while</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//进入轮询的主要操作</span></span><br><span class="line">    fdcount = do_poll(nfds, head, &amp;table, timeout);</span><br><span class="line"></span><br><span class="line">    ......</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">    主要是进入 do_poll()函数，该函数的主要框架如下：</span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">do_poll</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">int</span> nfds,  struct poll_list *<span class="built_in">list</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">   struct poll_wqueues *wait, <span class="keyword">long</span> timeout)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    .....</span><br><span class="line"></span><br><span class="line">    <span class="comment">//进入一个死循环，退出的条件有:</span></span><br><span class="line">    <span class="comment">//1 -- count != 0，就是说，监听的文件描述符有信号可以处理。</span></span><br><span class="line">    <span class="comment">//2 -- timeout == 0, 超时了。</span></span><br><span class="line">    <span class="comment">//3 -- signal_pending(); 检测到当前的进程接受到信号处理。</span></span><br><span class="line">    <span class="comment">//4 -- wait-&gt;error 记录的错误事件不为，表示有错误处理。</span></span><br><span class="line">    <span class="keyword">for</span> (;;) &#123;</span><br><span class="line">       ...</span><br><span class="line">       set_current_state(TASK_INTERRUPTIBLE);</span><br><span class="line">       <span class="keyword">while</span>(walk != <span class="literal">NULL</span>) &#123;</span><br><span class="line">           do_pollfd( walk-&gt;len, walk-&gt;entries, &amp;pt, &amp;count);</span><br><span class="line">           walk = walk-&gt;next;</span><br><span class="line">       &#125;</span><br><span class="line">       .....</span><br><span class="line">       <span class="keyword">if</span> (count || !timeout || signal_pending(current))</span><br><span class="line">           <span class="keyword">break</span>;</span><br><span class="line">       count = wait-&gt;error;</span><br><span class="line">       <span class="keyword">if</span> (count)</span><br><span class="line">           <span class="keyword">break</span>;</span><br><span class="line">       timeout = schedule_timeout(timeout);</span><br><span class="line">    &#125;</span><br><span class="line">    __set_current_state(TASK_RUNNING);</span><br><span class="line">    <span class="keyword">return</span> count;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">        上面的函数处理双重循环，然后，进入到 do_pollfd(); 函数中，该函数的主要框架如下：</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">do_pollfd</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">int</span> num, struct pollfd * fdpage,</span></span></span><br><span class="line"><span class="function"><span class="params">poll_table ** pwait, <span class="keyword">int</span> *count)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        ......</span><br><span class="line"></span><br><span class="line">        <span class="comment">//循环扫描文件描述符数组中的文件描述符</span></span><br><span class="line">        <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; num; i++) &#123;</span><br><span class="line">           .....</span><br><span class="line">               <span class="keyword">if</span> (file != <span class="literal">NULL</span>) &#123;</span><br><span class="line">                  <span class="comment">//执行文件操作集中的poll 指针所指向的函数。</span></span><br><span class="line">                  <span class="comment">//例如，自己在开发驱动程序的时候，此时的poll 指针，就执行我们定义注册</span></span><br><span class="line">                  <span class="comment">//到file_operations 结构中的函数。</span></span><br><span class="line">                  <span class="comment">//调用fd 文件描述符对应的驱动程序的poll 函数指针指向的函数。</span></span><br><span class="line">                  <span class="comment">//如果fd 是一个网络套接，而且使用TCP 协议，那么，该函数指针就指向tcp_poll(); 函数。</span></span><br><span class="line">                  <span class="keyword">if</span> (file-&gt;f_op &amp;&amp; file-&gt;f_op-&gt;poll)</span><br><span class="line">                      mask = file-&gt;f_op-&gt;poll(file, *pwait);</span><br><span class="line">               ......</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>对于 sys_poll()函数也是需要 3 个循环来处理与sys_select()函数的处理模式差不多。</p>
+</li>
+</ul>
+<h4 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h4><ul>
+<li><p>poll的机制与select类似，与select在本质上没有多大差别，管理多个描述符也是进行轮询，根据描述符的状态进行处理，但是poll没有最大文件描述符数量的限制。</p>
+</li>
+<li><p>poll和select同样存在一个缺点就是，包含大量文件描述符的数组被整体复制于用户态和内核的地址空间之间，而不论这些文件描述符是否就绪，它的开销随着文件描述符数量的增加而线性增大。</p>
+</li>
+<li><p>pollfd中的events字段和revents分别用于标示关注的事件和发生的事件，故pollfd数组只需要被初始化一次</p>
+</li>
+<li><p>poll还有一个特点是“水平触发”，如果报告了fd后，没有被处理，那么下次poll时会再次报告该fd。</p>
+</li>
+<li><p>select() 函数的最后一个参数是指针类型，其值会被修改，所以，当再次调用select() 函数的时候，需要重新设置该参数。而poll() 函数的最后一个参数是值类型，不会被修改。</p>
+</li>
+</ul>
+<h4 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h4><ul>
+<li><p>优点：</p>
+<ul>
+<li>poll() 不要求开发者计算最大文件描述符加一的大小。</li>
+<li>poll() 在应付大数目的文件描述符的时候速度更快，相比于select。</li>
+<li>它没有最大连接数的限制，原因是它是基于链表来存储的。</li>
+</ul>
+</li>
+<li><p>缺点：</p>
+<ul>
+<li>大量的fd的数组被整体复制于用户态和内核地址空间之间，而不管这样的复制是不是有意义。</li>
+<li>与select一样，poll返回后，需要轮询pollfd来获取就绪的描述符</li>
+</ul>
+</li>
+</ul>
+<h4 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*服务器*/</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/socket.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;poll.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;arpa/inet.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;errno.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAXSIZE 1024  <span class="comment">//缓冲区最大值</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PORT 55555  <span class="comment">//端口号</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> LISTENQ 20  <span class="comment">//监听的最大值</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> INFTIM -1  <span class="comment">//timeout时间</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> listenfd;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span> <span class="title">serverAddr</span>, <span class="title">clientAddr</span>;</span></span><br><span class="line">    bzero(&amp;serverAddr, <span class="keyword">sizeof</span>(serverAddr));</span><br><span class="line"></span><br><span class="line">    serverAddr.sin_family = AF_INET;</span><br><span class="line">    serverAddr.sin_port = htons(PORT);</span><br><span class="line">    serverAddr.sin_addr.s_addr = htonl(INADDR_ANY);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>((listenfd = socket(AF_INET, SOCK_STREAM, <span class="number">0</span>)) &lt; <span class="number">0</span>)&#123;</span><br><span class="line">        perror(<span class="string">"socket"</span>);</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//地址复用</span></span><br><span class="line">    <span class="keyword">int</span> reuse = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span>(setsockopt(listenfd, SOL_SOCKET, SO_REUSEADDR, &amp;reuse, <span class="keyword">sizeof</span>(reuse)) &lt; <span class="number">0</span>)&#123;</span><br><span class="line">        perror(<span class="string">"setsockopt"</span>);</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(bind(listenfd, (struct sockaddr*)&amp;serverAddr, <span class="keyword">sizeof</span>(serverAddr)) &lt; <span class="number">0</span>)&#123;</span><br><span class="line">        perror(<span class="string">"bind"</span>);</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(listen(listenfd, LISTENQ) &lt; <span class="number">0</span>)&#123;</span><br><span class="line">        perror(<span class="string">"listen"</span>);</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//获取每个进程最大打开的文件数</span></span><br><span class="line">    <span class="keyword">long</span> OPEN_MAX = sysconf(_SC_OPEN_MAX);</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">pollfd</span> <span class="title">client</span>[<span class="title">OPEN_MAX</span>];</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//注册监听事件</span></span><br><span class="line">    client[<span class="number">0</span>].fd = listenfd;</span><br><span class="line">    client[<span class="number">0</span>].events = POLLIN;</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(; i &lt; OPEN_MAX; i++)&#123;</span><br><span class="line">        client[i].fd = <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> sockfd, connfd;</span><br><span class="line">    <span class="keyword">int</span> nready;</span><br><span class="line">    <span class="keyword">int</span> maxi = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">char</span> buf[MAXSIZE];</span><br><span class="line">    bzero(buf, MAXSIZE);</span><br><span class="line">    <span class="keyword">socklen_t</span> clilen;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>((nready = poll(client, maxi+<span class="number">1</span>, INFTIM)) &lt; <span class="number">0</span>)&#123;</span><br><span class="line">            perror(<span class="string">"poll"</span>);</span><br><span class="line">            <span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(client[<span class="number">0</span>].revents &amp; POLLIN)&#123;</span><br><span class="line">            clilen = <span class="keyword">sizeof</span>(clientAddr);</span><br><span class="line">            <span class="keyword">if</span>((connfd = accept(listenfd, (struct sockaddr*)&amp;clientAddr, &amp;clilen)) &lt; <span class="number">0</span>)&#123;</span><br><span class="line">                perror(<span class="string">"accept"</span>);</span><br><span class="line">                <span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span>(i = <span class="number">1</span>; i &lt; OPEN_MAX; i++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(client[i].fd &lt; <span class="number">0</span>)&#123;</span><br><span class="line">                    client[i].fd = connfd;</span><br><span class="line">                    client[i].events = POLLIN;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span>(i == OPEN_MAX)&#123;</span><br><span class="line">                perror(<span class="string">"too many clients"</span>);</span><br><span class="line">                <span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span>(i &gt; maxi)&#123;</span><br><span class="line">                maxi = i;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span>(--nready &lt;= <span class="number">0</span>)&#123;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(i = <span class="number">1</span>; i &lt;= maxi; i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>((sockfd = client[i].fd) &lt; <span class="number">0</span>)&#123;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            bzero(buf, MAXSIZE);</span><br><span class="line">            <span class="keyword">if</span>(client[i].revents &amp; (POLLIN | POLLERR))&#123;</span><br><span class="line">                <span class="keyword">int</span> n = <span class="number">0</span>;</span><br><span class="line">                <span class="keyword">if</span>((n = recv(sockfd, buf, MAXSIZE, <span class="number">0</span>)) &lt; <span class="number">0</span>)&#123;</span><br><span class="line">                    <span class="keyword">if</span>(errno == ECONNRESET)&#123;</span><br><span class="line">                        close(sockfd);</span><br><span class="line">                        client[i].fd = <span class="number">-1</span>;</span><br><span class="line">                    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                        perror(<span class="string">"recv"</span>);</span><br><span class="line">                        <span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;<span class="keyword">else</span> <span class="keyword">if</span>(n == <span class="number">0</span>)&#123;</span><br><span class="line">                    close(sockfd);</span><br><span class="line">                    client[i].fd = <span class="number">-1</span>;</span><br><span class="line">                &#125;<span class="keyword">else</span> <span class="keyword">if</span>(n &gt; <span class="number">0</span>)&#123;</span><br><span class="line">                    <span class="built_in">printf</span>(<span class="string">"client : %s"</span>, buf);</span><br><span class="line">                    <span class="keyword">if</span>(send(sockfd, buf, <span class="built_in">strlen</span>(buf), <span class="number">0</span>) &lt; <span class="number">0</span>)&#123;</span><br><span class="line">                        perror(<span class="string">"send"</span>);</span><br><span class="line">                        <span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="built_in">printf</span>(<span class="string">"\nserver : %s"</span>, buf);</span><br><span class="line">                    <span class="built_in">putchar</span>(<span class="number">10</span>);</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span>(--nready &lt;= <span class="number">0</span>)&#123;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*客户端*/</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/socket.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;arpa/inet.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;poll.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAXSIZE 1024</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PORT 55555</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> sockfd;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span> <span class="title">clientAddr</span>;</span></span><br><span class="line"></span><br><span class="line">    clientAddr.sin_family = AF_INET;</span><br><span class="line">    clientAddr.sin_port = htons(PORT);</span><br><span class="line">    clientAddr.sin_addr.s_addr = inet_addr(<span class="string">"127.0.0.1"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>((sockfd = socket(AF_INET, SOCK_STREAM, <span class="number">0</span>)) &lt; <span class="number">0</span>)&#123;</span><br><span class="line">        perror(<span class="string">"socket"</span>);</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(connect(sockfd, (struct sockaddr*)&amp;clientAddr, <span class="keyword">sizeof</span>(clientAddr)) &lt; <span class="number">0</span>)&#123;</span><br><span class="line">        perror(<span class="string">"connect"</span>);</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">char</span> buf[MAXSIZE];</span><br><span class="line">    bzero(buf, MAXSIZE);</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">pollfd</span> <span class="title">server</span>[2];</span></span><br><span class="line"></span><br><span class="line">    server[<span class="number">0</span>].fd = sockfd;</span><br><span class="line">    server[<span class="number">0</span>].events = POLLIN;</span><br><span class="line">    server[<span class="number">1</span>].fd = fileno(<span class="built_in">stdin</span>);</span><br><span class="line">    server[<span class="number">1</span>].events = POLLIN;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> nready;</span><br><span class="line">    <span class="keyword">int</span> maxfd = sockfd &gt; fileno(<span class="built_in">stdin</span>)?sockfd:fileno(<span class="built_in">stdin</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>((nready = poll(server, maxfd+<span class="number">1</span>, <span class="number">-1</span>)) &lt; <span class="number">0</span> )&#123;</span><br><span class="line">            perror(<span class="string">"poll"</span>);</span><br><span class="line">            <span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(nready == <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(server[<span class="number">1</span>].revents &amp; POLLIN)&#123;</span><br><span class="line">            <span class="keyword">if</span>(fgets(buf, MAXSIZE, <span class="built_in">stdin</span>) != <span class="literal">NULL</span>)&#123;</span><br><span class="line">                <span class="keyword">if</span>(send(sockfd, buf, <span class="built_in">strlen</span>(buf), <span class="number">0</span>) &lt; <span class="number">0</span>)&#123;</span><br><span class="line">                    perror(<span class="string">"send"</span>);</span><br><span class="line">                    <span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">                &#125;</span><br><span class="line">                bzero(buf, MAXSIZE);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(server[<span class="number">0</span>].revents &amp; POLLIN)&#123;</span><br><span class="line">            <span class="keyword">int</span> n = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">if</span>((n = recv(sockfd, buf, MAXSIZE, <span class="number">0</span>)) &lt; <span class="number">0</span>)&#123;</span><br><span class="line">                perror(<span class="string">"recv"</span>);</span><br><span class="line">                <span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(n == <span class="number">0</span>)&#123;</span><br><span class="line">                close(sockfd);</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">"\nserver : %s"</span>, buf);</span><br><span class="line">                <span class="built_in">putchar</span>(<span class="number">10</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    close(sockfd);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><ul>
+<li><a href="http://www.cnblogs.com/orlion/p/6142838.html" target="_blank" rel="noopener">http://www.cnblogs.com/orlion/p/6142838.html</a></li>
+<li><a href="http://www.cnblogs.com/Anker/archive/2013/08/15/3261006.html" target="_blank" rel="noopener">http://www.cnblogs.com/Anker/archive/2013/08/15/3261006.html</a></li>
+<li><a href="http://blog.csdn.net/lixungogogo/article/details/52226434" target="_blank" rel="noopener">http://blog.csdn.net/lixungogogo/article/details/52226434</a></li>
+<li><a href="http://blog.csdn.net/zhouzhenhe2008/article/details/75807720" target="_blank" rel="noopener">http://blog.csdn.net/zhouzhenhe2008/article/details/75807720</a></li>
+<li><a href="http://blog.csdn.net/feng19870412/article/details/9001857" target="_blank" rel="noopener">http://blog.csdn.net/feng19870412/article/details/9001857</a></li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+  
+</div>
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>谢谢你请我吃糖果!</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/assets/img/weixin.png" alt="Vkey 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/assets/img/zhifubao.jpg" alt="Vkey 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Vkey
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://roux.top/2017/11/17/poll函数/" title="poll函数">http://roux.top/2017/11/17/poll函数/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/I-O复用/" <i class="fa fa-tag"></i> I/O复用</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/16/IO复用及同(异)步和(非)阻塞/" rel="next" title="I/O复用及同步、异步、阻塞、非阻塞">
+                <i class="fa fa-chevron-left"></i> I/O复用及同步、异步、阻塞、非阻塞
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/11/17/sysconf函数/" rel="prev" title="sysconf函数与getrlimit函数及setrlimit函数">
+                sysconf函数与getrlimit函数及setrlimit函数 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="SOHUCS"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/assets/img/header.jpeg"
+                alt="Vkey" />
+            
+              <p class="site-author-name" itemprop="name">Vkey</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">73</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/paulRoux" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://blog.csdn.net/xingerr" target="_blank" title="CSDN">
+                    
+                      <i class="fa fa-fw fa-globe"></i>CSDN</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://twitter.com/Vkey_roux" target="_blank" title="Twitter">
+                    
+                      <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://blog.csdn.net/gc348342215" title="隔壁的豆豆" target="_blank">隔壁的豆豆</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#poll函数"><span class="nav-number">1.</span> <span class="nav-text">poll函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#内核追踪-比较效率"><span class="nav-number">2.</span> <span class="nav-text">内核追踪-比较效率</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分析"><span class="nav-number">3.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#优缺点"><span class="nav-number">4.</span> <span class="nav-text">优缺点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#示例："><span class="nav-number">5.</span> <span class="nav-text">示例：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考"><span class="nav-number">6.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+<div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vkey</span>
+
+  
+</div>
+
+
+
+  	<div class="powered-by">
+	<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+	  我思故我在！
+	</span>
+	</div>
+
+<!--
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+-->
+
+
+
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">感谢你来看我！</span>
+</div>
+
+
+<!--
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.3</div>
+-->
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+  
+    <script type="text/javascript">
+    (function(){
+      var appid = 'cytg0VXXf';
+      var conf = '16b9ee30c84ee9a52ae3219b1b4f3a0a';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      if (width < 960) {
+      window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){
+        window.changyan.api.config({appid:appid,conf:conf})});
+      }
+    })();
+    </script>
+    <script type="text/javascript" src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js"></script>
+  
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("PAelBObBJJ1wxPLcqGh7Xi7f-gzGzoHsz", "CvEKFxTr48P32AWq1lhkwl7A");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+
+<!--页面点击小红心-->
+<script type="text/javascript" src="/js/src/love.js"></script>
+
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https'){
+   bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+  }
+  else{
+  bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+  }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>

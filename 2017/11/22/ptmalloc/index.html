@@ -1,0 +1,1406 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "a12c511f"
+    });
+  daovoice('update');
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="内存分配," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Vkey Blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="前言 部分基础请先看此文  先解释一下本文中会提到的三个重要概念：arena，bin，chunk。三者在逻辑上的蕴含关系一般如下图所示（图中的chunk严格来说应该是Free Chunk）。">
+<meta name="keywords" content="内存分配">
+<meta property="og:type" content="article">
+<meta property="og:title" content="glibc内存分配与回收">
+<meta property="og:url" content="http://roux.top/2017/11/22/ptmalloc/index.html">
+<meta property="og:site_name" content="Vkey Blog">
+<meta property="og:description" content="前言 部分基础请先看此文  先解释一下本文中会提到的三个重要概念：arena，bin，chunk。三者在逻辑上的蕴含关系一般如下图所示（图中的chunk严格来说应该是Free Chunk）。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://raw.githubusercontent.com/paulRoux/Pictures/master/ptmalloc/arena%E3%80%81bin%E3%80%81chunk.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/paulRoux/Pictures/master/ptmalloc/thread_areana.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/paulRoux/Pictures/master/ptmalloc/main%E5%87%BD%E6%95%B0arena%E7%9A%84%E7%94%B3%E8%AF%B7.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/paulRoux/Pictures/master/ptmalloc/thread%E4%B8%ADarena%E7%9A%84%E7%94%B3%E8%AF%B7.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/paulRoux/Pictures/master/ptmalloc/%E5%86%85%E5%AD%98%E5%9B%9E%E6%94%B6.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/paulRoux/Pictures/master/ptmalloc/%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/paulRoux/Pictures/master/ptmalloc/bin%E7%BA%A7%E5%86%85%E5%AD%98%E5%9B%9E%E6%94%B6.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/paulRoux/Pictures/master/ptmalloc/ptmalloc/using_chunk.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/paulRoux/Pictures/master/ptmalloc/ptmalloc/free_chunk.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/paulRoux/Pictures/master/ptmalloc/ptmalloc/links_bin.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/paulRoux/Pictures/master/ptmalloc/chunk%E5%88%86%E6%9E%90.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/paulRoux/Pictures/master/ptmalloc/ptmalloc/sbark%E4%B8%8Emmap.png">
+<meta property="og:updated_time" content="2018-04-22T05:53:20.502Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="glibc内存分配与回收">
+<meta name="twitter:description" content="前言 部分基础请先看此文  先解释一下本文中会提到的三个重要概念：arena，bin，chunk。三者在逻辑上的蕴含关系一般如下图所示（图中的chunk严格来说应该是Free Chunk）。">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/paulRoux/Pictures/master/ptmalloc/arena%E3%80%81bin%E3%80%81chunk.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"输入关键字","hits_empty":"没有找到与『${query}』相关的内容！","hits_stats":"${hits}条相关记录，共耗时：${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://roux.top/2017/11/22/ptmalloc/"/>
+
+
+
+
+
+  <title>glibc内存分配与回收 | Vkey Blog</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-107736373-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <!--
+    <a href="https://github.com/paulRoux"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
+    -->
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vkey Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-书单">
+          <a href="/book" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            书单
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://roux.top/2017/11/22/ptmalloc/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vkey">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/assets/img/header.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vkey Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">glibc内存分配与回收</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-22T00:00:00+08:00">
+                2017-11-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/OS/" itemprop="url" rel="index">
+                    <span itemprop="name">OS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2017/11/22/ptmalloc/#SOHUCS" itemprop="discussionUrl">
+                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2017/11/22/ptmalloc/" itemprop="commentsCount"></span>
+                </a>
+              
+            
+          
+
+          
+          
+             <span id="/2017/11/22/ptmalloc/" class="leancloud_visitors" data-flag-title="glibc内存分配与回收">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><ul>
+<li><p>部分基础请先看<a href="http://roux.top/2017/11/21/glibc%E5%9F%BA%E7%A1%80%E5%88%86%E6%9E%90/">此文</a></p>
+</li>
+<li><p>先解释一下本文中会提到的三个重要概念：<code>arena</code>，<code>bin</code>，<code>chunk</code>。三者在逻辑上的蕴含关系一般如下图所示（图中的chunk严格来说应该是Free Chunk）。</p>
+<p>  <img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/ptmalloc/arena%E3%80%81bin%E3%80%81chunk.png" alt="分类"></p>
+  <a id="more"></a>
+<ul>
+<li><p><code>arena</code>：通过 <code>sbrk</code> 或 <code>mmap</code> 系统调用为线程分配的堆区，按线程的类型可以分为2类：</p>
+<ul>
+<li><p>main arena：主线程建立的arena；</p>
+</li>
+<li><p>thread arena：子线程建立的arena；</p>
+</li>
+</ul>
+</li>
+<li><p><code>chunk</code>：逻辑上划分的一小块内存，根据作用不同分为4类：</p>
+<ul>
+<li><p>Allocated chunk：即分配给用户且未释放的内存块；</p>
+</li>
+<li><p>Free chunk：即用户已经释放的内存块；</p>
+</li>
+<li><p>Top chunk</p>
+</li>
+<li><p>Last Remainder chunk</p>
+</li>
+</ul>
+</li>
+<li><p><code>bin</code>：一个用以保存 Free chunk 链表的表头信息的指针数组，按所悬挂链表的类型可以分为4类:</p>
+<ul>
+<li><p>Fast bin</p>
+</li>
+<li><p>Unsorted bin</p>
+</li>
+<li><p>Small bin</p>
+</li>
+<li><p>Large bin</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>实际内存中，<code>main arena</code> 和 <code>thread arena</code> 的图示如下（单堆段）:</p>
+<p>  <img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/ptmalloc/thread_areana.png" alt=""></p>
+<ul>
+<li>其中 <code>malloc_state</code> 的数据结构描述在源代码中的位置请点这里，可以发现该数据结构中保存着 <code>fastbinsY、top、last_remainder、bins</code> 这四个分别表示 <code>Fast bin、Top chunk、Last Remainder chunk、bins（Unsorted bin、 Small bin、Large bin）</code> 的数据。</li>
+</ul>
+</li>
+</ul>
+<h4 id="Arena级分析"><a href="#Arena级分析" class="headerlink" title="Arena级分析"></a>Arena级分析</h4><ul>
+<li><p>部分内容请参考<a href="http://roux.top/2017/11/21/arena/">此文</a></p>
+</li>
+<li><p>main arena中的内存申请</p>
+<ul>
+<li><p>main arena中的内存申请的流程如下图所示：</p>
+<p>  <img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/ptmalloc/main%E5%87%BD%E6%95%B0arena%E7%9A%84%E7%94%B3%E8%AF%B7.png" alt=""></p>
+<ul>
+<li><p>第一次申请</p>
+<ul>
+<li><p>根据申请内存空间大小是否达到 <code>mmap</code> 这一系统调用的分配阈值，决定是使用 <code>sbrk</code> 系统调用 还是 <code>mmap</code> 系统调用申请堆区。一般分配的空间比申请的要大（详见此处），这样可以减少后续申请中向操作系统申请内存的次数。</p>
+</li>
+<li><p>举例而言，用户申请1000字节的内存，实际会通过sbrk系统调用产生 132KB 的连续堆内存区域。</p>
+</li>
+<li><p>然后将用户申请大小的内存返回。（本例中将返回1000字节的内存。）</p>
+</li>
+</ul>
+</li>
+<li><p>后续申请</p>
+<ul>
+<li><p>根据 <code>arena</code> 中剩余空间的大小决定是继续分配还是扩容，其中包含扩容部分的为 <code>top chunk</code>。</p>
+</li>
+<li><p>然后将用户申请大小的内存返回。</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>注意：</p>
+<ul>
+<li><code>top chunk</code> 不属于任何bin！只有 <code>free chunk</code> 依附于bin！</li>
+<li>分配阈值具有默认值，但会动态调整；</li>
+<li>扩容具体过程见库函数 <code>sYSMALLOc</code> 。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>thread arena中的申请</p>
+<ul>
+<li><p>thread arena中的内存申请的流程如下图所示：</p>
+<p>  <img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/ptmalloc/thread%E4%B8%ADarena%E7%9A%84%E7%94%B3%E8%AF%B7.png" alt=""></p>
+<ul>
+<li>其流程类似于main arena的，区别在于thread arena的堆内存是使用mmap系统调用产生的，而非同主线程一样可能会使用sbrk系统调用。</li>
+</ul>
+</li>
+<li><p>注意：Arena的数量与线程之间并不一定是一一映射的关系</p>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>内存回收</p>
+<p>  <img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/ptmalloc/%E5%86%85%E5%AD%98%E5%9B%9E%E6%94%B6.png" alt=""></p>
+<ul>
+<li>线程释放的内存不会直接返还给操作系统，而是返还给 <code>glibc malloc</code></li>
+</ul>
+</li>
+</ul>
+<h4 id="bin级分析"><a href="#bin级分析" class="headerlink" title="bin级分析"></a>bin级分析</h4><ul>
+<li><p>内存分配</p>
+<ul>
+<li><p>内存分配的流程如下图所示：</p>
+<p>  <img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/ptmalloc/%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D.png" alt=""></p>
+<ul>
+<li><p>我们知道，内存分配的最终目的在于分配出合适大小的内存块返回给用户。在实现中即为在 <code>bin</code> 或 <code>top chunk</code> 中找到（并分割出）所需内存块，其检索的优先级从高到低分别是：</p>
+  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">- fastbinY</span><br><span class="line"></span><br><span class="line">- small bins</span><br><span class="line"></span><br><span class="line">- unsorted bins</span><br><span class="line"></span><br><span class="line">- large bins</span><br><span class="line"></span><br><span class="line">- top bins</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>注意：</p>
+<ul>
+<li><p><code>Fast bin、Unsorted bin、Small bin</code> 和 <code>Large bin</code> 中保存的都是用户曾经释放的内存块（可能经过合并）</p>
+</li>
+<li><p><code>top chunk</code> 包含 <code>Arena</code> 扩容的部分，不属于任何 <code>bin</code></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>内存回收</p>
+<ul>
+<li><p>内存回收的流程如下图所示：</p>
+<p>  <img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/ptmalloc/bin%E7%BA%A7%E5%86%85%E5%AD%98%E5%9B%9E%E6%94%B6.png" alt=""></p>
+<ul>
+<li><p>我们提到了 bin 可以分为4类：<code>Fast bin</code>、<code>Unsorted bin</code>、<code>Small bin</code> 和 <code>Large bin</code>。保存这些 bin 的数据结构为<code>fastbinsY</code> 以及 <code>bins</code>：</p>
+<ul>
+<li><p>fastbinsY：用以保存 <code>fast bins</code>。（可索引大小16~64B的内存块）</p>
+</li>
+<li><p>bins：用以保存 <code>unsorted</code>、<code>small以及 large bins</code> ，共计可容纳126个：</p>
+<ul>
+<li><p>Bin 1 – <code>unsorted bin</code></p>
+</li>
+<li><p>Bin 2 to Bin 63 – <code>small bin</code>(可索引大小小于512B的内存块)</p>
+</li>
+<li><p>Bin 64 to Bin 126 – <code>large bin</code>（可索引大小≥512B的内存块）</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>在内存被释放的时候，被释放内存块会根据其大小而被添加入对应的bin中：</p>
+<ul>
+<li><p>16~64B 的内存块会被添加入 <code>fastbinY</code> 中</p>
+</li>
+<li><p><code>samll</code> 及 <code>large</code> 的会添加在 <code>bins</code> 中的 <code>unsorted bins</code> 中</p>
+</li>
+</ul>
+</li>
+<li><p>注意：<code>small bins</code> 和 <code>large bins</code> 中索引的内存块是在内存分配的过程中被添加在相应的 <code>bin</code> 中的</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="chunk级分析"><a href="#chunk级分析" class="headerlink" title="chunk级分析"></a>chunk级分析</h4><ul>
+<li><p>ptmalloc 在给用户分配的空间的前后加上了一些控制信息, 用这样的方法来记录分配的信息, 以便完成分配和释放工作. 一个使用中的chuck( 使用中, 就是指还没有被free掉 ) 在内存中的样子如图所示：</p>
+<p>  <img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/ptmalloc/ptmalloc/using_chunk.png" alt="using"></p>
+</li>
+<li><p>在图中, chunk 指针指向一个 chunk 的开始, 一个chunk 中包含了用户请求的内存区域和相关的控制信息. <strong>图中的 mem 指针才是真正返回给用户的内存指针</strong>。 chunk 的第二个域的最低一位为 p, 它表示前一个块是否在使用中, p 为 0则表示前一个 chunk 为空闲, 这时 chunk 的第一个域 <code>prev_size</code> 才有效, <code>prev_size</code> 表示前一个 chunk 的 <code>size</code>, 程序可以使用这个值来找到前一个 chunk 的开始. 当 p 为 1 时, 表示前一个 chunk 正在使用中, <code>prev_size</code> 无效, 程序也就不可以得到前一个 chunk 的大小. 而不能对前一个 chunk 进行任何操作. ptmalloc 分配的第一个块总是将 p 设为 1 , 以防止程序引用到不存在的区域。空闲 chunk 在内存中的结构如图所示：</p>
+<p>  <img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/ptmalloc/ptmalloc/free_chunk.png" alt="free"></p>
+<ul>
+<li>当 chunk 空闲时, 原本是用户数据区的地方存储了两个指针, 指针 fd 指向后一个空闲的 chunk, 而 bk 指向前一个空闲的 chunk, ptmalloc 通过这两个指针将大小相近的 chunk 连成一个双向链表. 而不同的 chunk 链表又是通过 <code>bins</code> 或者 <code>fastbins</code> 来组织的</li>
+</ul>
+</li>
+<li><p>为了使得 chunk 所占用的空间最小, ptmalloc 使用了空间复用, 一个 chunk 或者正在被使用, 或者已经被 free 掉, 所以 chunk 中的一些域可以在使用状态和空闲状态表示不同的意义, 来达到空间复用的效果。空闲时, 一个 chunk 中至少要4个 <code>size_t</code> 大小的空间, 用来存储 <code>prev_size, size , fd 和 bk</code>。 也就是 16 bytes. chuck 的大小要 align 到8 bytes. 当一个 chunk 处于使用状态时, 它的下一个 chunk 的 <code>prev_size</code> 域肯定是无效的。 所以实际上, 这个空间也可以被当前 chunk 使用. 这听起来有点不可思议, 但确实是合理空间复用的例子. 故而实际上, 一个使用中的 chunk 的大小的计算公式应该是: <code>in_use_size = ( 用户请求大小 + 8 - 4 ) align to 8 bytes</code> <strong>这里加8是因为需要存储 <code>prev_size</code> 和 <code>size</code></strong>, 但又因为<strong>向下一个 chunk 借 了4个bytes , 所以要减去4<em> </em></strong>. 最后, 因为空闲的 chunk 和使用中的 chunk 使用的是同一块空间。 所以肯定要<strong>取其中最大者作为实际的分配空间</strong>。 即最终的分配空间 <code>chunk_size = max(in_use_size, 16)</code>。 这就是当用户请求内存分配时, ptmalloc 实际需要分配的内存大小, 在后面的介绍中. 如果不是特别指明的地方, 指的都是这个经过转换的实际需要分配的内存大小, 而不是用户请求的内存分配大小.</p>
+</li>
+<li><p>空闲的chunk</p>
+<ul>
+<li><p>Bins</p>
+<ul>
+<li><p>用户 free 掉的内存并不是都会马上归还给系统, 相反, ptmalloc 会统一管理 heap 中的空闲的 chunk ， 当用户进行下一次分配请求时, ptmalloc 会首先试图在 heap 中空闲的 chunk 中挑选一块给用户， 这样就避免了频繁的系统调用， 降低了内存分配的开销。 ptmalloc 将 heap 中相似大小的 chunk 用双向链表链接起来， 这样的一个链表被称为一个bin，ptmalloc 使用一个数组来存储这些 bin 如下图：</p>
+<p>  <img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/ptmalloc/ptmalloc/links_bin.png" alt="bin"></p>
+</li>
+<li><p>数组中的前64个 bin 称为 <code>exact bins</code>, <strong><code>exact bins</code> 中的 chunk 具有相同的大小</strong>。 两个相邻的 bin 中的 chunk 大小相差8 bytes.  <code>exact bins</code> 中的 chunk 按照最近使用顺序进行排列, 最后释放的 chunk 被链接到链表的头部, 而 allocation 是从尾部开始, 这样, 每一个 chunk 都有相同的机会被 ptmalloc 选中。 后面的 bin 被称作 <code>ordered bins</code>。 <code>ordered bins</code> 中的每一个 bin 分别包含了一个给定范围内的 chunk, 其中的 chunk 按大小序排列。 相同大小的 chunk 同样按照最近使用顺序排列. ptmalloc 使用 <code>smallest-first, best-fit</code> 的原则在空闲 <code>ordered bins</code> 中查找合适的 chunk.</p>
+</li>
+<li>当空闲的 chunk 被链接到bin中的时候, ptmalloc 会把表示该 chunk 是否处于使用中的标志 p 设为 0 (注意, 这个标志实际上处在下一个 chunk 中), 同时 ptmalloc 还会检查它前后的 chunk 是否也是空闲的, 如果是的话, ptmalloc 会首先把它们合并为一个大的 chunk, 然后将合并后的 chunk 放到 bin 中。 要注意的是, 并不是所有的 chunk 被释放后就立即被放到bin中。 ptmalloc 为了提高分配的速度, 会把一些小的的 chunk 先放到一个叫做 fastbin的容器内。</li>
+</ul>
+</li>
+<li><p>Fastbins</p>
+<ul>
+<li>一般的情况是, 程序在运行时会经常需要分配和释放一些较小的内存空间. 当 allocator(分配器) 合并了相邻的几个小的 chunk 之后, 也许马上就会有另一个小块内存的请求, 这样 allocator 又需要从大的空闲内存中分出一块出来, 这样无疑是比较低效的, 故而, ptmalloc 中在分配过程中引入了 <code>fastbins</code>, 不大于 <code>max_fast (72 bytes)</code> 的 chunk 被 free 后, 首先会被放到 <code>fastbins</code> 中, <code>fastbins</code> 中的 chunk 并不改变它的使用标志 p。 这样也就无法将它们合并, 当需要给用户分配的 chunk 小于或等于 <code>max_fast</code> 时, ptmalloc 首先会在 <code>fastbins</code> 中查找相应的空闲块, 然后才会去查找 <code>bins</code> 中的空间 chunk. 在某个特定的时候, ptmalloc 会遍历 <code>fastbins</code> 中的 chunk, 将相邻的空闲 chunk 进行合并, 并将合并后的 chunk 放到 <code>bins</code> 中去。</li>
+</ul>
+</li>
+<li><p>Unsorted Bins</p>
+<ul>
+<li>如果被用户释放的 chunk 大于 <code>max_fast</code>, 则按上面的叙述它应该会被放到 <code>bins</code> 中. 但实际上, ptmalloc 还引入了一个称为 <code>unsorted bins</code> 的队列. 这些大于 <code>max_fast</code> 的chunk 首先会被放到 <code>unsorted bins</code> 队列中, 在进行 malloc 操作的时候, 如果在 <code>fastbins</code> 中没有找到合适的 chunk, 则 ptmalloc 会先在 <code>unsorted bins</code> 中查找合适的空闲 chunk, 然后才查找 <code>bins</code>。 如果 <code>unsorted bins</code> 不能满足分配要求. malloc 便会将 <code>unsorted bins</code> 中的 chunk 放到 <code>bins</code> 中, 然后再在 <code>bins</code> 中继续进行查找和分配过程。 从这个过程可以看出来, <code>unsorted bins</code> 可以看做是 <code>bins</code> 的一个缓冲区, 增加它只是为了加快分配的速度, 忽略它对我们理解 ptmalloc 没有太大的影响。</li>
+</ul>
+</li>
+<li><p>例外的 chunk</p>
+<ul>
+<li><p>并不是所有的 chunk 都按照上面的方式来组织, 实际上, 有两种例外情况.</p>
+</li>
+<li><p>top chunk</p>
+<ul>
+<li>在前面一直提到, ptmalloc 会预先分配一块较大的空闲内存(也就是所为的 heap), 而通过管理这块内存来响应用户的需求, 因为内存是按地址从低向高进行分配的, 在空闲内存的最高处, 必然存在着一块空闲 chunk, 叫做 <code>top chunk</code>。 当 <code>bins</code> 和 <code>fastbins</code> 都不能满足分配需要的时候, ptmalloc 会设法在 <code>top chunk</code> 中分出一块内存给用户, 如果 <code>top chunk</code> 本身不够大, 则 ptmalloc 会适当的增加它的大小(也就增加了 heap 的大小)。 以满足分配的需要, 实际上, <code>top chunk</code> 在分配时总是在 <code>fastbins 和 bins</code> 之后被考虑, 所以, 不论 <code>top chunk</code> 有多大, 它都不会被放到 <code>fastbins</code> 或者是 <code>bins</code> 中.</li>
+</ul>
+</li>
+<li><p>mmaped chunk</p>
+<ul>
+<li>当需要分配的 chunk 足够大, 而且 <code>fastbins</code> 和 <code>bins</code> 都不能满足要求, 甚至 <code>top chunk</code> 本身也不能满足分配需求时, ptmalloc 会使用 mmap 来直接使用内存映射来将页映射到进程空间。 这样分配的 chunk 在被 free 时将直接解除映射, 于是就将内存归还给了系统, 再次对这样的内存区的引用将导致一个 <code>segmentation fault</code> 错误. 这样的 chunk 也不会包含在任何 <code>bin</code> 中。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>下图即内存分配的详细过程图：</p>
+<p>  <img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/ptmalloc/chunk%E5%88%86%E6%9E%90.png" alt=""></p>
+</li>
+</ul>
+<h4 id="sbark与mmap"><a href="#sbark与mmap" class="headerlink" title="sbark与mmap"></a>sbark与mmap</h4><ul>
+<li><p>此处只是简单的介绍下，详细的可以参考本博客以前的文章(首页搜索mmap)</p>
+</li>
+<li><p>sbark</p>
+<p>  <img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/ptmalloc/ptmalloc/sbark%E4%B8%8Emmap.png" alt=""></p>
+<ul>
+<li><code>.bss</code> 段之上的这块分配给用户程序的空间被称为 heap (堆). <code>start_brk</code> 指向 heap 的开始, 而 <code>brk</code> 指向 heap 的顶部. 可以使用系统调用 <code>brk 和 sbrk</code> 来增加标识 heap 顶部的 <code>brk</code> 值, 从而线性的增加分配给用户的 heap 空间. 在使用malloc之前, <code>brk</code> 的值等于 <code>start_brk</code>, 也就是说 heap 大小为0. ptmalloc 在开始时, 若请求的空间小于 <code>DEFAULT_MMAP_THRESHOLD</code> (128K bytes)时, ptmalloc 会调用 <code>sbrk</code> 增加一块大小为 ( 128 KB + chunk_size ) align 4K 的空间作为heap. 这就是前面所说的 ptmalloc 所维护的分配空间, 当用户请求内存分配时, 首先会在这个区域内找一块合适的 <code>chunk</code> 给用户. 当用户释放了 heap 中的 <code>chunk</code> 时, ptmalloc 又会使用 <code>fastbins</code> 和 <code>bins</code> 来组织空闲 <code>chunk</code>. 以备用户的下一次分配. 若需要分配的 <code>chunk</code> 大小小于 <code>DEFAULT_MMAP_THRESHOLD</code>, 而 heap 空间又不够, 则此时 ptmalloc 会通过 <code>sbrk</code> 调用来增加 heap 值, 也就是增加 <code>top chunk</code> 的大小, 每次 heap 增加的值都会 align 到4k bytes</li>
+</ul>
+</li>
+<li><p>mmap</p>
+<ul>
+<li>当用户的请求超过 <code>DEFAULT_MMAP_THRESHOLD</code> , 并且使用 <code>sbrk</code> 分配失败的时候, <code>ptmalloc</code> 会尝试使用 <code>mmap</code> 直接映射一块内存到进程内存空间. 使用 <code>mmap</code> 直接映射的 <code>chunk</code> 在释放时直接解除映射, 而不再属于进程的内存空间. 任何对该内存的访问都会产生段错误. 而在 heap 中分配的空间则可能会留在进程内存空间内, 还可以再次引用(当然是很危险的)</li>
+</ul>
+</li>
+<li><p>注意</p>
+<ul>
+<li><p>从操作系统的角度看，进程的内存分配由两个系统调用完成：brk和mmap。brk是将数据段(.data)的最高地址指针 <code>_edata</code> 往高地址推，mmap 是在进程的虚拟地址空间中找一块空闲的。其中，<strong>mmap 分配的内存由 munmap 释放，内存释放时将立即归还操作系统</strong>；<strong>而brk分配的内存需要等到高地址内存释放以后才能释放</strong>。也就是说，如果先后通过 brk 申请了 A 和 B 两块内存，在 B 释放之前，A 是不可能释放的，仍然被进程占用，通过 top 查看<strong>疑似内存泄露</strong>。默认情况下，<strong>大于等于128KB的内存分配会调用mmap/mummap，小于128KB的内存请求调用sbrk</strong>（可以通过设置M_MMAP_THRESHOLD来调整）</p>
+</li>
+<li><p>Glibc的新特性：<code>M_MMAP_THRESHOLD</code> 可以动态调整。<code>M_MMAP_THRESHOLD</code> 的值在 128KB 到 32MB(32位机) 或者 64MB(64位机) 之间动态调整，假如每次申请并释放一个大小为 2MB 的内存后，那么<code>M_MMAP_THRESHOLD</code> 的值会被调整为 2M 到2M + 4K之间的一个值。示例如下：</p>
+  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span>* no_used = <span class="keyword">new</span> <span class="keyword">char</span>[<span class="number">2</span> * <span class="number">1024</span> * <span class="number">1024</span>];</span><br><span class="line"><span class="built_in">memset</span>(no_used, <span class="number">0xfe</span>, <span class="number">2</span> * <span class="number">1024</span> * <span class="number">1024</span>);</span><br><span class="line"><span class="keyword">delete</span>[] no_used;</span><br><span class="line"><span class="comment">// M_MMAP_THRESHOLD的值调整为 2M 到 2M + 4K 之间的一个值，后续申请 &lt;= 2 * 1024 * 1024 的内存块都会走 sbrk 而不是 mmap</span></span><br><span class="line"><span class="comment">//而sbrk需要等到高地址内存释放以后低地址内存才能释放,会造成疑似内存泄漏的现象</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>mmap调用是会导致进程产生缺页中断的，为了提高性能，可以设置如下：</p>
+<ul>
+<li>将动态内存改为静态，比如采用内存池技术或者启动的时候给每个线程分配一定大小，以后直接使用；</li>
+<li><p>禁止mmap内存调用，禁止Glibc内存缩紧将内存归还系统，Glibc相当于实现了一个内存池功能。只需要在进程启动的时候加入两行代码：</p>
+  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mallopt(M_MMAP_MAX, <span class="number">0</span>); <span class="comment">// 禁止malloc调用mmap分配内存</span></span><br><span class="line">mallopt(M_TRIM_THRESHOLD, <span class="number">0</span>); <span class="comment">// 禁止内存缩进，sbrk申请的内存释放后不会归还给操作系统</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="maolloc"><a href="#maolloc" class="headerlink" title="maolloc"></a>maolloc</h4><ul>
+<li><p>ptmalloc 的响应用户内存分配要求的具体步骤为:</p>
+<ul>
+<li><p>1、获取分配区的锁，为了防止多个线程同时访问同一个分配区，在进行分配之前需要取得分配区域的锁。线程先查看线程私有实例中是否已经存在一个分配区，如果存在尝试对该分配区加锁，如果加锁成功，使用该分配区分配内存，否则，该线程搜索分配区循环链表试图获得一个空闲（没有加锁）的分配区。如果所有的分配区都已经加锁，那么 ptmalloc 会开辟一个新的分配区，把该分配区加入到全局分配区循环链表和线程的私有实例中并加锁，然后使用该分配区进行分配操作。开辟出来的新分配区一定为非主分配区，因为主分配区是从父进程那里继承来的。开辟非主分配区时会调用 mmap() 创建一个 <code>sub-heap</code>，并设置好 <code>top chunk</code>。</p>
+</li>
+<li><p>2、将用户的请求大小转换为实际需要分配的chunk空间大小。</p>
+</li>
+<li><p>3、判断所需分配 chunk 的大小是否满足 <code>chunk_size &lt;= max_fast (max_fast 默认为 64B)</code> ，如果是的话，则转下一步，否则跳到第5步。</p>
+</li>
+<li><p>4、首先尝试在 <code>fast bins</code> 中取一个所需大小的 chunk 分配给用户。如果可以找到，则分配结束。否则转到下一步。</p>
+</li>
+<li><p>5、判断所需大小是否处在 <code>small bins</code> 中，即判断 <code>chunk_size &lt; 512B</code> 是否成立。如果 chunk 大小处在 <code>small bins</code> 中，则转下一步，否则转到第6步。</p>
+</li>
+<li><p>6、根据所需分配的chunk的大小，找到具体所在的某个 <code>small bin</code>，从该 bin 的尾部摘取一个恰好满足大小的 chunk。若成功，则分配结束，否则，转到下一步。</p>
+</li>
+<li><p>7、到了这一步，说明需要分配的是一块大的内存，或者 <code>small bins</code> 中找不到合适的 chunk。于是，ptmalloc首先会遍历 <code>fast bins</code> 中的chunk，将相邻的 chunk 进行合并，并链接到 <code>unsorted bin</code> 中，然后遍历 <code>unsorted bin</code> 中的 chunk，如果 <code>unsorted bin</code> 只有一个 chunk，并且这个 chunk 在上次分配时被使用过，并且所需分配的 chunk 大小属于 <code>small bins</code>，并且 chunk 的大小大于等于需要分配的大小，这种情况下就直接将该 chunk 进行切割，分配结束，否则将根据 chunk 的空间大小将其放入 <code>small bins</code> 或是 <code>large bins</code> 中，遍历完成后，转入下一步。</p>
+</li>
+<li><p>8、到了这一步，说明需要分配的是一块大的内存，或者 <code>small bins</code> 和 <code>unsorted bin</code> 中都找不到合适的 chunk，并且 <code>fast bins</code> 和 <code>unsorted bin</code> 中所有的 chunk 都清除干净了。从 <code>large bins</code> 中按照 <code>smallest-first，best-fit</code> 原则，找一个合适的 chunk，从中划分一块所需大小的 chunk，并将剩下的部分链接回到 <code>bins</code> 中。若操作成功，则分配结束，否则转到下一步。</p>
+</li>
+<li><p>9、如果搜索 <code>fast bins</code> 和 <code>bins</code> 都没有找到合适的 chunk，那么就需要操作 <code>top chunk</code> 来进行分配了。判断 <code>top chunk</code> 大小是否满足所需 chunk 的大小，如果是，则从 <code>top chunk</code> 中分出一块来。否则转到下一步。</p>
+</li>
+<li><p>10、到了这一步，说明 <code>top chunk</code> 也不能满足分配要求，所以，于是就有了两个选择: 如果是主分配区，调用 sbrk()，增加 <code>top chunk</code> 大小；如果是非主分配区，调用 mmap() 来分配一个新的 <code>sub-heap</code>，增加 <code>top chunk</code> 大小；或者使用 mmap() 来直接分配。在这里，需要依靠 chunk 的大小来决定到底使用哪种方法。判断所需分配的 chunk 大小是否大于等于 mmap 分配阈值，如果是的话，则转下一步，调用 mmap() 分配，否则跳到第12步，增加 <code>top chunk</code> 的大小。</p>
+</li>
+<li><p>11、使用 mmap 系统调用为程序的内存空间映射一块 <code>chunk_size align 4kB</code> 大小的空间。 然后将内存指针返回给用户。</p>
+</li>
+<li><p>12、判断是否为第一次调用 malloc，若是主分配区，则需要进行一次初始化工作，分配一块大小为 <code>(chunk_size + 128KB) align 4KB</code> 大小的空间作为初始的 heap。若已经初始化过了，主分配区则调用 sbrk() 增加 heap 空间，分主分配区则在 <code>top chunk</code> 中切割出一个 chunk，使之满足分配需求，并将内存指针返回给用户。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="free"><a href="#free" class="headerlink" title="free"></a>free</h4><ul>
+<li><p>free() 函数接受一个指向分配区域的指针作为参数, 释放该指针所指向的 chunk. 而具体的释放方法则看该 chunk 所处的位置和该 chunk 的大小. free()函数的工作步骤如下:</p>
+<ul>
+<li><p>1、free() 函数同样首先需要获取分配区的锁, 来保证线程安全.</p>
+</li>
+<li><p>2、判断传入的指针是否为0, 如果为0, 则什么都不做, 直接r eturn. 否则转下一步:</p>
+</li>
+<li><p>3、判断所需释放的 chunk 是否为 mmaped chunk, 如果是, 则直接释放 mmaped chunk, 解除内存空间映射. 该空间不再有效. 释放完成. 否则跳到下一步.</p>
+</li>
+<li><p>4、判断 chunk 的大小和所处的位置, 若 <code>chunk_size &lt;= max_fast</code> , 并且 chunk 并不位于 heap 的顶部, 也就是说并不与 <code>top chunk</code> 相邻, 则转到下一步, 否则跳到第6步. (因为与 top chunk 相邻的小 chunk 也和 <code>top chunk</code> 进行合并, 所以这里不仅需要判断大小, 还需要判断相邻情况.)</p>
+</li>
+<li><p>5、将 chunk 放到 <code>fastbins</code> 中, chunk 放入到 <code>fastbins</code> 中时, 并不设置该 chunk 使用位. 也不与相邻的 chunk 进行合并. 只是放进去, 如此而已. 做实验的结果还发现 ptmalloc 放入 <code>fastbins</code> 中的 chunk 中的用户数据去全置为 0. 但是在源代码中找不到相关的代码. 这一步做完之后释放便结束了, 程序从 free() 函数中返回..</p>
+</li>
+<li><p>6、判断前一个 chunk 是否处在使用中, 如果前一个块也是空闲块, 则合并. 并转下一步.</p>
+</li>
+<li><p>7、判断当前释放 chunk 的下一个块是否为 <code>top chunk</code>, 如果是, 则转第9步, 否则转下一步.</p>
+</li>
+<li><p>8、判断下一个 chunk 是否处在使用中, 如果下一个 chunk 也是空闲的. 则合并, 并将合并后的 chunk 放到 <code>bins</code> 中. 注意, 这里在合并的过程中, 要更新 chunk 的大小, 以反映合并后的 chunk 的大小. 并转到第10步.</p>
+</li>
+<li><p>9、如果执行到这一步, 说明释放了一个与 <code>top chunk</code> 相邻的chunk. 则无论它有多大, 都将它与 <code>top chunk</code> 合并, 并更新 <code>top chunk</code> 的大小等信息. 转下一步.</p>
+</li>
+<li><p>10、判断合并后的 chunk 的大小是否大于 <code>FASTBIN_CONSOLIDATION_THRESHOLD</code>, 如果是的话, 则会触发进行 <code>fastbins</code> 的合并操作, <code>fastbins</code> 中的 chunk 将被遍历, 并于相邻的空闲 chunk 进行合并, 合并后的 chunk 会被放到 <code>bins</code> 中. <code>fastbins</code> 将变为空, 操作完成之后转下一步.</p>
+</li>
+<li><p>11、判断 <code>top chunk</code> 的大小是否大于 <code>DEFAULT_TRIM_THERESHOLD</code>. 如果是的话, 则会试图归还 <code>top chunk</code> 中的一部分给操作系统. 但是最先分配的 128KB 的空间是不会归还. ptmalloc 会一直控制这部分内存. 用于响应用户的分配请求. 做完这一步之后, 释放结束, 从 free 函数退出.</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><ul>
+<li><p>详细剖析请<a href="http://pwn4.fun/2016/04/11/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3glibc-malloc/" target="_blank" rel="noopener">点击此处</a></p>
+</li>
+<li><p>线程相关<a href="http://blog.jobbole.com/103993/" target="_blank" rel="noopener">点击此处</a></p>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+  
+</div>
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>谢谢你请我吃糖果!</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/assets/img/weixin.png" alt="Vkey 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/assets/img/zhifubao.jpg" alt="Vkey 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Vkey
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://roux.top/2017/11/22/ptmalloc/" title="glibc内存分配与回收">http://roux.top/2017/11/22/ptmalloc/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/内存分配/" <i class="fa fa-tag"></i> 内存分配</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/21/glibc基础分析/" rel="next" title="glibc内存分配基础">
+                <i class="fa fa-chevron-left"></i> glibc内存分配基础
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/11/27/epoll源码/" rel="prev" title="epoll源码分析">
+                epoll源码分析 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="SOHUCS"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/assets/img/header.jpeg"
+                alt="Vkey" />
+            
+              <p class="site-author-name" itemprop="name">Vkey</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">73</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/paulRoux" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://blog.csdn.net/xingerr" target="_blank" title="CSDN">
+                    
+                      <i class="fa fa-fw fa-globe"></i>CSDN</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://twitter.com/Vkey_roux" target="_blank" title="Twitter">
+                    
+                      <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://blog.csdn.net/gc348342215" title="隔壁的豆豆" target="_blank">隔壁的豆豆</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Arena级分析"><span class="nav-number">2.</span> <span class="nav-text">Arena级分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#bin级分析"><span class="nav-number">3.</span> <span class="nav-text">bin级分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#chunk级分析"><span class="nav-number">4.</span> <span class="nav-text">chunk级分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#sbark与mmap"><span class="nav-number">5.</span> <span class="nav-text">sbark与mmap</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#maolloc"><span class="nav-number">6.</span> <span class="nav-text">maolloc</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#free"><span class="nav-number">7.</span> <span class="nav-text">free</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-number">8.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+<div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vkey</span>
+
+  
+</div>
+
+
+
+  	<div class="powered-by">
+	<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+	  我思故我在！
+	</span>
+	</div>
+
+<!--
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+-->
+
+
+
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">感谢你来看我！</span>
+</div>
+
+
+<!--
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.3</div>
+-->
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+  
+    <script type="text/javascript">
+    (function(){
+      var appid = 'cytg0VXXf';
+      var conf = '16b9ee30c84ee9a52ae3219b1b4f3a0a';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      if (width < 960) {
+      window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){
+        window.changyan.api.config({appid:appid,conf:conf})});
+      }
+    })();
+    </script>
+    <script type="text/javascript" src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js"></script>
+  
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("PAelBObBJJ1wxPLcqGh7Xi7f-gzGzoHsz", "CvEKFxTr48P32AWq1lhkwl7A");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+
+<!--页面点击小红心-->
+<script type="text/javascript" src="/js/src/love.js"></script>
+
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https'){
+   bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+  }
+  else{
+  bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+  }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>

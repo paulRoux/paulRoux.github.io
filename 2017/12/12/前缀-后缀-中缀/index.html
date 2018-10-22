@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "a12c511f"
+    });
+  daovoice('update');
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="树," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Vkey Blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="前言 前面学过树的遍历及转换，感触不是很深，今天回头来看，另有感悟。这种感悟也是得益于大神的博文，记录于此。">
+<meta name="keywords" content="树">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前缀、中缀、后缀表达式转换详解">
+<meta property="og:url" content="http://roux.top/2017/12/12/前缀-后缀-中缀/index.html">
+<meta property="og:site_name" content="Vkey Blog">
+<meta property="og:description" content="前言 前面学过树的遍历及转换，感触不是很深，今天回头来看，另有感悟。这种感悟也是得益于大神的博文，记录于此。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://raw.githubusercontent.com/paulRoux/Pictures/master/%E6%A0%91/%E4%B8%AD%E8%BD%AC%E5%90%8E/%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%A0%91.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/paulRoux/Pictures/master/%E6%A0%91/%E4%B8%AD%E8%BD%AC%E5%90%8E/%E8%BE%85%E5%8A%A9%E6%A0%88.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/paulRoux/Pictures/master/%E6%A0%91/%E5%90%8E%E8%BD%AC%E4%B8%AD/1.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/paulRoux/Pictures/master/%E6%A0%91/%E5%90%8E%E8%BD%AC%E4%B8%AD/2.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/paulRoux/Pictures/master/%E6%A0%91/%E5%90%8E%E8%BD%AC%E4%B8%AD/3.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/paulRoux/Pictures/master/%E6%A0%91/%E5%90%8E%E8%BD%AC%E4%B8%AD/4.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/paulRoux/Pictures/master/%E6%A0%91/%E5%90%8E%E8%BD%AC%E4%B8%AD/5.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/paulRoux/Pictures/master/%E6%A0%91/%E4%B8%AD%E8%BD%AC%E5%89%8D/1.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/paulRoux/Pictures/master/%E6%A0%91/%E4%B8%AD%E8%BD%AC%E5%89%8D/2-1.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/paulRoux/Pictures/master/%E6%A0%91/%E4%B8%AD%E8%BD%AC%E5%89%8D/2-2.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/paulRoux/Pictures/master/%E6%A0%91/%E4%B8%AD%E8%BD%AC%E5%89%8D/3.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/paulRoux/Pictures/master/%E6%A0%91/%E4%B8%AD%E8%BD%AC%E5%89%8D/3-2.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/paulRoux/Pictures/master/%E6%A0%91/%E4%B8%AD%E8%BD%AC%E5%89%8D/4.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/paulRoux/Pictures/master/%E6%A0%91/%E4%B8%AD%E8%BD%AC%E5%89%8D/5.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/paulRoux/Pictures/master/%E6%A0%91/%E4%B8%AD%E8%BD%AC%E5%89%8D/6.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/paulRoux/Pictures/master/%E6%A0%91/%E5%89%8D%E8%BD%AC%E4%B8%AD/1.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/paulRoux/Pictures/master/%E6%A0%91/%E5%89%8D%E8%BD%AC%E4%B8%AD/2.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/paulRoux/Pictures/master/%E6%A0%91/%E5%89%8D%E8%BD%AC%E4%B8%AD/3.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/paulRoux/Pictures/master/%E6%A0%91/%E5%89%8D%E8%BD%AC%E4%B8%AD/4.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/paulRoux/Pictures/master/%E6%A0%91/%E5%89%8D%E8%BD%AC%E4%B8%AD/5.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/paulRoux/Pictures/master/%E6%A0%91/%E5%89%8D%E8%BD%AC%E4%B8%AD/6.jpg">
+<meta property="og:updated_time" content="2017-12-12T06:02:16.905Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="前缀、中缀、后缀表达式转换详解">
+<meta name="twitter:description" content="前言 前面学过树的遍历及转换，感触不是很深，今天回头来看，另有感悟。这种感悟也是得益于大神的博文，记录于此。">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/paulRoux/Pictures/master/%E6%A0%91/%E4%B8%AD%E8%BD%AC%E5%90%8E/%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%A0%91.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"输入关键字","hits_empty":"没有找到与『${query}』相关的内容！","hits_stats":"${hits}条相关记录，共耗时：${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://roux.top/2017/12/12/前缀-后缀-中缀/"/>
+
+
+
+
+
+  <title>前缀、中缀、后缀表达式转换详解 | Vkey Blog</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-107736373-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <!--
+    <a href="https://github.com/paulRoux"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
+    -->
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vkey Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-书单">
+          <a href="/book" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            书单
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://roux.top/2017/12/12/前缀-后缀-中缀/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vkey">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/assets/img/header.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vkey Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">前缀、中缀、后缀表达式转换详解</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-12T00:00:00+08:00">
+                2017-12-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据结构/" itemprop="url" rel="index">
+                    <span itemprop="name">数据结构</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2017/12/12/前缀-后缀-中缀/#SOHUCS" itemprop="discussionUrl">
+                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2017/12/12/前缀-后缀-中缀/" itemprop="commentsCount"></span>
+                </a>
+              
+            
+          
+
+          
+          
+             <span id="/2017/12/12/前缀-后缀-中缀/" class="leancloud_visitors" data-flag-title="前缀、中缀、后缀表达式转换详解">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><ul>
+<li>前面学过树的遍历及转换，感触不是很深，今天回头来看，另有感悟。这种感悟也是得益于大神的博文，记录于此。</li>
+</ul>
+<a id="more"></a>
+<h4 id="中缀表达式转后缀表达式"><a href="#中缀表达式转后缀表达式" class="headerlink" title="中缀表达式转后缀表达式"></a>中缀表达式转后缀表达式</h4><ul>
+<li><p>假定有中缀表达式 <code>1 + (( 2 + 3) * 4 ) – 5</code>，请将它转化为后缀表达式。</p>
+<ul>
+<li><p>方法一：利用表达式树</p>
+<ul>
+<li><p>首先将中缀表达式转换为表达式树，然后后序遍历表达式树，所得结果就是后缀表达式。</p>
+</li>
+<li><p>将中缀表达式转化为表达式树方法：表达式树的树叶是操作数，而其他的节点为操作符，根节点为优先级最低且靠右的操作符（如上述表达式优先级最低的是 <code>-</code> 和 <code>+</code>，但 <code>+</code> 更靠右，所以根为 <code>+</code> ），圆括号不包括(后面左右孩子可以类似的递归处理)。如上述中缀表达式转换后的表达式树如下：</p>
+<p><img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/%E6%A0%91/%E4%B8%AD%E8%BD%AC%E5%90%8E/%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%A0%91.jpg" alt="表达式树"></p>
+</li>
+<li><p>经过后序遍历表达式树后得到的后缀表达式为：<code>12 3 + 4 * + 5 –</code></p>
+</li>
+</ul>
+</li>
+<li><p>方法二：利用辅助栈</p>
+<ul>
+<li><p>从左到右遍历中缀表达式的每个操作数和操作符。当读到操作数时，立即把它输出，即成为后缀表达式的一部分；若读到操作符，判断该符号与栈顶符号的优先级，若该符号优先级高于栈顶元素，则将该操作符入栈，否则就一次把栈中运算符弹出并加到后缀表达式尾端，直到遇到优先级低于该操作符的栈元素，然后把该操作符压入栈中。如果遇到 <code>(</code>，直接压入栈中，如果遇到一个 <code>)</code>，那么就将栈元素弹出并加到后缀表达式尾端，但左右括号并不输出。最后，如果读到中缀表达式的尾端，将栈元素依次完全弹出并加到后缀表达式尾端。</p>
+</li>
+<li><p>仍然以上面的表达式为例，其转换过程如下：</p>
+<p>  <img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/%E6%A0%91/%E4%B8%AD%E8%BD%AC%E5%90%8E/%E8%BE%85%E5%8A%A9%E6%A0%88.png" alt="辅助栈"></p>
+</li>
+<li><p>利用辅助栈后缀表达式与用表达式树的结果一样，都为：<code>1 2 3 + 4 * + 5 –</code></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="后缀表达式转换为中缀表达式"><a href="#后缀表达式转换为中缀表达式" class="headerlink" title="后缀表达式转换为中缀表达式"></a>后缀表达式转换为中缀表达式</h4><ul>
+<li><p>假定有后缀表达式<code>1 2 3 + 4 * +5 –</code>，请将它转化为中缀表达式。</p>
+<ul>
+<li><p>方法一：利用表达式树</p>
+<ul>
+<li><p>从左到右扫面后缀表达式，一次一个符号读入表达式。如果符号是操作数，那么就建立一个单节点树并将它推入栈中。如果符号是操作符，那么就从栈中弹出两个树T1和T2（T1先弹出）并形成一颗新的树，该树的根就是操作符，它的左、右儿子分别是T2和T1。然后将指向这棵新树的指针压入栈中。</p>
+</li>
+<li><p>前三个符号是操作数，因此创建三颗单节点树并将指向它们的指针压入栈中。</p>
+<p>  <img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/%E6%A0%91/%E5%90%8E%E8%BD%AC%E4%B8%AD/1.jpg" alt="1"></p>
+</li>
+<li><p><code>+</code>被读入，因此指向最后两颗树的指针被弹出，形成一颗新树，并将指向新树的指针压入栈中。以下的流程图以相同原理执行。</p>
+<p>  <img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/%E6%A0%91/%E5%90%8E%E8%BD%AC%E4%B8%AD/2.jpg" alt="2"></p>
+<p>  <img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/%E6%A0%91/%E5%90%8E%E8%BD%AC%E4%B8%AD/3.jpg" alt="3"></p>
+<p>  <img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/%E6%A0%91/%E5%90%8E%E8%BD%AC%E4%B8%AD/4.png" alt="4"></p>
+<p>  <img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/%E6%A0%91/%E5%90%8E%E8%BD%AC%E4%B8%AD/5.jpg" alt="5"></p>
+</li>
+<li><p>最后再中序遍历所得的表达式树即得到我们所需的中缀表达式：<code>1+（（2 + 3）* 4）-5</code></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="中缀表达式转换为前缀表达式"><a href="#中缀表达式转换为前缀表达式" class="headerlink" title="中缀表达式转换为前缀表达式"></a>中缀表达式转换为前缀表达式</h4><ul>
+<li><p>假定有中缀表达式<code>1 + (( 2 + 3) * 4 ) – 5</code>，请将它转化为前缀表达式。</p>
+<ul>
+<li><p>方法一：利用表达式树</p>
+<ul>
+<li><p>先将表达式用表达式树来表示，然后再前序遍历表达式树即得到我们所需的前缀表大式。(表达式树前面已经介绍过，这里不再累赘)。</p>
+</li>
+<li><p>此处，经过前序遍历所得前缀表达式为：<code>- + 1 * + 2 3 4 5</code></p>
+</li>
+</ul>
+</li>
+<li><p>方法二：利用辅助栈</p>
+<ul>
+<li><p>首先构造一个运算符栈，然后<strong>从右至左扫描中缀表达式</strong>。如果是操作数，则直接输出，作为前缀表达式的一个直接转换表达式Temp（最后，前缀表达式由该表达式翻转得到）；如果是运算符，则比较优先级：若该运算符优先级大于等于栈顶元素，则将该运算符入栈，否则栈内元素出栈并加到<code>Temp</code>表达式尾端，直到该运算符大于等于栈顶元素的优先级时，再将该运算符压入栈中。遇到右括号直接压入栈中，如果遇到一个左括号，那么就将栈元素弹出并加到<code>Temp</code>表达式尾端，但左右括号并不输出。最后，若运算符栈中还有元素，则将元素一次弹出并加到<code>Temp</code>表达式尾端，最后一步是将<code>Temp</code>表达式翻转。其过程如下图所示：</p>
+</li>
+<li><p>从右到左开始扫描，5为数字放入Temp中，-为操作符入栈。</p>
+<p>  <img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/%E6%A0%91/%E4%B8%AD%E8%BD%AC%E5%89%8D/1.jpg" alt="1"></p>
+<p>  <img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/%E6%A0%91/%E4%B8%AD%E8%BD%AC%E5%89%8D/2-1.jpg" alt="2"></p>
+<p>  <img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/%E6%A0%91/%E4%B8%AD%E8%BD%AC%E5%89%8D/2-2.jpg" alt="3"></p>
+<p>  <img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/%E6%A0%91/%E4%B8%AD%E8%BD%AC%E5%89%8D/3.jpg" alt="4"></p>
+<p>  <img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/%E6%A0%91/%E4%B8%AD%E8%BD%AC%E5%89%8D/3-2.jpg" alt="5"></p>
+</li>
+<li><p>遇到左括号，元素弹出直到遇到右括号为止。</p>
+<p>  <img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/%E6%A0%91/%E4%B8%AD%E8%BD%AC%E5%89%8D/4.jpg" alt="6"></p>
+<p>  <img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/%E6%A0%91/%E4%B8%AD%E8%BD%AC%E5%89%8D/5.jpg" alt="7"></p>
+<p>  <img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/%E6%A0%91/%E4%B8%AD%E8%BD%AC%E5%89%8D/6.jpg" alt="8"></p>
+</li>
+<li><p>所得前缀表达式为：- + 1 * + 2 3 4 5</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="前缀表达式转换为中缀表达式："><a href="#前缀表达式转换为中缀表达式：" class="headerlink" title="前缀表达式转换为中缀表达式："></a>前缀表达式转换为中缀表达式：</h4><ul>
+<li><p>假定有前缀表达式 <code>- + 1 * + 2 3 4 5</code>，请将它转化为中缀表达式。</p>
+<ul>
+<li><p>方法一：辅助栈</p>
+<ul>
+<li><p>首先创建一个数字栈。<strong>从右到左扫描前缀表达式</strong>，如果遇到操作数，则入栈。如果遇到操作符，则将栈顶元素弹出（后扫面的数字位于表达式前面），并和操作符结合写成表达式，作为中缀表达式。如果遇到的操作符优先级大于已存在表达式的最后执行操作符的优先级，则将已存在的表达式加上()。如下是前缀表达式转为中缀表达式的示意图：</p>
+<ul>
+<li><p>扫描到操作数直接入栈。</p>
+<p><img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/%E6%A0%91/%E5%89%8D%E8%BD%AC%E4%B8%AD/1.jpg" alt="1"></p>
+</li>
+<li><p>扫描到操作符，将两个栈顶元素弹出，并和操作符结合写成表达式。</p>
+<p><img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/%E6%A0%91/%E5%89%8D%E8%BD%AC%E4%B8%AD/2.jpg" alt="2"></p>
+<p><img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/%E6%A0%91/%E5%89%8D%E8%BD%AC%E4%B8%AD/3.jpg" alt="3"></p>
+<p><img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/%E6%A0%91/%E5%89%8D%E8%BD%AC%E4%B8%AD/4.jpg" alt="4"></p>
+<p><img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/%E6%A0%91/%E5%89%8D%E8%BD%AC%E4%B8%AD/5.jpg" alt="5"></p>
+</li>
+<li><p>表达式不是<code>（2+3）*4 + 1</code>，因为 1 比 2、3、4 后扫描到。(如果不好理解，可以这样思考：遇到操作符出栈结合成为一个表达式，然后将这个表达式入栈，然后继续下一步(将整个表达式当做一个整体操作数))</p>
+<p><img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/%E6%A0%91/%E5%89%8D%E8%BD%AC%E4%B8%AD/6.jpg" alt="6"></p>
+</li>
+<li><p>表达式不是<code>5-（1+（2+3）*4）</code>，因为 5 是最早扫面到的数字。</p>
+</li>
+</ul>
+</li>
+<li><p>所以中缀表达式为<code>(1 +（2 + 3）* 4） - 5</code>。</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="SOURCE"><a href="#SOURCE" class="headerlink" title="SOURCE"></a>SOURCE</h4><ul>
+<li><a href="http://blog.csdn.net/walkerkalr/article/details/22798365" target="_blank" rel="noopener">http://blog.csdn.net/walkerkalr/article/details/22798365</a></li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+  
+</div>
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>谢谢你请我吃糖果!</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/assets/img/weixin.png" alt="Vkey 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/assets/img/zhifubao.jpg" alt="Vkey 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Vkey
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://roux.top/2017/12/12/前缀-后缀-中缀/" title="前缀、中缀、后缀表达式转换详解">http://roux.top/2017/12/12/前缀-后缀-中缀/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/树/" <i class="fa fa-tag"></i> 树</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/12/Git命令/" rel="next" title="Git操作命令">
+                <i class="fa fa-chevron-left"></i> Git操作命令
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/12/13/进程与线程/" rel="prev" title="进程与线程">
+                进程与线程 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="SOHUCS"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/assets/img/header.jpeg"
+                alt="Vkey" />
+            
+              <p class="site-author-name" itemprop="name">Vkey</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">73</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/paulRoux" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://blog.csdn.net/xingerr" target="_blank" title="CSDN">
+                    
+                      <i class="fa fa-fw fa-globe"></i>CSDN</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://twitter.com/Vkey_roux" target="_blank" title="Twitter">
+                    
+                      <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://blog.csdn.net/gc348342215" title="隔壁的豆豆" target="_blank">隔壁的豆豆</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#中缀表达式转后缀表达式"><span class="nav-number">2.</span> <span class="nav-text">中缀表达式转后缀表达式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#后缀表达式转换为中缀表达式"><span class="nav-number">3.</span> <span class="nav-text">后缀表达式转换为中缀表达式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#中缀表达式转换为前缀表达式"><span class="nav-number">4.</span> <span class="nav-text">中缀表达式转换为前缀表达式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#前缀表达式转换为中缀表达式："><span class="nav-number">5.</span> <span class="nav-text">前缀表达式转换为中缀表达式：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SOURCE"><span class="nav-number">6.</span> <span class="nav-text">SOURCE</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+<div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vkey</span>
+
+  
+</div>
+
+
+
+  	<div class="powered-by">
+	<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+	  我思故我在！
+	</span>
+	</div>
+
+<!--
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+-->
+
+
+
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">感谢你来看我！</span>
+</div>
+
+
+<!--
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.3</div>
+-->
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+  
+    <script type="text/javascript">
+    (function(){
+      var appid = 'cytg0VXXf';
+      var conf = '16b9ee30c84ee9a52ae3219b1b4f3a0a';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      if (width < 960) {
+      window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){
+        window.changyan.api.config({appid:appid,conf:conf})});
+      }
+    })();
+    </script>
+    <script type="text/javascript" src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js"></script>
+  
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("PAelBObBJJ1wxPLcqGh7Xi7f-gzGzoHsz", "CvEKFxTr48P32AWq1lhkwl7A");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+
+<!--页面点击小红心-->
+<script type="text/javascript" src="/js/src/love.js"></script>
+
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https'){
+   bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+  }
+  else{
+  bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+  }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>

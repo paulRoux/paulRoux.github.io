@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "a12c511f"
+    });
+  daovoice('update');
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="HTTP," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Vkey Blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="前言 HTTP2.0可以让我们的应用变得更快、更简单、更健壮，让我们在HTTP/1.1时针对TCP协议特性而做的用来提高性能的HACK一笔勾销  为了提高应用的性能，降低延迟，我们能做的无外乎2点，要么传输的东西越小越好，要么距离能获得资源的地方越近越好。  HTTP2的目的：通过支持多路复用来提高并行能力，减少因为3次握手等而产生的延迟；通过压缩HTTP首部将协议开销降到最低，同时支持请求优先级">
+<meta name="keywords" content="HTTP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTTP学习（四）——HTTP2.0的新特性">
+<meta property="og:url" content="http://roux.top/2018/04/21/HTTP学习（四）/index.html">
+<meta property="og:site_name" content="Vkey Blog">
+<meta property="og:description" content="前言 HTTP2.0可以让我们的应用变得更快、更简单、更健壮，让我们在HTTP/1.1时针对TCP协议特性而做的用来提高性能的HACK一笔勾销  为了提高应用的性能，降低延迟，我们能做的无外乎2点，要么传输的东西越小越好，要么距离能获得资源的地方越近越好。  HTTP2的目的：通过支持多路复用来提高并行能力，减少因为3次握手等而产生的延迟；通过压缩HTTP首部将协议开销降到最低，同时支持请求优先级">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://raw.githubusercontent.com/paulRoux/Pictures/master/HTTP/four/http-header.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/paulRoux/Pictures/master/HTTP/four/frame-layer.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/paulRoux/Pictures/master/HTTP/four/frame-structure.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/paulRoux/Pictures/master/HTTP/four/frame-header.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/paulRoux/Pictures/master/HTTP/four/chrome-tool.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/paulRoux/Pictures/master/HTTP/four/chrome-tool1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/paulRoux/Pictures/master/HTTP/four/firefox-tool.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/paulRoux/Pictures/master/HTTP/four/http2-e.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/paulRoux/Pictures/master/HTTP/four/http1-e.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/paulRoux/Pictures/master/HTTP/four/server-push.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/paulRoux/Pictures/master/HTTP/four/push_promise.png">
+<meta property="og:updated_time" content="2018-04-22T05:46:02.851Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HTTP学习（四）——HTTP2.0的新特性">
+<meta name="twitter:description" content="前言 HTTP2.0可以让我们的应用变得更快、更简单、更健壮，让我们在HTTP/1.1时针对TCP协议特性而做的用来提高性能的HACK一笔勾销  为了提高应用的性能，降低延迟，我们能做的无外乎2点，要么传输的东西越小越好，要么距离能获得资源的地方越近越好。  HTTP2的目的：通过支持多路复用来提高并行能力，减少因为3次握手等而产生的延迟；通过压缩HTTP首部将协议开销降到最低，同时支持请求优先级">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/paulRoux/Pictures/master/HTTP/four/http-header.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"输入关键字","hits_empty":"没有找到与『${query}』相关的内容！","hits_stats":"${hits}条相关记录，共耗时：${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://roux.top/2018/04/21/HTTP学习（四）/"/>
+
+
+
+
+
+  <title>HTTP学习（四）——HTTP2.0的新特性 | Vkey Blog</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-107736373-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <!--
+    <a href="https://github.com/paulRoux"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
+    -->
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vkey Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-书单">
+          <a href="/book" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            书单
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://roux.top/2018/04/21/HTTP学习（四）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vkey">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/assets/img/header.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vkey Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">HTTP学习（四）——HTTP2.0的新特性</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-21T00:00:00+08:00">
+                2018-04-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Protocol/" itemprop="url" rel="index">
+                    <span itemprop="name">Protocol</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2018/04/21/HTTP学习（四）/#SOHUCS" itemprop="discussionUrl">
+                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2018/04/21/HTTP学习（四）/" itemprop="commentsCount"></span>
+                </a>
+              
+            
+          
+
+          
+          
+             <span id="/2018/04/21/HTTP学习（四）/" class="leancloud_visitors" data-flag-title="HTTP学习（四）——HTTP2.0的新特性">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><ul>
+<li><p>HTTP2.0可以让我们的应用变得更快、更简单、更健壮，让我们在HTTP/1.1时针对TCP协议特性而做的用来提高性能的HACK一笔勾销</p>
+</li>
+<li><p>为了提高应用的性能，降低延迟，我们能做的无外乎2点，要么传输的东西越小越好，要么距离能获得资源的地方越近越好。</p>
+<ul>
+<li>HTTP2的目的：通过支持<strong>多路复用</strong>来提高并行能力，减少因为3次握手等而产生的延迟；通过<strong>压缩HTTP首部</strong>将协议开销降到最低，同时支持请求优先级和服务器推送。</li>
+<li>HTTP2最大的改变：引入<strong>二进制分帧层</strong>。HTTP2.0不会改动HTTP1.x的语义，提供的功能也不变，但是HTTP2对内修改了格式化数据的方式，以及传输这些数据的方式。对外，也就是面向应用，不用做任何改变，感知不到这一层的变化的。</li>
+</ul>
+</li>
+<li><p>其实HTTP2.0是对HTTP1.x的一个扩展，而非替代，之所以称之为2是因为它引入的二进制分帧层之前的HTTP1.x的服务端和客户端并不兼容。</p>
+<a id="more"></a>
+</li>
+</ul>
+<h3 id="特性浅析"><a href="#特性浅析" class="headerlink" title="特性浅析"></a>特性浅析</h3><h4 id="分帧"><a href="#分帧" class="headerlink" title="分帧"></a><strong>分帧</strong></h4><ul>
+<li><p>这是HTTP2.0中最大的改变。HTTP2.0之所以性能会比HTTP1.x有那么大的提高，很大程度上正是由于这一层的引入。</p>
+<blockquote>
+<p>这里所谓的“层” ，指的是位于套接字接口[1]与应用可见的高层HTTP API之间的一个新机制:HTTP的语义，包括各种动词、方法、首部，都不受影响，不同的是<strong>传输期间</strong>对它们的编码方式变了。</p>
+</blockquote>
+</li>
+<li><p>HTTP1.x用回车换行符作为纯文本的分隔符，在进行解析和差错检测时不方便。HTTP1.x中用ASCII码，是16进制的，来表示报文中的每一个字符，如下图中,47代表字母G，45代表字符E，54代表字符T。</p>
+<p><img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/HTTP/four/http-header.png" alt=""></p>
+</li>
+<li><p>然而，HTTP2.0引入分帧层后，将报文分隔成一个个更小的帧，并采用二进制编码的方式。通常会将一个消息（首部和数据在一起的）分成一个HEADER帧和若干个DATA帧。如下图所示</p>
+<p><img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/HTTP/four/frame-layer.png" alt=""></p>
+<pre><code>另外需要明确的几个定义： **流**：已建立的连接上的双向字节流。具有唯一的流ID，客户端发起的为奇数ID，服务端发起的为偶数ID。很多个流可以并行的在同一个tcp连接上交换消息。 **消息**：与逻辑消息对应，比如一个请求或一个响应。由一个或多个帧组成。 **帧**：HTTP2中最小的通信单位，每个帧都会有帧首部，每个帧或者用来承载HTTP首部或负荷数据，或其他特定类型的帧。帧是遵循二进制编码的。
+
+总得来说，就是这样的，在HTTP2中，相同域名下的所有通信都在一个连接上完成，这个连接中可以承载任意数量的双向流。这些流都是以消息的形式被发送的，同时消息又由一个或多个帧组成。多个帧之间可以乱序发送，最后根据帧首部的流标识重新组装。
+</code></pre></li>
+<li><p><strong>解释</strong> :这个双向是指，服务器可以给浏览器发消息（server push），浏览器也可以给服务器发东西（这就不用说啦）</p>
+</li>
+</ul>
+<ul>
+<li><p>对于一个帧来说，有固定固定帧格式，其中帧首部规定了帧最多只能带64KB的数据，还包括了帧类型和流标识符等。另外，帧中还可以填充一些额外的数据，最多255字节，保证数据安全性，拿HEADER帧举例。</p>
+<p><img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/HTTP/four/frame-structure.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/HTTP/four/frame-header.png" alt=""></p>
+</li>
+<li><p>从这点上看，HTTP2.0中的帧与tcp报文段有些相似的。</p>
+<p>在客户端或服务端发起建立新流时，帧携带HTTP的首部块，其中服务端发起流时，发送的HEADER帧没有优先级这一字段；当新流建立之后，就可发送HTTP消息的应用数据，也就是帧的负荷数据。</p>
+<p>将消息拆成多个数据帧之后，会大大缓解HTTP队首阻塞[2]的情况。但是与tcp层的队首阻塞[3]并无直接关系。同时，改以帧为传输单位后，使得对报文无论是解析和差错检测方面都变得更加容易，因为对纯文本的解析还需要考虑到空格，空行，换行等问题。另外，也还消除了并行处理和发送请求及响应时对多个连接的依赖。</p>
+</li>
+<li><p><strong>解释</strong> ：多路复用：用一个tcp连接，并行发好多。【…keep_alive 很像啊】 —分组数？？表示是底层的，都没有概念…按道理说是分帧了后，分组数会变多啊？？？ 和keep_alive 不像，是和管道化很像哈。 实际上是这样的，首先肯定的是多使用同一个tcp连接，比起以前的多个tcp连接，会至少每次少了3个建立连接的tcp报文段，还不包括重传的。同时因为分帧之后出错的概率变小，间接的需要重传的包变少。从这两方面来说整个网络中的包中的总数是变少的。 另外呢，tcp报文段的长度其实还是保持不变的，不同流中的帧其实是混在一个tcp报文段中一起被发送，而在接收方那边接受到这个报文段后再进行拆分重新组装成新的http报文。</p>
+</li>
+</ul>
+<h4 id="首部压缩"><a href="#首部压缩" class="headerlink" title="首部压缩"></a><strong>首部压缩</strong></h4><ul>
+<li>由于HTTP协议是一种无状态的协议，服务器自身不会保存太多的信息和先前请求过的元数据信息，这就需要客户端每次都使用多个首部字段来描述所传输的资源及其属性，又由于HTTP1.1是以文本形式传输的，每次都会给HTTP报文增加500-800字节的负荷，如果算上cookie，这个负荷甚至会增加到上千。如果可以有办法减少这些开销，那么对性能又有很大的提升。<ol>
+<li>HTTP2采用HPACK压缩方法，一边用index mapping table压缩，一边编码。这个table由<a href="https://http2.github.io/http2-spec/compression.html#static.table.definition" target="_blank" rel="noopener">静态表</a>和动态表组成。<ol>
+<li>先用预定义的index mapping table将头部中常用的字符串用index来代替</li>
+<li>对一定要使用文本表示的字符串，采用预定义的哈夫曼编码表进行编码 (具体的压缩和解压缩的方法请看<a href="http://www.cnblogs.com/ghj1976/p/4586529.html" target="_blank" rel="noopener">此文</a>的解释)<ul>
+<li>客户端和服务器端使用首部表来跟踪和存储之前发送的每一个键值对。第一次请求时发送过的键值对，第二次在再请求时就不在发送了。（这一现象还一直没观察到）</li>
+<li>在tcp连接期间，客户端和服务端共同维护这个首部表，并且是共同渐进更新的</li>
+<li>每个新的键值对，要么直接添加到首部表尾部，要么替换原有表中的值</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>另外，HTTP2的前身SPDY采用的头部压缩算法是delate算法，这个算法的压缩效率也不错，但是由于存在<a href="http://www.freebuf.com/articles/web/5636.html" target="_blank" rel="noopener">CRIME攻击</a>，而HTTP2不得不重新设计了HPACK算法。</li>
+</ol>
+</li>
+<li><strong>解释</strong> 使用了HPACK算法，一方面如果下一次请求头部和上一次请求头部中有相同的字段，那么相同的字段不会被发送，只会被发送差异性的字段。另一方面，会有一张首部表，里面会有常用的首部字段极其对应的序号，会有序号来代替这个具体的字段字符串。同时，整个首部帧还会用哈夫曼编码来进行压缩。</li>
+</ul>
+<h4 id="多路复用"><a href="#多路复用" class="headerlink" title="多路复用"></a><strong>多路复用</strong></h4><ul>
+<li><p>引入二进制分帧层之后，HTTP2.0可以很容易的去实现多流并行而不用依赖建立多个tcp连接。</p>
+<blockquote>
+<p>实验表明，客户端使用更少的连接肯定可以降低延迟时间。HTTP 2.0 发送的总分组数量比 HTTP 差不多要少 40%。而服务器处理大量并发连接的情况也变成了可伸缩性问题，因为 HTTP 2.0 减轻了这个负担。 —-HTTP2.0</p>
+</blockquote>
+</li>
+<li><p>每个来源使用一个连接，优势如下：</p>
+<ul>
+<li>从服务器和客户端来说，占用的资源和内存都少了。</li>
+<li>从tcp连接和网络来说，使得网络拥塞得到改善，慢启动时间减少，拥塞和丢包恢复速度变快。</li>
+</ul>
+</li>
+<li><p><strong>解释</strong></p>
+<ul>
+<li>keep-alive，也是可以不进行3次握手就可以发送多个在同一个域下的请求。但是必须发送下一个请求B，等待前一个请求A的响应收到后才可以发送。多路复用和管道优化差不多，只是管道优化由于兼容性的问题，而没有被普遍使用。</li>
+<li>但是什么时候断？如果太多的保持连接，会不会反而不好呢 和一般TCP连接释放一样，如果客户端没有数据要请求，或服务端数据发送完毕后，会主动发送关闭连接的报文。或者是服务端连续发送10个探测报文，客户端无响应，服务端就关闭了这个连接。</li>
+</ul>
+</li>
+</ul>
+<h4 id="请求优先级"><a href="#请求优先级" class="headerlink" title="请求优先级"></a><strong>请求优先级</strong></h4><ul>
+<li><p>当同一条连接上可以同时发送很多请求时，并不等于说这些请求对于服务器来说都应该一视同仁，因为客户端对资源的需求程度不同。比如说一个html文档，显然客户端对CSS和JS的需求，远大于对文档内图片的需求。</p>
+<p>因此在建立新流时，HEADER帧可以带有一个优先级(31位，0为优先级最高)的值。这样，服务端就可以因此而适当分配资源，优先发送这些优先级高的帧。</p>
+<p>HTTP2.0协议并没有规定这样的处理优先级的算法该如何实现，仅仅只是提供了这样一种机制。</p>
+<p>为了合理充分利用网络资源，服务器也应该交错处理不同优先级的帧。而不是严格按照优先级来处理，否则又会造成队首堵塞的情况。</p>
+</li>
+<li><p><strong>解释</strong> ：请求优先级….感觉需要服务器也要支持的节奏（那确实变复杂了） 是的。也就是说服务器和客户端对这个优先级的理解是一样的，或是达成一致的。</p>
+</li>
+</ul>
+<h4 id="服务器推送"><a href="#服务器推送" class="headerlink" title="服务器推送"></a><strong>服务器推送</strong></h4><ul>
+<li><p>说到服务器推送，其实在HTTP1.1时，我们就用到过类似的，比如将图片使用base64编码嵌入在文档中。</p>
+<p>之所以要提供这个服务，是因为一个文档被请求回来时，往往还需要再次请求很多文档内的其他资源，如果这些资源的请求不用客户端发起，而是服务端提前预判发给客户端，那么就会减少一半的RTT。</p>
+<p>HTTP2.0这个协议也没有规定服务器端到底该怎样推送这个资源。服务端可以自己制定不同的策略，可以是根据客户端明确写出的推送请求；或者是服务端通过学习得来；再或者是通过额外的HTTP首部想服务端表明意向。</p>
+</li>
+<li><p>这个服务的特点是：</p>
+<ul>
+<li>只有建立连接后，服务器才可以推送资源(发送PUSH_PROMISE帧，这个帧中只有要约的HTTP首部)，也就是说服务器不能无缘无故的主动向客户端推送资源</li>
+<li>客户端可以发送RST_STREAM拒绝服务器推送来的资源。但是这可能存在一个时间差，而导致客户端明明已经拒绝了，但服务端却还是把资源推送了过来。</li>
+<li>推送的资源可以有不同页面共享</li>
+<li>服务器可以按照优先级来推送资源</li>
+</ul>
+</li>
+<li><p><strong>解释</strong> 服务器主动推送一个资源，客户端有权来选择是接收还是不接收，不能‘来者不拒’嘛，是吧。</p>
+</li>
+</ul>
+<h4 id="流量控制"><a href="#流量控制" class="headerlink" title="流量控制"></a><strong>流量控制</strong></h4><ul>
+<li>我们知道在HTTP2协议中，我们可以在同一个连接中，建立多个流，那么实际上这些流之间是相互竞争的，会相互争夺这个连接中资源的分配。此时与tcp流量控制相似，我们也需要对流中的帧进行流量控制。但只有DATA帧受流量控制，而其他类型的帧不受流量控制。同样，HTTP2也只提供了这样一种机制，而非具体实现。<ul>
+<li>这个流量控制在没一跳之间进行，而非端到端</li>
+<li>流量控制基于窗口更新帧。连接建立之初，通过交换settings帧，来设定双向的流量控制窗口大小。</li>
+<li>发送端每发送一个DATA帧，就将window的值减去这次data帧的大小，直到window=0。</li>
+<li>接收方可通过发送window_update 帧。如果接收方不想接受数据了，就不发送window _update帧。</li>
+<li>在接受关键资源时，可将非关键资源的window设置的非常小，等网络空闲了，再改回大一些。</li>
+</ul>
+</li>
+</ul>
+<h3 id="工具使用"><a href="#工具使用" class="headerlink" title="工具使用"></a>工具使用</h3><ul>
+<li><p>可以使用chrome的工具<code>chrome://net-internals/#http2</code>来查看具体发送的帧的内容</p>
+</li>
+<li><p>打开chrome-network中的protocol一栏，查看当前站点使用的HTTP版本</p>
+<p><img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/HTTP/four/chrome-tool.png" alt=""></p>
+</li>
+<li><p>安装chrome扩展<a href="https://chrome.google.com/webstore/detail/http2-and-spdy-indicator/mpbpobfflnpcgagjijhmgnchggcjblin?hl=zh-CN" target="_blank" rel="noopener">HTTP/2 and SPDY indicator</a>,在地址栏右侧会标示出是否使用了HTTP2或SPDY协议。</p>
+<p><img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/HTTP/four/chrome-tool1.png" alt=""></p>
+</li>
+<li><p>在firefox浏览器的网络中，也可直接查看使用的HTTP协议的版本</p>
+<p><img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/HTTP/four/firefox-tool.png" alt=""></p>
+</li>
+<li><p>帮助我们检测某个网站是否使用了HTTP2协议的网站<a href="https://www.h2check.org/" target="_blank" rel="noopener">HTTP/2 Checker</a>;检测是否使用了SPDY协议的网站<a href="https://spdycheck.org/" target="_blank" rel="noopener">SPDYCheck.org</a></p>
+</li>
+<li><p>分析页面性能的网站<a href="http://www.webpagetest.org/" target="_blank" rel="noopener">WebPagetest</a></p>
+</li>
+</ul>
+<h3 id="实验验证"><a href="#实验验证" class="headerlink" title="实验验证"></a>实验验证</h3><p>为了能够亲自证实HTTP2确实对web性能有了很大的改进，使用nodejs作为服务端，分别验证在使用HTTP2, HTTPS, HTTP和SPDY作为HTTP协议时，同时加载10张图片时web性能的表现，<a href="http://jiaolonghuang.github.io/code/http2-experiment.zip" target="_blank" rel="noopener">代码下载</a>。结果比较出乎意外：</p>
+<ul>
+<li><p>可以比较直观的观察到多路复用的表现</p>
+<p><img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/HTTP/four/http2-e.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/HTTP/four/http1-e.png" alt=""></p>
+</li>
+<li><p>Server Push的验证 <a href="https://www.imququ.com/" target="_blank" rel="noopener">屈屈</a>的<a href="https://www.imququ.com/post/use-http2-now.html" target="_blank" rel="noopener">博客</a>中有专门的介绍，这里我们也看一下。打开博客首页后可看到响应头中有<code>link:&lt;...&gt;</code>这样一个键值对，这是告诉服务器这个资源需要被推送。</p>
+<p><img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/HTTP/four/server-push.png" alt=""></p>
+<p>然后使用之前提到过的<code>chrome://net-internals/#http2</code>工具来查看具体的Push过程</p>
+<p><img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/HTTP/four/push_promise.png" alt=""></p>
+</li>
+<li><p>至于头部压缩字节变少，页面加载速度变慢并无明显结果。与<a href="http://www.infoq.com/cn/news/2015/02/https-spdy-http2-comparison" target="_blank" rel="noopener">HTTPS、SPDY和HTTP/2的性能比较</a>的实验结果差的也比较多。</p>
+</li>
+</ul>
+<p>猜测原因：由于是访问的本地资源，不能模拟网络拥塞的情况，故不能完全体现出http2的优势。</p>
+<h3 id="脚注"><a href="#脚注" class="headerlink" title="脚注"></a>脚注</h3><ol>
+<li>套接字：是支持TCP/IP网络通信的基本操作单元，可以看成是不同主机之间的进程进行双向通信的端点。是应用进程与tcp连接之间的门，通过套接字口来发送或获得报文。</li>
+<li>HTTP队首阻塞：一个慢请求阻塞后面的所有请求。具体来说就是，假设客户端同时发送2个请求，一个高优先级，一个低优先级，即便低优先级的资源先准备好了，也不会先发送，而是先等着，等高优先级的响应发送完了再发送低优先级的。这样会导致网络资源浪费，服务器缓冲开销浪费，最终导致客户端等待时间无限期延迟。</li>
+<li>tcp队首阻塞：tcp要求分组严格按照顺序交付，一个分组未收到，就会阻塞后续的所有高序号分组。直到重传那个丢失的分组。</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+  
+</div>
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>谢谢你请我吃糖果!</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/assets/img/weixin.png" alt="Vkey 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/assets/img/zhifubao.jpg" alt="Vkey 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Vkey
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://roux.top/2018/04/21/HTTP学习（四）/" title="HTTP学习（四）——HTTP2.0的新特性">http://roux.top/2018/04/21/HTTP学习（四）/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/HTTP/" <i class="fa fa-tag"></i> HTTP</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/21/HTTP学习（五）/" rel="next" title="HTTP学习（五）——HTTP2 VS SPDY">
+                <i class="fa fa-chevron-left"></i> HTTP学习（五）——HTTP2 VS SPDY
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/22/HTTP与HTTPS/" rel="prev" title="HTTP与HTTPS">
+                HTTP与HTTPS <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="SOHUCS"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/assets/img/header.jpeg"
+                alt="Vkey" />
+            
+              <p class="site-author-name" itemprop="name">Vkey</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">73</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/paulRoux" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://blog.csdn.net/xingerr" target="_blank" title="CSDN">
+                    
+                      <i class="fa fa-fw fa-globe"></i>CSDN</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://twitter.com/Vkey_roux" target="_blank" title="Twitter">
+                    
+                      <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://blog.csdn.net/gc348342215" title="隔壁的豆豆" target="_blank">隔壁的豆豆</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特性浅析"><span class="nav-number">2.</span> <span class="nav-text">特性浅析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#分帧"><span class="nav-number">2.1.</span> <span class="nav-text">分帧</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#首部压缩"><span class="nav-number">2.2.</span> <span class="nav-text">首部压缩</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多路复用"><span class="nav-number">2.3.</span> <span class="nav-text">多路复用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#请求优先级"><span class="nav-number">2.4.</span> <span class="nav-text">请求优先级</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#服务器推送"><span class="nav-number">2.5.</span> <span class="nav-text">服务器推送</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#流量控制"><span class="nav-number">2.6.</span> <span class="nav-text">流量控制</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#工具使用"><span class="nav-number">3.</span> <span class="nav-text">工具使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实验验证"><span class="nav-number">4.</span> <span class="nav-text">实验验证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#脚注"><span class="nav-number">5.</span> <span class="nav-text">脚注</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+<div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vkey</span>
+
+  
+</div>
+
+
+
+  	<div class="powered-by">
+	<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+	  我思故我在！
+	</span>
+	</div>
+
+<!--
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+-->
+
+
+
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">感谢你来看我！</span>
+</div>
+
+
+<!--
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.3</div>
+-->
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+  
+    <script type="text/javascript">
+    (function(){
+      var appid = 'cytg0VXXf';
+      var conf = '16b9ee30c84ee9a52ae3219b1b4f3a0a';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      if (width < 960) {
+      window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){
+        window.changyan.api.config({appid:appid,conf:conf})});
+      }
+    })();
+    </script>
+    <script type="text/javascript" src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js"></script>
+  
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("PAelBObBJJ1wxPLcqGh7Xi7f-gzGzoHsz", "CvEKFxTr48P32AWq1lhkwl7A");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+
+<!--页面点击小红心-->
+<script type="text/javascript" src="/js/src/love.js"></script>
+
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https'){
+   bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+  }
+  else{
+  bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+  }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
