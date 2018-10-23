@@ -81,13 +81,13 @@
 
 
 
-  <meta name="keywords" content="Hexo, Vkey" />
+  <meta name="keywords" content="Hexo, Shirsen" />
 
 
 
 
 
-  <link rel="alternate" href="/atom.xml" title="Vkey Blog" type="application/atom+xml" />
+  <link rel="alternate" href="/atom.xml" title="Shirsen Blog" type="application/atom+xml" />
 
 
 
@@ -95,12 +95,12 @@
 
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="Vkey Blog">
+<meta property="og:title" content="Shirsen Blog">
 <meta property="og:url" content="http://roux.top/page/4/index.html">
-<meta property="og:site_name" content="Vkey Blog">
+<meta property="og:site_name" content="Shirsen Blog">
 <meta property="og:locale" content="zh-Hans">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Vkey Blog">
+<meta name="twitter:title" content="Shirsen Blog">
 
 
 
@@ -136,7 +136,7 @@
 
 
 
-  <title>Vkey Blog</title>
+  <title>Shirsen Blog</title>
   
 
 
@@ -156,6 +156,8 @@
 
 
 </head>
+
+<script type="text/javascript" src="/js/src/dytitle.js"></script>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
@@ -180,7 +182,7 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Vkey Blog</span>
+        <span class="site-title">Shirsen Blog</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -306,6 +308,17 @@
   
 </nav>
 
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
 
 
  </div>
@@ -331,16 +344,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://roux.top/2018/01/08/信号量和自旋锁的区别/">
+    <link itemprop="mainEntityOfPage" href="http://roux.top/2018/01/08/TIME_WAIT/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Vkey">
+      <meta itemprop="name" content="Shirsen">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/assets/img/header.jpeg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Vkey Blog">
+      <meta itemprop="name" content="Shirsen Blog">
     </span>
 
     
@@ -350,7 +363,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/08/信号量和自旋锁的区别/" itemprop="url">信号量与自旋锁的区别</a></h1>
+                <a class="post-title-link" href="/2018/01/08/TIME_WAIT/" itemprop="url">TIME_WAIT状态</a></h1>
         
 
         <div class="post-meta">
@@ -385,8 +398,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/网络编程/" itemprop="url" rel="index">
-                    <span itemprop="name">网络编程</span>
+                  <a href="/categories/Protocol/" itemprop="url" rel="index">
+                    <span itemprop="name">Protocol</span>
                   </a>
                 </span>
 
@@ -404,8 +417,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2018/01/08/信号量和自旋锁的区别/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://roux.top/2018/01/08/信号量和自旋锁的区别/" class="cy_cmt_count" data-xid="2018/01/08/信号量和自旋锁的区别/" itemprop="commentsCount" ></span>
+                <a href="/2018/01/08/TIME_WAIT/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://roux.top/2018/01/08/TIME_WAIT/" class="cy_cmt_count" data-xid="2018/01/08/TIME_WAIT/" itemprop="commentsCount" ></span>
                 </a>
               
             
@@ -413,7 +426,7 @@
 
           
           
-             <span id="/2018/01/08/信号量和自旋锁的区别/" class="leancloud_visitors" data-flag-title="信号量与自旋锁的区别">
+             <span id="/2018/01/08/TIME_WAIT/" class="leancloud_visitors" data-flag-title="TIME_WAIT状态">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -444,20 +457,14 @@
       
 
       
+			
         
-          <h4 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h4><ul>
-<li><p>区别一：实现方式</p>
-<ul>
-<li><p>自旋锁是自旋等待，进程状态始终处于<code>TASK_RUNNING</code>。</p>
-</li>
-<li><p>信号量是睡眠等待，进程在等待时处于<code>TASK_INTERRUPTIBLE</code>。</p>
-</li>
-</ul>
-</li>
+          <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><ul>
+<li>关于TCP的<code>TIME_WAIT</code>，一直停留在明白有什么作用的层次。想着《计算机网络》都学完了，也应该把TCP的问题给实实在在的弄明白。</li>
 </ul>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/01/08/信号量和自旋锁的区别/#more" rel="contents">
+            <a class="btn" href="/2018/01/08/TIME_WAIT/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -515,13 +522,13 @@
     <link itemprop="mainEntityOfPage" href="http://roux.top/2018/01/08/TCP拥塞控制/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Vkey">
+      <meta itemprop="name" content="Shirsen">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/assets/img/header.jpeg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Vkey Blog">
+      <meta itemprop="name" content="Shirsen Blog">
     </span>
 
     
@@ -625,6 +632,7 @@
       
 
       
+			
         
           <h3 id="拥塞控制与流量控制"><a href="#拥塞控制与流量控制" class="headerlink" title="拥塞控制与流量控制"></a>拥塞控制与流量控制</h3><ul>
 <li><p>拥塞控制：防止过多的数据注入到网络中，这样可以使网络中的路由器或链路不致过载。拥塞控制所要做的都有一个前提：网络能够承受现有的网络负荷。拥塞控制是一个全局性的过程，涉及到所有的主机、路由器，以及与降低网络传输性能有关的所有因素</p>
@@ -694,13 +702,13 @@
     <link itemprop="mainEntityOfPage" href="http://roux.top/2017/12/13/进程与线程/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Vkey">
+      <meta itemprop="name" content="Shirsen">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/assets/img/header.jpeg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Vkey Blog">
+      <meta itemprop="name" content="Shirsen Blog">
     </span>
 
     
@@ -804,6 +812,7 @@
       
 
       
+			
         
           <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><ul>
 <li>网络编程也学了挺长时间了，想着把最基本的进程和线程捋一捋，为后面的进阶把基础弄扎实点。本文是我们学习交流发的，也不知道出处，在此感谢！文末有两篇文章讲解的很棒，结合起来细细品读，进线程基本就ok了！</li>
@@ -868,13 +877,13 @@
     <link itemprop="mainEntityOfPage" href="http://roux.top/2017/12/12/线程池/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Vkey">
+      <meta itemprop="name" content="Shirsen">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/assets/img/header.jpeg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Vkey Blog">
+      <meta itemprop="name" content="Shirsen Blog">
     </span>
 
     
@@ -978,6 +987,7 @@
       
 
       
+			
         
           <h4 id="池"><a href="#池" class="headerlink" title="池"></a>池</h4><ul>
 <li><p>由于服务器的硬件资源“充裕”，那么提高服务器性能的一个很直接的方法就是以空间换时间，即“浪费”服务器的硬件资源，以换取其运行效率。这就是池的概念。池是一组资源的集合，这组资源在服务器启动之初就完全被创建并初始化，这称为静态资源分配。当服务器进入正是运行阶段，即开始处理客户请求的时候，如果它需要相关的资源，就可以直接从池中获取，无需动态分配。很显然，直接从池中取得所需资源比动态分配资源的速度要快得多，因为分配系统资源的系统调用都是很耗时的。当服务器处理完一个客户连接后，可以把相关的资源放回池中，无需执行系统调用来释放资源。从最终效果来看，池相当于服务器管理系统资源的应用设施，它避免了服务器对内核的频繁访问。</p>
@@ -1042,16 +1052,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://roux.top/2017/12/12/前缀-后缀-中缀/">
+    <link itemprop="mainEntityOfPage" href="http://roux.top/2017/12/12/Git命令/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Vkey">
+      <meta itemprop="name" content="Shirsen">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/assets/img/header.jpeg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Vkey Blog">
+      <meta itemprop="name" content="Shirsen Blog">
     </span>
 
     
@@ -1061,7 +1071,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/12/12/前缀-后缀-中缀/" itemprop="url">前缀、中缀、后缀表达式转换详解</a></h1>
+                <a class="post-title-link" href="/2017/12/12/Git命令/" itemprop="url">Git操作命令</a></h1>
         
 
         <div class="post-meta">
@@ -1096,8 +1106,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/数据结构/" itemprop="url" rel="index">
-                    <span itemprop="name">数据结构</span>
+                  <a href="/categories/Tools/" itemprop="url" rel="index">
+                    <span itemprop="name">Tools</span>
                   </a>
                 </span>
 
@@ -1115,8 +1125,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2017/12/12/前缀-后缀-中缀/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://roux.top/2017/12/12/前缀-后缀-中缀/" class="cy_cmt_count" data-xid="2017/12/12/前缀-后缀-中缀/" itemprop="commentsCount" ></span>
+                <a href="/2017/12/12/Git命令/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://roux.top/2017/12/12/Git命令/" class="cy_cmt_count" data-xid="2017/12/12/Git命令/" itemprop="commentsCount" ></span>
                 </a>
               
             
@@ -1124,7 +1134,7 @@
 
           
           
-             <span id="/2017/12/12/前缀-后缀-中缀/" class="leancloud_visitors" data-flag-title="前缀、中缀、后缀表达式转换详解">
+             <span id="/2017/12/12/Git命令/" class="leancloud_visitors" data-flag-title="Git操作命令">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1155,13 +1165,17 @@
       
 
       
+			
         
           <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><ul>
-<li>前面学过树的遍历及转换，感触不是很深，今天回头来看，另有感悟。这种感悟也是得益于大神的博文，记录于此。</li>
+<li><p>学习中经常用到<code>GitHub</code>，但是一直只会一些简单的操作，偶尔碰到复杂的需求(或者一些细小的但是很重要的问题)的时候，又要去Google，往往会花费一定的时间(时间累积起来也很害怕哟)，所以对一些常用的命令做一些总结，顺便把找到的一些好的教程保存下来，节省查找一些时间。</p>
+</li>
+<li><p><a href="https://learngitbranching.js.org/" target="_blank" rel="noopener">在线练习—强烈推荐</a></p>
+</li>
 </ul>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/12/12/前缀-后缀-中缀/#more" rel="contents">
+            <a class="btn" href="/2017/12/12/Git命令/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1244,9 +1258,9 @@
             
               <img class="site-author-image" itemprop="image"
                 src="/assets/img/header.jpeg"
-                alt="Vkey" />
+                alt="Shirsen" />
             
-              <p class="site-author-name" itemprop="name">Vkey</p>
+              <p class="site-author-name" itemprop="name">Shirsen</p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
@@ -1364,9 +1378,9 @@
 
 <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
-    <i class="fa fa-user"></i>
+    <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">Vkey</span>
+  <span class="author" itemprop="copyrightHolder">Shirsen</span>
 
   
 </div>

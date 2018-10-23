@@ -87,7 +87,7 @@
 
 
 
-  <link rel="alternate" href="/atom.xml" title="Vkey Blog" type="application/atom+xml" />
+  <link rel="alternate" href="/atom.xml" title="Shirsen Blog" type="application/atom+xml" />
 
 
 
@@ -99,7 +99,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="HTTP学习（一）——HTTP的历史">
 <meta property="og:url" content="http://roux.top/2018/04/20/HTTP学习（一）/index.html">
-<meta property="og:site_name" content="Vkey Blog">
+<meta property="og:site_name" content="Shirsen Blog">
 <meta property="og:description" content="前言 本系列文章均转自小路口的系列博文，因为没有找到博主的联系方式，故如有侵权烦请联系我进行处理。  背景 在上世纪60年代，世界上占统治地位的通信网络是电话网络，它是基于电路交换[1]的。与此同时，随着分时计算机的出现和计算机重要性的提高，如何充分利用分散在世界各地的数字计算机为人们所共享就变的越发重要了。其中需要注意的是，这些用户所产生的流量是具有突发性的，也就是说具有活动的间断性。 于是世界">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2018-04-22T05:44:00.950Z">
@@ -141,7 +141,7 @@
 
 
 
-  <title>HTTP学习（一）——HTTP的历史 | Vkey Blog</title>
+  <title>HTTP学习（一）——HTTP的历史 | Shirsen Blog</title>
   
 
 
@@ -161,6 +161,8 @@
 
 
 </head>
+
+<script type="text/javascript" src="/js/src/dytitle.js"></script>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
@@ -184,7 +186,7 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Vkey Blog</span>
+        <span class="site-title">Shirsen Blog</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -310,6 +312,17 @@
   
 </nav>
 
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
 
 
  </div>
@@ -338,13 +351,13 @@
     <link itemprop="mainEntityOfPage" href="http://roux.top/2018/04/20/HTTP学习（一）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Vkey">
+      <meta itemprop="name" content="Shirsen">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/assets/img/header.jpeg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Vkey Blog">
+      <meta itemprop="name" content="Shirsen Blog">
     </span>
 
     
@@ -533,14 +546,14 @@
 
     
       <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/assets/img/weixin.png" alt="Vkey 微信支付"/>
+        <img id="wechat_qr" src="/assets/img/weixin.png" alt="Shirsen 微信支付"/>
         <p>微信支付</p>
       </div>
     
 
     
       <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/assets/img/zhifubao.jpg" alt="Vkey 支付宝"/>
+        <img id="alipay_qr" src="/assets/img/zhifubao.jpg" alt="Shirsen 支付宝"/>
         <p>支付宝</p>
       </div>
     
@@ -558,7 +571,7 @@
         <ul class="post-copyright">
   <li class="post-copyright-author">
     <strong>本文作者：</strong>
-    Vkey
+    Shirsen
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
@@ -590,8 +603,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/04/20/HTTP学习（二）/" rel="next" title="HTTP学习（二）——一条消息的历程">
-                <i class="fa fa-chevron-left"></i> HTTP学习（二）——一条消息的历程
+              <a href="/2018/04/08/TCP流量控制/" rel="next" title="TCP流量控制">
+                <i class="fa fa-chevron-left"></i> TCP流量控制
               </a>
             
           </div>
@@ -600,8 +613,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/04/20/HTTP学习（三）/" rel="prev" title="HTTP学习（三）——关于HTTP/1.1的管道化">
-                HTTP学习（三）——关于HTTP/1.1的管道化 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/04/20/HTTP学习（二）/" rel="prev" title="HTTP学习（二）——一条消息的历程">
+                HTTP学习（二）——一条消息的历程 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -702,9 +715,9 @@
             
               <img class="site-author-image" itemprop="image"
                 src="/assets/img/header.jpeg"
-                alt="Vkey" />
+                alt="Shirsen" />
             
-              <p class="site-author-name" itemprop="name">Vkey</p>
+              <p class="site-author-name" itemprop="name">Shirsen</p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
@@ -838,9 +851,9 @@
 
 <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
-    <i class="fa fa-user"></i>
+    <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">Vkey</span>
+  <span class="author" itemprop="copyrightHolder">Shirsen</span>
 
   
 </div>

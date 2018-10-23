@@ -81,13 +81,13 @@
 
 
 
-  <meta name="keywords" content="Hexo, Vkey" />
+  <meta name="keywords" content="Hexo, Shirsen" />
 
 
 
 
 
-  <link rel="alternate" href="/atom.xml" title="Vkey Blog" type="application/atom+xml" />
+  <link rel="alternate" href="/atom.xml" title="Shirsen Blog" type="application/atom+xml" />
 
 
 
@@ -95,12 +95,12 @@
 
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="Vkey Blog">
+<meta property="og:title" content="Shirsen Blog">
 <meta property="og:url" content="http://roux.top/page/3/index.html">
-<meta property="og:site_name" content="Vkey Blog">
+<meta property="og:site_name" content="Shirsen Blog">
 <meta property="og:locale" content="zh-Hans">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Vkey Blog">
+<meta name="twitter:title" content="Shirsen Blog">
 
 
 
@@ -136,7 +136,7 @@
 
 
 
-  <title>Vkey Blog</title>
+  <title>Shirsen Blog</title>
   
 
 
@@ -156,6 +156,8 @@
 
 
 </head>
+
+<script type="text/javascript" src="/js/src/dytitle.js"></script>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
@@ -180,7 +182,7 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Vkey Blog</span>
+        <span class="site-title">Shirsen Blog</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -306,6 +308,17 @@
   
 </nav>
 
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
 
 
  </div>
@@ -331,195 +344,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://roux.top/2018/04/20/HTTP学习（一）/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Vkey">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/assets/img/header.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Vkey Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/20/HTTP学习（一）/" itemprop="url">HTTP学习（一）——HTTP的历史</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-20T00:00:00+08:00">
-                2018-04-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Protocol/" itemprop="url" rel="index">
-                    <span itemprop="name">Protocol</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-comment-o"></i>
-              </span>
-              
-                <a href="/2018/04/20/HTTP学习（一）/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://roux.top/2018/04/20/HTTP学习（一）/" class="cy_cmt_count" data-xid="2018/04/20/HTTP学习（一）/" itemprop="commentsCount" ></span>
-                </a>
-              
-            
-          
-
-          
-          
-             <span id="/2018/04/20/HTTP学习（一）/" class="leancloud_visitors" data-flag-title="HTTP学习（一）——HTTP的历史">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><ul>
-<li>本系列文章均转自<a href="https://imjiaolong.cn/" target="_blank" rel="noopener">小路口</a>的系列博文，因为没有找到博主的联系方式，故如有侵权烦请联系我进行处理。</li>
-</ul>
-<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><ul>
-<li>在上世纪60年代，世界上占统治地位的通信网络是电话网络，它是基于电路交换[1]的。与此同时，随着分时计算机的出现和计算机重要性的提高，如何充分利用分散在世界各地的数字计算机为人们所共享就变的越发重要了。其中需要注意的是，这些用户所产生的流量是具有突发性的，也就是说具有活动的间断性。</li>
-<li>于是世界上的科学家们就发明了更能很好解决突发性的分组交换来替代电路交换。最开始是美国的阿帕网，ARPAnet，是世界上第一个分组交换机网络，也就是今天因特网的直接祖先。</li>
-<li>HTTP协议是现代web的基础。其实HTTP协议的出现主要是为了推动万维网的应用，它们的发明者是同一个人。HTTP协议设计之初是非常简洁的，就是为了传输超文本文档，也就是HTTP0.9版本。</li>
-</ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/04/20/HTTP学习（一）/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-<div>
-  
-</div>
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://roux.top/2018/04/20/HTTP学习（二）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Vkey">
+      <meta itemprop="name" content="Shirsen">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/assets/img/header.jpeg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Vkey Blog">
+      <meta itemprop="name" content="Shirsen Blog">
     </span>
 
     
@@ -623,6 +457,7 @@
       
 
       
+			
         
           <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><ul>
 <li>我们都知道HTTP底层还是调用TCP协议进行传输的，那么具体怎样调用的呢（如下图）？在这个过程中一条消息都经历了什么过程呢？<ul>
@@ -687,16 +522,196 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://roux.top/2018/04/08/TCP流量控制/">
+    <link itemprop="mainEntityOfPage" href="http://roux.top/2018/04/20/HTTP学习（一）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Vkey">
+      <meta itemprop="name" content="Shirsen">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/assets/img/header.jpeg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Vkey Blog">
+      <meta itemprop="name" content="Shirsen Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/20/HTTP学习（一）/" itemprop="url">HTTP学习（一）——HTTP的历史</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-20T00:00:00+08:00">
+                2018-04-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Protocol/" itemprop="url" rel="index">
+                    <span itemprop="name">Protocol</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2018/04/20/HTTP学习（一）/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://roux.top/2018/04/20/HTTP学习（一）/" class="cy_cmt_count" data-xid="2018/04/20/HTTP学习（一）/" itemprop="commentsCount" ></span>
+                </a>
+              
+            
+          
+
+          
+          
+             <span id="/2018/04/20/HTTP学习（一）/" class="leancloud_visitors" data-flag-title="HTTP学习（一）——HTTP的历史">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+			
+        
+          <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><ul>
+<li>本系列文章均转自<a href="https://imjiaolong.cn/" target="_blank" rel="noopener">小路口</a>的系列博文，因为没有找到博主的联系方式，故如有侵权烦请联系我进行处理。</li>
+</ul>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><ul>
+<li>在上世纪60年代，世界上占统治地位的通信网络是电话网络，它是基于电路交换[1]的。与此同时，随着分时计算机的出现和计算机重要性的提高，如何充分利用分散在世界各地的数字计算机为人们所共享就变的越发重要了。其中需要注意的是，这些用户所产生的流量是具有突发性的，也就是说具有活动的间断性。</li>
+<li>于是世界上的科学家们就发明了更能很好解决突发性的分组交换来替代电路交换。最开始是美国的阿帕网，ARPAnet，是世界上第一个分组交换机网络，也就是今天因特网的直接祖先。</li>
+<li>HTTP协议是现代web的基础。其实HTTP协议的出现主要是为了推动万维网的应用，它们的发明者是同一个人。HTTP协议设计之初是非常简洁的，就是为了传输超文本文档，也就是HTTP0.9版本。</li>
+</ul>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/04/20/HTTP学习（一）/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+<div>
+  
+</div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://roux.top/2018/04/08/TCP流量控制/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Shirsen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/assets/img/header.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shirsen Blog">
     </span>
 
     
@@ -800,6 +815,7 @@
       
 
       
+			
         
           <h3 id="滑动窗口"><a href="#滑动窗口" class="headerlink" title="滑动窗口"></a>滑动窗口</h3><ul>
 <li>问题：如果发送方把数据发送得过快，接收方可能会来不及接收，这就会造成数据的丢失。<ul>
@@ -870,13 +886,13 @@
     <link itemprop="mainEntityOfPage" href="http://roux.top/2018/02/08/TCP问答/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Vkey">
+      <meta itemprop="name" content="Shirsen">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/assets/img/header.jpeg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Vkey Blog">
+      <meta itemprop="name" content="Shirsen Blog">
     </span>
 
     
@@ -980,6 +996,7 @@
       
 
       
+			
         
           
           问答
@@ -1044,16 +1061,16 @@ A进程通过TCP向另一台机器上的B进程发送了一个字符串“hello�
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://roux.top/2018/01/08/TIME_WAIT/">
+    <link itemprop="mainEntityOfPage" href="http://roux.top/2018/01/08/信号量和自旋锁的区别/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Vkey">
+      <meta itemprop="name" content="Shirsen">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/assets/img/header.jpeg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Vkey Blog">
+      <meta itemprop="name" content="Shirsen Blog">
     </span>
 
     
@@ -1063,7 +1080,7 @@ A进程通过TCP向另一台机器上的B进程发送了一个字符串“hello�
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/08/TIME_WAIT/" itemprop="url">TIME_WAIT状态</a></h1>
+                <a class="post-title-link" href="/2018/01/08/信号量和自旋锁的区别/" itemprop="url">信号量与自旋锁的区别</a></h1>
         
 
         <div class="post-meta">
@@ -1098,8 +1115,8 @@ A进程通过TCP向另一台机器上的B进程发送了一个字符串“hello�
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Protocol/" itemprop="url" rel="index">
-                    <span itemprop="name">Protocol</span>
+                  <a href="/categories/网络编程/" itemprop="url" rel="index">
+                    <span itemprop="name">网络编程</span>
                   </a>
                 </span>
 
@@ -1117,8 +1134,8 @@ A进程通过TCP向另一台机器上的B进程发送了一个字符串“hello�
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2018/01/08/TIME_WAIT/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://roux.top/2018/01/08/TIME_WAIT/" class="cy_cmt_count" data-xid="2018/01/08/TIME_WAIT/" itemprop="commentsCount" ></span>
+                <a href="/2018/01/08/信号量和自旋锁的区别/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://roux.top/2018/01/08/信号量和自旋锁的区别/" class="cy_cmt_count" data-xid="2018/01/08/信号量和自旋锁的区别/" itemprop="commentsCount" ></span>
                 </a>
               
             
@@ -1126,7 +1143,7 @@ A进程通过TCP向另一台机器上的B进程发送了一个字符串“hello�
 
           
           
-             <span id="/2018/01/08/TIME_WAIT/" class="leancloud_visitors" data-flag-title="TIME_WAIT状态">
+             <span id="/2018/01/08/信号量和自旋锁的区别/" class="leancloud_visitors" data-flag-title="信号量与自旋锁的区别">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1157,13 +1174,21 @@ A进程通过TCP向另一台机器上的B进程发送了一个字符串“hello�
       
 
       
+			
         
-          <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><ul>
-<li>关于TCP的<code>TIME_WAIT</code>，一直停留在明白有什么作用的层次。想着《计算机网络》都学完了，也应该把TCP的问题给实实在在的弄明白。</li>
+          <h4 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h4><ul>
+<li><p>区别一：实现方式</p>
+<ul>
+<li><p>自旋锁是自旋等待，进程状态始终处于<code>TASK_RUNNING</code>。</p>
+</li>
+<li><p>信号量是睡眠等待，进程在等待时处于<code>TASK_INTERRUPTIBLE</code>。</p>
+</li>
+</ul>
+</li>
 </ul>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/01/08/TIME_WAIT/#more" rel="contents">
+            <a class="btn" href="/2018/01/08/信号量和自旋锁的区别/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1246,9 +1271,9 @@ A进程通过TCP向另一台机器上的B进程发送了一个字符串“hello�
             
               <img class="site-author-image" itemprop="image"
                 src="/assets/img/header.jpeg"
-                alt="Vkey" />
+                alt="Shirsen" />
             
-              <p class="site-author-name" itemprop="name">Vkey</p>
+              <p class="site-author-name" itemprop="name">Shirsen</p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
@@ -1366,9 +1391,9 @@ A进程通过TCP向另一台机器上的B进程发送了一个字符串“hello�
 
 <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
-    <i class="fa fa-user"></i>
+    <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">Vkey</span>
+  <span class="author" itemprop="copyrightHolder">Shirsen</span>
 
   
 </div>

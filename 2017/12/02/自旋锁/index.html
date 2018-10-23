@@ -87,7 +87,7 @@
 
 
 
-  <link rel="alternate" href="/atom.xml" title="Vkey Blog" type="application/atom+xml" />
+  <link rel="alternate" href="/atom.xml" title="Shirsen Blog" type="application/atom+xml" />
 
 
 
@@ -99,7 +99,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="自旋锁与互斥锁">
 <meta property="og:url" content="http://roux.top/2017/12/02/自旋锁/index.html">
-<meta property="og:site_name" content="Vkey Blog">
+<meta property="og:site_name" content="Shirsen Blog">
 <meta property="og:description" content="前言 互斥锁  互斥锁是一种实现线程同步的机制：当一个线程尝试获取互斥锁，如果互斥锁已经被占用则该线程会被挂起进入睡眠状态，直到被唤醒。线程被挂起时，CPU会将该线程当前的处理状态保存到内存中，等到唤醒时从内存中读取上次的处理状态，这个CPU切换线程处理状态的过程被称为“上下文切换”。上下文切换是一个非常耗时的操作，它需要相当多的CPU指令才能完成。但在早期单核处理器中，只能通过这个方式来完成，毕">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2018-04-22T05:56:24.941Z">
@@ -141,7 +141,7 @@
 
 
 
-  <title>自旋锁与互斥锁 | Vkey Blog</title>
+  <title>自旋锁与互斥锁 | Shirsen Blog</title>
   
 
 
@@ -161,6 +161,8 @@
 
 
 </head>
+
+<script type="text/javascript" src="/js/src/dytitle.js"></script>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
@@ -184,7 +186,7 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Vkey Blog</span>
+        <span class="site-title">Shirsen Blog</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -310,6 +312,17 @@
   
 </nav>
 
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
 
 
  </div>
@@ -338,13 +351,13 @@
     <link itemprop="mainEntityOfPage" href="http://roux.top/2017/12/02/自旋锁/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Vkey">
+      <meta itemprop="name" content="Shirsen">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/assets/img/header.jpeg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Vkey Blog">
+      <meta itemprop="name" content="Shirsen Blog">
     </span>
 
     
@@ -626,14 +639,14 @@
 
     
       <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/assets/img/weixin.png" alt="Vkey 微信支付"/>
+        <img id="wechat_qr" src="/assets/img/weixin.png" alt="Shirsen 微信支付"/>
         <p>微信支付</p>
       </div>
     
 
     
       <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/assets/img/zhifubao.jpg" alt="Vkey 支付宝"/>
+        <img id="alipay_qr" src="/assets/img/zhifubao.jpg" alt="Shirsen 支付宝"/>
         <p>支付宝</p>
       </div>
     
@@ -651,7 +664,7 @@
         <ul class="post-copyright">
   <li class="post-copyright-author">
     <strong>本文作者：</strong>
-    Vkey
+    Shirsen
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
@@ -683,8 +696,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/12/02/悲观锁与乐观锁/" rel="next" title="乐观锁与悲观锁">
-                <i class="fa fa-chevron-left"></i> 乐观锁与悲观锁
+              <a href="/2017/12/01/线程安全解决方法/" rel="next" title="线程安全解决方法---锁">
+                <i class="fa fa-chevron-left"></i> 线程安全解决方法---锁
               </a>
             
           </div>
@@ -693,8 +706,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/12/04/随笔2017-12-04/" rel="prev" title="随笔2017-12-04">
-                随笔2017-12-04 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/12/02/悲观锁与乐观锁/" rel="prev" title="乐观锁与悲观锁">
+                乐观锁与悲观锁 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -795,9 +808,9 @@
             
               <img class="site-author-image" itemprop="image"
                 src="/assets/img/header.jpeg"
-                alt="Vkey" />
+                alt="Shirsen" />
             
-              <p class="site-author-name" itemprop="name">Vkey</p>
+              <p class="site-author-name" itemprop="name">Shirsen</p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
@@ -931,9 +944,9 @@
 
 <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
-    <i class="fa fa-user"></i>
+    <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">Vkey</span>
+  <span class="author" itemprop="copyrightHolder">Shirsen</span>
 
   
 </div>

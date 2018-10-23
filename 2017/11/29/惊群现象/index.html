@@ -87,7 +87,7 @@
 
 
 
-  <link rel="alternate" href="/atom.xml" title="Vkey Blog" type="application/atom+xml" />
+  <link rel="alternate" href="/atom.xml" title="Shirsen Blog" type="application/atom+xml" />
 
 
 
@@ -99,7 +99,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="惊群现象">
 <meta property="og:url" content="http://roux.top/2017/11/29/惊群现象/index.html">
-<meta property="og:site_name" content="Vkey Blog">
+<meta property="og:site_name" content="Shirsen Blog">
 <meta property="og:description" content="前言 什么是“惊群”，会产生什么问题？  惊群是当许多进(线)程等待一个事件，事件发生后这些进(线)程被唤醒，单只有一个进(线)程能获得CPU执行权，其他进(线)程又得被阻塞，这造成了严重的系统上下文切换代价。  系统对用户进程/线程频繁的无效调度，大幅度的降低系统效率  为了确保只有一个进程或线程得到资源，用户必须对资源加锁，这就进一步增加了系统开销">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://raw.githubusercontent.com/paulRoux/Pictures/master/epoll/%E6%83%8A%E7%BE%A4.png">
@@ -145,7 +145,7 @@
 
 
 
-  <title>惊群现象 | Vkey Blog</title>
+  <title>惊群现象 | Shirsen Blog</title>
   
 
 
@@ -165,6 +165,8 @@
 
 
 </head>
+
+<script type="text/javascript" src="/js/src/dytitle.js"></script>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
@@ -188,7 +190,7 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Vkey Blog</span>
+        <span class="site-title">Shirsen Blog</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -314,6 +316,17 @@
   
 </nav>
 
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
 
 
  </div>
@@ -342,13 +355,13 @@
     <link itemprop="mainEntityOfPage" href="http://roux.top/2017/11/29/惊群现象/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Vkey">
+      <meta itemprop="name" content="Shirsen">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/assets/img/header.jpeg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Vkey Blog">
+      <meta itemprop="name" content="Shirsen Blog">
     </span>
 
     
@@ -629,14 +642,14 @@
 
     
       <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/assets/img/weixin.png" alt="Vkey 微信支付"/>
+        <img id="wechat_qr" src="/assets/img/weixin.png" alt="Shirsen 微信支付"/>
         <p>微信支付</p>
       </div>
     
 
     
       <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/assets/img/zhifubao.jpg" alt="Vkey 支付宝"/>
+        <img id="alipay_qr" src="/assets/img/zhifubao.jpg" alt="Shirsen 支付宝"/>
         <p>支付宝</p>
       </div>
     
@@ -654,7 +667,7 @@
         <ul class="post-copyright">
   <li class="post-copyright-author">
     <strong>本文作者：</strong>
-    Vkey
+    Shirsen
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
@@ -686,8 +699,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/11/29/线程安全/" rel="next" title="线程安全">
-                <i class="fa fa-chevron-left"></i> 线程安全
+              <a href="/2017/11/27/epoll源码/" rel="next" title="epoll源码分析">
+                <i class="fa fa-chevron-left"></i> epoll源码分析
               </a>
             
           </div>
@@ -696,8 +709,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/12/01/线程安全解决方法/" rel="prev" title="线程安全解决方法---锁">
-                线程安全解决方法---锁 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/11/29/线程安全/" rel="prev" title="线程安全">
+                线程安全 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -798,9 +811,9 @@
             
               <img class="site-author-image" itemprop="image"
                 src="/assets/img/header.jpeg"
-                alt="Vkey" />
+                alt="Shirsen" />
             
-              <p class="site-author-name" itemprop="name">Vkey</p>
+              <p class="site-author-name" itemprop="name">Shirsen</p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
@@ -934,9 +947,9 @@
 
 <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
-    <i class="fa fa-user"></i>
+    <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">Vkey</span>
+  <span class="author" itemprop="copyrightHolder">Shirsen</span>
 
   
 </div>

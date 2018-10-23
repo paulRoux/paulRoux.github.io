@@ -87,7 +87,7 @@
 
 
 
-  <link rel="alternate" href="/atom.xml" title="Vkey Blog" type="application/atom+xml" />
+  <link rel="alternate" href="/atom.xml" title="Shirsen Blog" type="application/atom+xml" />
 
 
 
@@ -99,7 +99,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="wait函数和waitpid函数">
 <meta property="og:url" content="http://roux.top/2017/10/11/wait函数/index.html">
-<meta property="og:site_name" content="Vkey Blog">
+<meta property="og:site_name" content="Shirsen Blog">
 <meta property="og:description" content="僵尸进程 说明  子进程结束但是没有完全释放内存(在内核中的task_struct没有释放)，该进程就会成为僵尸进程 当僵尸进程的父进程结束后就会被init进程(1号进程)接管，最终被回收   僵尸进程的危害  如果你不处理僵尸进程的话，那么保留的那段信息就不会释放，其进程号就会一定被占用，但是系统所能使用的进程号是有限的，如果大量的产生僵尸进程，将因为没有可用的进程号而导致系统不能产生新的进程">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://raw.githubusercontent.com/McXing/Pictures/master/wait/%E6%B5%8B%E8%AF%951.png">
@@ -145,7 +145,7 @@
 
 
 
-  <title>wait函数和waitpid函数 | Vkey Blog</title>
+  <title>wait函数和waitpid函数 | Shirsen Blog</title>
   
 
 
@@ -165,6 +165,8 @@
 
 
 </head>
+
+<script type="text/javascript" src="/js/src/dytitle.js"></script>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
@@ -188,7 +190,7 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Vkey Blog</span>
+        <span class="site-title">Shirsen Blog</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -314,6 +316,17 @@
   
 </nav>
 
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
 
 
  </div>
@@ -342,13 +355,13 @@
     <link itemprop="mainEntityOfPage" href="http://roux.top/2017/10/11/wait函数/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Vkey">
+      <meta itemprop="name" content="Shirsen">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/assets/img/header.jpeg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Vkey Blog">
+      <meta itemprop="name" content="Shirsen Blog">
     </span>
 
     
@@ -570,14 +583,14 @@
 
     
       <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/assets/img/weixin.png" alt="Vkey 微信支付"/>
+        <img id="wechat_qr" src="/assets/img/weixin.png" alt="Shirsen 微信支付"/>
         <p>微信支付</p>
       </div>
     
 
     
       <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/assets/img/zhifubao.jpg" alt="Vkey 支付宝"/>
+        <img id="alipay_qr" src="/assets/img/zhifubao.jpg" alt="Shirsen 支付宝"/>
         <p>支付宝</p>
       </div>
     
@@ -595,7 +608,7 @@
         <ul class="post-copyright">
   <li class="post-copyright-author">
     <strong>本文作者：</strong>
-    Vkey
+    Shirsen
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
@@ -627,8 +640,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/10/10/TCP三次握手/" rel="next" title="TCP三次握手">
-                <i class="fa fa-chevron-left"></i> TCP三次握手
+              <a href="/2017/10/11/VMware无法上网/" rel="next" title="解决锐捷校园网环境下VMware虚拟机无法上网问题">
+                <i class="fa fa-chevron-left"></i> 解决锐捷校园网环境下VMware虚拟机无法上网问题
               </a>
             
           </div>
@@ -637,8 +650,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/10/11/Markdown编辑器/" rel="prev" title="Sublime Text3--打造完美的Markdown编辑器">
-                Sublime Text3--打造完美的Markdown编辑器 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/10/13/127.0.0.1和0.0.0.0/" rel="prev" title="127.0.0.1和0.0.0.0分析">
+                127.0.0.1和0.0.0.0分析 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -739,9 +752,9 @@
             
               <img class="site-author-image" itemprop="image"
                 src="/assets/img/header.jpeg"
-                alt="Vkey" />
+                alt="Shirsen" />
             
-              <p class="site-author-name" itemprop="name">Vkey</p>
+              <p class="site-author-name" itemprop="name">Shirsen</p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
@@ -875,9 +888,9 @@
 
 <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
-    <i class="fa fa-user"></i>
+    <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">Vkey</span>
+  <span class="author" itemprop="copyrightHolder">Shirsen</span>
 
   
 </div>
