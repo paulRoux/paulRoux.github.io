@@ -331,7 +331,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://roux.top/2017/11/03/STDIN_FILENO/">
+    <link itemprop="mainEntityOfPage" href="http://roux.top/2017/11/03/tee函数/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Vkey">
@@ -350,7 +350,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/11/03/STDIN_FILENO/" itemprop="url">STDIN_FILENO 的作用及与 stdin 的区别</a></h1>
+                <a class="post-title-link" href="/2017/11/03/tee函数/" itemprop="url">tee函数</a></h1>
         
 
         <div class="post-meta">
@@ -404,8 +404,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2017/11/03/STDIN_FILENO/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://roux.top/2017/11/03/STDIN_FILENO/" class="cy_cmt_count" data-xid="2017/11/03/STDIN_FILENO/" itemprop="commentsCount" ></span>
+                <a href="/2017/11/03/tee函数/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://roux.top/2017/11/03/tee函数/" class="cy_cmt_count" data-xid="2017/11/03/tee函数/" itemprop="commentsCount" ></span>
                 </a>
               
             
@@ -413,7 +413,7 @@
 
           
           
-             <span id="/2017/11/03/STDIN_FILENO/" class="leancloud_visitors" data-flag-title="STDIN_FILENO 的作用及与 stdin 的区别">
+             <span id="/2017/11/03/tee函数/" class="leancloud_visitors" data-flag-title="tee函数">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -445,31 +445,15 @@
 
       
         
-          <h4 id="1-STDIN-FILENO-的作用及与-stdin-的区别"><a href="#1-STDIN-FILENO-的作用及与-stdin-的区别" class="headerlink" title="1. STDIN_FILENO 的作用及与 stdin 的区别"></a>1. STDIN_FILENO 的作用及与 stdin 的区别</h4><ul>
-<li><p>STDIN_FILENO的作用</p>
-<ul>
-<li><p>STDIN_FILENO属于系统API接口库，其声明为 int 型，是一个打开文件句柄，对应的函数主要包括 <code>open/read/write/close</code> 等系统级调用。</p>
+          <h4 id="tee"><a href="#tee" class="headerlink" title="tee"></a>tee</h4><ul>
+<li><p>说明：在两个管道文件描述符之间复制数据，同是零拷贝。但它不消耗数据，数据被操作之后，仍然可以用于后续操作。</p>
 </li>
-<li><p>操作系统一级提供的文件API都是以文件描述符来表示文件。STDIN_FILENO 就是标准输入设备（一般是键盘）的文件描述符。</p>
+<li><p>头文件：<code>#define _GNU_SOURCE</code> <code>#include &lt;fcntl.h&gt;</code></p>
 </li>
-</ul>
-</li>
-<li><p>区别</p>
-<ul>
-<li><p>数据类型不一致：</p>
-<ul>
-<li><p>stdin 类型为 FILE*</p>
-</li>
-<li><p>STDIN_FILENO 类型为 int</p>
-</li>
-<li><p>使用 <code>stdin</code> 的函数主要有：fread、fwrite、fclose等，基本上都以f开头</p>
-</li>
-<li><p>使用 <code>STDIN_FILENO</code> 的函数有：read、write、close等</p>
-</li>
-</ul>
+<li><p>原型：<code>long tee(int fd_in, int fd_out, size_t len, unsigned int flags);</code></p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/11/03/STDIN_FILENO/#more" rel="contents">
+            <a class="btn" href="/2017/11/03/tee函数/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
