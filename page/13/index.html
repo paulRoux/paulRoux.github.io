@@ -250,12 +250,12 @@
         </li>
       
         
-        <li class="menu-item menu-item-书单">
-          <a href="/book" rel="section">
+        <li class="menu-item menu-item-books">
+          <a href="/books" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
             
-            书单
+            Books
           </a>
         </li>
       
@@ -347,7 +347,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://roux.top/2017/10/24/文件权限判断/">
+    <link itemprop="mainEntityOfPage" href="http://roux.top/2017/10/24/零拷贝技术/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Shirsen">
@@ -366,7 +366,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/10/24/文件权限判断/" itemprop="url">Linux下文件权限判断和目录操作</a></h1>
+                <a class="post-title-link" href="/2017/10/24/零拷贝技术/" itemprop="url">零拷贝技术分析</a></h1>
         
 
         <div class="post-meta">
@@ -420,8 +420,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2017/10/24/文件权限判断/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://roux.top/2017/10/24/文件权限判断/" class="cy_cmt_count" data-xid="2017/10/24/文件权限判断/" itemprop="commentsCount" ></span>
+                <a href="/2017/10/24/零拷贝技术/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://roux.top/2017/10/24/零拷贝技术/" class="cy_cmt_count" data-xid="2017/10/24/零拷贝技术/" itemprop="commentsCount" ></span>
                 </a>
               
             
@@ -429,7 +429,7 @@
 
           
           
-             <span id="/2017/10/24/文件权限判断/" class="leancloud_visitors" data-flag-title="Linux下文件权限判断和目录操作">
+             <span id="/2017/10/24/零拷贝技术/" class="leancloud_visitors" data-flag-title="零拷贝技术分析">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -465,15 +465,15 @@
 		  
 			
         
-          <h4 id="access函数"><a href="#access函数" class="headerlink" title="access函数"></a>access函数</h4><ul>
-<li><p>说明：按照实际用户ID和实际组进行访问权限测试</p>
+          <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><ul>
+<li><p>传统的 Linux 操作系统的标准 I/O 接口是基于数据拷贝操作的，即 I/O 操作会导致数据在操作系统内核地址空间的缓冲区和应用程序地址空间定义的缓冲区之间进行传输。这样做最大的好处是可以减少磁盘 I/O 的操作，因为如果所请求的数据已经存放在操作系统的高速缓冲存储器中，那么就不需要再进行实际的物理磁盘 I/O 操作。但是数据传输过程中的数据拷贝操作却导致了极大的 CPU 开销，限制了操作系统有效进行数据传输操作的能力。</p>
 </li>
-<li><p>头文件：<code>#include &lt;unistd.h&gt;</code></p>
+<li><p>零拷贝（ zero-copy ）这种技术可以有效地改善数据传输的性能，在内核驱动程序（比如网络堆栈或者磁盘存储驱动程序）处理 I/O 数据的时候，零拷贝技术可以在某种程度上减少甚至完全避免不必要的 CPU 数据拷贝操作。现代的 CPU 和存储体系结构提供了很多特征可以有效地实现零拷贝技术，但是因为存储体系结构非常复杂，而且网络协议栈有时需要对数据进行必要的处理，所以零拷贝技术有可能会产生很多负面的影响，甚至会导致零拷贝技术自身的优点完全丧失。</p>
 </li>
-<li><p>原型：<code>int access(const char *pathname, int mode)</code></p>
+</ul>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/10/24/文件权限判断/#more" rel="contents">
+            <a class="btn" href="/2017/10/24/零拷贝技术/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -709,7 +709,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://roux.top/2017/10/24/零拷贝技术/">
+    <link itemprop="mainEntityOfPage" href="http://roux.top/2017/10/24/文件权限判断/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Shirsen">
@@ -728,7 +728,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/10/24/零拷贝技术/" itemprop="url">零拷贝技术分析</a></h1>
+                <a class="post-title-link" href="/2017/10/24/文件权限判断/" itemprop="url">Linux下文件权限判断和目录操作</a></h1>
         
 
         <div class="post-meta">
@@ -782,8 +782,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2017/10/24/零拷贝技术/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://roux.top/2017/10/24/零拷贝技术/" class="cy_cmt_count" data-xid="2017/10/24/零拷贝技术/" itemprop="commentsCount" ></span>
+                <a href="/2017/10/24/文件权限判断/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://roux.top/2017/10/24/文件权限判断/" class="cy_cmt_count" data-xid="2017/10/24/文件权限判断/" itemprop="commentsCount" ></span>
                 </a>
               
             
@@ -791,7 +791,7 @@
 
           
           
-             <span id="/2017/10/24/零拷贝技术/" class="leancloud_visitors" data-flag-title="零拷贝技术分析">
+             <span id="/2017/10/24/文件权限判断/" class="leancloud_visitors" data-flag-title="Linux下文件权限判断和目录操作">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -827,15 +827,15 @@
 		  
 			
         
-          <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><ul>
-<li><p>传统的 Linux 操作系统的标准 I/O 接口是基于数据拷贝操作的，即 I/O 操作会导致数据在操作系统内核地址空间的缓冲区和应用程序地址空间定义的缓冲区之间进行传输。这样做最大的好处是可以减少磁盘 I/O 的操作，因为如果所请求的数据已经存放在操作系统的高速缓冲存储器中，那么就不需要再进行实际的物理磁盘 I/O 操作。但是数据传输过程中的数据拷贝操作却导致了极大的 CPU 开销，限制了操作系统有效进行数据传输操作的能力。</p>
+          <h4 id="access函数"><a href="#access函数" class="headerlink" title="access函数"></a>access函数</h4><ul>
+<li><p>说明：按照实际用户ID和实际组进行访问权限测试</p>
 </li>
-<li><p>零拷贝（ zero-copy ）这种技术可以有效地改善数据传输的性能，在内核驱动程序（比如网络堆栈或者磁盘存储驱动程序）处理 I/O 数据的时候，零拷贝技术可以在某种程度上减少甚至完全避免不必要的 CPU 数据拷贝操作。现代的 CPU 和存储体系结构提供了很多特征可以有效地实现零拷贝技术，但是因为存储体系结构非常复杂，而且网络协议栈有时需要对数据进行必要的处理，所以零拷贝技术有可能会产生很多负面的影响，甚至会导致零拷贝技术自身的优点完全丧失。</p>
+<li><p>头文件：<code>#include &lt;unistd.h&gt;</code></p>
 </li>
-</ul>
+<li><p>原型：<code>int access(const char *pathname, int mode)</code></p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/10/24/零拷贝技术/#more" rel="contents">
+            <a class="btn" href="/2017/10/24/文件权限判断/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
