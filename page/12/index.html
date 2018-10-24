@@ -344,6 +344,193 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://roux.top/2017/10/26/popen函数/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Shirsen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/assets/img/header.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shirsen Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/26/popen函数/" itemprop="url">一次命令行与程序间的交流</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-26T00:00:00+08:00">
+                2017-10-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/网络编程/" itemprop="url" rel="index">
+                    <span itemprop="name">网络编程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2017/10/26/popen函数/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://roux.top/2017/10/26/popen函数/" class="cy_cmt_count" data-xid="2017/10/26/popen函数/" itemprop="commentsCount" ></span>
+                </a>
+              
+            
+          
+
+          
+          
+             <span id="/2017/10/26/popen函数/" class="leancloud_visitors" data-flag-title="一次命令行与程序间的交流">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><ul>
+<li><p>最近学习刚好遇到一个问题：在程序里面传递一个命令来让终端命令行执行，然后将结果返回到主程序，主程序用返回的结果来操作。</p>
+</li>
+<li><p>思路：</p>
+<ul>
+<li>我在一开始想的是直接在终端执行命令然后写到一个临时文件(读取完就删除)里面，然后主程序读取文件的内容进行操作，但是考虑到我的程序要承受高并发操作(而且每次执行一下，都要创建一个临时文件，这种开销太大)，并且每次都要对磁盘进行操作，遇见大数据量的话效率太低，所以这种办法行不通</li>
+<li>放弃了第一种方法，然后我想到的是利用子进程调用exec()函数来完成，但是最后的结果返回到父进程没有想通，无果。</li>
+<li>后面我想到管道这个ipc方法，创建一个子进程继续利用exec()函数来执行命令，然后将执行的结果输出到管道的输入端，父进程读取即可，这是个方法。</li>
+<li>然后我考虑这种方法的替代方案，无果，网上查询资料发现有函数popen()可以实现，故记录。</li>
+</ul>
+</li>
+</ul>
+		  
+		  <!--摘要-->
+		  
+		  
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/10/26/popen函数/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+<div>
+  
+</div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://roux.top/2017/10/26/nologin和false的区别/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -457,11 +644,14 @@
       
 
       
-			
         
           <h4 id="linux下-sbin-nologin和-bin-false的区别"><a href="#linux下-sbin-nologin和-bin-false的区别" class="headerlink" title="linux下/sbin/nologin和/bin/false的区别"></a>linux下/sbin/nologin和/bin/false的区别</h4><ul>
 <li><code>/bin/false</code>是最严格的禁止 login 选项，一切服务都不能用。而<code>/sbin/nologin</code>只是不允许 login 系统，但可以使用其他 ftp 等服务。如果想要用 false 在禁止 login 的同时允许 ftp，则必须在<code>/etc/shells</code>里增加一行<code>/bin/false</code>。</li>
 </ul>
+		  
+		  <!--摘要-->
+		  
+		  
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/10/26/nologin和false的区别/#more" rel="contents">
@@ -632,7 +822,6 @@
       
 
       
-			
         
           <h4 id="Linux-中的零拷贝函数"><a href="#Linux-中的零拷贝函数" class="headerlink" title="Linux 中的零拷贝函数"></a>Linux 中的零拷贝函数</h4><ul>
 <li><p><a href="https://www.ibm.com/developerworks/cn/linux/l-cn-directio/index.html" target="_blank" rel="noopener">直接IO</a></p>
@@ -640,187 +829,13 @@
 <p>  <img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/%E7%9B%B4%E6%8E%A5IO.jpg" alt=""></p>
 </li>
 </ul>
+		  
+		  <!--摘要-->
+		  
+		  
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/10/25/Linux中的零拷贝技术/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-<div>
-  
-</div>
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://roux.top/2017/10/25/open系列函数/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Shirsen">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/assets/img/header.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Shirsen Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/25/open系列函数/" itemprop="url">open系列函数</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-25T00:00:00+08:00">
-                2017-10-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/C/" itemprop="url" rel="index">
-                    <span itemprop="name">C</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-comment-o"></i>
-              </span>
-              
-                <a href="/2017/10/25/open系列函数/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://roux.top/2017/10/25/open系列函数/" class="cy_cmt_count" data-xid="2017/10/25/open系列函数/" itemprop="commentsCount" ></span>
-                </a>
-              
-            
-          
-
-          
-          
-             <span id="/2017/10/25/open系列函数/" class="leancloud_visitors" data-flag-title="open系列函数">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-			
-        
-          <h4 id="fopen函数"><a href="#fopen函数" class="headerlink" title="- fopen函数"></a>- fopen函数</h4><ul>
-<li><p>说明：fopen()是一个常用的函数，用来以指定的方式打开文件</p>
-</li>
-<li><p>头文件：<code>#include &lt;stdio.h&gt;</code></p>
-</li>
-<li><p>原型：<code>FILE *fopen(const char *path, const char *mode)</code></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/10/25/open系列函数/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -988,12 +1003,15 @@
       
 
       
-			
         
           <h4 id="系统调用"><a href="#系统调用" class="headerlink" title="系统调用"></a>系统调用</h4><ul>
 <li><p>操作系统的主要功能是为管理硬件资源和为应用程序开发人员提供良好的环境，但是计算机系统的各种硬件资源是有限的，因此为了保证每一个进程都能安全的执行。处理器设有两种模式：“用户模式”与“内核模式”。一些容易发生安全问题的操作都被限制在只有内核模式下才可以执行，例如I/O操作，修改基址寄存器内容等。而连接用户模式和内核模式的接口称之为系统调用。</p>
 </li>
 <li><p>应用程序代码运行在用户模式下，当应用程序需要实现内核模式下的指令时，先向操作系统发送调用请求。操作系统收到请求后，执行系统调用接口，使处理器进入内核模式。当处理器处理完系统调用操作后，操作系统会让处理器返回用户模式，继续执行用户代码。</p>
+		  
+		  <!--摘要-->
+		  
+		  
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/10/25/文件读写过程/#more" rel="contents">
@@ -1051,7 +1069,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://roux.top/2017/10/24/零拷贝技术/">
+    <link itemprop="mainEntityOfPage" href="http://roux.top/2017/10/25/open系列函数/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Shirsen">
@@ -1070,7 +1088,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/10/24/零拷贝技术/" itemprop="url">零拷贝技术分析</a></h1>
+                <a class="post-title-link" href="/2017/10/25/open系列函数/" itemprop="url">open系列函数</a></h1>
         
 
         <div class="post-meta">
@@ -1082,8 +1100,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-24T00:00:00+08:00">
-                2017-10-24
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-25T00:00:00+08:00">
+                2017-10-25
               </time>
             
 
@@ -1105,8 +1123,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/网络编程/" itemprop="url" rel="index">
-                    <span itemprop="name">网络编程</span>
+                  <a href="/categories/C/" itemprop="url" rel="index">
+                    <span itemprop="name">C</span>
                   </a>
                 </span>
 
@@ -1124,8 +1142,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2017/10/24/零拷贝技术/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://roux.top/2017/10/24/零拷贝技术/" class="cy_cmt_count" data-xid="2017/10/24/零拷贝技术/" itemprop="commentsCount" ></span>
+                <a href="/2017/10/25/open系列函数/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://roux.top/2017/10/25/open系列函数/" class="cy_cmt_count" data-xid="2017/10/25/open系列函数/" itemprop="commentsCount" ></span>
                 </a>
               
             
@@ -1133,7 +1151,7 @@
 
           
           
-             <span id="/2017/10/24/零拷贝技术/" class="leancloud_visitors" data-flag-title="零拷贝技术分析">
+             <span id="/2017/10/25/open系列函数/" class="leancloud_visitors" data-flag-title="open系列函数">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1164,17 +1182,20 @@
       
 
       
-			
         
-          <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><ul>
-<li><p>传统的 Linux 操作系统的标准 I/O 接口是基于数据拷贝操作的，即 I/O 操作会导致数据在操作系统内核地址空间的缓冲区和应用程序地址空间定义的缓冲区之间进行传输。这样做最大的好处是可以减少磁盘 I/O 的操作，因为如果所请求的数据已经存放在操作系统的高速缓冲存储器中，那么就不需要再进行实际的物理磁盘 I/O 操作。但是数据传输过程中的数据拷贝操作却导致了极大的 CPU 开销，限制了操作系统有效进行数据传输操作的能力。</p>
+          <h4 id="fopen函数"><a href="#fopen函数" class="headerlink" title="- fopen函数"></a>- fopen函数</h4><ul>
+<li><p>说明：fopen()是一个常用的函数，用来以指定的方式打开文件</p>
 </li>
-<li><p>零拷贝（ zero-copy ）这种技术可以有效地改善数据传输的性能，在内核驱动程序（比如网络堆栈或者磁盘存储驱动程序）处理 I/O 数据的时候，零拷贝技术可以在某种程度上减少甚至完全避免不必要的 CPU 数据拷贝操作。现代的 CPU 和存储体系结构提供了很多特征可以有效地实现零拷贝技术，但是因为存储体系结构非常复杂，而且网络协议栈有时需要对数据进行必要的处理，所以零拷贝技术有可能会产生很多负面的影响，甚至会导致零拷贝技术自身的优点完全丧失。</p>
+<li><p>头文件：<code>#include &lt;stdio.h&gt;</code></p>
 </li>
-</ul>
+<li><p>原型：<code>FILE *fopen(const char *path, const char *mode)</code></p>
+		  
+		  <!--摘要-->
+		  
+		  
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/10/24/零拷贝技术/#more" rel="contents">
+            <a class="btn" href="/2017/10/25/open系列函数/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1270,7 +1291,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">73</span>
+                  <span class="site-state-item-count">74</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
