@@ -87,20 +87,23 @@
 
 
 
-  <link rel="alternate" href="/atom.xml" title="Shirsen Blog" type="application/atom+xml" />
+  <link rel="alternate" href="/atom.xml" title="Shirsen’s Blog" type="application/atom+xml" />
 
 
 
 
 
 
+<meta name="description" content="我思故我在......">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Shirsen Blog">
+<meta property="og:title" content="Shirsen’s Blog">
 <meta property="og:url" content="http://roux.top/page/8/index.html">
-<meta property="og:site_name" content="Shirsen Blog">
+<meta property="og:site_name" content="Shirsen’s Blog">
+<meta property="og:description" content="我思故我在......">
 <meta property="og:locale" content="zh-Hans">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Shirsen Blog">
+<meta name="twitter:title" content="Shirsen’s Blog">
+<meta name="twitter:description" content="我思故我在......">
 
 
 
@@ -136,7 +139,7 @@
 
 
 
-  <title>Shirsen Blog</title>
+  <title>Shirsen’s Blog</title>
   
 
 
@@ -182,7 +185,7 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Shirsen Blog</span>
+        <span class="site-title">Shirsen’s Blog</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -353,7 +356,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Shirsen Blog">
+      <meta itemprop="name" content="Shirsen’s Blog">
     </span>
 
     
@@ -457,8 +460,10 @@
       
 
       
+	  
 	  <!--摘要-->
 		  
+			
         
           <h4 id="nil-Nil-NULL-NUL-nullptr-NSNull"><a href="#nil-Nil-NULL-NUL-nullptr-NSNull" class="headerlink" title="nil/Nil/NULL/NUL/nullptr/NSNull"></a>nil/Nil/NULL/NUL/nullptr/NSNull</h4><ul>
 <li><p>如何表示“不存在”</p>
@@ -530,188 +535,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://roux.top/2017/11/18/basename函数与dirname函数/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Shirsen">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/assets/img/header.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Shirsen Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/11/18/basename函数与dirname函数/" itemprop="url">dirname函数与basename函数</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-18T00:00:00+08:00">
-                2017-11-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/C/" itemprop="url" rel="index">
-                    <span itemprop="name">C</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-comment-o"></i>
-              </span>
-              
-                <a href="/2017/11/18/basename函数与dirname函数/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://roux.top/2017/11/18/basename函数与dirname函数/" class="cy_cmt_count" data-xid="2017/11/18/basename函数与dirname函数/" itemprop="commentsCount" ></span>
-                </a>
-              
-            
-          
-
-          
-          
-             <span id="/2017/11/18/basename函数与dirname函数/" class="leancloud_visitors" data-flag-title="dirname函数与basename函数">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-	  <!--摘要-->
-		  
-        
-          <h4 id="dirname函数"><a href="#dirname函数" class="headerlink" title="dirname函数"></a>dirname函数</h4><ul>
-<li><p>说明：截取给定路径的目录部分(以 ‘/‘ 为分隔符)</p>
-</li>
-<li><p>头文件：<code>#include &lt;libgen.h&gt;</code></p>
-</li>
-<li><p>原型：<code>char *dirname(char *path);</code></p>
-<ul>
-<li>path参数：指向一个文件的全路径的字符串</li>
-<li><p>此函数可以修改路径的内容，所以传递参数时需要传递一个副本</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/11/18/basename函数与dirname函数/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-<div>
-  
-</div>
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://roux.top/2017/11/18/select函数/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -721,7 +544,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Shirsen Blog">
+      <meta itemprop="name" content="Shirsen’s Blog">
     </span>
 
     
@@ -825,8 +648,10 @@
       
 
       
+	  
 	  <!--摘要-->
 		  
+			
         
           <h4 id="select函数"><a href="#select函数" class="headerlink" title="select函数"></a>select函数</h4><ul>
 <li><p>说明： select()用来等待文件描述词状态的改变</p>
@@ -891,7 +716,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://roux.top/2017/11/17/poll函数/">
+    <link itemprop="mainEntityOfPage" href="http://roux.top/2017/11/18/basename函数与dirname函数/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Shirsen">
@@ -900,7 +725,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Shirsen Blog">
+      <meta itemprop="name" content="Shirsen’s Blog">
     </span>
 
     
@@ -910,7 +735,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/11/17/poll函数/" itemprop="url">poll函数</a></h1>
+                <a class="post-title-link" href="/2017/11/18/basename函数与dirname函数/" itemprop="url">dirname函数与basename函数</a></h1>
         
 
         <div class="post-meta">
@@ -922,8 +747,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-17T00:00:00+08:00">
-                2017-11-17
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-18T00:00:00+08:00">
+                2017-11-18
               </time>
             
 
@@ -945,8 +770,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/网络编程/" itemprop="url" rel="index">
-                    <span itemprop="name">网络编程</span>
+                  <a href="/categories/C/" itemprop="url" rel="index">
+                    <span itemprop="name">C</span>
                   </a>
                 </span>
 
@@ -964,8 +789,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2017/11/17/poll函数/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://roux.top/2017/11/17/poll函数/" class="cy_cmt_count" data-xid="2017/11/17/poll函数/" itemprop="commentsCount" ></span>
+                <a href="/2017/11/18/basename函数与dirname函数/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://roux.top/2017/11/18/basename函数与dirname函数/" class="cy_cmt_count" data-xid="2017/11/18/basename函数与dirname函数/" itemprop="commentsCount" ></span>
                 </a>
               
             
@@ -973,7 +798,7 @@
 
           
           
-             <span id="/2017/11/17/poll函数/" class="leancloud_visitors" data-flag-title="poll函数">
+             <span id="/2017/11/18/basename函数与dirname函数/" class="leancloud_visitors" data-flag-title="dirname函数与basename函数">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1004,18 +829,23 @@
       
 
       
+	  
 	  <!--摘要-->
 		  
+			
         
-          <h4 id="poll函数"><a href="#poll函数" class="headerlink" title="poll函数"></a>poll函数</h4><ul>
-<li><p>说明：等待一个文件上的某些事件(与select功能类似)</p>
+          <h4 id="dirname函数"><a href="#dirname函数" class="headerlink" title="dirname函数"></a>dirname函数</h4><ul>
+<li><p>说明：截取给定路径的目录部分(以 ‘/‘ 为分隔符)</p>
 </li>
-<li><p>头文件：<code>#include &lt;poll.h&gt;</code></p>
+<li><p>头文件：<code>#include &lt;libgen.h&gt;</code></p>
 </li>
-<li><p>原型：<code>int poll(struct pollfd *fds, nfds_t nfds, int timeout);</code></p>
+<li><p>原型：<code>char *dirname(char *path);</code></p>
+<ul>
+<li>path参数：指向一个文件的全路径的字符串</li>
+<li><p>此函数可以修改路径的内容，所以传递参数时需要传递一个副本</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/11/17/poll函数/#more" rel="contents">
+            <a class="btn" href="/2017/11/18/basename函数与dirname函数/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1079,7 +909,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Shirsen Blog">
+      <meta itemprop="name" content="Shirsen’s Blog">
     </span>
 
     
@@ -1183,8 +1013,10 @@
       
 
       
+	  
 	  <!--摘要-->
 		  
+			
         
           <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><ul>
 <li>每种资源都有相关的软硬限制，软限制是内核强加给相应资源的限制值，硬限制是软限制的最大值。非授权调用进程只可以将其软限制指定为0到硬限制范围中的某个值，同时能不可逆转地降低其硬限制。授权进程可以任意改变其软硬限制。RLIM_INFINITY的值表示不对资源限制。</li>
@@ -1192,6 +1024,187 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/11/17/sysconf函数/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+<div>
+  
+</div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://roux.top/2017/11/17/poll函数/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Shirsen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/assets/img/header.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shirsen’s Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/11/17/poll函数/" itemprop="url">poll函数</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-17T00:00:00+08:00">
+                2017-11-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/网络编程/" itemprop="url" rel="index">
+                    <span itemprop="name">网络编程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2017/11/17/poll函数/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://roux.top/2017/11/17/poll函数/" class="cy_cmt_count" data-xid="2017/11/17/poll函数/" itemprop="commentsCount" ></span>
+                </a>
+              
+            
+          
+
+          
+          
+             <span id="/2017/11/17/poll函数/" class="leancloud_visitors" data-flag-title="poll函数">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+	  
+	  <!--摘要-->
+		  
+			
+        
+          <h4 id="poll函数"><a href="#poll函数" class="headerlink" title="poll函数"></a>poll函数</h4><ul>
+<li><p>说明：等待一个文件上的某些事件(与select功能类似)</p>
+</li>
+<li><p>头文件：<code>#include &lt;poll.h&gt;</code></p>
+</li>
+<li><p>原型：<code>int poll(struct pollfd *fds, nfds_t nfds, int timeout);</code></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/11/17/poll函数/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1277,7 +1290,7 @@
                 alt="Shirsen" />
             
               <p class="site-author-name" itemprop="name">Shirsen</p>
-              <p class="site-description motion-element" itemprop="description"></p>
+              <p class="site-description motion-element" itemprop="description">我思故我在......</p>
           </div>
 
           <nav class="site-state motion-element">
