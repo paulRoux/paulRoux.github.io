@@ -344,189 +344,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://roux.top/2017/10/15/str博客总结/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Shirsen">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/assets/img/header.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Shirsen Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/15/str博客总结/" itemprop="url">mem函数源码</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-15T00:00:00+08:00">
-                2017-10-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/C/" itemprop="url" rel="index">
-                    <span itemprop="name">C</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-comment-o"></i>
-              </span>
-              
-                <a href="/2017/10/15/str博客总结/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://roux.top/2017/10/15/str博客总结/" class="cy_cmt_count" data-xid="2017/10/15/str博客总结/" itemprop="commentsCount" ></span>
-                </a>
-              
-            
-          
-
-          
-          
-             <span id="/2017/10/15/str博客总结/" class="leancloud_visitors" data-flag-title="mem函数源码">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>##str函数的源码</p>
-<p>###1、strcpy函数</p>
-<ol>
-<li><strong>原型</strong>：<code>char * strcpy(char * destin, const char * source)</code></li>
-<li><strong>作用</strong>：把source指向的字符串拷贝到destin指向的字符串中</li>
-<li><strong>代码</strong>：</li>
-</ol>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">char</span> * <span class="title">my_strcpy</span><span class="params">(<span class="keyword">char</span> * destin, <span class="keyword">const</span> <span class="keyword">char</span> * source)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">/***把source指向的字符串拷贝到destin指向的字符串中***/</span></span><br><span class="line">	assert(destin != <span class="literal">NULL</span> &amp;&amp; source != <span class="literal">NULL</span>);  <span class="comment">//检查source和destin的指向是否为空</span></span><br><span class="line">	<span class="keyword">char</span> *tmp = destin;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">do</span> &#123;</span><br><span class="line">		*destin++ = *source++</span><br><span class="line">	&#125;<span class="keyword">while</span>(*destin &amp;&amp; *source);  <span class="comment">//将source指向的字符复制给destin指向的字符</span></span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> tmp;  <span class="comment">//返回指向最终结果的指针</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">char</span> destination[<span class="number">100</span>] = &#123;<span class="number">1</span>&#125;;</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">char</span> *source = <span class="string">"abcdefgh"</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">char</span> *destion = my_strcpy(destination, source);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%s\n"</span>, destion);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-		  
-		  <!--摘要-->
-		  
-		  
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/10/15/str博客总结/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-<div>
-  
-</div>
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://roux.top/2017/10/15/mem博客总结/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -640,6 +457,8 @@
       
 
       
+	  <!--摘要-->
+		  
         
           <h4 id="memcpy函数"><a href="#memcpy函数" class="headerlink" title="memcpy函数"></a>memcpy函数</h4><ul>
 <li><strong>原型</strong>：<code>void *memcpy(void *dest, const void *src, int count)</code></li>
@@ -648,13 +467,190 @@
   <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> *<span class="title">my_memcpy</span><span class="params">(<span class="keyword">void</span> *dest, <span class="keyword">const</span> <span class="keyword">void</span> *src, <span class="keyword">int</span> count)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="comment">/*由src指定内存区域拷贝count个字符到dest所指定的内存区域。</span></span><br><span class="line"><span class="comment">  src和dest内存区域不能重叠，函数返回指向dest的指针。*/</span></span><br><span class="line">  <span class="comment">//拷贝完成不会自动加上'\0'</span></span><br><span class="line">  <span class="keyword">unsigned</span> <span class="keyword">char</span> *p = (<span class="keyword">unsigned</span> <span class="keyword">char</span> *)dest;</span><br><span class="line">  <span class="keyword">unsigned</span> <span class="keyword">char</span> *q = (<span class="keyword">unsigned</span> <span class="keyword">char</span> *)src;</span><br><span class="line">  <span class="keyword">while</span>(count--)</span><br><span class="line">  &#123;</span><br><span class="line">    *p++ = *q++;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> dest;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">char</span> a[<span class="number">20</span>];</span><br><span class="line">  <span class="keyword">char</span> *p;</span><br><span class="line">  p = (<span class="keyword">char</span> *)my_memcpy(a, <span class="string">"hello world!"</span>, <span class="number">12</span>);</span><br><span class="line">  *(p+<span class="number">12</span>) = <span class="string">'\0'</span>;  <span class="comment">//为puts做准备</span></span><br><span class="line">  <span class="built_in">puts</span>(a);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-		  
-		  <!--摘要-->
-		  
-		  
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/10/15/mem博客总结/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+<div>
+  
+</div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://roux.top/2017/10/15/str博客总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Shirsen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/assets/img/header.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shirsen Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/15/str博客总结/" itemprop="url">mem函数源码</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-15T00:00:00+08:00">
+                2017-10-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C/" itemprop="url" rel="index">
+                    <span itemprop="name">C</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2017/10/15/str博客总结/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://roux.top/2017/10/15/str博客总结/" class="cy_cmt_count" data-xid="2017/10/15/str博客总结/" itemprop="commentsCount" ></span>
+                </a>
+              
+            
+          
+
+          
+          
+             <span id="/2017/10/15/str博客总结/" class="leancloud_visitors" data-flag-title="mem函数源码">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+	  <!--摘要-->
+		  
+        
+          <p>##str函数的源码</p>
+<p>###1、strcpy函数</p>
+<ol>
+<li><strong>原型</strong>：<code>char * strcpy(char * destin, const char * source)</code></li>
+<li><strong>作用</strong>：把source指向的字符串拷贝到destin指向的字符串中</li>
+<li><strong>代码</strong>：</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">char</span> * <span class="title">my_strcpy</span><span class="params">(<span class="keyword">char</span> * destin, <span class="keyword">const</span> <span class="keyword">char</span> * source)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">/***把source指向的字符串拷贝到destin指向的字符串中***/</span></span><br><span class="line">	assert(destin != <span class="literal">NULL</span> &amp;&amp; source != <span class="literal">NULL</span>);  <span class="comment">//检查source和destin的指向是否为空</span></span><br><span class="line">	<span class="keyword">char</span> *tmp = destin;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">do</span> &#123;</span><br><span class="line">		*destin++ = *source++</span><br><span class="line">	&#125;<span class="keyword">while</span>(*destin &amp;&amp; *source);  <span class="comment">//将source指向的字符复制给destin指向的字符</span></span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> tmp;  <span class="comment">//返回指向最终结果的指针</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">char</span> destination[<span class="number">100</span>] = &#123;<span class="number">1</span>&#125;;</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">char</span> *source = <span class="string">"abcdefgh"</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">char</span> *destion = my_strcpy(destination, source);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%s\n"</span>, destion);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/10/15/str博客总结/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -822,6 +818,8 @@
       
 
       
+	  <!--摘要-->
+		  
         
           <h4 id="说明："><a href="#说明：" class="headerlink" title="说明："></a>说明：</h4><ul>
 <li><p>IP地址表示:</p>
@@ -837,194 +835,9 @@
 <blockquote>
 <p>-<code>IP-address ::=  { &lt;Network-number&gt;, &lt;Host-number&gt; }</code></p>
 </blockquote>
-		  
-		  <!--摘要-->
-		  
-		  
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/10/13/127.0.0.1和0.0.0.0/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-<div>
-  
-</div>
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://roux.top/2017/10/11/VMware无法上网/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Shirsen">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/assets/img/header.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Shirsen Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/11/VMware无法上网/" itemprop="url">解决锐捷校园网环境下VMware虚拟机无法上网问题</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-11T00:00:00+08:00">
-                2017-10-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Tools/" itemprop="url" rel="index">
-                    <span itemprop="name">Tools</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-comment-o"></i>
-              </span>
-              
-                <a href="/2017/10/11/VMware无法上网/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://roux.top/2017/10/11/VMware无法上网/" class="cy_cmt_count" data-xid="2017/10/11/VMware无法上网/" itemprop="commentsCount" ></span>
-                </a>
-              
-            
-          
-
-          
-          
-             <span id="/2017/10/11/VMware无法上网/" class="leancloud_visitors" data-flag-title="解决锐捷校园网环境下VMware虚拟机无法上网问题">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h4 id="1-介绍："><a href="#1-介绍：" class="headerlink" title="1.介绍："></a>1.介绍：</h4><ul>
-<li><p>在介绍笨方法之前首先得说一下VMware虚拟机无法上网的原因，虚拟机要想要上网主机里的VMnetDHCP和VMware NAT Service就必须要开启，可能很多人都没留意这个问题，因为这两个服务好像装好软件之后是默认开启的，在其他网络环境下虚拟机直接选择NAT方式就可以上网了，所以网上请教很多大牛时他们对我们的虚拟机无法上网感到非常费解呀。</p>
-</li>
-<li><p>不过在校园网的话，情况又不一样了，我不知道其他的校园网客户端有没有这种情况，可是使用锐捷校园网客户端的话会自动阻断VMware NAT Service服务的开启，也就是说即使你手动开启了VMware NAT Service过了一会又会被自动关闭，这样就导致不管在虚拟机里面怎么设置都无法上网（注意这里使用的NAT方式，或许其他连接方式有新的解决方法，这里只说NAT方式）。</p>
-</li>
-</ul>
-		  
-		  <!--摘要-->
-		  
-		  
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/10/11/VMware无法上网/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1192,6 +1005,8 @@
       
 
       
+	  <!--摘要-->
+		  
         
           <h4 id="僵尸进程"><a href="#僵尸进程" class="headerlink" title="僵尸进程"></a>僵尸进程</h4><ul>
 <li><p>说明</p>
@@ -1203,13 +1018,188 @@
 <li><p>僵尸进程的危害</p>
 <ul>
 <li><p>如果你不处理僵尸进程的话，那么保留的那段信息就不会释放，其进程号就会一定被占用，但是系统所能使用的进程号是有限的，如果大量的产生僵尸进程，将因为没有可用的进程号而导致系统不能产生新的进程</p>
-		  
-		  <!--摘要-->
-		  
-		  
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/10/11/wait函数/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+<div>
+  
+</div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://roux.top/2017/10/11/VMware无法上网/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Shirsen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/assets/img/header.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shirsen Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/11/VMware无法上网/" itemprop="url">解决锐捷校园网环境下VMware虚拟机无法上网问题</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-11T00:00:00+08:00">
+                2017-10-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Tools/" itemprop="url" rel="index">
+                    <span itemprop="name">Tools</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2017/10/11/VMware无法上网/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://roux.top/2017/10/11/VMware无法上网/" class="cy_cmt_count" data-xid="2017/10/11/VMware无法上网/" itemprop="commentsCount" ></span>
+                </a>
+              
+            
+          
+
+          
+          
+             <span id="/2017/10/11/VMware无法上网/" class="leancloud_visitors" data-flag-title="解决锐捷校园网环境下VMware虚拟机无法上网问题">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+	  <!--摘要-->
+		  
+        
+          <h4 id="1-介绍："><a href="#1-介绍：" class="headerlink" title="1.介绍："></a>1.介绍：</h4><ul>
+<li><p>在介绍笨方法之前首先得说一下VMware虚拟机无法上网的原因，虚拟机要想要上网主机里的VMnetDHCP和VMware NAT Service就必须要开启，可能很多人都没留意这个问题，因为这两个服务好像装好软件之后是默认开启的，在其他网络环境下虚拟机直接选择NAT方式就可以上网了，所以网上请教很多大牛时他们对我们的虚拟机无法上网感到非常费解呀。</p>
+</li>
+<li><p>不过在校园网的话，情况又不一样了，我不知道其他的校园网客户端有没有这种情况，可是使用锐捷校园网客户端的话会自动阻断VMware NAT Service服务的开启，也就是说即使你手动开启了VMware NAT Service过了一会又会被自动关闭，这样就导致不管在虚拟机里面怎么设置都无法上网（注意这里使用的NAT方式，或许其他连接方式有新的解决方法，这里只说NAT方式）。</p>
+</li>
+</ul>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/10/11/VMware无法上网/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>

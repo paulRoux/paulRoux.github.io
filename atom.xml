@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://roux.top/"/>
-  <updated>2018-10-24T08:20:55.579Z</updated>
+  <updated>2018-10-24T08:24:55.052Z</updated>
   <id>http://roux.top/</id>
   
   <author>
@@ -21,16 +21,13 @@
     <link href="http://roux.top/2018/10/24/%E4%B8%8D%E5%B0%86%E5%B0%B1/"/>
     <id>http://roux.top/2018/10/24/不将就/</id>
     <published>2018-10-23T16:00:00.000Z</published>
-    <updated>2018-10-24T08:20:55.579Z</updated>
+    <updated>2018-10-24T08:24:55.052Z</updated>
     
-    <content type="html"><![CDATA[<p>&emsp;&emsp;对最近的一段时间进行梳理。<br>&emsp;&emsp;自从实习结束并回到学校后，持续过了一个月的“闲人”生活，期间，中秋结束后和好基友<code>张越</code>完成了为期11天的旅游，欣赏了这个世界的美丽(当然包括小姐姐们，享受脸.jpg)，也享受了各种美食，很开心(很感谢我儿子一路上的规划，简直完美）。<br>&emsp;&emsp;国庆节后，开始阅读技术书籍，同时参与一些分享活动。期间，身边人也都找陆续结束，各种玩耍，各种皮。关于女朋友这事也被提及的越来越多，自己也想了想，的确是在很多难过或者困难的时候，有个人在一起陪伴或者安慰都是极棒的，这也导致我曾经一度想找个就这样将就了。不过对自己生活的不满意，对自己要求的提升，让我觉得这算是对生活的一种妥协，我还年轻，还有机会去尝试，所以不能轻易妥协。<br>&emsp;&emsp;现在，努力提升自己，让自己过得精致一点，多多投资自己，保持一种态度：对生活，不将就！</p>]]></content>
+    <content type="html"><![CDATA[<p>&emsp;&emsp;对最近的一段时间进行梳理。</p><a id="more"></a><p>&emsp;&emsp;自从实习结束并回到学校后，持续过了一个月的“闲人”生活，期间，中秋结束后和好基友<code>张越</code>完成了为期11天的旅游，欣赏了这个世界的美丽(当然包括小姐姐们，享受脸.jpg)，也享受了各种美食，很开心(很感谢我儿子一路上的规划，简直完美）。<br>&emsp;&emsp;国庆节后，开始阅读技术书籍，同时参与一些分享活动。期间，身边人也都找陆续结束，各种玩耍，各种皮。关于女朋友这事也被提及的越来越多，自己也想了想，的确是在很多难过或者困难的时候，有个人在一起陪伴或者安慰都是极棒的，这也导致我曾经一度想找个就这样将就了。不过对自己生活的不满意，对自己要求的提升，让我觉得这算是对生活的一种妥协，我还年轻，还有机会去尝试，所以不能轻易妥协。<br>&emsp;&emsp;现在，努力提升自己，让自己过得精致一点，多多投资自己，保持一种态度：对生活，不将就！</p>]]></content>
     
     <summary type="html">
     
-      
-      
-        &lt;p&gt;&amp;emsp;&amp;emsp;对最近的一段时间进行梳理。&lt;br&gt;&amp;emsp;&amp;emsp;自从实习结束并回到学校后，持续过了一个月的“闲人”生活，期间，中秋结束后和好基友&lt;code&gt;张越&lt;/code&gt;完成了为期11天的旅游，欣赏了这个世界的美丽(当然包括小姐姐们，享受脸.jpg)，
-      
+      &lt;p&gt;&amp;emsp;&amp;emsp;对最近的一段时间进行梳理。&lt;/p&gt;
     
     </summary>
     
@@ -88,18 +85,18 @@
   </entry>
   
   <entry>
-    <title>DNS解析的过程</title>
-    <link href="http://roux.top/2018/04/22/DNS%E8%A7%A3%E6%9E%90/"/>
-    <id>http://roux.top/2018/04/22/DNS解析/</id>
+    <title>HTTP与HTTPS</title>
+    <link href="http://roux.top/2018/04/22/HTTP%E4%B8%8EHTTPS/"/>
+    <id>http://roux.top/2018/04/22/HTTP与HTTPS/</id>
     <published>2018-04-21T16:00:00.000Z</published>
-    <updated>2018-04-22T06:26:43.626Z</updated>
+    <updated>2018-04-22T06:28:42.803Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><ul><li>对于网络这一块，有太多的学问，而且这个也是后面重点需要优化的方向，所以最近会写一些这方面的文章。</li></ul><a id="more"></a><h3 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h3><ol><li>在浏览器中输入<a href="http://www.qq.com域名，操作系统会先检查自己本地的hosts文件是否有这个网址映射关系，如果有，就先调用这个IP地址映射，完成域名解析。" target="_blank" rel="noopener">www.qq.com域名，操作系统会先检查自己本地的hosts文件是否有这个网址映射关系，如果有，就先调用这个IP地址映射，完成域名解析。</a> </li><li>如果hosts里没有这个域名的映射，则查找本地DNS解析器缓存，是否有这个网址映射关系，如果有，直接返回，完成域名解析。 </li><li>如果hosts与本地DNS解析器缓存都没有相应的网址映射关系，首先会找TCP/ip参数中设置的首选DNS服务器，在此我们叫它本地DNS服务器，此服务器收到查询时，如果要查询的域名，包含在本地配置区域资源中，则返回解析结果给客户机，完成域名解析，此解析具有权威性。 </li><li>如果要查询的域名，不由本地DNS服务器区域解析，但该服务器已缓存了此网址映射关系，则调用这个IP地址映射，完成域名解析，此解析不具有权威性。 </li><li>如果本地DNS服务器本地区域文件与缓存解析都失效，则根据本地DNS服务器的设置（是否设置转发器）进行查询，如果未用转发模式，本地DNS就把请求发至13台根DNS，根DNS服务器收到请求后会判断这个域名(.com)是谁来授权管理，并会返回一个负责该顶级域名服务器的一个IP。本地DNS服务器收到IP信息后，将会联系负责.com域的这台服务器。这台负责.com域的服务器收到请求后，如果自己无法解析，它就会找一个管理.com域的下一级DNS服务器地址(qq.com)给本地DNS服务器。当本地DNS服务器收到这个地址后，就会找qq.com域服务器，重复上面的动作，进行查询，直至找到<a href="http://www.qq.com主机。" target="_blank" rel="noopener">www.qq.com主机。</a> </li><li>如果用的是转发模式，此DNS服务器就会把请求转发至上一级DNS服务器，由上一级服务器进行解析，上一级服务器如果不能解析，或找根DNS或把转请求转至上上级，以此循环。不管是本地DNS服务器用是是转发，还是根提示，最后都是把结果返回给本地DNS服务器，由此DNS服务器再返回给客户机。 </li></ol><h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><ul><li><p>人们在 DNS 中发现了一些漏洞，攻击者可以利用这些漏洞劫持这一使用名称在 互联网 上搜寻某个人或某个站点的过程。这种攻击的目的是取得对会话的控制以实施某种操作，例如使用户进入劫持者自己设立的欺骗性网站，以便收集用户的帐户和密码。</p></li><li><p>安全的DNS—<a href="https://www.icann.org/resources/pages/dnssec-qaa-2014-01-29-zh" target="_blank" rel="noopener">DNSSEC</a></p></li></ul><h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><ul><li><a href="https://www.nowcoder.com/profile/2286733/myFollowings/detail/4794271" target="_blank" rel="noopener">https://www.nowcoder.com/profile/2286733/myFollowings/detail/4794271</a></li></ul>]]></content>
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><ul><li>HTTPS是对HTTP在安全方面上做的一个改进，HTTPS = HTTP + <a href="https://zh.wikipedia.org/wiki/%E5%82%B3%E8%BC%B8%E5%B1%A4%E5%AE%89%E5%85%A8%E6%80%A7%E5%8D%94%E5%AE%9A" target="_blank" rel="noopener">SSL/TLS</a></li></ul><a id="more"></a><h3 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h3><ol><li><p>https需要申请CA证书，需要一定的费用</p></li><li><p>http是明文传输，https是有安全性的ssl加密传输</p></li><li><p>http的端口是80，https是443</p></li><li><p>http是简单的，<a href="http://www.cnblogs.com/bellkosmos/p/5237146.html" target="_blank" rel="noopener">无状态</a>的，https是由http+sslL组成的进行加密传输、身份认证的协议，更加安全</p></li></ol><h3 id="HTTPS过程"><a href="#HTTPS过程" class="headerlink" title="HTTPS过程"></a>HTTPS过程</h3><ol><li><p>客户端发起请求，将自己支持的加密算法，打个包告诉服务器端</p></li><li><p>服务器端从客户端发来的加密算法中，选出一组加密算法和HASH算法（注，HASH也属于加密），并将自己的身份信息以证书的形式发回给客户端。而证书中包含了网站的地址，加密用的公钥，以及证书的颁发机构等；这里，服务器就将自己用来加密用的公钥一同发还给客户端，而私钥则服务器保存着，用户解密客户端加密过后的内容。</p></li><li><p>客户端收到内容</p><ol><li>验证一下证书是否合法。一般来说，证书是用来标示一个站点是否合法的标志。如果说该证书由权威的第三方颁发和签名的，则说明证书合法。</li><li>如果证书合法，或者客户端接受和信任了不合法的证书，则客户端就会随机产生一串序列号，使用服务器发来的公钥进行加密。这时候，一条返回的消息就基本就绪。</li><li>最后使用服务器挑选的HASH算法，将刚才的消息使用刚才的随机数进行加密，生成相应的消息校验值，与刚才的消息一同发还给服务器。</li></ol></li><li><p>服务器接受到客户端发来的消息后</p><ol><li>使用私钥解密上面客户端公钥加密的消息，得到客户端产生的随机序列号</li><li>使用该随机序列号，对该消息进行加密，验证的到的校验值是否与客户端发来的一致。如果一致则说明消息未被篡改，可以信任</li><li>最后，使用该随机序列号，加上之前第2步中选择的加密算法，加密一段握手消息，发还给客户端。同时HASH值也带上</li></ol></li><li><p>客户端收到服务器端的消息后</p><ol><li>计算HASH值是否与发回的消息一致</li><li>检查消息是否为握手消息</li></ol></li><li><p>握手结束后，客户端和服务器端使用握手阶段产生的随机数以及挑选出来的算法进行对称加解密的传输</p></li></ol><h3 id="为什么不直接全程使用非对称加密算法进行数据传输"><a href="#为什么不直接全程使用非对称加密算法进行数据传输" class="headerlink" title="为什么不直接全程使用非对称加密算法进行数据传输"></a>为什么不直接全程使用非对称加密算法进行数据传输</h3><ol><li><p>因为非对称算法的效率对比起对称算法来说，要低得多得多；因此往往只用在HTTPS的握手阶段。</p></li><li><p>http建立连接114ms，https为436ms（ssl为322ms），针对computer science house（计算机科学院CSH）的测试</p></li></ol><h3 id="经常使用的加密算法"><a href="#经常使用的加密算法" class="headerlink" title="经常使用的加密算法"></a>经常使用的加密算法</h3><ol><li>非对称加密算法：RSA, DSA/DSS</li><li>对称加密算法： AES, 3DES</li><li>HASH算法：MD5, SHA1, SHA256</li></ol>]]></content>
     
     <summary type="html">
     
       &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;对于网络这一块，有太多的学问，而且这个也是后面重点需要优化的方向，所以最近会写一些这方面的文章。&lt;/li&gt;
+&lt;li&gt;HTTPS是对HTTP在安全方面上做的一个改进，HTTPS = HTTP + &lt;a href=&quot;https://zh.wikipedia.org/wiki/%E5%82%B3%E8%BC%B8%E5%B1%A4%E5%AE%89%E5%85%A8%E6%80%A7%E5%8D%94%E5%AE%9A&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;SSL/TLS&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
     
     </summary>
@@ -107,7 +104,31 @@
       <category term="Protocol" scheme="http://roux.top/categories/Protocol/"/>
     
     
-      <category term="DNS" scheme="http://roux.top/tags/DNS/"/>
+      <category term="HTTP" scheme="http://roux.top/tags/HTTP/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>HTTP学习（六）——HTTP2性能优化实践</title>
+    <link href="http://roux.top/2018/04/22/HTTP%E5%AD%A6%E4%B9%A0%EF%BC%88%E5%85%AD%EF%BC%89/"/>
+    <id>http://roux.top/2018/04/22/HTTP学习（六）/</id>
+    <published>2018-04-21T16:00:00.000Z</published>
+    <updated>2018-04-22T06:06:02.928Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><ul><li>为了让我们的网站访问速度快变，我们不断增加带宽，做针对HTTP协议的特点对应用做各种优化。希望能通常高带宽，低延迟来提高网站到访问速度。带宽与延迟两者间，延迟才是性能的真正瓶颈。</li></ul><a id="more"></a><h3 id="客观原因"><a href="#客观原因" class="headerlink" title="客观原因"></a>客观原因</h3><ul><li><p>当我们针对HTTP协议进行性能优化时，我们不得不注意到这样的一些客观原因。通常当我们改变不了底层协议特性时，我们只能在更高层处做文章。</p><ol><li><p>带宽受物理层介质的影响，最快快不过光速，但是即便在今天越来越高的带宽，我们依然没有感觉到网站访问速度有多快。 </p></li><li><p>延迟包括传输延迟，传播延迟，处理延迟和排队延迟。</p></li><li><p>每次连接都需要经过3次握手才能建立，增加整整一个RTT。</p></li><li><p>TCP拥塞控制策略：慢启动，拥塞避免[注1]。其中慢启动会被应用到每一个连接中。TCP流量和拥塞控制会影响整个网络到吞吐量。</p></li><li><p>解析DNS必然会产生一些延迟。</p></li><li><p>最快获得资源的方式，莫过于还没传，就已拿到。充分利用缓存。</p></li><li><p>最少的延迟就是什么都不传。而没有延迟。</p></li></ol></li></ul><h3 id="针对HTTP1-X做过的优化"><a href="#针对HTTP1-X做过的优化" class="headerlink" title="针对HTTP1.X做过的优化"></a>针对HTTP1.X做过的优化</h3><ul><li><p>由于TCP层的特性，在提高web性能时，我们不得不做一些优化， <a href="https://developer.yahoo.com/performance/rules.html" target="_blank" rel="noopener">Best Practices for Speeding Up Your Web Site</a>，这些优化中针对HTTP协议特点的，我们做了哪些呢，从总体来说有以下几大点。</p><ol><li><p>连接和拼接</p><ul><li>连接或拼接JS和CSS文件，雪碧图，以减少HTTP请求，同时浏览器可缓存这些静态资源，为下次访问节约时间。但是这样带来的副作用是，维护成本高，其中某一个小改动都会使得整个拼接后的文件发生改变，重新缓存。</li></ul></li><li><p>域名分区</p><ul><li>由于浏览器的限制，同一个域下最多只能建立6个连接。我们通常使用子域名来减少所有资源在只有一个连接时的产生的排队延迟。这个显然不适用在HTTP2中，因为不同的域需要建立不同的连接。</li></ul></li><li><p>资源内嵌</p><ul><li>对于不常用的，较小大资源内嵌在文档中，比如base64的图片，以减少HTTP请求，但是这样的资源不能在浏览器中缓存，也不可能被其他页面共享，同时还有可能编码之后的资源变等更大了。在HTTP2中，这样的资源就可以使用SERVER PUSH来推送。</li></ul></li><li><p>HTTP管道（额外的）</p><ul><li><p>在HTTP1.x中已经实现了持久连接，但是却依然需要排队来发送和接收请求，这样不能充分利用网络资源。因此提出了HTTP管道的概念。客户端可以将所有请求都一起发给服务器端，服务器端或者按顺序处理，或者并行处理这些请求。但是返回响应的顺序是按照其自己内部的优先级来的。</p></li><li><p>但是，其缺点也很多，以至于现在的浏览器对它还是默认关闭的：</p></li></ul></li><li><p>队首阻塞</p><ul><li>并行处理时，需要占用缓存资源，服务器容易受到攻击</li><li>响应失败后，会断开tcp连接，并要求重发之后的所有请求，造成资源浪费</li><li>中间代理对其兼容性不是很好，有可能还会串行所有请求</li></ul></li></ol></li></ul><h3 id="针对HTTP2需要做的优化"><a href="#针对HTTP2需要做的优化" class="headerlink" title="针对HTTP2需要做的优化"></a>针对HTTP2需要做的优化</h3><ul><li><p>坚决去掉在HTTP1.X中的域名分区，连接和拼接和资源内嵌的优化方式。</p></li><li><p>尽量让所有资源在同一域名下</p></li><li><p>利用服务器推送</p></li><li><p>继续保留CDN</p></li></ul><h3 id="脚注"><a href="#脚注" class="headerlink" title="脚注"></a>脚注</h3><ul><li>TCP慢开始与拥塞避免示意图<br>  <img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/HTTP/six/slow-start.png" alt=""></li></ul><h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><ul><li><a href="https://imjiaolong.cn/post/http2vshttp1.1.html" target="_blank" rel="noopener">https://imjiaolong.cn/post/http2vshttp1.1.html</a></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;为了让我们的网站访问速度快变，我们不断增加带宽，做针对HTTP协议的特点对应用做各种优化。希望能通常高带宽，低延迟来提高网站到访问速度。带宽与延迟两者间，延迟才是性能的真正瓶颈。&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+      <category term="Protocol" scheme="http://roux.top/categories/Protocol/"/>
+    
+    
+      <category term="HTTP" scheme="http://roux.top/tags/HTTP/"/>
     
   </entry>
   
@@ -124,30 +145,6 @@
     
       &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;前面的系列文章最终感觉有点零散，所以在这里将HTTP1.0和HTTP1.1的一些区别进行说明。&lt;/li&gt;
-&lt;/ul&gt;
-    
-    </summary>
-    
-      <category term="Protocol" scheme="http://roux.top/categories/Protocol/"/>
-    
-    
-      <category term="HTTP" scheme="http://roux.top/tags/HTTP/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>HTTP与HTTPS</title>
-    <link href="http://roux.top/2018/04/22/HTTP%E4%B8%8EHTTPS/"/>
-    <id>http://roux.top/2018/04/22/HTTP与HTTPS/</id>
-    <published>2018-04-21T16:00:00.000Z</published>
-    <updated>2018-04-22T06:28:42.803Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><ul><li>HTTPS是对HTTP在安全方面上做的一个改进，HTTPS = HTTP + <a href="https://zh.wikipedia.org/wiki/%E5%82%B3%E8%BC%B8%E5%B1%A4%E5%AE%89%E5%85%A8%E6%80%A7%E5%8D%94%E5%AE%9A" target="_blank" rel="noopener">SSL/TLS</a></li></ul><a id="more"></a><h3 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h3><ol><li><p>https需要申请CA证书，需要一定的费用</p></li><li><p>http是明文传输，https是有安全性的ssl加密传输</p></li><li><p>http的端口是80，https是443</p></li><li><p>http是简单的，<a href="http://www.cnblogs.com/bellkosmos/p/5237146.html" target="_blank" rel="noopener">无状态</a>的，https是由http+sslL组成的进行加密传输、身份认证的协议，更加安全</p></li></ol><h3 id="HTTPS过程"><a href="#HTTPS过程" class="headerlink" title="HTTPS过程"></a>HTTPS过程</h3><ol><li><p>客户端发起请求，将自己支持的加密算法，打个包告诉服务器端</p></li><li><p>服务器端从客户端发来的加密算法中，选出一组加密算法和HASH算法（注，HASH也属于加密），并将自己的身份信息以证书的形式发回给客户端。而证书中包含了网站的地址，加密用的公钥，以及证书的颁发机构等；这里，服务器就将自己用来加密用的公钥一同发还给客户端，而私钥则服务器保存着，用户解密客户端加密过后的内容。</p></li><li><p>客户端收到内容</p><ol><li>验证一下证书是否合法。一般来说，证书是用来标示一个站点是否合法的标志。如果说该证书由权威的第三方颁发和签名的，则说明证书合法。</li><li>如果证书合法，或者客户端接受和信任了不合法的证书，则客户端就会随机产生一串序列号，使用服务器发来的公钥进行加密。这时候，一条返回的消息就基本就绪。</li><li>最后使用服务器挑选的HASH算法，将刚才的消息使用刚才的随机数进行加密，生成相应的消息校验值，与刚才的消息一同发还给服务器。</li></ol></li><li><p>服务器接受到客户端发来的消息后</p><ol><li>使用私钥解密上面客户端公钥加密的消息，得到客户端产生的随机序列号</li><li>使用该随机序列号，对该消息进行加密，验证的到的校验值是否与客户端发来的一致。如果一致则说明消息未被篡改，可以信任</li><li>最后，使用该随机序列号，加上之前第2步中选择的加密算法，加密一段握手消息，发还给客户端。同时HASH值也带上</li></ol></li><li><p>客户端收到服务器端的消息后</p><ol><li>计算HASH值是否与发回的消息一致</li><li>检查消息是否为握手消息</li></ol></li><li><p>握手结束后，客户端和服务器端使用握手阶段产生的随机数以及挑选出来的算法进行对称加解密的传输</p></li></ol><h3 id="为什么不直接全程使用非对称加密算法进行数据传输"><a href="#为什么不直接全程使用非对称加密算法进行数据传输" class="headerlink" title="为什么不直接全程使用非对称加密算法进行数据传输"></a>为什么不直接全程使用非对称加密算法进行数据传输</h3><ol><li><p>因为非对称算法的效率对比起对称算法来说，要低得多得多；因此往往只用在HTTPS的握手阶段。</p></li><li><p>http建立连接114ms，https为436ms（ssl为322ms），针对computer science house（计算机科学院CSH）的测试</p></li></ol><h3 id="经常使用的加密算法"><a href="#经常使用的加密算法" class="headerlink" title="经常使用的加密算法"></a>经常使用的加密算法</h3><ol><li>非对称加密算法：RSA, DSA/DSS</li><li>对称加密算法： AES, 3DES</li><li>HASH算法：MD5, SHA1, SHA256</li></ol>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;HTTPS是对HTTP在安全方面上做的一个改进，HTTPS = HTTP + &lt;a href=&quot;https://zh.wikipedia.org/wiki/%E5%82%B3%E8%BC%B8%E5%B1%A4%E5%AE%89%E5%85%A8%E6%80%A7%E5%8D%94%E5%AE%9A&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;SSL/TLS&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
     
     </summary>
@@ -187,18 +184,18 @@
   </entry>
   
   <entry>
-    <title>HTTP学习（六）——HTTP2性能优化实践</title>
-    <link href="http://roux.top/2018/04/22/HTTP%E5%AD%A6%E4%B9%A0%EF%BC%88%E5%85%AD%EF%BC%89/"/>
-    <id>http://roux.top/2018/04/22/HTTP学习（六）/</id>
+    <title>DNS解析的过程</title>
+    <link href="http://roux.top/2018/04/22/DNS%E8%A7%A3%E6%9E%90/"/>
+    <id>http://roux.top/2018/04/22/DNS解析/</id>
     <published>2018-04-21T16:00:00.000Z</published>
-    <updated>2018-04-22T06:06:02.928Z</updated>
+    <updated>2018-04-22T06:26:43.626Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><ul><li>为了让我们的网站访问速度快变，我们不断增加带宽，做针对HTTP协议的特点对应用做各种优化。希望能通常高带宽，低延迟来提高网站到访问速度。带宽与延迟两者间，延迟才是性能的真正瓶颈。</li></ul><a id="more"></a><h3 id="客观原因"><a href="#客观原因" class="headerlink" title="客观原因"></a>客观原因</h3><ul><li><p>当我们针对HTTP协议进行性能优化时，我们不得不注意到这样的一些客观原因。通常当我们改变不了底层协议特性时，我们只能在更高层处做文章。</p><ol><li><p>带宽受物理层介质的影响，最快快不过光速，但是即便在今天越来越高的带宽，我们依然没有感觉到网站访问速度有多快。 </p></li><li><p>延迟包括传输延迟，传播延迟，处理延迟和排队延迟。</p></li><li><p>每次连接都需要经过3次握手才能建立，增加整整一个RTT。</p></li><li><p>TCP拥塞控制策略：慢启动，拥塞避免[注1]。其中慢启动会被应用到每一个连接中。TCP流量和拥塞控制会影响整个网络到吞吐量。</p></li><li><p>解析DNS必然会产生一些延迟。</p></li><li><p>最快获得资源的方式，莫过于还没传，就已拿到。充分利用缓存。</p></li><li><p>最少的延迟就是什么都不传。而没有延迟。</p></li></ol></li></ul><h3 id="针对HTTP1-X做过的优化"><a href="#针对HTTP1-X做过的优化" class="headerlink" title="针对HTTP1.X做过的优化"></a>针对HTTP1.X做过的优化</h3><ul><li><p>由于TCP层的特性，在提高web性能时，我们不得不做一些优化， <a href="https://developer.yahoo.com/performance/rules.html" target="_blank" rel="noopener">Best Practices for Speeding Up Your Web Site</a>，这些优化中针对HTTP协议特点的，我们做了哪些呢，从总体来说有以下几大点。</p><ol><li><p>连接和拼接</p><ul><li>连接或拼接JS和CSS文件，雪碧图，以减少HTTP请求，同时浏览器可缓存这些静态资源，为下次访问节约时间。但是这样带来的副作用是，维护成本高，其中某一个小改动都会使得整个拼接后的文件发生改变，重新缓存。</li></ul></li><li><p>域名分区</p><ul><li>由于浏览器的限制，同一个域下最多只能建立6个连接。我们通常使用子域名来减少所有资源在只有一个连接时的产生的排队延迟。这个显然不适用在HTTP2中，因为不同的域需要建立不同的连接。</li></ul></li><li><p>资源内嵌</p><ul><li>对于不常用的，较小大资源内嵌在文档中，比如base64的图片，以减少HTTP请求，但是这样的资源不能在浏览器中缓存，也不可能被其他页面共享，同时还有可能编码之后的资源变等更大了。在HTTP2中，这样的资源就可以使用SERVER PUSH来推送。</li></ul></li><li><p>HTTP管道（额外的）</p><ul><li><p>在HTTP1.x中已经实现了持久连接，但是却依然需要排队来发送和接收请求，这样不能充分利用网络资源。因此提出了HTTP管道的概念。客户端可以将所有请求都一起发给服务器端，服务器端或者按顺序处理，或者并行处理这些请求。但是返回响应的顺序是按照其自己内部的优先级来的。</p></li><li><p>但是，其缺点也很多，以至于现在的浏览器对它还是默认关闭的：</p></li></ul></li><li><p>队首阻塞</p><ul><li>并行处理时，需要占用缓存资源，服务器容易受到攻击</li><li>响应失败后，会断开tcp连接，并要求重发之后的所有请求，造成资源浪费</li><li>中间代理对其兼容性不是很好，有可能还会串行所有请求</li></ul></li></ol></li></ul><h3 id="针对HTTP2需要做的优化"><a href="#针对HTTP2需要做的优化" class="headerlink" title="针对HTTP2需要做的优化"></a>针对HTTP2需要做的优化</h3><ul><li><p>坚决去掉在HTTP1.X中的域名分区，连接和拼接和资源内嵌的优化方式。</p></li><li><p>尽量让所有资源在同一域名下</p></li><li><p>利用服务器推送</p></li><li><p>继续保留CDN</p></li></ul><h3 id="脚注"><a href="#脚注" class="headerlink" title="脚注"></a>脚注</h3><ul><li>TCP慢开始与拥塞避免示意图<br>  <img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/HTTP/six/slow-start.png" alt=""></li></ul><h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><ul><li><a href="https://imjiaolong.cn/post/http2vshttp1.1.html" target="_blank" rel="noopener">https://imjiaolong.cn/post/http2vshttp1.1.html</a></li></ul>]]></content>
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><ul><li>对于网络这一块，有太多的学问，而且这个也是后面重点需要优化的方向，所以最近会写一些这方面的文章。</li></ul><a id="more"></a><h3 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h3><ol><li>在浏览器中输入<a href="http://www.qq.com域名，操作系统会先检查自己本地的hosts文件是否有这个网址映射关系，如果有，就先调用这个IP地址映射，完成域名解析。" target="_blank" rel="noopener">www.qq.com域名，操作系统会先检查自己本地的hosts文件是否有这个网址映射关系，如果有，就先调用这个IP地址映射，完成域名解析。</a> </li><li>如果hosts里没有这个域名的映射，则查找本地DNS解析器缓存，是否有这个网址映射关系，如果有，直接返回，完成域名解析。 </li><li>如果hosts与本地DNS解析器缓存都没有相应的网址映射关系，首先会找TCP/ip参数中设置的首选DNS服务器，在此我们叫它本地DNS服务器，此服务器收到查询时，如果要查询的域名，包含在本地配置区域资源中，则返回解析结果给客户机，完成域名解析，此解析具有权威性。 </li><li>如果要查询的域名，不由本地DNS服务器区域解析，但该服务器已缓存了此网址映射关系，则调用这个IP地址映射，完成域名解析，此解析不具有权威性。 </li><li>如果本地DNS服务器本地区域文件与缓存解析都失效，则根据本地DNS服务器的设置（是否设置转发器）进行查询，如果未用转发模式，本地DNS就把请求发至13台根DNS，根DNS服务器收到请求后会判断这个域名(.com)是谁来授权管理，并会返回一个负责该顶级域名服务器的一个IP。本地DNS服务器收到IP信息后，将会联系负责.com域的这台服务器。这台负责.com域的服务器收到请求后，如果自己无法解析，它就会找一个管理.com域的下一级DNS服务器地址(qq.com)给本地DNS服务器。当本地DNS服务器收到这个地址后，就会找qq.com域服务器，重复上面的动作，进行查询，直至找到<a href="http://www.qq.com主机。" target="_blank" rel="noopener">www.qq.com主机。</a> </li><li>如果用的是转发模式，此DNS服务器就会把请求转发至上一级DNS服务器，由上一级服务器进行解析，上一级服务器如果不能解析，或找根DNS或把转请求转至上上级，以此循环。不管是本地DNS服务器用是是转发，还是根提示，最后都是把结果返回给本地DNS服务器，由此DNS服务器再返回给客户机。 </li></ol><h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><ul><li><p>人们在 DNS 中发现了一些漏洞，攻击者可以利用这些漏洞劫持这一使用名称在 互联网 上搜寻某个人或某个站点的过程。这种攻击的目的是取得对会话的控制以实施某种操作，例如使用户进入劫持者自己设立的欺骗性网站，以便收集用户的帐户和密码。</p></li><li><p>安全的DNS—<a href="https://www.icann.org/resources/pages/dnssec-qaa-2014-01-29-zh" target="_blank" rel="noopener">DNSSEC</a></p></li></ul><h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><ul><li><a href="https://www.nowcoder.com/profile/2286733/myFollowings/detail/4794271" target="_blank" rel="noopener">https://www.nowcoder.com/profile/2286733/myFollowings/detail/4794271</a></li></ul>]]></content>
     
     <summary type="html">
     
       &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;为了让我们的网站访问速度快变，我们不断增加带宽，做针对HTTP协议的特点对应用做各种优化。希望能通常高带宽，低延迟来提高网站到访问速度。带宽与延迟两者间，延迟才是性能的真正瓶颈。&lt;/li&gt;
+&lt;li&gt;对于网络这一块，有太多的学问，而且这个也是后面重点需要优化的方向，所以最近会写一些这方面的文章。&lt;/li&gt;
 &lt;/ul&gt;
     
     </summary>
@@ -206,38 +203,7 @@
       <category term="Protocol" scheme="http://roux.top/categories/Protocol/"/>
     
     
-      <category term="HTTP" scheme="http://roux.top/tags/HTTP/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>HTTP学习（四）——HTTP2.0的新特性</title>
-    <link href="http://roux.top/2018/04/21/HTTP%E5%AD%A6%E4%B9%A0%EF%BC%88%E5%9B%9B%EF%BC%89/"/>
-    <id>http://roux.top/2018/04/21/HTTP学习（四）/</id>
-    <published>2018-04-20T16:00:00.000Z</published>
-    <updated>2018-04-22T05:46:02.851Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><ul><li><p>HTTP2.0可以让我们的应用变得更快、更简单、更健壮，让我们在HTTP/1.1时针对TCP协议特性而做的用来提高性能的HACK一笔勾销</p></li><li><p>为了提高应用的性能，降低延迟，我们能做的无外乎2点，要么传输的东西越小越好，要么距离能获得资源的地方越近越好。</p><ul><li>HTTP2的目的：通过支持<strong>多路复用</strong>来提高并行能力，减少因为3次握手等而产生的延迟；通过<strong>压缩HTTP首部</strong>将协议开销降到最低，同时支持请求优先级和服务器推送。</li><li>HTTP2最大的改变：引入<strong>二进制分帧层</strong>。HTTP2.0不会改动HTTP1.x的语义，提供的功能也不变，但是HTTP2对内修改了格式化数据的方式，以及传输这些数据的方式。对外，也就是面向应用，不用做任何改变，感知不到这一层的变化的。</li></ul></li><li><p>其实HTTP2.0是对HTTP1.x的一个扩展，而非替代，之所以称之为2是因为它引入的二进制分帧层之前的HTTP1.x的服务端和客户端并不兼容。</p><a id="more"></a></li></ul><h3 id="特性浅析"><a href="#特性浅析" class="headerlink" title="特性浅析"></a>特性浅析</h3><h4 id="分帧"><a href="#分帧" class="headerlink" title="分帧"></a><strong>分帧</strong></h4><ul><li><p>这是HTTP2.0中最大的改变。HTTP2.0之所以性能会比HTTP1.x有那么大的提高，很大程度上正是由于这一层的引入。</p><blockquote><p>这里所谓的“层” ，指的是位于套接字接口[1]与应用可见的高层HTTP API之间的一个新机制:HTTP的语义，包括各种动词、方法、首部，都不受影响，不同的是<strong>传输期间</strong>对它们的编码方式变了。</p></blockquote></li><li><p>HTTP1.x用回车换行符作为纯文本的分隔符，在进行解析和差错检测时不方便。HTTP1.x中用ASCII码，是16进制的，来表示报文中的每一个字符，如下图中,47代表字母G，45代表字符E，54代表字符T。</p><p><img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/HTTP/four/http-header.png" alt=""></p></li><li><p>然而，HTTP2.0引入分帧层后，将报文分隔成一个个更小的帧，并采用二进制编码的方式。通常会将一个消息（首部和数据在一起的）分成一个HEADER帧和若干个DATA帧。如下图所示</p><p><img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/HTTP/four/frame-layer.png" alt=""></p><pre><code>另外需要明确的几个定义： **流**：已建立的连接上的双向字节流。具有唯一的流ID，客户端发起的为奇数ID，服务端发起的为偶数ID。很多个流可以并行的在同一个tcp连接上交换消息。 **消息**：与逻辑消息对应，比如一个请求或一个响应。由一个或多个帧组成。 **帧**：HTTP2中最小的通信单位，每个帧都会有帧首部，每个帧或者用来承载HTTP首部或负荷数据，或其他特定类型的帧。帧是遵循二进制编码的。总得来说，就是这样的，在HTTP2中，相同域名下的所有通信都在一个连接上完成，这个连接中可以承载任意数量的双向流。这些流都是以消息的形式被发送的，同时消息又由一个或多个帧组成。多个帧之间可以乱序发送，最后根据帧首部的流标识重新组装。</code></pre></li><li><p><strong>解释</strong> :这个双向是指，服务器可以给浏览器发消息（server push），浏览器也可以给服务器发东西（这就不用说啦）</p></li></ul><ul><li><p>对于一个帧来说，有固定固定帧格式，其中帧首部规定了帧最多只能带64KB的数据，还包括了帧类型和流标识符等。另外，帧中还可以填充一些额外的数据，最多255字节，保证数据安全性，拿HEADER帧举例。</p><p><img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/HTTP/four/frame-structure.png" alt=""></p><p><img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/HTTP/four/frame-header.png" alt=""></p></li><li><p>从这点上看，HTTP2.0中的帧与tcp报文段有些相似的。</p><p>在客户端或服务端发起建立新流时，帧携带HTTP的首部块，其中服务端发起流时，发送的HEADER帧没有优先级这一字段；当新流建立之后，就可发送HTTP消息的应用数据，也就是帧的负荷数据。</p><p>将消息拆成多个数据帧之后，会大大缓解HTTP队首阻塞[2]的情况。但是与tcp层的队首阻塞[3]并无直接关系。同时，改以帧为传输单位后，使得对报文无论是解析和差错检测方面都变得更加容易，因为对纯文本的解析还需要考虑到空格，空行，换行等问题。另外，也还消除了并行处理和发送请求及响应时对多个连接的依赖。</p></li><li><p><strong>解释</strong> ：多路复用：用一个tcp连接，并行发好多。【…keep_alive 很像啊】 —分组数？？表示是底层的，都没有概念…按道理说是分帧了后，分组数会变多啊？？？ 和keep_alive 不像，是和管道化很像哈。 实际上是这样的，首先肯定的是多使用同一个tcp连接，比起以前的多个tcp连接，会至少每次少了3个建立连接的tcp报文段，还不包括重传的。同时因为分帧之后出错的概率变小，间接的需要重传的包变少。从这两方面来说整个网络中的包中的总数是变少的。 另外呢，tcp报文段的长度其实还是保持不变的，不同流中的帧其实是混在一个tcp报文段中一起被发送，而在接收方那边接受到这个报文段后再进行拆分重新组装成新的http报文。</p></li></ul><h4 id="首部压缩"><a href="#首部压缩" class="headerlink" title="首部压缩"></a><strong>首部压缩</strong></h4><ul><li>由于HTTP协议是一种无状态的协议，服务器自身不会保存太多的信息和先前请求过的元数据信息，这就需要客户端每次都使用多个首部字段来描述所传输的资源及其属性，又由于HTTP1.1是以文本形式传输的，每次都会给HTTP报文增加500-800字节的负荷，如果算上cookie，这个负荷甚至会增加到上千。如果可以有办法减少这些开销，那么对性能又有很大的提升。<ol><li>HTTP2采用HPACK压缩方法，一边用index mapping table压缩，一边编码。这个table由<a href="https://http2.github.io/http2-spec/compression.html#static.table.definition" target="_blank" rel="noopener">静态表</a>和动态表组成。<ol><li>先用预定义的index mapping table将头部中常用的字符串用index来代替</li><li>对一定要使用文本表示的字符串，采用预定义的哈夫曼编码表进行编码 (具体的压缩和解压缩的方法请看<a href="http://www.cnblogs.com/ghj1976/p/4586529.html" target="_blank" rel="noopener">此文</a>的解释)<ul><li>客户端和服务器端使用首部表来跟踪和存储之前发送的每一个键值对。第一次请求时发送过的键值对，第二次在再请求时就不在发送了。（这一现象还一直没观察到）</li><li>在tcp连接期间，客户端和服务端共同维护这个首部表，并且是共同渐进更新的</li><li>每个新的键值对，要么直接添加到首部表尾部，要么替换原有表中的值</li></ul></li></ol></li><li>另外，HTTP2的前身SPDY采用的头部压缩算法是delate算法，这个算法的压缩效率也不错，但是由于存在<a href="http://www.freebuf.com/articles/web/5636.html" target="_blank" rel="noopener">CRIME攻击</a>，而HTTP2不得不重新设计了HPACK算法。</li></ol></li><li><strong>解释</strong> 使用了HPACK算法，一方面如果下一次请求头部和上一次请求头部中有相同的字段，那么相同的字段不会被发送，只会被发送差异性的字段。另一方面，会有一张首部表，里面会有常用的首部字段极其对应的序号，会有序号来代替这个具体的字段字符串。同时，整个首部帧还会用哈夫曼编码来进行压缩。</li></ul><h4 id="多路复用"><a href="#多路复用" class="headerlink" title="多路复用"></a><strong>多路复用</strong></h4><ul><li><p>引入二进制分帧层之后，HTTP2.0可以很容易的去实现多流并行而不用依赖建立多个tcp连接。</p><blockquote><p>实验表明，客户端使用更少的连接肯定可以降低延迟时间。HTTP 2.0 发送的总分组数量比 HTTP 差不多要少 40%。而服务器处理大量并发连接的情况也变成了可伸缩性问题，因为 HTTP 2.0 减轻了这个负担。 —-HTTP2.0</p></blockquote></li><li><p>每个来源使用一个连接，优势如下：</p><ul><li>从服务器和客户端来说，占用的资源和内存都少了。</li><li>从tcp连接和网络来说，使得网络拥塞得到改善，慢启动时间减少，拥塞和丢包恢复速度变快。</li></ul></li><li><p><strong>解释</strong></p><ul><li>keep-alive，也是可以不进行3次握手就可以发送多个在同一个域下的请求。但是必须发送下一个请求B，等待前一个请求A的响应收到后才可以发送。多路复用和管道优化差不多，只是管道优化由于兼容性的问题，而没有被普遍使用。</li><li>但是什么时候断？如果太多的保持连接，会不会反而不好呢 和一般TCP连接释放一样，如果客户端没有数据要请求，或服务端数据发送完毕后，会主动发送关闭连接的报文。或者是服务端连续发送10个探测报文，客户端无响应，服务端就关闭了这个连接。</li></ul></li></ul><h4 id="请求优先级"><a href="#请求优先级" class="headerlink" title="请求优先级"></a><strong>请求优先级</strong></h4><ul><li><p>当同一条连接上可以同时发送很多请求时，并不等于说这些请求对于服务器来说都应该一视同仁，因为客户端对资源的需求程度不同。比如说一个html文档，显然客户端对CSS和JS的需求，远大于对文档内图片的需求。</p><p>因此在建立新流时，HEADER帧可以带有一个优先级(31位，0为优先级最高)的值。这样，服务端就可以因此而适当分配资源，优先发送这些优先级高的帧。</p><p>HTTP2.0协议并没有规定这样的处理优先级的算法该如何实现，仅仅只是提供了这样一种机制。</p><p>为了合理充分利用网络资源，服务器也应该交错处理不同优先级的帧。而不是严格按照优先级来处理，否则又会造成队首堵塞的情况。</p></li><li><p><strong>解释</strong> ：请求优先级….感觉需要服务器也要支持的节奏（那确实变复杂了） 是的。也就是说服务器和客户端对这个优先级的理解是一样的，或是达成一致的。</p></li></ul><h4 id="服务器推送"><a href="#服务器推送" class="headerlink" title="服务器推送"></a><strong>服务器推送</strong></h4><ul><li><p>说到服务器推送，其实在HTTP1.1时，我们就用到过类似的，比如将图片使用base64编码嵌入在文档中。</p><p>之所以要提供这个服务，是因为一个文档被请求回来时，往往还需要再次请求很多文档内的其他资源，如果这些资源的请求不用客户端发起，而是服务端提前预判发给客户端，那么就会减少一半的RTT。</p><p>HTTP2.0这个协议也没有规定服务器端到底该怎样推送这个资源。服务端可以自己制定不同的策略，可以是根据客户端明确写出的推送请求；或者是服务端通过学习得来；再或者是通过额外的HTTP首部想服务端表明意向。</p></li><li><p>这个服务的特点是：</p><ul><li>只有建立连接后，服务器才可以推送资源(发送PUSH_PROMISE帧，这个帧中只有要约的HTTP首部)，也就是说服务器不能无缘无故的主动向客户端推送资源</li><li>客户端可以发送RST_STREAM拒绝服务器推送来的资源。但是这可能存在一个时间差，而导致客户端明明已经拒绝了，但服务端却还是把资源推送了过来。</li><li>推送的资源可以有不同页面共享</li><li>服务器可以按照优先级来推送资源</li></ul></li><li><p><strong>解释</strong> 服务器主动推送一个资源，客户端有权来选择是接收还是不接收，不能‘来者不拒’嘛，是吧。</p></li></ul><h4 id="流量控制"><a href="#流量控制" class="headerlink" title="流量控制"></a><strong>流量控制</strong></h4><ul><li>我们知道在HTTP2协议中，我们可以在同一个连接中，建立多个流，那么实际上这些流之间是相互竞争的，会相互争夺这个连接中资源的分配。此时与tcp流量控制相似，我们也需要对流中的帧进行流量控制。但只有DATA帧受流量控制，而其他类型的帧不受流量控制。同样，HTTP2也只提供了这样一种机制，而非具体实现。<ul><li>这个流量控制在没一跳之间进行，而非端到端</li><li>流量控制基于窗口更新帧。连接建立之初，通过交换settings帧，来设定双向的流量控制窗口大小。</li><li>发送端每发送一个DATA帧，就将window的值减去这次data帧的大小，直到window=0。</li><li>接收方可通过发送window_update 帧。如果接收方不想接受数据了，就不发送window _update帧。</li><li>在接受关键资源时，可将非关键资源的window设置的非常小，等网络空闲了，再改回大一些。</li></ul></li></ul><h3 id="工具使用"><a href="#工具使用" class="headerlink" title="工具使用"></a>工具使用</h3><ul><li><p>可以使用chrome的工具<code>chrome://net-internals/#http2</code>来查看具体发送的帧的内容</p></li><li><p>打开chrome-network中的protocol一栏，查看当前站点使用的HTTP版本</p><p><img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/HTTP/four/chrome-tool.png" alt=""></p></li><li><p>安装chrome扩展<a href="https://chrome.google.com/webstore/detail/http2-and-spdy-indicator/mpbpobfflnpcgagjijhmgnchggcjblin?hl=zh-CN" target="_blank" rel="noopener">HTTP/2 and SPDY indicator</a>,在地址栏右侧会标示出是否使用了HTTP2或SPDY协议。</p><p><img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/HTTP/four/chrome-tool1.png" alt=""></p></li><li><p>在firefox浏览器的网络中，也可直接查看使用的HTTP协议的版本</p><p><img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/HTTP/four/firefox-tool.png" alt=""></p></li><li><p>帮助我们检测某个网站是否使用了HTTP2协议的网站<a href="https://www.h2check.org/" target="_blank" rel="noopener">HTTP/2 Checker</a>;检测是否使用了SPDY协议的网站<a href="https://spdycheck.org/" target="_blank" rel="noopener">SPDYCheck.org</a></p></li><li><p>分析页面性能的网站<a href="http://www.webpagetest.org/" target="_blank" rel="noopener">WebPagetest</a></p></li></ul><h3 id="实验验证"><a href="#实验验证" class="headerlink" title="实验验证"></a>实验验证</h3><p>为了能够亲自证实HTTP2确实对web性能有了很大的改进，使用nodejs作为服务端，分别验证在使用HTTP2, HTTPS, HTTP和SPDY作为HTTP协议时，同时加载10张图片时web性能的表现，<a href="http://jiaolonghuang.github.io/code/http2-experiment.zip" target="_blank" rel="noopener">代码下载</a>。结果比较出乎意外：</p><ul><li><p>可以比较直观的观察到多路复用的表现</p><p><img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/HTTP/four/http2-e.png" alt=""></p><p><img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/HTTP/four/http1-e.png" alt=""></p></li><li><p>Server Push的验证 <a href="https://www.imququ.com/" target="_blank" rel="noopener">屈屈</a>的<a href="https://www.imququ.com/post/use-http2-now.html" target="_blank" rel="noopener">博客</a>中有专门的介绍，这里我们也看一下。打开博客首页后可看到响应头中有<code>link:&lt;...&gt;</code>这样一个键值对，这是告诉服务器这个资源需要被推送。</p><p><img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/HTTP/four/server-push.png" alt=""></p><p>然后使用之前提到过的<code>chrome://net-internals/#http2</code>工具来查看具体的Push过程</p><p><img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/HTTP/four/push_promise.png" alt=""></p></li><li><p>至于头部压缩字节变少，页面加载速度变慢并无明显结果。与<a href="http://www.infoq.com/cn/news/2015/02/https-spdy-http2-comparison" target="_blank" rel="noopener">HTTPS、SPDY和HTTP/2的性能比较</a>的实验结果差的也比较多。</p></li></ul><p>猜测原因：由于是访问的本地资源，不能模拟网络拥塞的情况，故不能完全体现出http2的优势。</p><h3 id="脚注"><a href="#脚注" class="headerlink" title="脚注"></a>脚注</h3><ol><li>套接字：是支持TCP/IP网络通信的基本操作单元，可以看成是不同主机之间的进程进行双向通信的端点。是应用进程与tcp连接之间的门，通过套接字口来发送或获得报文。</li><li>HTTP队首阻塞：一个慢请求阻塞后面的所有请求。具体来说就是，假设客户端同时发送2个请求，一个高优先级，一个低优先级，即便低优先级的资源先准备好了，也不会先发送，而是先等着，等高优先级的响应发送完了再发送低优先级的。这样会导致网络资源浪费，服务器缓冲开销浪费，最终导致客户端等待时间无限期延迟。</li><li>tcp队首阻塞：tcp要求分组严格按照顺序交付，一个分组未收到，就会阻塞后续的所有高序号分组。直到重传那个丢失的分组。</li></ol>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;HTTP2.0可以让我们的应用变得更快、更简单、更健壮，让我们在HTTP/1.1时针对TCP协议特性而做的用来提高性能的HACK一笔勾销&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;为了提高应用的性能，降低延迟，我们能做的无外乎2点，要么传输的东西越小越好，要么距离能获得资源的地方越近越好。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;HTTP2的目的：通过支持&lt;strong&gt;多路复用&lt;/strong&gt;来提高并行能力，减少因为3次握手等而产生的延迟；通过&lt;strong&gt;压缩HTTP首部&lt;/strong&gt;将协议开销降到最低，同时支持请求优先级和服务器推送。&lt;/li&gt;
-&lt;li&gt;HTTP2最大的改变：引入&lt;strong&gt;二进制分帧层&lt;/strong&gt;。HTTP2.0不会改动HTTP1.x的语义，提供的功能也不变，但是HTTP2对内修改了格式化数据的方式，以及传输这些数据的方式。对外，也就是面向应用，不用做任何改变，感知不到这一层的变化的。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;其实HTTP2.0是对HTTP1.x的一个扩展，而非替代，之所以称之为2是因为它引入的二进制分帧层之前的HTTP1.x的服务端和客户端并不兼容。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Protocol" scheme="http://roux.top/categories/Protocol/"/>
-    
-    
-      <category term="HTTP" scheme="http://roux.top/tags/HTTP/"/>
+      <category term="DNS" scheme="http://roux.top/tags/DNS/"/>
     
   </entry>
   
@@ -273,24 +239,26 @@
   </entry>
   
   <entry>
-    <title>HTTP学习（一）——HTTP的历史</title>
-    <link href="http://roux.top/2018/04/20/HTTP%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%80%EF%BC%89/"/>
-    <id>http://roux.top/2018/04/20/HTTP学习（一）/</id>
-    <published>2018-04-19T16:00:00.000Z</published>
-    <updated>2018-04-22T05:44:00.950Z</updated>
+    <title>HTTP学习（四）——HTTP2.0的新特性</title>
+    <link href="http://roux.top/2018/04/21/HTTP%E5%AD%A6%E4%B9%A0%EF%BC%88%E5%9B%9B%EF%BC%89/"/>
+    <id>http://roux.top/2018/04/21/HTTP学习（四）/</id>
+    <published>2018-04-20T16:00:00.000Z</published>
+    <updated>2018-04-22T05:46:02.851Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><ul><li>本系列文章均转自<a href="https://imjiaolong.cn/" target="_blank" rel="noopener">小路口</a>的系列博文，因为没有找到博主的联系方式，故如有侵权烦请联系我进行处理。</li></ul><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><ul><li>在上世纪60年代，世界上占统治地位的通信网络是电话网络，它是基于电路交换[1]的。与此同时，随着分时计算机的出现和计算机重要性的提高，如何充分利用分散在世界各地的数字计算机为人们所共享就变的越发重要了。其中需要注意的是，这些用户所产生的流量是具有突发性的，也就是说具有活动的间断性。</li><li>于是世界上的科学家们就发明了更能很好解决突发性的分组交换来替代电路交换。最开始是美国的阿帕网，ARPAnet，是世界上第一个分组交换机网络，也就是今天因特网的直接祖先。</li><li>HTTP协议是现代web的基础。其实HTTP协议的出现主要是为了推动万维网的应用，它们的发明者是同一个人。HTTP协议设计之初是非常简洁的，就是为了传输超文本文档，也就是HTTP0.9版本。</li></ul><a id="more"></a><h3 id="HTTP的版本"><a href="#HTTP的版本" class="headerlink" title="HTTP的版本"></a>HTTP的版本</h3><ul><li><p>HTTP0.9</p><ul><li>请求：ASCII字符串＋CRLF结尾</li><li>响应：ASCII字符流/HTML+CRLF结尾</li><li>只能GET获取资源，不能发送携带数据的POST请求</li><li>文档传完之后，断开连接</li></ul></li><li><p>HTTP1.0（并不是真正的规范）</p><p>随着页面上的内容逐渐丰富，除了文字，超链接，还有图片资源。 人们对web应用的需求也不断增加，要求不仅能够访问HTML同时还需要能够提供有关请求和响应的元数据（首部字段），在页面上进行交互操作，比如表单提交，并且支持内容协商。</p><ul><li>请求/响应的首部可有多行首部字段构成</li><li>响应对象前增加了一个响应状态行</li><li>可以支持长连接，还是每次请求结束后默认都断开连接</li></ul></li><li><p>HTTP1.1</p><ul><li>持久连接</li><li>分块传输</li><li>字节范围请求</li><li>协商机制更健全，协商内容更多：内容编码，传输编码，缓存指令，客户端cookie等</li><li>HTTP pipling(实际使用受限，浏览器默认不开启，很多中间代理不提供该服务)</li></ul></li><li><p>HTTP2 在web应用中资源越来越丰富的趋势中，由于tcp自身的特点以至于HTTP1.1的性能上受到了很大的限制，虽然我们有做一些针对性能提高的hack。HTTP2的出现主要是为了提高传输性能，降低延迟，提高吞吐量。</p></li></ul><p>从总体来说，HTTP0.9用了一行命令就启动了万维网，HTTP1.0是对0.9扩展的正式说明，而HTTP1.1则是一份官方标准。总之，HTTP1.x的设计的初衷是实现要简单。但是这也是以牺牲性能为代价的。所以，这也是现在HTTP2所要解决的问题。</p><ul><li><strong>解释</strong><ol><li>“HTTP1.x的设计的初衷是实现要简单。但是这也是以牺牲性能为代价的” 比如没有处理并行连接和请求的快捷方法，没有为了减少不必要的请求开销而做优化（首部压缩）等等，这些以至于在页面资源极其丰富的今天，即便我们针对HTTP1.1做了很多HACK优化，然而性能还是没有得到很大的提升。而这些点在HTTP2中都得到了改进。</li></ol></li></ul><h3 id="HTTP与tcp的关系"><a href="#HTTP与tcp的关系" class="headerlink" title="HTTP与tcp的关系"></a>HTTP与tcp的关系</h3><ul><li>HTTP是应用层的协议，tcp是传输层的协议。HTTP协议并没有规定必须要使用tcp协议当作是传输层的协议，现在默认使用tcp当做是传输层协议，采用80端口（因为HTTP是无状态协议，要是使用未经改良的不可靠传输协议，很容易造成数据丢失）；另外，谷歌还研发了一种基于udp的多路传输协议QUIC(Quick UDP Internet Connections)[2]，用来解决SPDY在TCP遇到的瓶颈而在UDP上做出的探索。</li><li>HTTP是一种无状态的协议，当前的请求与上一次的请求并无关系，也就是说这次HTTP请求做什么和上一次请求做什么是没有关系的，哪怕请求的是相同的资源。这样做的好处是，服务器不用为了保存状态而消耗过多的资源，坏处是重复发相同的状态，会浪费网络资源，造成网络拥塞，延迟增大。</li><li>tcp提供了可靠传输的性能，为精确传输做了优化，比如3次握手，差错检测，快速重传。同时还进行了拥塞预防与控制，慢启动等来减轻整个网络的拥塞程度。一个数据包从请求到收到，需要经过传播延迟，传输延迟，处理延迟和排队延迟。因此，tcp比较适合大块数据的精确传输，性价比高；若常有突发的连接请求，实际上是其负作用的。原因很简单，在拿到完整数据之前，tcp做了太多事，造成了太多延迟，至少1个RTT。</li></ul><h3 id="脚注"><a href="#脚注" class="headerlink" title="脚注"></a>脚注</h3><ol><li>电路交换：在端系统会话过程中，预留了端系统间所经路径所需要的资源，包括缓存，链路传输速率。</li><li>QUIC能够处理传输可靠性、丢包或无序数据包等一系列UDP默认未处理的问题。它的高层类似SPDY，低层是在UDP上模仿实现TCP的面向连接特性和可靠性并加入类似TLS的加密过程</li></ol><h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><ul><li><a href="https://imjiaolong.cn/post/http-history.html" target="_blank" rel="noopener">https://imjiaolong.cn/post/http-history.html</a></li></ul>]]></content>
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><ul><li><p>HTTP2.0可以让我们的应用变得更快、更简单、更健壮，让我们在HTTP/1.1时针对TCP协议特性而做的用来提高性能的HACK一笔勾销</p></li><li><p>为了提高应用的性能，降低延迟，我们能做的无外乎2点，要么传输的东西越小越好，要么距离能获得资源的地方越近越好。</p><ul><li>HTTP2的目的：通过支持<strong>多路复用</strong>来提高并行能力，减少因为3次握手等而产生的延迟；通过<strong>压缩HTTP首部</strong>将协议开销降到最低，同时支持请求优先级和服务器推送。</li><li>HTTP2最大的改变：引入<strong>二进制分帧层</strong>。HTTP2.0不会改动HTTP1.x的语义，提供的功能也不变，但是HTTP2对内修改了格式化数据的方式，以及传输这些数据的方式。对外，也就是面向应用，不用做任何改变，感知不到这一层的变化的。</li></ul></li><li><p>其实HTTP2.0是对HTTP1.x的一个扩展，而非替代，之所以称之为2是因为它引入的二进制分帧层之前的HTTP1.x的服务端和客户端并不兼容。</p><a id="more"></a></li></ul><h3 id="特性浅析"><a href="#特性浅析" class="headerlink" title="特性浅析"></a>特性浅析</h3><h4 id="分帧"><a href="#分帧" class="headerlink" title="分帧"></a><strong>分帧</strong></h4><ul><li><p>这是HTTP2.0中最大的改变。HTTP2.0之所以性能会比HTTP1.x有那么大的提高，很大程度上正是由于这一层的引入。</p><blockquote><p>这里所谓的“层” ，指的是位于套接字接口[1]与应用可见的高层HTTP API之间的一个新机制:HTTP的语义，包括各种动词、方法、首部，都不受影响，不同的是<strong>传输期间</strong>对它们的编码方式变了。</p></blockquote></li><li><p>HTTP1.x用回车换行符作为纯文本的分隔符，在进行解析和差错检测时不方便。HTTP1.x中用ASCII码，是16进制的，来表示报文中的每一个字符，如下图中,47代表字母G，45代表字符E，54代表字符T。</p><p><img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/HTTP/four/http-header.png" alt=""></p></li><li><p>然而，HTTP2.0引入分帧层后，将报文分隔成一个个更小的帧，并采用二进制编码的方式。通常会将一个消息（首部和数据在一起的）分成一个HEADER帧和若干个DATA帧。如下图所示</p><p><img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/HTTP/four/frame-layer.png" alt=""></p><pre><code>另外需要明确的几个定义： **流**：已建立的连接上的双向字节流。具有唯一的流ID，客户端发起的为奇数ID，服务端发起的为偶数ID。很多个流可以并行的在同一个tcp连接上交换消息。 **消息**：与逻辑消息对应，比如一个请求或一个响应。由一个或多个帧组成。 **帧**：HTTP2中最小的通信单位，每个帧都会有帧首部，每个帧或者用来承载HTTP首部或负荷数据，或其他特定类型的帧。帧是遵循二进制编码的。总得来说，就是这样的，在HTTP2中，相同域名下的所有通信都在一个连接上完成，这个连接中可以承载任意数量的双向流。这些流都是以消息的形式被发送的，同时消息又由一个或多个帧组成。多个帧之间可以乱序发送，最后根据帧首部的流标识重新组装。</code></pre></li><li><p><strong>解释</strong> :这个双向是指，服务器可以给浏览器发消息（server push），浏览器也可以给服务器发东西（这就不用说啦）</p></li></ul><ul><li><p>对于一个帧来说，有固定固定帧格式，其中帧首部规定了帧最多只能带64KB的数据，还包括了帧类型和流标识符等。另外，帧中还可以填充一些额外的数据，最多255字节，保证数据安全性，拿HEADER帧举例。</p><p><img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/HTTP/four/frame-structure.png" alt=""></p><p><img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/HTTP/four/frame-header.png" alt=""></p></li><li><p>从这点上看，HTTP2.0中的帧与tcp报文段有些相似的。</p><p>在客户端或服务端发起建立新流时，帧携带HTTP的首部块，其中服务端发起流时，发送的HEADER帧没有优先级这一字段；当新流建立之后，就可发送HTTP消息的应用数据，也就是帧的负荷数据。</p><p>将消息拆成多个数据帧之后，会大大缓解HTTP队首阻塞[2]的情况。但是与tcp层的队首阻塞[3]并无直接关系。同时，改以帧为传输单位后，使得对报文无论是解析和差错检测方面都变得更加容易，因为对纯文本的解析还需要考虑到空格，空行，换行等问题。另外，也还消除了并行处理和发送请求及响应时对多个连接的依赖。</p></li><li><p><strong>解释</strong> ：多路复用：用一个tcp连接，并行发好多。【…keep_alive 很像啊】 —分组数？？表示是底层的，都没有概念…按道理说是分帧了后，分组数会变多啊？？？ 和keep_alive 不像，是和管道化很像哈。 实际上是这样的，首先肯定的是多使用同一个tcp连接，比起以前的多个tcp连接，会至少每次少了3个建立连接的tcp报文段，还不包括重传的。同时因为分帧之后出错的概率变小，间接的需要重传的包变少。从这两方面来说整个网络中的包中的总数是变少的。 另外呢，tcp报文段的长度其实还是保持不变的，不同流中的帧其实是混在一个tcp报文段中一起被发送，而在接收方那边接受到这个报文段后再进行拆分重新组装成新的http报文。</p></li></ul><h4 id="首部压缩"><a href="#首部压缩" class="headerlink" title="首部压缩"></a><strong>首部压缩</strong></h4><ul><li>由于HTTP协议是一种无状态的协议，服务器自身不会保存太多的信息和先前请求过的元数据信息，这就需要客户端每次都使用多个首部字段来描述所传输的资源及其属性，又由于HTTP1.1是以文本形式传输的，每次都会给HTTP报文增加500-800字节的负荷，如果算上cookie，这个负荷甚至会增加到上千。如果可以有办法减少这些开销，那么对性能又有很大的提升。<ol><li>HTTP2采用HPACK压缩方法，一边用index mapping table压缩，一边编码。这个table由<a href="https://http2.github.io/http2-spec/compression.html#static.table.definition" target="_blank" rel="noopener">静态表</a>和动态表组成。<ol><li>先用预定义的index mapping table将头部中常用的字符串用index来代替</li><li>对一定要使用文本表示的字符串，采用预定义的哈夫曼编码表进行编码 (具体的压缩和解压缩的方法请看<a href="http://www.cnblogs.com/ghj1976/p/4586529.html" target="_blank" rel="noopener">此文</a>的解释)<ul><li>客户端和服务器端使用首部表来跟踪和存储之前发送的每一个键值对。第一次请求时发送过的键值对，第二次在再请求时就不在发送了。（这一现象还一直没观察到）</li><li>在tcp连接期间，客户端和服务端共同维护这个首部表，并且是共同渐进更新的</li><li>每个新的键值对，要么直接添加到首部表尾部，要么替换原有表中的值</li></ul></li></ol></li><li>另外，HTTP2的前身SPDY采用的头部压缩算法是delate算法，这个算法的压缩效率也不错，但是由于存在<a href="http://www.freebuf.com/articles/web/5636.html" target="_blank" rel="noopener">CRIME攻击</a>，而HTTP2不得不重新设计了HPACK算法。</li></ol></li><li><strong>解释</strong> 使用了HPACK算法，一方面如果下一次请求头部和上一次请求头部中有相同的字段，那么相同的字段不会被发送，只会被发送差异性的字段。另一方面，会有一张首部表，里面会有常用的首部字段极其对应的序号，会有序号来代替这个具体的字段字符串。同时，整个首部帧还会用哈夫曼编码来进行压缩。</li></ul><h4 id="多路复用"><a href="#多路复用" class="headerlink" title="多路复用"></a><strong>多路复用</strong></h4><ul><li><p>引入二进制分帧层之后，HTTP2.0可以很容易的去实现多流并行而不用依赖建立多个tcp连接。</p><blockquote><p>实验表明，客户端使用更少的连接肯定可以降低延迟时间。HTTP 2.0 发送的总分组数量比 HTTP 差不多要少 40%。而服务器处理大量并发连接的情况也变成了可伸缩性问题，因为 HTTP 2.0 减轻了这个负担。 —-HTTP2.0</p></blockquote></li><li><p>每个来源使用一个连接，优势如下：</p><ul><li>从服务器和客户端来说，占用的资源和内存都少了。</li><li>从tcp连接和网络来说，使得网络拥塞得到改善，慢启动时间减少，拥塞和丢包恢复速度变快。</li></ul></li><li><p><strong>解释</strong></p><ul><li>keep-alive，也是可以不进行3次握手就可以发送多个在同一个域下的请求。但是必须发送下一个请求B，等待前一个请求A的响应收到后才可以发送。多路复用和管道优化差不多，只是管道优化由于兼容性的问题，而没有被普遍使用。</li><li>但是什么时候断？如果太多的保持连接，会不会反而不好呢 和一般TCP连接释放一样，如果客户端没有数据要请求，或服务端数据发送完毕后，会主动发送关闭连接的报文。或者是服务端连续发送10个探测报文，客户端无响应，服务端就关闭了这个连接。</li></ul></li></ul><h4 id="请求优先级"><a href="#请求优先级" class="headerlink" title="请求优先级"></a><strong>请求优先级</strong></h4><ul><li><p>当同一条连接上可以同时发送很多请求时，并不等于说这些请求对于服务器来说都应该一视同仁，因为客户端对资源的需求程度不同。比如说一个html文档，显然客户端对CSS和JS的需求，远大于对文档内图片的需求。</p><p>因此在建立新流时，HEADER帧可以带有一个优先级(31位，0为优先级最高)的值。这样，服务端就可以因此而适当分配资源，优先发送这些优先级高的帧。</p><p>HTTP2.0协议并没有规定这样的处理优先级的算法该如何实现，仅仅只是提供了这样一种机制。</p><p>为了合理充分利用网络资源，服务器也应该交错处理不同优先级的帧。而不是严格按照优先级来处理，否则又会造成队首堵塞的情况。</p></li><li><p><strong>解释</strong> ：请求优先级….感觉需要服务器也要支持的节奏（那确实变复杂了） 是的。也就是说服务器和客户端对这个优先级的理解是一样的，或是达成一致的。</p></li></ul><h4 id="服务器推送"><a href="#服务器推送" class="headerlink" title="服务器推送"></a><strong>服务器推送</strong></h4><ul><li><p>说到服务器推送，其实在HTTP1.1时，我们就用到过类似的，比如将图片使用base64编码嵌入在文档中。</p><p>之所以要提供这个服务，是因为一个文档被请求回来时，往往还需要再次请求很多文档内的其他资源，如果这些资源的请求不用客户端发起，而是服务端提前预判发给客户端，那么就会减少一半的RTT。</p><p>HTTP2.0这个协议也没有规定服务器端到底该怎样推送这个资源。服务端可以自己制定不同的策略，可以是根据客户端明确写出的推送请求；或者是服务端通过学习得来；再或者是通过额外的HTTP首部想服务端表明意向。</p></li><li><p>这个服务的特点是：</p><ul><li>只有建立连接后，服务器才可以推送资源(发送PUSH_PROMISE帧，这个帧中只有要约的HTTP首部)，也就是说服务器不能无缘无故的主动向客户端推送资源</li><li>客户端可以发送RST_STREAM拒绝服务器推送来的资源。但是这可能存在一个时间差，而导致客户端明明已经拒绝了，但服务端却还是把资源推送了过来。</li><li>推送的资源可以有不同页面共享</li><li>服务器可以按照优先级来推送资源</li></ul></li><li><p><strong>解释</strong> 服务器主动推送一个资源，客户端有权来选择是接收还是不接收，不能‘来者不拒’嘛，是吧。</p></li></ul><h4 id="流量控制"><a href="#流量控制" class="headerlink" title="流量控制"></a><strong>流量控制</strong></h4><ul><li>我们知道在HTTP2协议中，我们可以在同一个连接中，建立多个流，那么实际上这些流之间是相互竞争的，会相互争夺这个连接中资源的分配。此时与tcp流量控制相似，我们也需要对流中的帧进行流量控制。但只有DATA帧受流量控制，而其他类型的帧不受流量控制。同样，HTTP2也只提供了这样一种机制，而非具体实现。<ul><li>这个流量控制在没一跳之间进行，而非端到端</li><li>流量控制基于窗口更新帧。连接建立之初，通过交换settings帧，来设定双向的流量控制窗口大小。</li><li>发送端每发送一个DATA帧，就将window的值减去这次data帧的大小，直到window=0。</li><li>接收方可通过发送window_update 帧。如果接收方不想接受数据了，就不发送window _update帧。</li><li>在接受关键资源时，可将非关键资源的window设置的非常小，等网络空闲了，再改回大一些。</li></ul></li></ul><h3 id="工具使用"><a href="#工具使用" class="headerlink" title="工具使用"></a>工具使用</h3><ul><li><p>可以使用chrome的工具<code>chrome://net-internals/#http2</code>来查看具体发送的帧的内容</p></li><li><p>打开chrome-network中的protocol一栏，查看当前站点使用的HTTP版本</p><p><img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/HTTP/four/chrome-tool.png" alt=""></p></li><li><p>安装chrome扩展<a href="https://chrome.google.com/webstore/detail/http2-and-spdy-indicator/mpbpobfflnpcgagjijhmgnchggcjblin?hl=zh-CN" target="_blank" rel="noopener">HTTP/2 and SPDY indicator</a>,在地址栏右侧会标示出是否使用了HTTP2或SPDY协议。</p><p><img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/HTTP/four/chrome-tool1.png" alt=""></p></li><li><p>在firefox浏览器的网络中，也可直接查看使用的HTTP协议的版本</p><p><img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/HTTP/four/firefox-tool.png" alt=""></p></li><li><p>帮助我们检测某个网站是否使用了HTTP2协议的网站<a href="https://www.h2check.org/" target="_blank" rel="noopener">HTTP/2 Checker</a>;检测是否使用了SPDY协议的网站<a href="https://spdycheck.org/" target="_blank" rel="noopener">SPDYCheck.org</a></p></li><li><p>分析页面性能的网站<a href="http://www.webpagetest.org/" target="_blank" rel="noopener">WebPagetest</a></p></li></ul><h3 id="实验验证"><a href="#实验验证" class="headerlink" title="实验验证"></a>实验验证</h3><p>为了能够亲自证实HTTP2确实对web性能有了很大的改进，使用nodejs作为服务端，分别验证在使用HTTP2, HTTPS, HTTP和SPDY作为HTTP协议时，同时加载10张图片时web性能的表现，<a href="http://jiaolonghuang.github.io/code/http2-experiment.zip" target="_blank" rel="noopener">代码下载</a>。结果比较出乎意外：</p><ul><li><p>可以比较直观的观察到多路复用的表现</p><p><img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/HTTP/four/http2-e.png" alt=""></p><p><img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/HTTP/four/http1-e.png" alt=""></p></li><li><p>Server Push的验证 <a href="https://www.imququ.com/" target="_blank" rel="noopener">屈屈</a>的<a href="https://www.imququ.com/post/use-http2-now.html" target="_blank" rel="noopener">博客</a>中有专门的介绍，这里我们也看一下。打开博客首页后可看到响应头中有<code>link:&lt;...&gt;</code>这样一个键值对，这是告诉服务器这个资源需要被推送。</p><p><img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/HTTP/four/server-push.png" alt=""></p><p>然后使用之前提到过的<code>chrome://net-internals/#http2</code>工具来查看具体的Push过程</p><p><img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/HTTP/four/push_promise.png" alt=""></p></li><li><p>至于头部压缩字节变少，页面加载速度变慢并无明显结果。与<a href="http://www.infoq.com/cn/news/2015/02/https-spdy-http2-comparison" target="_blank" rel="noopener">HTTPS、SPDY和HTTP/2的性能比较</a>的实验结果差的也比较多。</p></li></ul><p>猜测原因：由于是访问的本地资源，不能模拟网络拥塞的情况，故不能完全体现出http2的优势。</p><h3 id="脚注"><a href="#脚注" class="headerlink" title="脚注"></a>脚注</h3><ol><li>套接字：是支持TCP/IP网络通信的基本操作单元，可以看成是不同主机之间的进程进行双向通信的端点。是应用进程与tcp连接之间的门，通过套接字口来发送或获得报文。</li><li>HTTP队首阻塞：一个慢请求阻塞后面的所有请求。具体来说就是，假设客户端同时发送2个请求，一个高优先级，一个低优先级，即便低优先级的资源先准备好了，也不会先发送，而是先等着，等高优先级的响应发送完了再发送低优先级的。这样会导致网络资源浪费，服务器缓冲开销浪费，最终导致客户端等待时间无限期延迟。</li><li>tcp队首阻塞：tcp要求分组严格按照顺序交付，一个分组未收到，就会阻塞后续的所有高序号分组。直到重传那个丢失的分组。</li></ol>]]></content>
     
     <summary type="html">
     
       &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;本系列文章均转自&lt;a href=&quot;https://imjiaolong.cn/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;小路口&lt;/a&gt;的系列博文，因为没有找到博主的联系方式，故如有侵权烦请联系我进行处理。&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;HTTP2.0可以让我们的应用变得更快、更简单、更健壮，让我们在HTTP/1.1时针对TCP协议特性而做的用来提高性能的HACK一笔勾销&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;为了提高应用的性能，降低延迟，我们能做的无外乎2点，要么传输的东西越小越好，要么距离能获得资源的地方越近越好。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;HTTP2的目的：通过支持&lt;strong&gt;多路复用&lt;/strong&gt;来提高并行能力，减少因为3次握手等而产生的延迟；通过&lt;strong&gt;压缩HTTP首部&lt;/strong&gt;将协议开销降到最低，同时支持请求优先级和服务器推送。&lt;/li&gt;
+&lt;li&gt;HTTP2最大的改变：引入&lt;strong&gt;二进制分帧层&lt;/strong&gt;。HTTP2.0不会改动HTTP1.x的语义，提供的功能也不变，但是HTTP2对内修改了格式化数据的方式，以及传输这些数据的方式。对外，也就是面向应用，不用做任何改变，感知不到这一层的变化的。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;在上世纪60年代，世界上占统治地位的通信网络是电话网络，它是基于电路交换[1]的。与此同时，随着分时计算机的出现和计算机重要性的提高，如何充分利用分散在世界各地的数字计算机为人们所共享就变的越发重要了。其中需要注意的是，这些用户所产生的流量是具有突发性的，也就是说具有活动的间断性。&lt;/li&gt;
-&lt;li&gt;于是世界上的科学家们就发明了更能很好解决突发性的分组交换来替代电路交换。最开始是美国的阿帕网，ARPAnet，是世界上第一个分组交换机网络，也就是今天因特网的直接祖先。&lt;/li&gt;
-&lt;li&gt;HTTP协议是现代web的基础。其实HTTP协议的出现主要是为了推动万维网的应用，它们的发明者是同一个人。HTTP协议设计之初是非常简洁的，就是为了传输超文本文档，也就是HTTP0.9版本。&lt;/li&gt;
-&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;其实HTTP2.0是对HTTP1.x的一个扩展，而非替代，之所以称之为2是因为它引入的二进制分帧层之前的HTTP1.x的服务端和客户端并不兼容。&lt;/p&gt;
     
     </summary>
     
@@ -346,6 +314,35 @@
 &lt;li&gt;&lt;img src=&quot;https://raw.githubusercontent.com/paulRoux/Pictures/master/HTTP/two/%E5%8E%86%E7%A8%8B.jpg&quot; alt=&quot;历程&quot;&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+      <category term="Protocol" scheme="http://roux.top/categories/Protocol/"/>
+    
+    
+      <category term="HTTP" scheme="http://roux.top/tags/HTTP/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>HTTP学习（一）——HTTP的历史</title>
+    <link href="http://roux.top/2018/04/20/HTTP%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%80%EF%BC%89/"/>
+    <id>http://roux.top/2018/04/20/HTTP学习（一）/</id>
+    <published>2018-04-19T16:00:00.000Z</published>
+    <updated>2018-04-22T05:44:00.950Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><ul><li>本系列文章均转自<a href="https://imjiaolong.cn/" target="_blank" rel="noopener">小路口</a>的系列博文，因为没有找到博主的联系方式，故如有侵权烦请联系我进行处理。</li></ul><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><ul><li>在上世纪60年代，世界上占统治地位的通信网络是电话网络，它是基于电路交换[1]的。与此同时，随着分时计算机的出现和计算机重要性的提高，如何充分利用分散在世界各地的数字计算机为人们所共享就变的越发重要了。其中需要注意的是，这些用户所产生的流量是具有突发性的，也就是说具有活动的间断性。</li><li>于是世界上的科学家们就发明了更能很好解决突发性的分组交换来替代电路交换。最开始是美国的阿帕网，ARPAnet，是世界上第一个分组交换机网络，也就是今天因特网的直接祖先。</li><li>HTTP协议是现代web的基础。其实HTTP协议的出现主要是为了推动万维网的应用，它们的发明者是同一个人。HTTP协议设计之初是非常简洁的，就是为了传输超文本文档，也就是HTTP0.9版本。</li></ul><a id="more"></a><h3 id="HTTP的版本"><a href="#HTTP的版本" class="headerlink" title="HTTP的版本"></a>HTTP的版本</h3><ul><li><p>HTTP0.9</p><ul><li>请求：ASCII字符串＋CRLF结尾</li><li>响应：ASCII字符流/HTML+CRLF结尾</li><li>只能GET获取资源，不能发送携带数据的POST请求</li><li>文档传完之后，断开连接</li></ul></li><li><p>HTTP1.0（并不是真正的规范）</p><p>随着页面上的内容逐渐丰富，除了文字，超链接，还有图片资源。 人们对web应用的需求也不断增加，要求不仅能够访问HTML同时还需要能够提供有关请求和响应的元数据（首部字段），在页面上进行交互操作，比如表单提交，并且支持内容协商。</p><ul><li>请求/响应的首部可有多行首部字段构成</li><li>响应对象前增加了一个响应状态行</li><li>可以支持长连接，还是每次请求结束后默认都断开连接</li></ul></li><li><p>HTTP1.1</p><ul><li>持久连接</li><li>分块传输</li><li>字节范围请求</li><li>协商机制更健全，协商内容更多：内容编码，传输编码，缓存指令，客户端cookie等</li><li>HTTP pipling(实际使用受限，浏览器默认不开启，很多中间代理不提供该服务)</li></ul></li><li><p>HTTP2 在web应用中资源越来越丰富的趋势中，由于tcp自身的特点以至于HTTP1.1的性能上受到了很大的限制，虽然我们有做一些针对性能提高的hack。HTTP2的出现主要是为了提高传输性能，降低延迟，提高吞吐量。</p></li></ul><p>从总体来说，HTTP0.9用了一行命令就启动了万维网，HTTP1.0是对0.9扩展的正式说明，而HTTP1.1则是一份官方标准。总之，HTTP1.x的设计的初衷是实现要简单。但是这也是以牺牲性能为代价的。所以，这也是现在HTTP2所要解决的问题。</p><ul><li><strong>解释</strong><ol><li>“HTTP1.x的设计的初衷是实现要简单。但是这也是以牺牲性能为代价的” 比如没有处理并行连接和请求的快捷方法，没有为了减少不必要的请求开销而做优化（首部压缩）等等，这些以至于在页面资源极其丰富的今天，即便我们针对HTTP1.1做了很多HACK优化，然而性能还是没有得到很大的提升。而这些点在HTTP2中都得到了改进。</li></ol></li></ul><h3 id="HTTP与tcp的关系"><a href="#HTTP与tcp的关系" class="headerlink" title="HTTP与tcp的关系"></a>HTTP与tcp的关系</h3><ul><li>HTTP是应用层的协议，tcp是传输层的协议。HTTP协议并没有规定必须要使用tcp协议当作是传输层的协议，现在默认使用tcp当做是传输层协议，采用80端口（因为HTTP是无状态协议，要是使用未经改良的不可靠传输协议，很容易造成数据丢失）；另外，谷歌还研发了一种基于udp的多路传输协议QUIC(Quick UDP Internet Connections)[2]，用来解决SPDY在TCP遇到的瓶颈而在UDP上做出的探索。</li><li>HTTP是一种无状态的协议，当前的请求与上一次的请求并无关系，也就是说这次HTTP请求做什么和上一次请求做什么是没有关系的，哪怕请求的是相同的资源。这样做的好处是，服务器不用为了保存状态而消耗过多的资源，坏处是重复发相同的状态，会浪费网络资源，造成网络拥塞，延迟增大。</li><li>tcp提供了可靠传输的性能，为精确传输做了优化，比如3次握手，差错检测，快速重传。同时还进行了拥塞预防与控制，慢启动等来减轻整个网络的拥塞程度。一个数据包从请求到收到，需要经过传播延迟，传输延迟，处理延迟和排队延迟。因此，tcp比较适合大块数据的精确传输，性价比高；若常有突发的连接请求，实际上是其负作用的。原因很简单，在拿到完整数据之前，tcp做了太多事，造成了太多延迟，至少1个RTT。</li></ul><h3 id="脚注"><a href="#脚注" class="headerlink" title="脚注"></a>脚注</h3><ol><li>电路交换：在端系统会话过程中，预留了端系统间所经路径所需要的资源，包括缓存，链路传输速率。</li><li>QUIC能够处理传输可靠性、丢包或无序数据包等一系列UDP默认未处理的问题。它的高层类似SPDY，低层是在UDP上模仿实现TCP的面向连接特性和可靠性并加入类似TLS的加密过程</li></ol><h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><ul><li><a href="https://imjiaolong.cn/post/http-history.html" target="_blank" rel="noopener">https://imjiaolong.cn/post/http-history.html</a></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;本系列文章均转自&lt;a href=&quot;https://imjiaolong.cn/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;小路口&lt;/a&gt;的系列博文，因为没有找到博主的联系方式，故如有侵权烦请联系我进行处理。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;在上世纪60年代，世界上占统治地位的通信网络是电话网络，它是基于电路交换[1]的。与此同时，随着分时计算机的出现和计算机重要性的提高，如何充分利用分散在世界各地的数字计算机为人们所共享就变的越发重要了。其中需要注意的是，这些用户所产生的流量是具有突发性的，也就是说具有活动的间断性。&lt;/li&gt;
+&lt;li&gt;于是世界上的科学家们就发明了更能很好解决突发性的分组交换来替代电路交换。最开始是美国的阿帕网，ARPAnet，是世界上第一个分组交换机网络，也就是今天因特网的直接祖先。&lt;/li&gt;
+&lt;li&gt;HTTP协议是现代web的基础。其实HTTP协议的出现主要是为了推动万维网的应用，它们的发明者是同一个人。HTTP协议设计之初是非常简洁的，就是为了传输超文本文档，也就是HTTP0.9版本。&lt;/li&gt;
 &lt;/ul&gt;
     
     </summary>
@@ -414,30 +411,6 @@
   </entry>
   
   <entry>
-    <title>TIME_WAIT状态</title>
-    <link href="http://roux.top/2018/01/08/TIME_WAIT/"/>
-    <id>http://roux.top/2018/01/08/TIME_WAIT/</id>
-    <published>2018-01-07T16:00:00.000Z</published>
-    <updated>2018-04-22T05:43:43.299Z</updated>
-    
-    <content type="html"><![CDATA[<h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><ul><li>关于TCP的<code>TIME_WAIT</code>，一直停留在明白有什么作用的层次。想着《计算机网络》都学完了，也应该把TCP的问题给实实在在的弄明白。</li></ul><a id="more"></a><h4 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h4><ul><li><p>产生的原因见<a href="http://roux.top/2017/10/10/TCP%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/">TCP四次挥手</a></p></li><li><p>一些问题及解决</p><ul><li><p><a href="http://blog.csdn.net/dog250/article/details/13760985" target="_blank" rel="noopener">TIME_WAIT快速回收与重用</a></p></li><li><p><a href="https://huoding.com/2012/01/19/142" target="_blank" rel="noopener">记一次TIME_WAIT网络故障</a></p></li><li><p><a href="http://www.cnblogs.com/yjf512/p/5327886.html" target="_blank" rel="noopener">也说说TIME_WAIT状态</a></p></li></ul></li><li><p>深入剖析</p><ul><li><p><a href="https://huoding.com/2013/12/31/316" target="_blank" rel="noopener">再叙TIME_WAIT</a></p></li><li><p><a href="http://blog.oldboyedu.com/tcp-wait/" target="_blank" rel="noopener">你所不知道的TIME_WAIT和CLOSE_WAIT</a>—-强烈推荐</p></li></ul></li><li><p>以前也和前面文章里说的一样，只是知道出现大量的<code>TIME_WAIT</code>就应该调整那么三个参数就行了，但是没想到还有问题的存在，并且调整参数还会分情况与场景。以后学习要注意！</p></li></ul><h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><ul><li>关于TCP的学习就基本上结束了，也学了近一年时间了，大大小小的问题在自己的搜索和老师的解答下也基本上弄明白了，部分细节后面慢慢的再深入探索。</li></ul>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h4 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h4&gt;&lt;ul&gt;
-&lt;li&gt;关于TCP的&lt;code&gt;TIME_WAIT&lt;/code&gt;，一直停留在明白有什么作用的层次。想着《计算机网络》都学完了，也应该把TCP的问题给实实在在的弄明白。&lt;/li&gt;
-&lt;/ul&gt;
-    
-    </summary>
-    
-      <category term="Protocol" scheme="http://roux.top/categories/Protocol/"/>
-    
-    
-      <category term="TCP" scheme="http://roux.top/tags/TCP/"/>
-    
-  </entry>
-  
-  <entry>
     <title>信号量与自旋锁的区别</title>
     <link href="http://roux.top/2018/01/08/%E4%BF%A1%E5%8F%B7%E9%87%8F%E5%92%8C%E8%87%AA%E6%97%8B%E9%94%81%E7%9A%84%E5%8C%BA%E5%88%AB/"/>
     <id>http://roux.top/2018/01/08/信号量和自旋锁的区别/</id>
@@ -465,6 +438,30 @@
     
     
       <category term="锁" scheme="http://roux.top/tags/%E9%94%81/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>TIME_WAIT状态</title>
+    <link href="http://roux.top/2018/01/08/TIME_WAIT/"/>
+    <id>http://roux.top/2018/01/08/TIME_WAIT/</id>
+    <published>2018-01-07T16:00:00.000Z</published>
+    <updated>2018-04-22T05:43:43.299Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><ul><li>关于TCP的<code>TIME_WAIT</code>，一直停留在明白有什么作用的层次。想着《计算机网络》都学完了，也应该把TCP的问题给实实在在的弄明白。</li></ul><a id="more"></a><h4 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h4><ul><li><p>产生的原因见<a href="http://roux.top/2017/10/10/TCP%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/">TCP四次挥手</a></p></li><li><p>一些问题及解决</p><ul><li><p><a href="http://blog.csdn.net/dog250/article/details/13760985" target="_blank" rel="noopener">TIME_WAIT快速回收与重用</a></p></li><li><p><a href="https://huoding.com/2012/01/19/142" target="_blank" rel="noopener">记一次TIME_WAIT网络故障</a></p></li><li><p><a href="http://www.cnblogs.com/yjf512/p/5327886.html" target="_blank" rel="noopener">也说说TIME_WAIT状态</a></p></li></ul></li><li><p>深入剖析</p><ul><li><p><a href="https://huoding.com/2013/12/31/316" target="_blank" rel="noopener">再叙TIME_WAIT</a></p></li><li><p><a href="http://blog.oldboyedu.com/tcp-wait/" target="_blank" rel="noopener">你所不知道的TIME_WAIT和CLOSE_WAIT</a>—-强烈推荐</p></li></ul></li><li><p>以前也和前面文章里说的一样，只是知道出现大量的<code>TIME_WAIT</code>就应该调整那么三个参数就行了，但是没想到还有问题的存在，并且调整参数还会分情况与场景。以后学习要注意！</p></li></ul><h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><ul><li>关于TCP的学习就基本上结束了，也学了近一年时间了，大大小小的问题在自己的搜索和老师的解答下也基本上弄明白了，部分细节后面慢慢的再深入探索。</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;关于TCP的&lt;code&gt;TIME_WAIT&lt;/code&gt;，一直停留在明白有什么作用的层次。想着《计算机网络》都学完了，也应该把TCP的问题给实实在在的弄明白。&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+      <category term="Protocol" scheme="http://roux.top/categories/Protocol/"/>
+    
+    
+      <category term="TCP" scheme="http://roux.top/tags/TCP/"/>
     
   </entry>
   

@@ -457,6 +457,8 @@
       
 
       
+	  <!--摘要-->
+		  
         
           <h4 id="tee"><a href="#tee" class="headerlink" title="tee"></a>tee</h4><ul>
 <li><p>说明：在两个管道文件描述符之间复制数据，同是零拷贝。但它不消耗数据，数据被操作之后，仍然可以用于后续操作。</p>
@@ -464,10 +466,6 @@
 <li><p>头文件：<code>#define _GNU_SOURCE</code> <code>#include &lt;fcntl.h&gt;</code></p>
 </li>
 <li><p>原型：<code>long tee(int fd_in, int fd_out, size_t len, unsigned int flags);</code></p>
-		  
-		  <!--摘要-->
-		  
-		  
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/11/03/tee函数/#more" rel="contents">
@@ -638,6 +636,8 @@
       
 
       
+	  <!--摘要-->
+		  
         
           <h4 id="1-STDIN-FILENO-的作用及与-stdin-的区别"><a href="#1-STDIN-FILENO-的作用及与-stdin-的区别" class="headerlink" title="1. STDIN_FILENO 的作用及与 stdin 的区别"></a>1. STDIN_FILENO 的作用及与 stdin 的区别</h4><ul>
 <li><p>STDIN_FILENO的作用</p>
@@ -661,10 +661,6 @@
 <li><p>使用 <code>STDIN_FILENO</code> 的函数有：read、write、close等</p>
 </li>
 </ul>
-		  
-		  <!--摘要-->
-		  
-		  
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/11/03/STDIN_FILENO/#more" rel="contents">
@@ -835,6 +831,8 @@
       
 
       
+	  <!--摘要-->
+		  
         
           <h4 id="splice"><a href="#splice" class="headerlink" title="splice"></a>splice</h4><ul>
 <li><p>说明：splice函数用于在两个文件描述符(官方文档解释为管道)之间的移动数据</p>
@@ -846,10 +844,6 @@
 </ul>
 </li>
 <li><p>原型：<code>long splice(int fd_in, loff_t *off_in, int fd_out, loff_t *off_out, size_t len, unsigned int flags);</code></p>
-		  
-		  <!--摘要-->
-		  
-		  
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/11/02/splice函数/#more" rel="contents">
@@ -1020,6 +1014,8 @@
       
 
       
+	  <!--摘要-->
+		  
         
           <h4 id="sendfile"><a href="#sendfile" class="headerlink" title="sendfile"></a>sendfile</h4><ul>
 <li><p>说明：sendfile函数在两个文件描述符之间直接传递数据（完全在内核中操作），从而避免了内核缓冲区和用户缓冲区之间的数据拷贝。<code>(一般用于当所传送的文件不需要被用户修改的情况)</code></p>
@@ -1027,10 +1023,6 @@
 <li><p>头文件：<code>#include &lt;sys/sendfile.h&gt;</code></p>
 </li>
 <li><p>原型：<code>ssize_t sendfile(int out_fd,int in_fd, off_t * offset,size_t count);</code></p>
-		  
-		  <!--摘要-->
-		  
-		  
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/10/31/sendfile函数/#more" rel="contents">
@@ -1201,15 +1193,13 @@
       
 
       
+	  <!--摘要-->
+		  
         
           <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><ul>
 <li>昨天晚上在 centos 上需要解压一个文件(centos装在vmware上)，但是解压到一半就报错说是内存不足，我用 df 查看了下发现根目录已经被写满了，然后由于熄灯了就没有处理。</li>
 <li>第二天早上打开 centos 出现错误 <strong>没有正确安装GNOME电源管理器</strong> ，导致登陆显示窗体界面，只是黑屏，然后在网上搜了下解决方法，发现大体上就是进入 mini 窗口(也就是黑框)，清除 <code>/tmp</code> 下的东西(也不全是这个目录，主要是留出空间来让系统启动)，然后进行了操作，最终解决！</li>
 </ul>
-		  
-		  <!--摘要-->
-		  
-		  
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/10/29/Linux磁盘写满/#more" rel="contents">
