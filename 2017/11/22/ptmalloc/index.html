@@ -13,6 +13,16 @@
 
 <meta name="theme-color" content="#222">
 
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码哈，嘿嘿！') !== ''){
+                alert('密码输错了哦！');
+                history.back();
+            }
+        }
+    })();
+</script>
 
 
 
@@ -338,8 +348,8 @@
 <script>
     (function(){
         if(''){
-            if (prompt('请输入文章密码') !== ''){
-                alert('密码错误！');
+            if (prompt('请输入文章密码哈，嘿嘿！') !== ''){
+                alert('密码输错了哦！');
                 history.back();
             }
         }
@@ -884,8 +894,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/11/21/glibc基础分析/" rel="next" title="glibc内存分配基础">
-                <i class="fa fa-chevron-left"></i> glibc内存分配基础
+              <a href="/2017/11/27/epoll源码/" rel="prev" title="epoll源码分析">
+                <i class="fa fa-chevron-left"></i> epoll源码分析
               </a>
             
           </div>
@@ -894,8 +904,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/11/27/epoll源码/" rel="prev" title="epoll源码分析">
-                epoll源码分析 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/11/21/glibc基础分析/" rel="next" title="glibc内存分配基础">
+                glibc内存分配基础 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -1061,6 +1071,12 @@
                   <a href="http://blog.csdn.net/xingerr" target="_blank" title="CSDN">
                     
                       <i class="fa fa-fw fa-globe"></i>CSDN</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.douban.com/people/186366260/" target="_blank" title="DouBan">
+                    
+                      <i class="fa fa-fw fa-globe"></i>DouBan</a>
                 </span>
               
                 <span class="links-of-author-item">
