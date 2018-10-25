@@ -2060,7 +2060,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #86dd09;
+  background: #385bb8;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3475,7 +3475,7 @@ img.img-topic {
   padding: 0px;
 }
 body {
-  background: url("/images/backround.jpg");
+  background: url("https://blog-1257906047.cos.ap-chengdu.myqcloud.com/hexo/backround.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: 50% 50%;
