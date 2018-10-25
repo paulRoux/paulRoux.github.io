@@ -525,7 +525,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://roux.top/2017/12/12/Git命令/">
+    <link itemprop="mainEntityOfPage" href="http://roux.top/2017/12/12/线程池/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Shirsen">
@@ -544,7 +544,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/12/12/Git命令/" itemprop="url">Git操作命令</a></h1>
+                <a class="post-title-link" href="/2017/12/12/线程池/" itemprop="url">线程池浅析</a></h1>
         
 
         <div class="post-meta">
@@ -579,8 +579,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Tools/" itemprop="url" rel="index">
-                    <span itemprop="name">Tools</span>
+                  <a href="/categories/网络编程/" itemprop="url" rel="index">
+                    <span itemprop="name">网络编程</span>
                   </a>
                 </span>
 
@@ -598,8 +598,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2017/12/12/Git命令/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://roux.top/2017/12/12/Git命令/" class="cy_cmt_count" data-xid="2017/12/12/Git命令/" itemprop="commentsCount" ></span>
+                <a href="/2017/12/12/线程池/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://roux.top/2017/12/12/线程池/" class="cy_cmt_count" data-xid="2017/12/12/线程池/" itemprop="commentsCount" ></span>
                 </a>
               
             
@@ -607,7 +607,7 @@
 
           
           
-             <span id="/2017/12/12/Git命令/" class="leancloud_visitors" data-flag-title="Git操作命令">
+             <span id="/2017/12/12/线程池/" class="leancloud_visitors" data-flag-title="线程池浅析">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -643,15 +643,15 @@
 		  
 			
         
-          <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><ul>
-<li><p>学习中经常用到<code>GitHub</code>，但是一直只会一些简单的操作，偶尔碰到复杂的需求(或者一些细小的但是很重要的问题)的时候，又要去Google，往往会花费一定的时间(时间累积起来也很害怕哟)，所以对一些常用的命令做一些总结，顺便把找到的一些好的教程保存下来，节省查找一些时间。</p>
+          <h4 id="池"><a href="#池" class="headerlink" title="池"></a>池</h4><ul>
+<li><p>由于服务器的硬件资源“充裕”，那么提高服务器性能的一个很直接的方法就是以空间换时间，即“浪费”服务器的硬件资源，以换取其运行效率。这就是池的概念。池是一组资源的集合，这组资源在服务器启动之初就完全被创建并初始化，这称为静态资源分配。当服务器进入正是运行阶段，即开始处理客户请求的时候，如果它需要相关的资源，就可以直接从池中获取，无需动态分配。很显然，直接从池中取得所需资源比动态分配资源的速度要快得多，因为分配系统资源的系统调用都是很耗时的。当服务器处理完一个客户连接后，可以把相关的资源放回池中，无需执行系统调用来释放资源。从最终效果来看，池相当于服务器管理系统资源的应用设施，它避免了服务器对内核的频繁访问。</p>
 </li>
-<li><p><a href="https://learngitbranching.js.org/" target="_blank" rel="noopener">在线练习—强烈推荐</a></p>
+<li><p>池可以分为多种，常见的有内存池、进程池、线程池和连接池。</p>
 </li>
 </ul>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/12/12/Git命令/#more" rel="contents">
+            <a class="btn" href="/2017/12/12/线程池/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1441,20 +1441,6 @@
 
 
         
-<div class="busuanzi-count">
-  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-  
-
-  
-    <span class="site-pv">
-      <i class="fa fa-eye"></i>
-      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
-      
-    </span>
-  
-</div>
-
 
 
 
