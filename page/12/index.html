@@ -347,6 +347,193 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://roux.top/2017/10/26/popen函数/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Shirsen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/assets/img/header.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shirsen’s Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/26/popen函数/" itemprop="url">一次命令行与程序间的交流</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-26T00:00:00+08:00">
+                2017-10-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/网络编程/" itemprop="url" rel="index">
+                    <span itemprop="name">网络编程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2017/10/26/popen函数/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://roux.top/2017/10/26/popen函数/" class="cy_cmt_count" data-xid="2017/10/26/popen函数/" itemprop="commentsCount" ></span>
+                </a>
+              
+            
+          
+
+          
+          
+             <span id="/2017/10/26/popen函数/" class="leancloud_visitors" data-flag-title="一次命令行与程序间的交流">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+	  
+	  <!--摘要-->
+		  
+			
+        
+          <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><ul>
+<li><p>最近学习刚好遇到一个问题：在程序里面传递一个命令来让终端命令行执行，然后将结果返回到主程序，主程序用返回的结果来操作。</p>
+</li>
+<li><p>思路：</p>
+<ul>
+<li>我在一开始想的是直接在终端执行命令然后写到一个临时文件(读取完就删除)里面，然后主程序读取文件的内容进行操作，但是考虑到我的程序要承受高并发操作(而且每次执行一下，都要创建一个临时文件，这种开销太大)，并且每次都要对磁盘进行操作，遇见大数据量的话效率太低，所以这种办法行不通</li>
+<li>放弃了第一种方法，然后我想到的是利用子进程调用exec()函数来完成，但是最后的结果返回到父进程没有想通，无果。</li>
+<li>后面我想到管道这个ipc方法，创建一个子进程继续利用exec()函数来执行命令，然后将执行的结果输出到管道的输入端，父进程读取即可，这是个方法。</li>
+<li>然后我考虑这种方法的替代方案，无果，网上查询资料发现有函数popen()可以实现，故记录。</li>
+</ul>
+</li>
+</ul>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/10/26/popen函数/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+<div>
+  
+</div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://roux.top/2017/10/26/nologin和false的区别/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -525,7 +712,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://roux.top/2017/10/26/popen函数/">
+    <link itemprop="mainEntityOfPage" href="http://roux.top/2017/10/25/open系列函数/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Shirsen">
@@ -544,7 +731,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/10/26/popen函数/" itemprop="url">一次命令行与程序间的交流</a></h1>
+                <a class="post-title-link" href="/2017/10/25/open系列函数/" itemprop="url">open系列函数</a></h1>
         
 
         <div class="post-meta">
@@ -556,8 +743,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-26T00:00:00+08:00">
-                2017-10-26
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-25T00:00:00+08:00">
+                2017-10-25
               </time>
             
 
@@ -579,8 +766,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/网络编程/" itemprop="url" rel="index">
-                    <span itemprop="name">网络编程</span>
+                  <a href="/categories/C/" itemprop="url" rel="index">
+                    <span itemprop="name">C</span>
                   </a>
                 </span>
 
@@ -598,8 +785,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2017/10/26/popen函数/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://roux.top/2017/10/26/popen函数/" class="cy_cmt_count" data-xid="2017/10/26/popen函数/" itemprop="commentsCount" ></span>
+                <a href="/2017/10/25/open系列函数/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://roux.top/2017/10/25/open系列函数/" class="cy_cmt_count" data-xid="2017/10/25/open系列函数/" itemprop="commentsCount" ></span>
                 </a>
               
             
@@ -607,7 +794,7 @@
 
           
           
-             <span id="/2017/10/26/popen函数/" class="leancloud_visitors" data-flag-title="一次命令行与程序间的交流">
+             <span id="/2017/10/25/open系列函数/" class="leancloud_visitors" data-flag-title="open系列函数">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -643,21 +830,15 @@
 		  
 			
         
-          <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><ul>
-<li><p>最近学习刚好遇到一个问题：在程序里面传递一个命令来让终端命令行执行，然后将结果返回到主程序，主程序用返回的结果来操作。</p>
+          <h4 id="fopen函数"><a href="#fopen函数" class="headerlink" title="- fopen函数"></a>- fopen函数</h4><ul>
+<li><p>说明：fopen()是一个常用的函数，用来以指定的方式打开文件</p>
 </li>
-<li><p>思路：</p>
-<ul>
-<li>我在一开始想的是直接在终端执行命令然后写到一个临时文件(读取完就删除)里面，然后主程序读取文件的内容进行操作，但是考虑到我的程序要承受高并发操作(而且每次执行一下，都要创建一个临时文件，这种开销太大)，并且每次都要对磁盘进行操作，遇见大数据量的话效率太低，所以这种办法行不通</li>
-<li>放弃了第一种方法，然后我想到的是利用子进程调用exec()函数来完成，但是最后的结果返回到父进程没有想通，无果。</li>
-<li>后面我想到管道这个ipc方法，创建一个子进程继续利用exec()函数来执行命令，然后将执行的结果输出到管道的输入端，父进程读取即可，这是个方法。</li>
-<li>然后我考虑这种方法的替代方案，无果，网上查询资料发现有函数popen()可以实现，故记录。</li>
-</ul>
+<li><p>头文件：<code>#include &lt;stdio.h&gt;</code></p>
 </li>
-</ul>
+<li><p>原型：<code>FILE *fopen(const char *path, const char *mode)</code></p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/10/26/popen函数/#more" rel="contents">
+            <a class="btn" href="/2017/10/25/open系列函数/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1059,187 +1240,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://roux.top/2017/10/25/open系列函数/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Shirsen">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/assets/img/header.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Shirsen’s Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/25/open系列函数/" itemprop="url">open系列函数</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-25T00:00:00+08:00">
-                2017-10-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/C/" itemprop="url" rel="index">
-                    <span itemprop="name">C</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-comment-o"></i>
-              </span>
-              
-                <a href="/2017/10/25/open系列函数/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://roux.top/2017/10/25/open系列函数/" class="cy_cmt_count" data-xid="2017/10/25/open系列函数/" itemprop="commentsCount" ></span>
-                </a>
-              
-            
-          
-
-          
-          
-             <span id="/2017/10/25/open系列函数/" class="leancloud_visitors" data-flag-title="open系列函数">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-	  
-	  <!--摘要-->
-		  
-			
-        
-          <h4 id="fopen函数"><a href="#fopen函数" class="headerlink" title="- fopen函数"></a>- fopen函数</h4><ul>
-<li><p>说明：fopen()是一个常用的函数，用来以指定的方式打开文件</p>
-</li>
-<li><p>头文件：<code>#include &lt;stdio.h&gt;</code></p>
-</li>
-<li><p>原型：<code>FILE *fopen(const char *path, const char *mode)</code></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/10/25/open系列函数/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-<div>
-  
-</div>
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1455,6 +1455,12 @@
 <div class="busuanzi-count">
   <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
+  
+    <span class="site-uv">
+      
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      <i class="fa fa-user"></i>
+    </span>
   
 
   
