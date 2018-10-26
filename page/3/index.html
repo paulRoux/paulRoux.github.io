@@ -52,7 +52,9 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+    
+  
+  <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
 
 
 
@@ -60,7 +62,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+  
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
 
 <link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
 
@@ -333,6 +337,189 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://roux.top/2018/04/20/HTTP学习（三）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Shirsen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/assets/img/header.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shirsen’s Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/20/HTTP学习（三）/" itemprop="url">HTTP学习（三）——关于HTTP/1.1的管道化</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-20T00:00:00+08:00">
+                2018-04-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Protocol/" itemprop="url" rel="index">
+                    <span itemprop="name">Protocol</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2018/04/20/HTTP学习（三）/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://roux.top/2018/04/20/HTTP学习（三）/" class="cy_cmt_count" data-xid="2018/04/20/HTTP学习（三）/" itemprop="commentsCount" ></span>
+                </a>
+              
+            
+          
+
+          
+          
+             <span id="/2018/04/20/HTTP学习（三）/" class="leancloud_visitors" data-flag-title="HTTP学习（三）——关于HTTP/1.1的管道化">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+	  
+	  <!--摘要-->
+		  
+			
+        
+          <h3 id="什么是http管道化"><a href="#什么是http管道化" class="headerlink" title="什么是http管道化"></a>什么是http管道化</h3><ul>
+<li>通常，http请求总是顺序发送的，下一个请求只有在当前请求的响应被完全接受的时候才会被发送。由于网络延迟和带宽的限制，这样会导致在服务器发送下一个响应的时候中间有很大的延迟。 </li>
+<li>HTTP/1.1允许多个http请求通过一个套接字同时被输出 ，而不用等待相应的响应。然后请求者就会等待各自的响应，这些响应是按照之前请求的顺序依次到达。（me：所有请求保持一个FIFO的队列，一个请求发送完之后，不必等待这个请求的响应被接受到，下一个请求就可以被再次发出；同时，服务器端返回这些请求的响应时也是按照FIFO的顺序）。<ul>
+<li>管道化的表现可以大大提高页面加载的速度，尤其是在高延迟连接中。 管道化同样也可以减少tcp/ip的数据包。通常MSS的大小是在536-1460字节，所以将许多个http请求放在一个tcp/ip包 里也是有可能的。减少加载一个网页所需数据包的数量可以在整体上对网络有益处，因为数据包越少，路由器和网络带来的负担就越少。</li>
+<li>HTTP/1.1需要服务器也支持管道化。但这并不意味着服务器需要管道化响应，而是当客户端发出管道化请求时，服务器不会响应失败。这显然有可能引入一种新的福音主义错误（原文：This obviously has the potential to introduce a new category of evangelism bugs），因为仅有现代浏览器支持管道化。</li>
+</ul>
+</li>
+</ul>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/04/20/HTTP学习（三）/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+<div>
+  
+</div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -657,189 +844,6 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/04/20/HTTP学习（一）/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-<div>
-  
-</div>
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://roux.top/2018/04/20/HTTP学习（三）/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Shirsen">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/assets/img/header.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Shirsen’s Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/20/HTTP学习（三）/" itemprop="url">HTTP学习（三）——关于HTTP/1.1的管道化</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-20T00:00:00+08:00">
-                2018-04-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Protocol/" itemprop="url" rel="index">
-                    <span itemprop="name">Protocol</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-comment-o"></i>
-              </span>
-              
-                <a href="/2018/04/20/HTTP学习（三）/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://roux.top/2018/04/20/HTTP学习（三）/" class="cy_cmt_count" data-xid="2018/04/20/HTTP学习（三）/" itemprop="commentsCount" ></span>
-                </a>
-              
-            
-          
-
-          
-          
-             <span id="/2018/04/20/HTTP学习（三）/" class="leancloud_visitors" data-flag-title="HTTP学习（三）——关于HTTP/1.1的管道化">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-	  
-	  <!--摘要-->
-		  
-			
-        
-          <h3 id="什么是http管道化"><a href="#什么是http管道化" class="headerlink" title="什么是http管道化"></a>什么是http管道化</h3><ul>
-<li>通常，http请求总是顺序发送的，下一个请求只有在当前请求的响应被完全接受的时候才会被发送。由于网络延迟和带宽的限制，这样会导致在服务器发送下一个响应的时候中间有很大的延迟。 </li>
-<li>HTTP/1.1允许多个http请求通过一个套接字同时被输出 ，而不用等待相应的响应。然后请求者就会等待各自的响应，这些响应是按照之前请求的顺序依次到达。（me：所有请求保持一个FIFO的队列，一个请求发送完之后，不必等待这个请求的响应被接受到，下一个请求就可以被再次发出；同时，服务器端返回这些请求的响应时也是按照FIFO的顺序）。<ul>
-<li>管道化的表现可以大大提高页面加载的速度，尤其是在高延迟连接中。 管道化同样也可以减少tcp/ip的数据包。通常MSS的大小是在536-1460字节，所以将许多个http请求放在一个tcp/ip包 里也是有可能的。减少加载一个网页所需数据包的数量可以在整体上对网络有益处，因为数据包越少，路由器和网络带来的负担就越少。</li>
-<li>HTTP/1.1需要服务器也支持管道化。但这并不意味着服务器需要管道化响应，而是当客户端发出管道化请求时，服务器不会响应失败。这显然有可能引入一种新的福音主义错误（原文：This obviously has the potential to introduce a new category of evangelism bugs），因为仅有现代浏览器支持管道化。</li>
-</ul>
-</li>
-</ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/04/20/HTTP学习（三）/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1512,22 +1516,22 @@ A进程通过TCP向另一台机器上的B进程发送了一个字符串“hello�
 
 
   
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  <script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
 
   
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js"></script>
 
   
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  <script type="text/javascript" src="//cdn.bootcss.com/jquery_lazyload/1.9.7/jquery.lazyload.min.js"></script>
 
   
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script type="text/javascript" src="//cdn.bootcss.com/velocity/1.3.1/velocity.min.js"></script>
 
   
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  <script type="text/javascript" src="//cdn.bootcss.com/velocity/1.3.1/velocity.ui.min.js"></script>
 
   
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  <script type="text/javascript" src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
 
 
   
