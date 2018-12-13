@@ -351,7 +351,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://roux.top/2017/11/21/glibc基础分析/">
+    <link itemprop="mainEntityOfPage" href="http://roux.top/2017/11/21/arena/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Shirsen">
@@ -370,7 +370,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/11/21/glibc基础分析/" itemprop="url">glibc内存分配基础</a></h1>
+                <a class="post-title-link" href="/2017/11/21/arena/" itemprop="url">glibc内存分配之arena</a></h1>
         
 
         <div class="post-meta">
@@ -424,8 +424,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2017/11/21/glibc基础分析/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://roux.top/2017/11/21/glibc基础分析/" class="cy_cmt_count" data-xid="2017/11/21/glibc基础分析/" itemprop="commentsCount" ></span>
+                <a href="/2017/11/21/arena/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://roux.top/2017/11/21/arena/" class="cy_cmt_count" data-xid="2017/11/21/arena/" itemprop="commentsCount" ></span>
                 </a>
               
             
@@ -433,7 +433,7 @@
 
           
           
-             <span id="/2017/11/21/glibc基础分析/" class="leancloud_visitors" data-flag-title="glibc内存分配基础">
+             <span id="/2017/11/21/arena/" class="leancloud_visitors" data-flag-title="glibc内存分配之arena">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -469,12 +469,18 @@
 		  
 			
         
-          <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><ul>
-<li>对于很多开发者来说，内存分配和回收似乎一直都是操作系统的事情。特别是现在大多高级语言都自带 GC, 让程序员这方面的意识会更加薄弱。可能有很大一部分人认为, 我要 100byte 的空间, 那么系统就只会给我 100byte。</li>
+          <h4 id="分配区"><a href="#分配区" class="headerlink" title="分配区"></a>分配区</h4><ul>
+<li><p>内存分配器启动默认初始化一个分配区，我们叫主分配区。一般内存分配会从主分配区进行分配，但对于多线程来说，每次分配都要等待其他线程分配完成，这个效率是非常低的。</p>
+<ul>
+<li><p>为了解决这个问题引入子分配区，子分配区和主分配区构成一个环形链表。</p>
+<p>  <img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/ptmalloc/arena/arena-list.jpg" alt="arena"></p>
+</li>
+</ul>
+</li>
 </ul>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/11/21/glibc基础分析/#more" rel="contents">
+            <a class="btn" href="/2017/11/21/arena/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
