@@ -351,7 +351,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://roux.top/2018/04/20/HTTP学习（三）/">
+    <link itemprop="mainEntityOfPage" href="http://roux.top/2018/04/21/HTTP学习（四）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Shirsen">
@@ -370,7 +370,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/04/20/HTTP学习（三）/" itemprop="url">HTTP学习（三）——关于HTTP/1.1的管道化</a></h1>
+                <a class="post-title-link" href="/2018/04/21/HTTP学习（四）/" itemprop="url">HTTP学习（四）——HTTP2.0的新特性</a></h1>
         
 
         <div class="post-meta">
@@ -382,8 +382,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-20T00:00:00+08:00">
-                2018-04-20
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-21T00:00:00+08:00">
+                2018-04-21
               </time>
             
 
@@ -424,8 +424,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2018/04/20/HTTP学习（三）/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://roux.top/2018/04/20/HTTP学习（三）/" class="cy_cmt_count" data-xid="2018/04/20/HTTP学习（三）/" itemprop="commentsCount" ></span>
+                <a href="/2018/04/21/HTTP学习（四）/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://roux.top/2018/04/21/HTTP学习（四）/" class="cy_cmt_count" data-xid="2018/04/21/HTTP学习（四）/" itemprop="commentsCount" ></span>
                 </a>
               
             
@@ -433,7 +433,7 @@
 
           
           
-             <span id="/2018/04/20/HTTP学习（三）/" class="leancloud_visitors" data-flag-title="HTTP学习（三）——关于HTTP/1.1的管道化">
+             <span id="/2018/04/21/HTTP学习（四）/" class="leancloud_visitors" data-flag-title="HTTP学习（四）——HTTP2.0的新特性">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -469,17 +469,206 @@
 		  
 			
         
-          <h3 id="什么是http管道化"><a href="#什么是http管道化" class="headerlink" title="什么是http管道化"></a>什么是http管道化</h3><ul>
-<li>通常，http请求总是顺序发送的，下一个请求只有在当前请求的响应被完全接受的时候才会被发送。由于网络延迟和带宽的限制，这样会导致在服务器发送下一个响应的时候中间有很大的延迟。 </li>
-<li>HTTP/1.1允许多个http请求通过一个套接字同时被输出 ，而不用等待相应的响应。然后请求者就会等待各自的响应，这些响应是按照之前请求的顺序依次到达。（me：所有请求保持一个FIFO的队列，一个请求发送完之后，不必等待这个请求的响应被接受到，下一个请求就可以被再次发出；同时，服务器端返回这些请求的响应时也是按照FIFO的顺序）。<ul>
-<li>管道化的表现可以大大提高页面加载的速度，尤其是在高延迟连接中。 管道化同样也可以减少tcp/ip的数据包。通常MSS的大小是在536-1460字节，所以将许多个http请求放在一个tcp/ip包 里也是有可能的。减少加载一个网页所需数据包的数量可以在整体上对网络有益处，因为数据包越少，路由器和网络带来的负担就越少。</li>
-<li>HTTP/1.1需要服务器也支持管道化。但这并不意味着服务器需要管道化响应，而是当客户端发出管道化请求时，服务器不会响应失败。这显然有可能引入一种新的福音主义错误（原文：This obviously has the potential to introduce a new category of evangelism bugs），因为仅有现代浏览器支持管道化。</li>
+          <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><ul>
+<li><p>HTTP2.0可以让我们的应用变得更快、更简单、更健壮，让我们在HTTP/1.1时针对TCP协议特性而做的用来提高性能的HACK一笔勾销</p>
+</li>
+<li><p>为了提高应用的性能，降低延迟，我们能做的无外乎2点，要么传输的东西越小越好，要么距离能获得资源的地方越近越好。</p>
+<ul>
+<li>HTTP2的目的：通过支持<strong>多路复用</strong>来提高并行能力，减少因为3次握手等而产生的延迟；通过<strong>压缩HTTP首部</strong>将协议开销降到最低，同时支持请求优先级和服务器推送。</li>
+<li>HTTP2最大的改变：引入<strong>二进制分帧层</strong>。HTTP2.0不会改动HTTP1.x的语义，提供的功能也不变，但是HTTP2对内修改了格式化数据的方式，以及传输这些数据的方式。对外，也就是面向应用，不用做任何改变，感知不到这一层的变化的。</li>
 </ul>
+</li>
+<li><p>其实HTTP2.0是对HTTP1.x的一个扩展，而非替代，之所以称之为2是因为它引入的二进制分帧层之前的HTTP1.x的服务端和客户端并不兼容。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/04/21/HTTP学习（四）/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+<div>
+  
+</div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://roux.top/2018/04/21/HTTP学习（五）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Shirsen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/assets/img/header.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shirsen’s Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/21/HTTP学习（五）/" itemprop="url">HTTP学习（五）——HTTP2 VS SPDY</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-21T00:00:00+08:00">
+                2018-04-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Protocol/" itemprop="url" rel="index">
+                    <span itemprop="name">Protocol</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2018/04/21/HTTP学习（五）/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://roux.top/2018/04/21/HTTP学习（五）/" class="cy_cmt_count" data-xid="2018/04/21/HTTP学习（五）/" itemprop="commentsCount" ></span>
+                </a>
+              
+            
+          
+
+          
+          
+             <span id="/2018/04/21/HTTP学习（五）/" class="leancloud_visitors" data-flag-title="HTTP学习（五）——HTTP2 VS SPDY">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+	  
+	  <!--摘要-->
+		  
+			
+        
+          <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><ul>
+<li>SPDY是HTTP2的催化剂，但SPDY不是HTTP2。 本文主要针对SPDY与HTTP2之间的区别，而不太多的涉及它俩之间与HTTP1.X的区别。</li>
+</ul>
+<h3 id="SPDY的出现"><a href="#SPDY的出现" class="headerlink" title="SPDY的出现"></a>SPDY的出现</h3><ul>
+<li><p>SPDY是谷歌在09年年中时发布的，它的主要目标时通过解决HTTP1.1中一些显著的性能限制，来减少网页额的加载时间。目前为止，Chrome,Firefox和Opera都支持了这一协议。</p>
+</li>
+<li><p>SPDY引入了新的二进制分帧层，以实现多路复用、优先次序、最小化的消除网络延迟，同时对HTTP首部进行压缩，减少HTTP报文的冗余数据。</p>
+<blockquote>
+<p>目前为止，我们只在实验室条件下测试过 SPDY。最初的成果很激动人心：通过模拟的家庭上网线路下载了 25 个最流行的网站之后，我们发现性能的改进特别明显，页面加载速度最多快了 55%。 ——A 2x Faster Web Chromium Blog</p>
+</blockquote>
 </li>
 </ul>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/04/20/HTTP学习（三）/#more" rel="contents">
+            <a class="btn" href="/2018/04/21/HTTP学习（五）/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -898,7 +1087,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://roux.top/2018/04/08/TCP流量控制/">
+    <link itemprop="mainEntityOfPage" href="http://roux.top/2018/04/20/HTTP学习（三）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Shirsen">
@@ -917,7 +1106,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/04/08/TCP流量控制/" itemprop="url">TCP流量控制</a></h1>
+                <a class="post-title-link" href="/2018/04/20/HTTP学习（三）/" itemprop="url">HTTP学习（三）——关于HTTP/1.1的管道化</a></h1>
         
 
         <div class="post-meta">
@@ -929,8 +1118,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-08T00:00:00+08:00">
-                2018-04-08
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-20T00:00:00+08:00">
+                2018-04-20
               </time>
             
 
@@ -971,8 +1160,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2018/04/08/TCP流量控制/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://roux.top/2018/04/08/TCP流量控制/" class="cy_cmt_count" data-xid="2018/04/08/TCP流量控制/" itemprop="commentsCount" ></span>
+                <a href="/2018/04/20/HTTP学习（三）/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://roux.top/2018/04/20/HTTP学习（三）/" class="cy_cmt_count" data-xid="2018/04/20/HTTP学习（三）/" itemprop="commentsCount" ></span>
                 </a>
               
             
@@ -980,7 +1169,7 @@
 
           
           
-             <span id="/2018/04/08/TCP流量控制/" class="leancloud_visitors" data-flag-title="TCP流量控制">
+             <span id="/2018/04/20/HTTP学习（三）/" class="leancloud_visitors" data-flag-title="HTTP学习（三）——关于HTTP/1.1的管道化">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1016,199 +1205,17 @@
 		  
 			
         
-          <h3 id="滑动窗口"><a href="#滑动窗口" class="headerlink" title="滑动窗口"></a>滑动窗口</h3><ul>
-<li>问题：如果发送方把数据发送得过快，接收方可能会来不及接收，这就会造成数据的丢失。<ul>
-<li>所谓流量控制就是让发送方的发送速率不要太快，要让接收方来得及接收。利用滑动窗口机制可以很方便地在TCP连接上实现对发送方的流量控制。<ul>
-<li>滑动窗口理解起来的话可以想象要发送的数据在一个首尾连接的数组上，而滑动窗口则是这个上面的一部分（大小由收发双方进行协商（协商的过程也就是对数据的发送和确认的过程）动态变化）。</li>
-</ul>
-</li>
+          <h3 id="什么是http管道化"><a href="#什么是http管道化" class="headerlink" title="什么是http管道化"></a>什么是http管道化</h3><ul>
+<li>通常，http请求总是顺序发送的，下一个请求只有在当前请求的响应被完全接受的时候才会被发送。由于网络延迟和带宽的限制，这样会导致在服务器发送下一个响应的时候中间有很大的延迟。 </li>
+<li>HTTP/1.1允许多个http请求通过一个套接字同时被输出 ，而不用等待相应的响应。然后请求者就会等待各自的响应，这些响应是按照之前请求的顺序依次到达。（me：所有请求保持一个FIFO的队列，一个请求发送完之后，不必等待这个请求的响应被接受到，下一个请求就可以被再次发出；同时，服务器端返回这些请求的响应时也是按照FIFO的顺序）。<ul>
+<li>管道化的表现可以大大提高页面加载的速度，尤其是在高延迟连接中。 管道化同样也可以减少tcp/ip的数据包。通常MSS的大小是在536-1460字节，所以将许多个http请求放在一个tcp/ip包 里也是有可能的。减少加载一个网页所需数据包的数量可以在整体上对网络有益处，因为数据包越少，路由器和网络带来的负担就越少。</li>
+<li>HTTP/1.1需要服务器也支持管道化。但这并不意味着服务器需要管道化响应，而是当客户端发出管道化请求时，服务器不会响应失败。这显然有可能引入一种新的福音主义错误（原文：This obviously has the potential to introduce a new category of evangelism bugs），因为仅有现代浏览器支持管道化。</li>
 </ul>
 </li>
 </ul>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/04/08/TCP流量控制/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-<div>
-  
-</div>
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://roux.top/2018/02/08/TCP问答/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Shirsen">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/assets/img/header.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Shirsen’s Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/02/08/TCP问答/" itemprop="url">TCP问答</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-08T00:00:00+08:00">
-                2018-02-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Protocol/" itemprop="url" rel="index">
-                    <span itemprop="name">Protocol</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-comment-o"></i>
-              </span>
-              
-                <a href="/2018/02/08/TCP问答/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://roux.top/2018/02/08/TCP问答/" class="cy_cmt_count" data-xid="2018/02/08/TCP问答/" itemprop="commentsCount" ></span>
-                </a>
-              
-            
-          
-
-          
-          
-             <span id="/2018/02/08/TCP问答/" class="leancloud_visitors" data-flag-title="TCP问答">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-	  
-	  <!--摘要-->
-		  
-			
-        
-          
-          问答
-A进程通过TCP向另一台机器上的B进程发送了一个字符串“hello”，TCP返回对方成功接收的确认信息，请问，现在进程A是否可以肯定地说进程B收到了它发送的字符串？
-
-不能！举反例，进程B所在机器的TCP收到进程A发送的“hello”信息后，告诉进程A发送成功，但有可能没有立即将数据交给进程B
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/02/08/TCP问答/#more" rel="contents">
+            <a class="btn" href="/2018/04/20/HTTP学习（三）/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1254,7 +1261,7 @@ A进程通过TCP向另一台机器上的B进程发送了一个字符串“hello�
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1304,7 +1311,7 @@ A进程通过TCP向另一台机器上的B进程发送了一个字符串“hello�
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">74</span>
+                  <span class="site-state-item-count">76</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1315,7 +1322,7 @@ A进程通过TCP向另一台机器上的B进程发送了一个字符串“hello�
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1326,7 +1333,7 @@ A进程通过TCP向另一台机器上的B进程发送了一个字符串“hello�
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-count">24</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
