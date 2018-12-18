@@ -106,7 +106,7 @@
 <meta property="og:description" content="前言 传统的 Linux 操作系统的标准 I/O 接口是基于数据拷贝操作的，即 I/O 操作会导致数据在操作系统内核地址空间的缓冲区和应用程序地址空间定义的缓冲区之间进行传输。这样做最大的好处是可以减少磁盘 I/O 的操作，因为如果所请求的数据已经存放在操作系统的高速缓冲存储器中，那么就不需要再进行实际的物理磁盘 I/O 操作。但是数据传输过程中的数据拷贝操作却导致了极大的 CPU 开销，限制了操">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://raw.githubusercontent.com/paulRoux/Pictures/master/image001.jpg">
-<meta property="og:updated_time" content="2018-04-22T05:57:14.073Z">
+<meta property="og:updated_time" content="2018-12-18T11:00:46.582Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="零拷贝技术分析">
 <meta name="twitter:description" content="前言 传统的 Linux 操作系统的标准 I/O 接口是基于数据拷贝操作的，即 I/O 操作会导致数据在操作系统内核地址空间的缓冲区和应用程序地址空间定义的缓冲区之间进行传输。这样做最大的好处是可以减少磁盘 I/O 的操作，因为如果所请求的数据已经存放在操作系统的高速缓冲存储器中，那么就不需要再进行实际的物理磁盘 I/O 操作。但是数据传输过程中的数据拷贝操作却导致了极大的 CPU 开销，限制了操">
@@ -627,8 +627,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/10/24/stat系列函数/" rel="prev" title="stat系列函数">
-                <i class="fa fa-chevron-left"></i> stat系列函数
+              <a href="/2017/10/25/Linux中的零拷贝技术/" rel="prev" title="Linux 中的零拷贝技术">
+                <i class="fa fa-chevron-left"></i> Linux 中的零拷贝技术
               </a>
             
           </div>
@@ -637,8 +637,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/10/24/文件权限判断/" rel="next" title="Linux下文件权限判断和目录操作">
-                Linux下文件权限判断和目录操作 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/10/24/stat系列函数/" rel="next" title="stat系列函数">
+                stat系列函数 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -774,7 +774,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-count">25</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
