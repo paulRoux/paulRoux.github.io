@@ -710,7 +710,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://roux.top/2017/10/27/linux查看多线程运行状态/">
+    <link itemprop="mainEntityOfPage" href="http://roux.top/2017/10/28/dup与dup2详解/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Shirsen">
@@ -729,7 +729,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/10/27/linux查看多线程运行状态/" itemprop="url">linux查看多线程运行状态</a></h1>
+                <a class="post-title-link" href="/2017/10/28/dup与dup2详解/" itemprop="url">dup与dup2详解</a></h1>
         
 
         <div class="post-meta">
@@ -741,8 +741,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-27T00:00:00+08:00">
-                2017-10-27
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-28T00:00:00+08:00">
+                2017-10-28
               </time>
             
 
@@ -764,8 +764,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/OS/" itemprop="url" rel="index">
-                    <span itemprop="name">OS</span>
+                  <a href="/categories/网络编程/" itemprop="url" rel="index">
+                    <span itemprop="name">网络编程</span>
                   </a>
                 </span>
 
@@ -783,8 +783,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2017/10/27/linux查看多线程运行状态/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://roux.top/2017/10/27/linux查看多线程运行状态/" class="cy_cmt_count" data-xid="2017/10/27/linux查看多线程运行状态/" itemprop="commentsCount" ></span>
+                <a href="/2017/10/28/dup与dup2详解/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://roux.top/2017/10/28/dup与dup2详解/" class="cy_cmt_count" data-xid="2017/10/28/dup与dup2详解/" itemprop="commentsCount" ></span>
                 </a>
               
             
@@ -792,7 +792,7 @@
 
           
           
-             <span id="/2017/10/27/linux查看多线程运行状态/" class="leancloud_visitors" data-flag-title="linux查看多线程运行状态">
+             <span id="/2017/10/28/dup与dup2详解/" class="leancloud_visitors" data-flag-title="dup与dup2详解">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -829,18 +829,19 @@
 			
         
           <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><ul>
-<li><p>最近学习网络编程，在进线程这部分遇到了一些问题：</p>
+<li><p>三个Linux默认的描述符</p>
 <ul>
-<li>不知道堆栈的调用情况</li>
-<li>不知道多线程的运行状态</li>
+<li>0：标准输入</li>
+<li>1：标准输出</li>
+<li>2：标准错误</li>
 </ul>
 </li>
-<li><p>因此进行了知识的普及(这里参考了不少的网上博客的见解，进行了整合以及测试)，如下：</p>
+<li><p>dup和dup2的作用都是用来复制一个文件的描述符，它们经常用来重定向进程的stdin、stdout和stderr</p>
 </li>
 </ul>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/10/27/linux查看多线程运行状态/#more" rel="contents">
+            <a class="btn" href="/2017/10/28/dup与dup2详解/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1074,7 +1075,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://roux.top/2017/10/26/nologin和false的区别/">
+    <link itemprop="mainEntityOfPage" href="http://roux.top/2017/10/27/linux查看多线程运行状态/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Shirsen">
@@ -1093,7 +1094,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/10/26/nologin和false的区别/" itemprop="url">linux下/sbin/nologin和/bin/false的区别</a></h1>
+                <a class="post-title-link" href="/2017/10/27/linux查看多线程运行状态/" itemprop="url">linux查看多线程运行状态</a></h1>
         
 
         <div class="post-meta">
@@ -1105,8 +1106,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-26T00:00:00+08:00">
-                2017-10-26
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-27T00:00:00+08:00">
+                2017-10-27
               </time>
             
 
@@ -1147,8 +1148,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2017/10/26/nologin和false的区别/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://roux.top/2017/10/26/nologin和false的区别/" class="cy_cmt_count" data-xid="2017/10/26/nologin和false的区别/" itemprop="commentsCount" ></span>
+                <a href="/2017/10/27/linux查看多线程运行状态/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://roux.top/2017/10/27/linux查看多线程运行状态/" class="cy_cmt_count" data-xid="2017/10/27/linux查看多线程运行状态/" itemprop="commentsCount" ></span>
                 </a>
               
             
@@ -1156,7 +1157,7 @@
 
           
           
-             <span id="/2017/10/26/nologin和false的区别/" class="leancloud_visitors" data-flag-title="linux下/sbin/nologin和/bin/false的区别">
+             <span id="/2017/10/27/linux查看多线程运行状态/" class="leancloud_visitors" data-flag-title="linux查看多线程运行状态">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1192,12 +1193,19 @@
 		  
 			
         
-          <h4 id="linux下-sbin-nologin和-bin-false的区别"><a href="#linux下-sbin-nologin和-bin-false的区别" class="headerlink" title="linux下/sbin/nologin和/bin/false的区别"></a>linux下/sbin/nologin和/bin/false的区别</h4><ul>
-<li><code>/bin/false</code>是最严格的禁止 login 选项，一切服务都不能用。而<code>/sbin/nologin</code>只是不允许 login 系统，但可以使用其他 ftp 等服务。如果想要用 false 在禁止 login 的同时允许 ftp，则必须在<code>/etc/shells</code>里增加一行<code>/bin/false</code>。</li>
+          <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><ul>
+<li><p>最近学习网络编程，在进线程这部分遇到了一些问题：</p>
+<ul>
+<li>不知道堆栈的调用情况</li>
+<li>不知道多线程的运行状态</li>
+</ul>
+</li>
+<li><p>因此进行了知识的普及(这里参考了不少的网上博客的见解，进行了整合以及测试)，如下：</p>
+</li>
 </ul>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/10/26/nologin和false的区别/#more" rel="contents">
+            <a class="btn" href="/2017/10/27/linux查看多线程运行状态/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1293,7 +1301,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">78</span>
+                  <span class="site-state-item-count">79</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
