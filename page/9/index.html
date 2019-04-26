@@ -1083,7 +1083,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://roux.top/2017/11/17/poll函数/">
+    <link itemprop="mainEntityOfPage" href="http://roux.top/2017/11/17/sysconf函数/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Shirsen">
@@ -1102,7 +1102,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/11/17/poll函数/" itemprop="url">poll函数</a></h1>
+                <a class="post-title-link" href="/2017/11/17/sysconf函数/" itemprop="url">sysconf函数与getrlimit函数及setrlimit函数</a></h1>
         
 
         <div class="post-meta">
@@ -1156,8 +1156,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2017/11/17/poll函数/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://roux.top/2017/11/17/poll函数/" class="cy_cmt_count" data-xid="2017/11/17/poll函数/" itemprop="commentsCount" ></span>
+                <a href="/2017/11/17/sysconf函数/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://roux.top/2017/11/17/sysconf函数/" class="cy_cmt_count" data-xid="2017/11/17/sysconf函数/" itemprop="commentsCount" ></span>
                 </a>
               
             
@@ -1165,7 +1165,7 @@
 
           
           
-             <span id="/2017/11/17/poll函数/" class="leancloud_visitors" data-flag-title="poll函数">
+             <span id="/2017/11/17/sysconf函数/" class="leancloud_visitors" data-flag-title="sysconf函数与getrlimit函数及setrlimit函数">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1201,15 +1201,12 @@
 		  
 			
         
-          <h4 id="poll函数"><a href="#poll函数" class="headerlink" title="poll函数"></a>poll函数</h4><ul>
-<li><p>说明：等待一个文件上的某些事件(与select功能类似)</p>
-</li>
-<li><p>头文件：<code>#include &lt;poll.h&gt;</code></p>
-</li>
-<li><p>原型：<code>int poll(struct pollfd *fds, nfds_t nfds, int timeout);</code></p>
+          <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><ul>
+<li>每种资源都有相关的软硬限制，软限制是内核强加给相应资源的限制值，硬限制是软限制的最大值。非授权调用进程只可以将其软限制指定为0到硬限制范围中的某个值，同时能不可逆转地降低其硬限制。授权进程可以任意改变其软硬限制。RLIM_INFINITY的值表示不对资源限制。</li>
+</ul>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/11/17/poll函数/#more" rel="contents">
+            <a class="btn" href="/2017/11/17/sysconf函数/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
