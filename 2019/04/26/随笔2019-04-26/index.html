@@ -84,7 +84,7 @@
 
 
 
-  <meta name="keywords" content="TCP," />
+  <meta name="keywords" content="随笔," />
 
 
 
@@ -97,23 +97,18 @@
 
 
 
-<meta name="description" content="拥塞控制与流量控制 拥塞控制：防止过多的数据注入到网络中，这样可以使网络中的路由器或链路不致过载。拥塞控制所要做的都有一个前提：网络能够承受现有的网络负荷。拥塞控制是一个全局性的过程，涉及到所有的主机、路由器，以及与降低网络传输性能有关的所有因素  流量控制：指点对点通信量的控制，是端到端正的问题。流量控制所要做的就是抑制发送端发送数据的速率，以便使接收端来得及接收  拥塞控制代价：需要获得网络内">
-<meta name="keywords" content="TCP">
+<meta name="description" content="前言- 关于互联网的一些瞎扯。">
+<meta name="keywords" content="随笔">
 <meta property="og:type" content="article">
-<meta property="og:title" content="TCP拥塞控制">
-<meta property="og:url" content="http://roux.top/2018/01/08/TCP拥塞控制/index.html">
+<meta property="og:title" content="随笔2019-04-26">
+<meta property="og:url" content="http://roux.top/2019/04/26/随笔2019-04-26/index.html">
 <meta property="og:site_name" content="Shirsen’s Blog">
-<meta property="og:description" content="拥塞控制与流量控制 拥塞控制：防止过多的数据注入到网络中，这样可以使网络中的路由器或链路不致过载。拥塞控制所要做的都有一个前提：网络能够承受现有的网络负荷。拥塞控制是一个全局性的过程，涉及到所有的主机、路由器，以及与降低网络传输性能有关的所有因素  流量控制：指点对点通信量的控制，是端到端正的问题。流量控制所要做的就是抑制发送端发送数据的速率，以便使接收端来得及接收  拥塞控制代价：需要获得网络内">
+<meta property="og:description" content="前言- 关于互联网的一些瞎扯。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://raw.githubusercontent.com/paulRoux/Pictures/master/TCP/cwnd.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/paulRoux/Pictures/master/TCP/%E6%85%A2%E5%BC%80%E5%A7%8B.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/paulRoux/Pictures/master/TCP/%E5%BF%AB%E9%87%8D%E4%BC%A0.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/paulRoux/Pictures/master/TCP/%E6%8B%A5%E5%A1%9E%E9%81%BF%E5%85%8D.jpg">
-<meta property="og:updated_time" content="2018-04-22T12:27:20.775Z">
+<meta property="og:updated_time" content="2019-04-26T15:01:01.364Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="TCP拥塞控制">
-<meta name="twitter:description" content="拥塞控制与流量控制 拥塞控制：防止过多的数据注入到网络中，这样可以使网络中的路由器或链路不致过载。拥塞控制所要做的都有一个前提：网络能够承受现有的网络负荷。拥塞控制是一个全局性的过程，涉及到所有的主机、路由器，以及与降低网络传输性能有关的所有因素  流量控制：指点对点通信量的控制，是端到端正的问题。流量控制所要做的就是抑制发送端发送数据的速率，以便使接收端来得及接收  拥塞控制代价：需要获得网络内">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/paulRoux/Pictures/master/TCP/cwnd.jpg">
+<meta name="twitter:title" content="随笔2019-04-26">
+<meta name="twitter:description" content="前言- 关于互联网的一些瞎扯。">
 
 
 
@@ -143,13 +138,13 @@
 
 
 
-  <link rel="canonical" href="http://roux.top/2018/01/08/TCP拥塞控制/"/>
+  <link rel="canonical" href="http://roux.top/2019/04/26/随笔2019-04-26/"/>
 
 
 
 
 
-  <title>TCP拥塞控制 | Shirsen’s Blog</title>
+  <title>随笔2019-04-26 | Shirsen’s Blog</title>
   
 
 
@@ -323,8 +318,8 @@
 
 <script>
     (function(){
-        if(''){
-            if (prompt('请输入文章密码哈，嘿嘿！') !== ''){
+        if('1024'){
+            if (prompt('请输入文章密码哈，嘿嘿！') !== '1024'){
                 alert('密码输错了哦！');
                 history.back();
             }
@@ -357,7 +352,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://roux.top/2018/01/08/TCP拥塞控制/">
+    <link itemprop="mainEntityOfPage" href="http://roux.top/2019/04/26/随笔2019-04-26/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Shirsen">
@@ -374,7 +369,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">TCP拥塞控制</h1>
+          <h1 class="post-title" itemprop="name headline">随笔2019-04-26</h1>
         
 
         <div class="post-meta">
@@ -386,8 +381,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-08T00:00:00+08:00">
-                2018-01-08
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-26T00:00:00+08:00">
+                2019-04-26
               </time>
             
 
@@ -409,8 +404,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Protocol/" itemprop="url" rel="index">
-                    <span itemprop="name">Protocol</span>
+                  <a href="/categories/生活/" itemprop="url" rel="index">
+                    <span itemprop="name">生活</span>
                   </a>
                 </span>
 
@@ -428,8 +423,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2018/01/08/TCP拥塞控制/#SOHUCS" itemprop="discussionUrl">
-                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2018/01/08/TCP拥塞控制/" itemprop="commentsCount"></span>
+                <a href="/2019/04/26/随笔2019-04-26/#SOHUCS" itemprop="discussionUrl">
+                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2019/04/26/随笔2019-04-26/" itemprop="commentsCount"></span>
                 </a>
               
             
@@ -437,7 +432,7 @@
 
           
           
-             <span id="/2018/01/08/TCP拥塞控制/" class="leancloud_visitors" data-flag-title="TCP拥塞控制">
+             <span id="/2019/04/26/随笔2019-04-26/" class="leancloud_visitors" data-flag-title="随笔2019-04-26">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -468,83 +463,9 @@
       
 
       
-        <h3 id="拥塞控制与流量控制"><a href="#拥塞控制与流量控制" class="headerlink" title="拥塞控制与流量控制"></a>拥塞控制与流量控制</h3><ul>
-<li><p>拥塞控制：防止过多的数据注入到网络中，这样可以使网络中的路由器或链路不致过载。拥塞控制所要做的都有一个前提：网络能够承受现有的网络负荷。拥塞控制是一个全局性的过程，涉及到所有的主机、路由器，以及与降低网络传输性能有关的所有因素</p>
-</li>
-<li><p>流量控制：指点对点通信量的控制，是端到端正的问题。流量控制所要做的就是抑制发送端发送数据的速率，以便使接收端来得及接收</p>
-</li>
-<li><p>拥塞控制代价：需要获得网络内部流量分布的信息。在实施拥塞控制之前，还需要在结点之间交换信息和各种命令，以便选择控制的策略和实施控制。这样就产生了额外的开销。拥塞控制还需要将一些资源分配给各个用户单独使用，使得网络资源不能更好地实现共享。</p>
-</li>
-</ul>
-<a id="more"></a>
-<h3 id="几种拥塞控制方法"><a href="#几种拥塞控制方法" class="headerlink" title="几种拥塞控制方法"></a>几种拥塞控制方法</h3><ul>
-<li><p>慢开始( slow-start )、拥塞避免( congestion avoidance )、快重传( fast retransmit )和快恢复( fast recovery )。</p>
-</li>
-<li><p><strong>慢开始和拥塞避免</strong></p>
-<ul>
-<li><p>发送方维持一个拥塞窗口 cwnd ( congestion window )的状态变量。拥塞窗口的大小取决于网络的拥塞程度，并且动态地在变化。发送方让自己的发送窗口等于拥塞窗口大小</p>
-</li>
-<li><p>发送方控制拥塞窗口的原则是：只要网络没有出现拥塞，拥塞窗口就再增大一些，以便把更多的分组发送出去。但只要网络出现拥塞，拥塞窗口就减小一些，以减少注入到网络中的分组数</p>
-</li>
-<li><p><strong>慢开始</strong></p>
-<ul>
-<li>慢开始算法：当主机开始发送数据时，如果立即所大量数据字节注入到网络，那么就有可能引起网络拥塞，因为现在并不清楚网络的负荷情况。因此，较好的方法是先探测一下，即由小到大逐渐增大发送窗口，也就是说，由小到大逐渐增大拥塞窗口数值。通常在刚刚开始发送报文段时，先把拥塞窗口 cwnd 设置为<strong>一个最大报文段MSS</strong>的数值。而在每收到一个对新的报文段的确认后，把拥塞窗口增加至多一个MSS的数值。用这样的方法逐步增大发送方的拥塞窗口 cwnd ，可以使分组注入到网络的速率更加合理<br>  <img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/TCP/cwnd.jpg" alt=""></li>
-<li>每经过一个传输轮次，拥塞窗口 cwnd 就加倍。一个传输轮次所经历的时间其实就是往返时间RTT。不过“传输轮次”更加强调：把拥塞窗口cwnd所允许发送的报文段都连续发送出去，并收到了对已发送的最后一个字节的确认</li>
-<li><strong>注意：</strong>慢开始的“慢”并不是指cwnd的增长速率慢，而是指在TCP开始发送报文段时先设置cwnd=1，使得发送方在开始时只发送一个报文段（目的是试探一下网络的拥塞情况），然后再逐渐增大cwnd</li>
-<li>为了防止拥塞窗口cwnd增长过大引起网络拥塞，还需要设置一个慢开始门限ssthresh状态变量（如何设置ssthresh）。慢开始门限ssthresh的用法如下： 当 cwnd &lt; ssthresh 时，使用上述的慢开始算法<ul>
-<li>当 cwnd &gt; ssthresh 时，停止使用慢开始算法而改用拥塞避免算法</li>
-<li>当 cwnd = ssthresh 时，既可使用慢开始算法，也可使用拥塞控制避免算法</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p><strong>拥塞避免算法</strong></p>
-<ul>
-<li>让拥塞窗口cwnd缓慢地增大，即每经过一个往返时间RTT就把发送方的拥塞窗口cwnd加1，而不是加倍。这样拥塞窗口cwnd按线性规律缓慢增长，比慢开始算法的拥塞窗口增长速率缓慢得多</li>
-<li>无论在慢开始阶段还是在拥塞避免阶段，只要发送方判断网络出现拥塞（其根据就是没有收到确认），就要把慢开始门限ssthresh设置为出现拥塞时的发送方窗口值的一半（但不能小于2）。然后把拥塞窗口cwnd重新设置为1，执行慢开始算法。这样做的目的就是要迅速减少主机发送到网络中的分组数，使得发生拥塞的路由器有足够时间把队列中积压的分组处理完毕</li>
-<li>如下图，用具体数值说明了上述拥塞控制的过程。现在发送窗口的大小和拥塞窗口一样大<br>  <img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/TCP/%E6%85%A2%E5%BC%80%E5%A7%8B.jpg" alt=""><ol>
-<li>当TCP连接进行初始化时，把拥塞窗口cwnd置为1。前面已说过，为了便于理解，图中的窗口单位不使用字节而使用报文段的个数。慢开始门限的初始值设置为16个报文段，即 cwnd = 16</li>
-<li>在执行慢开始算法时，拥塞窗口 cwnd 的初始值为1。以后发送方每收到一个对新报文段的确认ACK，就把拥塞窗口值另1，然后开始下一轮的传输（图中横坐标为传输轮次）。因此拥塞窗口cwnd随着传输轮次按指数规律增长。当拥塞窗口cwnd增长到慢开始门限值ssthresh时（即当cwnd=16时），就改为执行拥塞控制算法，拥塞窗口按线性规律增长</li>
-<li>假定拥塞窗口的数值增长到24时，网络出现超时（这很可能就是网络发生拥塞了）。更新后的ssthresh值变为12（即变为出现超时时的拥塞窗口数值24的一半），拥塞窗口再重新设置为1，并执行慢开始算法。当cwnd=ssthresh=12时改为执行拥塞避免算法，拥塞窗口按线性规律增长，每经过一个往返时间增加一个MSS的大小</li>
-<li>强调：“拥塞避免”并非指完全能够避免了拥塞。利用以上的措施要完全避免网络拥塞还是不可能的。“拥塞避免”是说在拥塞避免阶段将拥塞窗口控制为按线性规律增长，使网络比较不容易出现拥塞</li>
-</ol>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p><strong>快重传和快恢复</strong></p>
-</li>
-<li><p>不使用快重传的情况：如果发送方设置的超时计时器时限已到但还没有收到确认，那么很可能是网络出现了拥塞，致使报文段在网络中的某处被丢弃。这时，TCP马上把拥塞窗口 cwnd 减小到1，并执行慢开始算法，同时把慢开始门限值ssthresh减半。</p>
-<ul>
-<li><p><strong>快重传算法</strong></p>
-<ul>
-<li>快重传算法首先要求接收方每收到一个失序的报文段后就立即发出重复确认（为的是使发送方及早知道有报文段没有到达对方）而不要等到自己发送数据时才进行捎带确认<br>  <img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/TCP/%E5%BF%AB%E9%87%8D%E4%BC%A0.jpg" alt=""><ul>
-<li>接收方收到了M1和M2后都分别发出了确认。现在假定接收方没有收到M3但接着收到了M4。显然，接收方不能确认M4，因为M4是收到的失序报文段。根据可靠传输原理，接收方可以什么都不做，也可以在适当时机发送一次对M2的确认。</li>
-<li>但按照快重传算法的规定，接收方应及时发送对M2的重复确认，这样做可以让发送方及早知道报文段M3没有到达接收方。发送方接着发送了M5和M6。接收方收到这两个报文后，也还要再次发出对M2的重复确认。这样，发送方共收到了接收方的四个对M2的确认，其中后三个都是重复确认。</li>
-<li>快重传算法还规定，发送方只要一连收到三个重复确认就应当立即重传对方尚未收到的报文段M3，而不必继续等待M3设置的重传计时器到期。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p><strong>快恢复算法</strong></p>
-<ol>
-<li>当发送方连续收到三个重复确认，就执行“乘法减小”算法，把慢开始门限ssthresh减半。这是为了预防网络发生拥塞。注意：接下去不执行慢开始算法。</li>
-<li>由于发送方现在认为网络很可能没有发生拥塞，因此与慢开始不同之处是现在不执行慢开始算法（即拥塞窗口cwnd现在不设置为1），而是把cwnd值设置为慢开始门限ssthresh减半后的数值，然后开始执行拥塞避免算法（“加法增大”），使拥塞窗口缓慢地线性增大。 下图给出了快重传和快恢复的示意图，并标明了“TCP Reno版本”。 区别：新的 TCP Reno 版本在快重传之后采用快恢复算法而不是采用慢开始算法。<br> <img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/TCP/%E6%8B%A5%E5%A1%9E%E9%81%BF%E5%85%8D.jpg" alt=""><ul>
-<li>也有的快重传实现是把开始时的拥塞窗口cwnd值再增大一点，即等于 ssthresh + 3 X MSS 。这样做的理由是：既然发送方收到三个重复的确认，就表明有三个分组已经离开了网络。这三个分组不再消耗网络 的资源而是停留在接收方的缓存中。可见现在网络中并不是堆积了分组而是减少了三个分组。因此可以适当把拥塞窗口扩大了些</li>
-<li>在采用快恢复算法时，慢开始算法只是在TCP连接建立时和网络出现超时时才使用</li>
-<li>接收方根据自己的接收能力设定了接收窗口rwnd，并把这个窗口值写入TCP首部中的窗口字段，传送给发送方。因此，接收窗口又称为通知窗口。因此，从接收方对发送方的流量控制的角度考虑，发送方的发送窗口一定不能超过对方给出的接收窗口rwnd<ul>
-<li>发送方窗口的上限值 = Min [ rwnd, cwnd ]</li>
-<li>当rwnd &lt; cwnd 时，是接收方的接收能力限制发送方窗口的最大值。<br>当cwnd &lt; rwnd 时，则是网络的拥塞限制发送方窗口的最大值。</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-</li>
-</ul>
-</li>
-</ul>
+        <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><pre><code>- 关于互联网的一些瞎扯。
+</code></pre><a id="more"></a>
+<h4 id="随笔"><a href="#随笔" class="headerlink" title="随笔"></a>随笔</h4><p>&emsp;&emsp;去年秋招结束后，各大公司就相继出现裁员的情况，更甚的是许多大公司也有出现毁约应届生的情况。看到这些新闻，我知道一些变化发生了。首先，互联网的红利已经没有了，可以看到今年春招的要求变得更高了，公司内部也开始裁员并消化以前抢占市场所招来的人才，也不会出现以前随便培训一下就能找到ok的工作的情况。其次，随着中国互联网的发展，门槛是越来越低，市场的一般需求也趋于饱和，大家都开始提高招聘标准。<br>&emsp;&emsp;这些情况的出现，也反映在教育和资源方面：转行到计算机的人每年都在增长，去年和今年达到高峰，明年可能会更高、读研的人也越来越多，并且大多数都是想考一个和计算机相关的专业导致今年各大优秀院校的计算机院和软院全部爆满、网上的资源也唾手可得，网课及相关资料一大堆。<br>&emsp;&emsp;我想，后面可能会出现更激烈的优胜劣汰，并且一时半会不会发生大的改变。这个时候应对的方法就是努力的提升自我，掌握核心技术。<br>&emsp;&emsp;看大佬们的文章看的多了，感觉自己也会瞎扯了，哈哈！</p>
 
       
     </div>
@@ -604,7 +525,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://roux.top/2018/01/08/TCP拥塞控制/" title="TCP拥塞控制">http://roux.top/2018/01/08/TCP拥塞控制/</a>
+    <a href="http://roux.top/2019/04/26/随笔2019-04-26/" title="随笔2019-04-26">http://roux.top/2019/04/26/随笔2019-04-26/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -619,7 +540,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/TCP/" <i class="fa fa-tag"></i> TCP</a>
+            <a href="/tags/随笔/" <i class="fa fa-tag"></i> 随笔</a>
           
         </div>
       
@@ -632,18 +553,14 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/02/08/TCP问答/" rel="prev" title="TCP问答">
-                <i class="fa fa-chevron-left"></i> TCP问答
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/01/08/TIME_WAIT/" rel="next" title="TIME_WAIT状态">
-                TIME_WAIT状态 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/04/20/windows10命令/" rel="next" title="windows10命令">
+                windows10命令 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -855,7 +772,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#拥塞控制与流量控制"><span class="nav-number">1.</span> <span class="nav-text">拥塞控制与流量控制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#几种拥塞控制方法"><span class="nav-number">2.</span> <span class="nav-text">几种拥塞控制方法</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#随笔"><span class="nav-number">2.</span> <span class="nav-text">随笔</span></a></li></ol></div>
             
 
           </div>
