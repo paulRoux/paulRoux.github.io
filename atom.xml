@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://roux.top/"/>
-  <updated>2019-04-26T15:09:33.211Z</updated>
+  <updated>2019-04-27T03:53:53.572Z</updated>
   <id>http://roux.top/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Chrome插件</title>
+    <link href="http://roux.top/2019/04/27/Chrome%E6%8F%92%E4%BB%B6/"/>
+    <id>http://roux.top/2019/04/27/Chrome插件/</id>
+    <published>2019-04-26T16:00:00.000Z</published>
+    <updated>2019-04-27T03:53:53.572Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><ul><li>关于Chrome上一些好用的插件(需要科学上网)</li></ul><a id="more"></a><h4 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h4><ul><li><p>AdGuard广告拦截器</p><ul><li>看名字就知道是拦截各大网站广告的插件。这个插件分为免费和付费版，个人用的话免费版是足够。它的拦截率还是很不错的，而且里面有各种拦截的规则，支持自定义和自己拦截元素，更新规则的频率还可以。</li><li>URL：<a href="https://chrome.google.com/webstore/detail/adguard-adblocker/bgnkhhnnamicmpeenaelnjfhikgbkllg?utm_source=chrome-ntp-icon" target="_blank" rel="noopener">https://chrome.google.com/webstore/detail/adguard-adblocker/bgnkhhnnamicmpeenaelnjfhikgbkllg?utm_source=chrome-ntp-icon</a></li></ul></li><li><p>Infinity 新标签页</p><ul><li>提供新的标签页的插件。这个插件可以自定义新标签页的搜索引擎、壁纸，以及一些好用的工具，避免每次需要打开一些常用的网页的时候还要搜索打开。它带有云端备份和同步的功能，还带有工具商店可以供大家选择。</li><li>URL：<a href="https://chrome.google.com/webstore/detail/infinity-new-tab-producti/dbfmnekepjoapopniengjbcpnbljalfg" target="_blank" rel="noopener">https://chrome.google.com/webstore/detail/infinity-new-tab-producti/dbfmnekepjoapopniengjbcpnbljalfg</a></li></ul></li><li><p>Stylus</p><ul><li>Stylus 是一个调整网页外观的用户样式管理器。这个插件可以为许多知名的网站提供精美的主题和皮肤，有相关的主题和皮肤网站供大家下载。</li><li>URL：<a href="https://chrome.google.com/webstore/detail/stylus/clngdbkpkpeebahjckkjfobafhncgmne" target="_blank" rel="noopener">https://chrome.google.com/webstore/detail/stylus/clngdbkpkpeebahjckkjfobafhncgmne</a></li><li>主题库：<a href="https://userstyles.org/" target="_blank" rel="noopener">https://userstyles.org/</a></li></ul></li><li><p>LastPass: Free Password Manager</p><ul><li>一款密码管理器。这个插件可以加密保存你的密码(听说加密算法很复杂)，方便你在任何时候浏览网页一键登录，并且可以避免密码保存在本地的风险(我还是比较相信云端的)，而且可以导入你的chrome保存的密码与管理密码。</li><li>URl：<a href="https://chrome.google.com/webstore/detail/lastpass-free-password-ma/hdokiejnpimakedhajhdlcegeplioahd" target="_blank" rel="noopener">https://chrome.google.com/webstore/detail/lastpass-free-password-ma/hdokiejnpimakedhajhdlcegeplioahd</a></li></ul></li><li><p>Tampermonkey BETA</p><ul><li>一款加载网页脚本的插件。这个插件可以用来加载一些自定义的脚本，用来美化浏览器并实现一些你想要的功能。它提供了一个脚本网站方便用户下载和发布相关的脚本。</li><li>URL：<a href="https://chrome.google.com/webstore/detail/tampermonkey-beta/gcalenpjmijncebpfijmoaglllgpjagf" target="_blank" rel="noopener">https://chrome.google.com/webstore/detail/tampermonkey-beta/gcalenpjmijncebpfijmoaglllgpjagf</a></li><li>脚本库：<a href="https://greasyfork.org/zh-CN/" target="_blank" rel="noopener">https://greasyfork.org/zh-CN/</a></li></ul></li><li><p>简 悦</p><ul><li>一款提供阅读的插件。这个插件将网页进行简化，提供一个合适阅读的排版。用户可以进行相关的偏好设置(选项还挺多，并且有多种模式)，并且提供了相关的论坛供用户交流。</li><li>URL：<a href="http://ksria.com/simpread/" target="_blank" rel="noopener">http://ksria.com/simpread/</a></li></ul></li><li><p>Google 翻译</p><ul><li>这个插件不用说了。</li><li>URL：<a href="https://chrome.google.com/webstore/detail/google-translate/aapbdbdomjkkjkaonfhkkikfgjllcleb" target="_blank" rel="noopener">https://chrome.google.com/webstore/detail/google-translate/aapbdbdomjkkjkaonfhkkikfgjllcleb</a></li></ul></li><li><p>有道词典Chrome划词插件</p><ul><li>这个插件主要就是方便大家看英文页面。支持查词、长句翻译。个人感觉翻译的质量还可以。</li><li>URL：<a href="https://chrome.google.com/webstore/detail/%E6%9C%89%E9%81%93%E8%AF%8D%E5%85%B8chrome%E5%88%92%E8%AF%8D%E6%8F%92%E4%BB%B6/eopjamdnofihpioajgfdikhhbobonhbb" target="_blank" rel="noopener">https://chrome.google.com/webstore/detail/%E6%9C%89%E9%81%93%E8%AF%8D%E5%85%B8chrome%E5%88%92%E8%AF%8D%E6%8F%92%E4%BB%B6/eopjamdnofihpioajgfdikhhbobonhbb</a></li></ul></li><li><p>沙拉查词-聚合词典划词翻译</p><ul><li>这个插件和有道功能相似。但是这个聚合了好几个翻译方案，并且使用起来也很方便。可以搭配有道进行使用。</li><li>URL：<a href="https://chrome.google.com/webstore/detail/%E6%B2%99%E6%8B%89%E6%9F%A5%E8%AF%8D-%E8%81%9A%E5%90%88%E8%AF%8D%E5%85%B8%E5%88%92%E8%AF%8D%E7%BF%BB%E8%AF%91/cdonnmffkdaoajfknoeeecmchibpmkmg/related" target="_blank" rel="noopener">https://chrome.google.com/webstore/detail/%E6%B2%99%E6%8B%89%E6%9F%A5%E8%AF%8D-%E8%81%9A%E5%90%88%E8%AF%8D%E5%85%B8%E5%88%92%E8%AF%8D%E7%BF%BB%E8%AF%91/cdonnmffkdaoajfknoeeecmchibpmkmg/related</a></li></ul></li><li><p>分享到微信</p><ul><li>这个插件主要的目的就是让大家可以把网页分享到微信</li><li>URL: <a href="https://chrome.google.com/webstore/detail/%E5%88%86%E4%BA%AB%E5%88%B0%E5%BE%AE%E4%BF%A1/gjmlaljbhjlbmdgdglcnilnfjeignbij" target="_blank" rel="noopener">https://chrome.google.com/webstore/detail/%E5%88%86%E4%BA%AB%E5%88%B0%E5%BE%AE%E4%BF%A1/gjmlaljbhjlbmdgdglcnilnfjeignbij</a></li></ul></li><li><p>高效网页截图编辑插件</p><ul><li>一款网页截图插件。可以像画图软件那样用直线、箭头、圆圈、文字做出标识。并可以方便的通过链接或者附件分享。目前使用的是Snipaste所以这款插件没有使用了。</li><li>URL：<a href="https://chrome.google.com/webstore/detail/explain-and-send-screensh/mdddabjhelpilpnpgondfmehhcplpiin" target="_blank" rel="noopener">https://chrome.google.com/webstore/detail/explain-and-send-screensh/mdddabjhelpilpnpgondfmehhcplpiin</a></li></ul></li><li><p>Fatkun图片批量下载</p><ul><li>一款下载图片的插件。很不错的插件，不过我用的场合不多。</li><li>URL：<a href="https://chrome.google.com/webstore/detail/fatkun-batch-download-ima/nnjjahlikiabnchcpehcpkdeckfgnohf" target="_blank" rel="noopener">https://chrome.google.com/webstore/detail/fatkun-batch-download-ima/nnjjahlikiabnchcpehcpkdeckfgnohf</a></li></ul></li><li><p>OneTab</p><ul><li>一款节约Chrome内存减轻标签页混乱的插件。如果发现自己有太多的标签页时，单击OneTab图标，将所有标签页转换成一个列表。当需要再次访问这些标签页时，可以单独或全部恢复就好了。</li><li>URL：<a href="https://chrome.google.com/webstore/detail/onetab/chphlpgkkbolifaimnlloiipkdnihall" target="_blank" rel="noopener">https://chrome.google.com/webstore/detail/onetab/chphlpgkkbolifaimnlloiipkdnihall</a></li></ul></li><li><p>Octotree</p><ul><li>一款显示github的仓库代码树的插件。每次查看github仓库的代码的时候非常麻烦，这款插件简化了许多的操作。</li><li>URL：<a href="https://chrome.google.com/webstore/detail/octotree/bkhaagjahfmjljalopjnoealnfndnag" target="_blank" rel="noopener">https://chrome.google.com/webstore/detail/octotree/bkhaagjahfmjljalopjnoealnfndnag</a></li></ul></li><li><p>Vimium</p><ul><li>一款让你的浏览器像操作Vim一样的插件。如果你是Vim爱好者，或者你喜欢简单的操作方式，你都可以尝试这款插件。</li><li>URL：<a href="https://chrome.google.com/webstore/detail/vimium/dbepggeogbaibhgnhhndojpepiihcmeb" target="_blank" rel="noopener">https://chrome.google.com/webstore/detail/vimium/dbepggeogbaibhgnhhndojpepiihcmeb</a></li></ul></li><li><p>IDM Integration Module</p><ul><li>一款下载插件，需要配合IDM客户端来使用(收费，但是不贵)。这个插件可以监听各大浏览器，代替浏览器自己的下载器，而且它支持多种格式和多线程下载，配合一些脚本，基本可以下载所有的东西。</li><li>URL：<a href="https://chrome.google.com/webstore/detail/idm-integration-module/ngpampappnmepgilojfohadhhmbhlaek" target="_blank" rel="noopener">https://chrome.google.com/webstore/detail/idm-integration-module/ngpampappnmepgilojfohadhhmbhlaek</a></li></ul></li><li><p>Proxy SwitchyOmega</p><ul><li>一款Chrome的代理切换插件。目前我主要在Ubuntu下科学上网使用，Windows下使用酸酸乳就好了。</li><li>URL：<a href="https://chrome.google.com/webstore/detail/proxy-switchyomega/padekgcemlokbadohgkifijomclgjgif" target="_blank" rel="noopener">https://chrome.google.com/webstore/detail/proxy-switchyomega/padekgcemlokbadohgkifijomclgjgif</a></li></ul></li><li><p>WEB前端助手(FeHelper)</p><ul><li>前端开发和爬虫使用。内置了很多的小工具，再也不用费事了。</li><li>URL：<a href="https://chrome.google.com/webstore/detail/web%E5%89%8D%E7%AB%AF%E5%8A%A9%E6%89%8Bfehelper/pkgccpejnmalmdinmhkkfafefagiiiad" target="_blank" rel="noopener">https://chrome.google.com/webstore/detail/web%E5%89%8D%E7%AB%AF%E5%8A%A9%E6%89%8Bfehelper/pkgccpejnmalmdinmhkkfafefagiiiad</a></li></ul></li><li><p>XPath Helper</p><ul><li>爬虫使用。写xpath表达式进行预览。</li><li>URL：<a href="https://chrome.google.com/webstore/detail/xpath-helper/hgimnogjllphhhkhlmebbmlgjoejdpjl" target="_blank" rel="noopener">https://chrome.google.com/webstore/detail/xpath-helper/hgimnogjllphhhkhlmebbmlgjoejdpjl</a></li></ul></li><li><p>User-Agent Switcher</p><ul><li>爬虫使用。用来切换UA，查看网页的情况。</li><li>URL：<a href="https://chrome.google.com/webstore/detail/user-agent-switcher/clddifkhlkcojbojppdojfeeikdkgiae" target="_blank" rel="noopener">https://chrome.google.com/webstore/detail/user-agent-switcher/clddifkhlkcojbojppdojfeeikdkgiae</a></li></ul></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;关于Chrome上一些好用的插件(需要科学上网)&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+      <category term="Tools" scheme="http://roux.top/categories/Tools/"/>
+    
+    
+      <category term="Chrome" scheme="http://roux.top/tags/Chrome/"/>
+    
+  </entry>
   
   <entry>
     <title>随笔2019-04-26</title>
@@ -65,30 +89,6 @@
   </entry>
   
   <entry>
-    <title>C++迭代器失效</title>
-    <link href="http://roux.top/2018/12/14/C++%E8%BF%AD%E4%BB%A3%E5%99%A8%E5%A4%B1%E6%95%88/"/>
-    <id>http://roux.top/2018/12/14/C++迭代器失效/</id>
-    <published>2018-12-13T16:00:00.000Z</published>
-    <updated>2018-12-18T10:58:01.935Z</updated>
-    
-    <content type="html"><![CDATA[<h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><ul><li>C++迭代器很好用，但是使用的时候一不留神就会出错，迭代器失效就是其中之一。</li></ul><a id="more"></a><h4 id="迭代器失效"><a href="#迭代器失效" class="headerlink" title="迭代器失效"></a>迭代器失效</h4><ol><li><p>list, set, map容器</p><ul><li>在使用 list、set 或 map遍历删除某些元素时可以这样使用：</li><li><p>正确写法1：</p>  <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::<span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt; List;</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt;::iterator itList;</span><br><span class="line"><span class="keyword">for</span> (itList = List.begin(); itList != List.end(); ) &#123;</span><br><span class="line">    <span class="keyword">if</span> (WillDelete(*itList)) &#123;</span><br><span class="line">         itList = List.erase(itList);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">         itList++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li><li><p>正确写法2：</p>  <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::<span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt; List;</span><br><span class="line">   <span class="built_in">std</span>::<span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt;::iterator itList;</span><br><span class="line">   <span class="keyword">for</span> (itList = List.begin(); itList != List.end(); ) &#123;</span><br><span class="line">       <span class="keyword">if</span> (WillDelete( *itList)) &#123;</span><br><span class="line">           List.erase(itList++);</span><br><span class="line">       &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">           itList++;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></li><li><p>错误写法1：</p>  <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::<span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt; List;</span><br><span class="line">      <span class="built_in">std</span>::<span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt;::iterator itList;</span><br><span class="line">      <span class="keyword">for</span> (itList = List.begin(); itList != List.end(); itList++) &#123;</span><br><span class="line">          <span class="keyword">if</span> (WillDelete(*itList)) &#123;</span><br><span class="line">              List.erase(itList);</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure></li><li><p>错误写法2：</p>  <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::<span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt; List;</span><br><span class="line">      <span class="built_in">std</span>::<span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt;::iterator itList;</span><br><span class="line">      <span class="keyword">for</span> (itList = List.begin(); itList != List.end(); ) &#123;</span><br><span class="line">          <span class="keyword">if</span> (WillDelete(*itList)) &#123;</span><br><span class="line">              itList = List.erase(++itList);</span><br><span class="line">          &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">               itList++;</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure></li><li><p>分析：</p><ol><li>正确使用方法1：通过erase方法的返回值来获取下一个元素的位置</li><li>正确使用方法2：在调用erase方法之前先使用 “++” 来获取下一个元素的位置</li><li>错误使用方法1：在调用erase方法之后使用 “++” 来获取下一个元素的位置，由于在调用erase方法以后，该元素的位置已经被删除，如果在根据这个旧的位置来获取下一个位置，则会出现异常。</li><li>错误使用方法2：同错误使用方法1</li></ol></li></ul></li><li><p>vector, deque容器</p><ul><li>在使用 vector、deque遍历删除元素时，也可以通过erase的返回值来获取下一个元素的位置</li><li><p>正确写法：</p>  <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; Vec;</span><br><span class="line">      <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator itVec;</span><br><span class="line">      <span class="keyword">for</span>(itVec = Vec.begin(); itVec != Vec.end(); ) &#123;</span><br><span class="line">          <span class="keyword">if</span>(WillDelete( *itVec) ) &#123;</span><br><span class="line">              itVec = Vec.erase(itVec);</span><br><span class="line">          &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">              itList++;</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure></li><li><p><strong>注意：</strong></p><ol><li><p>vector、deque 不能像上面的<code>正确使用方法2</code>的办法来遍历删除</p><ol><li>对于关联容器(如map, set, multimap,multiset)，删除当前的iterator，<strong>仅仅会使当前的iterator失效</strong>，只要在erase时，递增当前iterator即可。这是因为map之类的容器，使用了红黑树来实现，插入、删除一个结点不会对其他结点造成影响</li><li>对于序列式容器(如vector,deque)，<strong>删除当前的iterator会使后面所有元素的iterator都失效</strong>。这是因为vetor,deque使用了连续分配的内存，删除一个元素导致后面所有的元素会向前移动一个位置。但是erase方法可以返回下一个有效的iterator</li><li>对于list来说，它使用了不连续分配的内存，并且它的erase方法也会返回下一个有效的iterator，因此上面两种方法都可以使用</li></ol></li></ol></li></ul></li></ol><h4 id="相关容器介绍"><a href="#相关容器介绍" class="headerlink" title="相关容器介绍"></a>相关容器介绍</h4><ol><li><p>vector</p><ul><li>内部数据结构：数组</li><li>访问：随机访问每个元素，所需要的时间为常量</li><li>增删元素：在末尾增加或删除元素所需时间与元素数目无关，在中间或开头增加或删除元素所需时间随元素数目呈线性变化</li><li>迭代器：vector的迭代器在内存重新分配时将失效（它所指向的元素在该操作的前后不再相同）。当把超过capacity()-size()个元素插入vector中时，内存会重新分配，所有的迭代器都将失效；否则，指向当前元素以后的任何元素的迭代器都将失效。当删除元素时，指向被删除元素以后的任何元素的迭代器都将失效</li></ul></li><li><p>deque</p><ul><li>内部数据结构：数组</li><li>访问：随机访问每个元素，所需要的时间为常量</li><li>增删元素：在开头和末尾增加元素所需时间与元素数目无关，在中间增加或删除元素所需时间随元素数目呈线性变化</li><li>迭代器： 增加任何元素都将使deque的迭代器失效。在deque的中间删除元素将使迭代器失效。在deque的头或尾删除元素时，只有指向该元素的迭代器失效</li></ul></li><li><p>lsit</p><ul><li>内部数据结构：双向环状链表</li><li>访问：不能随机访问一个元素</li><li>增删元素：在开头、末尾和中间任何地方增加或删除元素所需时间都为常量</li><li>迭代器：增加任何元素都不会使迭代器失效。删除元素时，除了指向当前被删除元素的迭代器外，其它迭代器都不会失效</li></ul></li><li><p>slist</p><ul><li>内部数据结构：单向链表</li><li>访问：不可双向遍历，只能从前到后地遍历</li><li>增删元素：在开头、末尾和中间任何地方增加或删除元素所需时间都为常量</li><li>迭代器：增加任何元素都不会使迭代器失效。删除元素时，除了指向当前被删除元素的迭代器外，其它迭代器都不会失效</li></ul></li><li><p>stack</p><ul><li>内部数据结构：适配器，它可以将任意类型的序列容器转换为一个堆栈，一般使用deque作为支持的序列容器</li><li>访问：不能遍历整个stack</li><li>增删元素：元素只能后进先出</li></ul></li><li><p>queue</p><ul><li>内部数据结构：适配器，它可以将任意类型的序列容器转换为一个队列，一般使用deque作为支持的序列容器</li><li>访问：不能遍历整个queue</li><li>增删元素：元素只能先进先出</li></ul></li><li><p>priority_queue</p><ul><li>内部数据结构：适配器，它可以将任意类型的序列容器转换为一个优先级队列，一般使用vector作为底层存储方式</li><li>访问：只能访问第一个元素，不能遍历整个priority_queue</li><li>增删元素：第一个元素始终是优先级最高的一个元素</li></ul></li><li><p>set(hash_set不解释了)</p><ul><li>内部数据结构：红黑树</li><li>访问：随机访问</li><li>增删元素：键和值相等且键唯一</li><li>迭代器：如果迭代器所指向的元素被删除，则该迭代器失效。其它任何增加、删除元素的操作都不会使迭代器失效</li></ul></li><li><p>map(hash_map不解释了)</p><ul><li>内部数据结构：红黑树</li><li>访问：随机访问</li><li>增删元素：键唯一</li><li>迭代器：如果迭代器所指向的元素被删除，则该迭代器失效。其它任何增加、删除元素的操作都不会使迭代器失效</li></ul></li></ol>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h4 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h4&gt;&lt;ul&gt;
-&lt;li&gt;C++迭代器很好用，但是使用的时候一不留神就会出错，迭代器失效就是其中之一。&lt;/li&gt;
-&lt;/ul&gt;
-    
-    </summary>
-    
-      <category term="语言" scheme="http://roux.top/categories/%E8%AF%AD%E8%A8%80/"/>
-    
-    
-      <category term="C++" scheme="http://roux.top/tags/C/"/>
-    
-  </entry>
-  
-  <entry>
     <title>C++陷阱与用法</title>
     <link href="http://roux.top/2018/12/14/C++%E9%99%B7%E9%98%B1%E4%B8%8E%E7%94%A8%E6%B3%95/"/>
     <id>http://roux.top/2018/12/14/C++陷阱与用法/</id>
@@ -114,21 +114,18 @@
   </entry>
   
   <entry>
-    <title>C++之POD类型</title>
-    <link href="http://roux.top/2018/12/13/C++%E4%B9%8BPOD%E7%B1%BB%E5%9E%8B/"/>
-    <id>http://roux.top/2018/12/13/C++之POD类型/</id>
-    <published>2018-12-12T16:00:00.000Z</published>
-    <updated>2018-12-18T10:57:56.051Z</updated>
+    <title>C++迭代器失效</title>
+    <link href="http://roux.top/2018/12/14/C++%E8%BF%AD%E4%BB%A3%E5%99%A8%E5%A4%B1%E6%95%88/"/>
+    <id>http://roux.top/2018/12/14/C++迭代器失效/</id>
+    <published>2018-12-13T16:00:00.000Z</published>
+    <updated>2018-12-18T10:58:01.935Z</updated>
     
-    <content type="html"><![CDATA[<h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><ul><li><p><code>POD(Plain Old Data)</code>是C++中非常重要的一个概念，用来描述一个类型的属性。其中<code>Plain</code>表示这个类型是个平凡的类型，<code>Old</code>表示其与C的兼容性(就意味着可以使用 memcpy() 函数进行操作)。</p></li><li><p>C++11中将POD划分为两个基本概念：<code>平凡的（trival）</code>和<code>标准布局（standardlayout）</code></p></li></ul><a id="more"></a><h4 id="平凡-trival"><a href="#平凡-trival" class="headerlink" title="平凡(trival)"></a>平凡(trival)</h4><ul><li>满足条件<ol><li><strong>不能写 <code>构造/析构函数</code>、<code>拷贝/移动构造函数</code>、<code>拷贝/移动赋值运算符</code></strong>，而是用编译器自动为我们生成，那这个数据就是“平凡的”。非要写的话，用 C++ 11 的 <code>default</code> 关键字。<ul><li>C++为我们提供了一个类模板来识别一个类是否平凡：<code>template &lt;typename T&gt; struct std::is_trival</code></li></ul></li><li><strong>不能有 <code>虚函数</code> 和 <code>虚基类</code></strong>。</li></ol></li></ul><h4 id="标准布局"><a href="#标准布局" class="headerlink" title="标准布局"></a>标准布局</h4><ul><li><p>满足条件</p><ol><li><strong>普通成员有相同的访问级别</strong></li><li><strong>第一个成员必须是自己的</strong>(也即类中第一个非静态成员的类型与其基类不同)</li><li><strong>只要有父类，普通成员只能在其中一个类中，不可分散</strong>(也即<code>派生类中有非静态成员，且只有一个仅包含静态成员的基类</code>或者<code>基类有非静态成员，而派生类没有非静态成员</code>)</li><li><strong>没有虚函数和虚基类</strong></li></ol><ul><li><p>C++提供了一个模板来判断一个类或者结构体是否是标准布局:<code>template &lt;typename T&gt; struct std::is_standard_layout; //头文件为&lt;type_traits&gt;</code></p></li><li><p>C++提供了一个模板来判断一个类或者结构体是否是POD:<code>template &lt;typename T&gt; struct std::is_pod //头文件为&lt;type_traits&gt;</code></p></li></ul></li></ul><h4 id="POD的好处"><a href="#POD的好处" class="headerlink" title="POD的好处"></a>POD的好处</h4><ol><li><p>字节赋值，我们可以放心的使用<code>memset</code>和<code>memcpy</code>对POD类型进行初始化和拷贝。</p></li><li><p>提供对C内存的兼容。POD类型的数据在C与C++间的操作总是安全的。</p></li><li><p>保证了静态初始化的安全有效。POD类型的对象初始化往往更简单</p></li></ol>]]></content>
+    <content type="html"><![CDATA[<h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><ul><li>C++迭代器很好用，但是使用的时候一不留神就会出错，迭代器失效就是其中之一。</li></ul><a id="more"></a><h4 id="迭代器失效"><a href="#迭代器失效" class="headerlink" title="迭代器失效"></a>迭代器失效</h4><ol><li><p>list, set, map容器</p><ul><li>在使用 list、set 或 map遍历删除某些元素时可以这样使用：</li><li><p>正确写法1：</p>  <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::<span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt; List;</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt;::iterator itList;</span><br><span class="line"><span class="keyword">for</span> (itList = List.begin(); itList != List.end(); ) &#123;</span><br><span class="line">    <span class="keyword">if</span> (WillDelete(*itList)) &#123;</span><br><span class="line">         itList = List.erase(itList);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">         itList++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li><li><p>正确写法2：</p>  <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::<span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt; List;</span><br><span class="line">   <span class="built_in">std</span>::<span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt;::iterator itList;</span><br><span class="line">   <span class="keyword">for</span> (itList = List.begin(); itList != List.end(); ) &#123;</span><br><span class="line">       <span class="keyword">if</span> (WillDelete( *itList)) &#123;</span><br><span class="line">           List.erase(itList++);</span><br><span class="line">       &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">           itList++;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></li><li><p>错误写法1：</p>  <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::<span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt; List;</span><br><span class="line">      <span class="built_in">std</span>::<span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt;::iterator itList;</span><br><span class="line">      <span class="keyword">for</span> (itList = List.begin(); itList != List.end(); itList++) &#123;</span><br><span class="line">          <span class="keyword">if</span> (WillDelete(*itList)) &#123;</span><br><span class="line">              List.erase(itList);</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure></li><li><p>错误写法2：</p>  <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::<span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt; List;</span><br><span class="line">      <span class="built_in">std</span>::<span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt;::iterator itList;</span><br><span class="line">      <span class="keyword">for</span> (itList = List.begin(); itList != List.end(); ) &#123;</span><br><span class="line">          <span class="keyword">if</span> (WillDelete(*itList)) &#123;</span><br><span class="line">              itList = List.erase(++itList);</span><br><span class="line">          &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">               itList++;</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure></li><li><p>分析：</p><ol><li>正确使用方法1：通过erase方法的返回值来获取下一个元素的位置</li><li>正确使用方法2：在调用erase方法之前先使用 “++” 来获取下一个元素的位置</li><li>错误使用方法1：在调用erase方法之后使用 “++” 来获取下一个元素的位置，由于在调用erase方法以后，该元素的位置已经被删除，如果在根据这个旧的位置来获取下一个位置，则会出现异常。</li><li>错误使用方法2：同错误使用方法1</li></ol></li></ul></li><li><p>vector, deque容器</p><ul><li>在使用 vector、deque遍历删除元素时，也可以通过erase的返回值来获取下一个元素的位置</li><li><p>正确写法：</p>  <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; Vec;</span><br><span class="line">      <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator itVec;</span><br><span class="line">      <span class="keyword">for</span>(itVec = Vec.begin(); itVec != Vec.end(); ) &#123;</span><br><span class="line">          <span class="keyword">if</span>(WillDelete( *itVec) ) &#123;</span><br><span class="line">              itVec = Vec.erase(itVec);</span><br><span class="line">          &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">              itList++;</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure></li><li><p><strong>注意：</strong></p><ol><li><p>vector、deque 不能像上面的<code>正确使用方法2</code>的办法来遍历删除</p><ol><li>对于关联容器(如map, set, multimap,multiset)，删除当前的iterator，<strong>仅仅会使当前的iterator失效</strong>，只要在erase时，递增当前iterator即可。这是因为map之类的容器，使用了红黑树来实现，插入、删除一个结点不会对其他结点造成影响</li><li>对于序列式容器(如vector,deque)，<strong>删除当前的iterator会使后面所有元素的iterator都失效</strong>。这是因为vetor,deque使用了连续分配的内存，删除一个元素导致后面所有的元素会向前移动一个位置。但是erase方法可以返回下一个有效的iterator</li><li>对于list来说，它使用了不连续分配的内存，并且它的erase方法也会返回下一个有效的iterator，因此上面两种方法都可以使用</li></ol></li></ol></li></ul></li></ol><h4 id="相关容器介绍"><a href="#相关容器介绍" class="headerlink" title="相关容器介绍"></a>相关容器介绍</h4><ol><li><p>vector</p><ul><li>内部数据结构：数组</li><li>访问：随机访问每个元素，所需要的时间为常量</li><li>增删元素：在末尾增加或删除元素所需时间与元素数目无关，在中间或开头增加或删除元素所需时间随元素数目呈线性变化</li><li>迭代器：vector的迭代器在内存重新分配时将失效（它所指向的元素在该操作的前后不再相同）。当把超过capacity()-size()个元素插入vector中时，内存会重新分配，所有的迭代器都将失效；否则，指向当前元素以后的任何元素的迭代器都将失效。当删除元素时，指向被删除元素以后的任何元素的迭代器都将失效</li></ul></li><li><p>deque</p><ul><li>内部数据结构：数组</li><li>访问：随机访问每个元素，所需要的时间为常量</li><li>增删元素：在开头和末尾增加元素所需时间与元素数目无关，在中间增加或删除元素所需时间随元素数目呈线性变化</li><li>迭代器： 增加任何元素都将使deque的迭代器失效。在deque的中间删除元素将使迭代器失效。在deque的头或尾删除元素时，只有指向该元素的迭代器失效</li></ul></li><li><p>lsit</p><ul><li>内部数据结构：双向环状链表</li><li>访问：不能随机访问一个元素</li><li>增删元素：在开头、末尾和中间任何地方增加或删除元素所需时间都为常量</li><li>迭代器：增加任何元素都不会使迭代器失效。删除元素时，除了指向当前被删除元素的迭代器外，其它迭代器都不会失效</li></ul></li><li><p>slist</p><ul><li>内部数据结构：单向链表</li><li>访问：不可双向遍历，只能从前到后地遍历</li><li>增删元素：在开头、末尾和中间任何地方增加或删除元素所需时间都为常量</li><li>迭代器：增加任何元素都不会使迭代器失效。删除元素时，除了指向当前被删除元素的迭代器外，其它迭代器都不会失效</li></ul></li><li><p>stack</p><ul><li>内部数据结构：适配器，它可以将任意类型的序列容器转换为一个堆栈，一般使用deque作为支持的序列容器</li><li>访问：不能遍历整个stack</li><li>增删元素：元素只能后进先出</li></ul></li><li><p>queue</p><ul><li>内部数据结构：适配器，它可以将任意类型的序列容器转换为一个队列，一般使用deque作为支持的序列容器</li><li>访问：不能遍历整个queue</li><li>增删元素：元素只能先进先出</li></ul></li><li><p>priority_queue</p><ul><li>内部数据结构：适配器，它可以将任意类型的序列容器转换为一个优先级队列，一般使用vector作为底层存储方式</li><li>访问：只能访问第一个元素，不能遍历整个priority_queue</li><li>增删元素：第一个元素始终是优先级最高的一个元素</li></ul></li><li><p>set(hash_set不解释了)</p><ul><li>内部数据结构：红黑树</li><li>访问：随机访问</li><li>增删元素：键和值相等且键唯一</li><li>迭代器：如果迭代器所指向的元素被删除，则该迭代器失效。其它任何增加、删除元素的操作都不会使迭代器失效</li></ul></li><li><p>map(hash_map不解释了)</p><ul><li>内部数据结构：红黑树</li><li>访问：随机访问</li><li>增删元素：键唯一</li><li>迭代器：如果迭代器所指向的元素被删除，则该迭代器失效。其它任何增加、删除元素的操作都不会使迭代器失效</li></ul></li></ol>]]></content>
     
     <summary type="html">
     
       &lt;h4 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h4&gt;&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;code&gt;POD(Plain Old Data)&lt;/code&gt;是C++中非常重要的一个概念，用来描述一个类型的属性。其中&lt;code&gt;Plain&lt;/code&gt;表示这个类型是个平凡的类型，&lt;code&gt;Old&lt;/code&gt;表示其与C的兼容性(就意味着可以使用 memcpy() 函数进行操作)。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;C++11中将POD划分为两个基本概念：&lt;code&gt;平凡的（trival）&lt;/code&gt;和&lt;code&gt;标准布局（standardlayout）&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
+&lt;li&gt;C++迭代器很好用，但是使用的时候一不留神就会出错，迭代器失效就是其中之一。&lt;/li&gt;
 &lt;/ul&gt;
     
     </summary>
@@ -158,6 +155,33 @@
     </summary>
     
       <category term="Others" scheme="http://roux.top/categories/Others/"/>
+    
+    
+      <category term="C++" scheme="http://roux.top/tags/C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>C++之POD类型</title>
+    <link href="http://roux.top/2018/12/13/C++%E4%B9%8BPOD%E7%B1%BB%E5%9E%8B/"/>
+    <id>http://roux.top/2018/12/13/C++之POD类型/</id>
+    <published>2018-12-12T16:00:00.000Z</published>
+    <updated>2018-12-18T10:57:56.051Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><ul><li><p><code>POD(Plain Old Data)</code>是C++中非常重要的一个概念，用来描述一个类型的属性。其中<code>Plain</code>表示这个类型是个平凡的类型，<code>Old</code>表示其与C的兼容性(就意味着可以使用 memcpy() 函数进行操作)。</p></li><li><p>C++11中将POD划分为两个基本概念：<code>平凡的（trival）</code>和<code>标准布局（standardlayout）</code></p></li></ul><a id="more"></a><h4 id="平凡-trival"><a href="#平凡-trival" class="headerlink" title="平凡(trival)"></a>平凡(trival)</h4><ul><li>满足条件<ol><li><strong>不能写 <code>构造/析构函数</code>、<code>拷贝/移动构造函数</code>、<code>拷贝/移动赋值运算符</code></strong>，而是用编译器自动为我们生成，那这个数据就是“平凡的”。非要写的话，用 C++ 11 的 <code>default</code> 关键字。<ul><li>C++为我们提供了一个类模板来识别一个类是否平凡：<code>template &lt;typename T&gt; struct std::is_trival</code></li></ul></li><li><strong>不能有 <code>虚函数</code> 和 <code>虚基类</code></strong>。</li></ol></li></ul><h4 id="标准布局"><a href="#标准布局" class="headerlink" title="标准布局"></a>标准布局</h4><ul><li><p>满足条件</p><ol><li><strong>普通成员有相同的访问级别</strong></li><li><strong>第一个成员必须是自己的</strong>(也即类中第一个非静态成员的类型与其基类不同)</li><li><strong>只要有父类，普通成员只能在其中一个类中，不可分散</strong>(也即<code>派生类中有非静态成员，且只有一个仅包含静态成员的基类</code>或者<code>基类有非静态成员，而派生类没有非静态成员</code>)</li><li><strong>没有虚函数和虚基类</strong></li></ol><ul><li><p>C++提供了一个模板来判断一个类或者结构体是否是标准布局:<code>template &lt;typename T&gt; struct std::is_standard_layout; //头文件为&lt;type_traits&gt;</code></p></li><li><p>C++提供了一个模板来判断一个类或者结构体是否是POD:<code>template &lt;typename T&gt; struct std::is_pod //头文件为&lt;type_traits&gt;</code></p></li></ul></li></ul><h4 id="POD的好处"><a href="#POD的好处" class="headerlink" title="POD的好处"></a>POD的好处</h4><ol><li><p>字节赋值，我们可以放心的使用<code>memset</code>和<code>memcpy</code>对POD类型进行初始化和拷贝。</p></li><li><p>提供对C内存的兼容。POD类型的数据在C与C++间的操作总是安全的。</p></li><li><p>保证了静态初始化的安全有效。POD类型的对象初始化往往更简单</p></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;POD(Plain Old Data)&lt;/code&gt;是C++中非常重要的一个概念，用来描述一个类型的属性。其中&lt;code&gt;Plain&lt;/code&gt;表示这个类型是个平凡的类型，&lt;code&gt;Old&lt;/code&gt;表示其与C的兼容性(就意味着可以使用 memcpy() 函数进行操作)。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;C++11中将POD划分为两个基本概念：&lt;code&gt;平凡的（trival）&lt;/code&gt;和&lt;code&gt;标准布局（standardlayout）&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+      <category term="语言" scheme="http://roux.top/categories/%E8%AF%AD%E8%A8%80/"/>
     
     
       <category term="C++" scheme="http://roux.top/tags/C/"/>
@@ -233,30 +257,6 @@
   </entry>
   
   <entry>
-    <title>HTTP学习（六）——HTTP2性能优化实践</title>
-    <link href="http://roux.top/2018/04/22/HTTP%E5%AD%A6%E4%B9%A0%EF%BC%88%E5%85%AD%EF%BC%89/"/>
-    <id>http://roux.top/2018/04/22/HTTP学习（六）/</id>
-    <published>2018-04-21T16:00:00.000Z</published>
-    <updated>2018-04-22T06:06:02.928Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><ul><li>为了让我们的网站访问速度快变，我们不断增加带宽，做针对HTTP协议的特点对应用做各种优化。希望能通常高带宽，低延迟来提高网站到访问速度。带宽与延迟两者间，延迟才是性能的真正瓶颈。</li></ul><a id="more"></a><h3 id="客观原因"><a href="#客观原因" class="headerlink" title="客观原因"></a>客观原因</h3><ul><li><p>当我们针对HTTP协议进行性能优化时，我们不得不注意到这样的一些客观原因。通常当我们改变不了底层协议特性时，我们只能在更高层处做文章。</p><ol><li><p>带宽受物理层介质的影响，最快快不过光速，但是即便在今天越来越高的带宽，我们依然没有感觉到网站访问速度有多快。 </p></li><li><p>延迟包括传输延迟，传播延迟，处理延迟和排队延迟。</p></li><li><p>每次连接都需要经过3次握手才能建立，增加整整一个RTT。</p></li><li><p>TCP拥塞控制策略：慢启动，拥塞避免[注1]。其中慢启动会被应用到每一个连接中。TCP流量和拥塞控制会影响整个网络到吞吐量。</p></li><li><p>解析DNS必然会产生一些延迟。</p></li><li><p>最快获得资源的方式，莫过于还没传，就已拿到。充分利用缓存。</p></li><li><p>最少的延迟就是什么都不传。而没有延迟。</p></li></ol></li></ul><h3 id="针对HTTP1-X做过的优化"><a href="#针对HTTP1-X做过的优化" class="headerlink" title="针对HTTP1.X做过的优化"></a>针对HTTP1.X做过的优化</h3><ul><li><p>由于TCP层的特性，在提高web性能时，我们不得不做一些优化， <a href="https://developer.yahoo.com/performance/rules.html" target="_blank" rel="noopener">Best Practices for Speeding Up Your Web Site</a>，这些优化中针对HTTP协议特点的，我们做了哪些呢，从总体来说有以下几大点。</p><ol><li><p>连接和拼接</p><ul><li>连接或拼接JS和CSS文件，雪碧图，以减少HTTP请求，同时浏览器可缓存这些静态资源，为下次访问节约时间。但是这样带来的副作用是，维护成本高，其中某一个小改动都会使得整个拼接后的文件发生改变，重新缓存。</li></ul></li><li><p>域名分区</p><ul><li>由于浏览器的限制，同一个域下最多只能建立6个连接。我们通常使用子域名来减少所有资源在只有一个连接时的产生的排队延迟。这个显然不适用在HTTP2中，因为不同的域需要建立不同的连接。</li></ul></li><li><p>资源内嵌</p><ul><li>对于不常用的，较小大资源内嵌在文档中，比如base64的图片，以减少HTTP请求，但是这样的资源不能在浏览器中缓存，也不可能被其他页面共享，同时还有可能编码之后的资源变等更大了。在HTTP2中，这样的资源就可以使用SERVER PUSH来推送。</li></ul></li><li><p>HTTP管道（额外的）</p><ul><li><p>在HTTP1.x中已经实现了持久连接，但是却依然需要排队来发送和接收请求，这样不能充分利用网络资源。因此提出了HTTP管道的概念。客户端可以将所有请求都一起发给服务器端，服务器端或者按顺序处理，或者并行处理这些请求。但是返回响应的顺序是按照其自己内部的优先级来的。</p></li><li><p>但是，其缺点也很多，以至于现在的浏览器对它还是默认关闭的：</p></li></ul></li><li><p>队首阻塞</p><ul><li>并行处理时，需要占用缓存资源，服务器容易受到攻击</li><li>响应失败后，会断开tcp连接，并要求重发之后的所有请求，造成资源浪费</li><li>中间代理对其兼容性不是很好，有可能还会串行所有请求</li></ul></li></ol></li></ul><h3 id="针对HTTP2需要做的优化"><a href="#针对HTTP2需要做的优化" class="headerlink" title="针对HTTP2需要做的优化"></a>针对HTTP2需要做的优化</h3><ul><li><p>坚决去掉在HTTP1.X中的域名分区，连接和拼接和资源内嵌的优化方式。</p></li><li><p>尽量让所有资源在同一域名下</p></li><li><p>利用服务器推送</p></li><li><p>继续保留CDN</p></li></ul><h3 id="脚注"><a href="#脚注" class="headerlink" title="脚注"></a>脚注</h3><ul><li>TCP慢开始与拥塞避免示意图<br>  <img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/HTTP/six/slow-start.png" alt=""></li></ul><h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><ul><li><a href="https://imjiaolong.cn/post/http2vshttp1.1.html" target="_blank" rel="noopener">https://imjiaolong.cn/post/http2vshttp1.1.html</a></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;为了让我们的网站访问速度快变，我们不断增加带宽，做针对HTTP协议的特点对应用做各种优化。希望能通常高带宽，低延迟来提高网站到访问速度。带宽与延迟两者间，延迟才是性能的真正瓶颈。&lt;/li&gt;
-&lt;/ul&gt;
-    
-    </summary>
-    
-      <category term="Protocol" scheme="http://roux.top/categories/Protocol/"/>
-    
-    
-      <category term="HTTP" scheme="http://roux.top/tags/HTTP/"/>
-    
-  </entry>
-  
-  <entry>
     <title>HTTP与HTTPS</title>
     <link href="http://roux.top/2018/04/22/HTTP%E4%B8%8EHTTPS/"/>
     <id>http://roux.top/2018/04/22/HTTP与HTTPS/</id>
@@ -269,6 +269,57 @@
     
       &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;HTTPS是对HTTP在安全方面上做的一个改进，HTTPS = HTTP + &lt;a href=&quot;https://zh.wikipedia.org/wiki/%E5%82%B3%E8%BC%B8%E5%B1%A4%E5%AE%89%E5%85%A8%E6%80%A7%E5%8D%94%E5%AE%9A&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;SSL/TLS&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+      <category term="Protocol" scheme="http://roux.top/categories/Protocol/"/>
+    
+    
+      <category term="HTTP" scheme="http://roux.top/tags/HTTP/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>HTTP2.0</title>
+    <link href="http://roux.top/2018/04/22/HTTP2.0/"/>
+    <id>http://roux.top/2018/04/22/HTTP2.0/</id>
+    <published>2018-04-21T16:00:00.000Z</published>
+    <updated>2018-10-21T13:47:33.398Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><ul><li><p>这篇文章主要是对HTTP2.0进行一个总结，把零散的知识点进行连接。</p></li><li><p>HTTP2.0 的目的是通过支持请求与响应的多路复用来较少延迟，通过压缩 HTTPS 首部字段将协议开销降低，同时增加请求优先级和服务器端推送的支持.</p></li></ul><a id="more"></a><h3 id="二进制分帧层"><a href="#二进制分帧层" class="headerlink" title="二进制分帧层"></a>二进制分帧层</h3><ul><li><p>二进制分帧层，是HTTP 2.0性能增强的核心。 </p><ul><li>HTTP 1.x在应用层以纯文本的形式进行通信，而HTTP 2.0将所有的传输信息分割为更小的消息和帧，并对它们采用二进制格式编码。这样，客户端和服务端都需要引入新的二进制编码和解码的机制。</li></ul></li><li><p><strong>帧</strong></p><ol><li><p><strong>帧的分类</strong></p><ol><li>DATA：用于传输 HTTP 消息体；</li><li>HEADERS：用于传输首部字段；</li><li>SETTINGS：用于约定客户端和服务端的配置数据。比如设置初识的双向流量控制窗口大小；</li><li>WINDOW_UPDATE：用于调整个别流或个别连接的流量</li><li>PRIORITY： 用于指定或重新指定引用资源的优先级。</li><li>RST_STREAM： 用于通知流的非正常终止。</li><li>PUSH_ PROMISE： 服务端推送许可。</li><li>PING： 用于计算往返时间，执行 “活性” 检活。</li><li>GOAWAY： 用于通知对端停止在当前连接中创建流<br><img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/HTTP/HTTP2.0.png" alt=""></li></ol><ul><li>标志位用于不同的帧类型定义特定的消息标志。比如 DATA 帧就可以使用End Stream: true表示该条消息通信完毕。流标识位表示帧所属的流 ID。优先值用于 HEADERS 帧，表示请求优先级。R 表示保留位。</li></ul></li><li><p><strong>消息</strong></p><ul><li>消息是指逻辑上的HTTP消息（请求/响应）。一系列数据帧组成了一个完整的消息。比如一系列DATA帧和一个HEADERS帧组成了请求消息。</li></ul></li><li><p><strong>流</strong></p><ol><li>流是连接中的一个虚拟信道，可以承载双向消息传输。每个流有唯一整数标识符。为了防止两端流 ID 冲突，客户端发起的流具有奇数 ID，服务器端发起的流具有偶数 ID。 </li><li>所有 HTTP2.0通信都在一个 TCP 连接上完成，慢启动时间减少,拥塞和丢包恢复速度更快，这个连接可以承载任意数量的双向数据流 Stream。相应地，每个数据流以 消息的形式发送，而消息由一 或多个帧组成，这些帧可以乱序发送，然后根据每个帧首部的流标识符重新组装。</li></ol></li></ol></li><li><p><strong><a href="https://www.nihaoshijie.com.cn/index.php/archives/698/" target="_blank" rel="noopener">多路复用</a></strong></p><ol><li><p>HTTP1.X如果不用<a href="https://blog.csdn.net/qq_28885149/article/details/52922107" target="_blank" rel="noopener">pipeling</a>的话会实现串行传输（一个得到应答才继续下一个），如果使用<a href="https://blog.csdn.net/qq_28885149/article/details/52922107" target="_blank" rel="noopener">pipeling</a>的话会<a href="https://blog.csdn.net/jiyiqinlovexx/article/details/50500246" target="_blank" rel="noopener">建立多条TCP连接</a>，这会导致开销增大</p></li><li><p>HTTP2.0建立一条TCP连接后，会并行传输数据。HTTP 2.0成功解决了HTTP 1.x的队首阻塞问题（TCP层的阻塞仍无法解决），同时，也不需要通过pipeline机制多条TCP连接来实现并行请求与响应。减少了TCP连接数对服务器性能也有很大的提升。</p></li><li><p>HTTP1.X虽然可以采用keep alive来解决复用TCP的问题，但是还是无法解决请求阻塞问题。</p><ul><li>所谓请求阻塞意思就是一条TCP的connection在同一时间只能允许一个请求经过，这样假如后续请求想要复用这个链接就必须等到前一个完成才行，正如上图左边表示的。</li><li>之所以有这个问题就是因为HTTP1.x需要每条请求都是可是识别，按顺序发送，否则server就无法判断该相应哪个具体的请求。</li><li>HTTP2采用多路复用是指，在同一个域名下，开启一个TCP的connection，每个请求以stream的方式传输，每个stream有唯一标识，connection一旦建立，后续的请求都可以复用这个connection并且可以同时发送，server端可以根据stream的唯一标识来相应对应的请求。</li></ul></li></ol></li><li><p><strong>请求优先级</strong></p><ul><li><p>流可以带有一个31bit的优先级：</p><ul><li>0：表示最高优先级</li><li>2^31-1：表示最低优先级</li></ul></li><li><p>客户端明确指定优先级，服务端可以根据这个优先级作为依据交互数据，比如客户端优先级设置为.css&gt;.js&gt;.jpg（具体可参见《高性能网站建设指南》）， 服务端按优先级返回结果有利于高效利用底层连接，提高用户体验。 </p></li><li><p>然而，也不能过分迷信请求优先级，仍然要注意以下问题：</p><ul><li>服务端是否支持请求优先级</li><li>会否引起队首阻塞问题，比如高优先级的慢响应请求会阻塞其他资源的交互。</li></ul></li></ul></li><li><p><strong>服务端推送</strong></p><ul><li>HTTP 2.0增加了服务端推送功能，服务端可以根据客户端的请求，提前返回多个响应，推送额外的资源给客户端。<ul><li>比如：客户端请求stream 1，/page.html。服务端在返回stream 1消息的同时推送了stream 2（/script.js）和stream 4（/style.css）。</li></ul></li></ul></li><li><p><strong>首部压缩</strong></p><ol><li>HTTP1.x在每一次通信都会携带首部信息描述资源属性</li><li>HTTP2.0会在双方之间使用“首部表”来跟踪之前发送和存储的键值对，首部表在链接过程中始终存在，新增的键值对会更新到表尾，因此不需要每次通信都携带首部</li><li>HTTP2.0用到了首部压缩技术，压缩算法为HPACK<ul><li>HTTP 2.0关注的是首部压缩，而我们常用的gzip等是报文内容（body）的压缩。二者不仅不冲突，且能够一起达到更好的压缩效果。</li></ul></li></ol></li></ul><h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><ul><li><a href="https://blog.csdn.net/zhuyiquan/article/details/69257126" target="_blank" rel="noopener">https://blog.csdn.net/zhuyiquan/article/details/69257126</a></li><li><a href="https://segmentfault.com/a/1190000013028798" target="_blank" rel="noopener">https://segmentfault.com/a/1190000013028798</a></li><li><a href="https://www.nihaoshijie.com.cn/index.php/archives/698/" target="_blank" rel="noopener">https://www.nihaoshijie.com.cn/index.php/archives/698/</a></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;这篇文章主要是对HTTP2.0进行一个总结，把零散的知识点进行连接。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;HTTP2.0 的目的是通过支持请求与响应的多路复用来较少延迟，通过压缩 HTTPS 首部字段将协议开销降低，同时增加请求优先级和服务器端推送的支持.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+      <category term="Protocol" scheme="http://roux.top/categories/Protocol/"/>
+    
+    
+      <category term="HTTP" scheme="http://roux.top/tags/HTTP/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>HTTP学习（六）——HTTP2性能优化实践</title>
+    <link href="http://roux.top/2018/04/22/HTTP%E5%AD%A6%E4%B9%A0%EF%BC%88%E5%85%AD%EF%BC%89/"/>
+    <id>http://roux.top/2018/04/22/HTTP学习（六）/</id>
+    <published>2018-04-21T16:00:00.000Z</published>
+    <updated>2018-04-22T06:06:02.928Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><ul><li>为了让我们的网站访问速度快变，我们不断增加带宽，做针对HTTP协议的特点对应用做各种优化。希望能通常高带宽，低延迟来提高网站到访问速度。带宽与延迟两者间，延迟才是性能的真正瓶颈。</li></ul><a id="more"></a><h3 id="客观原因"><a href="#客观原因" class="headerlink" title="客观原因"></a>客观原因</h3><ul><li><p>当我们针对HTTP协议进行性能优化时，我们不得不注意到这样的一些客观原因。通常当我们改变不了底层协议特性时，我们只能在更高层处做文章。</p><ol><li><p>带宽受物理层介质的影响，最快快不过光速，但是即便在今天越来越高的带宽，我们依然没有感觉到网站访问速度有多快。 </p></li><li><p>延迟包括传输延迟，传播延迟，处理延迟和排队延迟。</p></li><li><p>每次连接都需要经过3次握手才能建立，增加整整一个RTT。</p></li><li><p>TCP拥塞控制策略：慢启动，拥塞避免[注1]。其中慢启动会被应用到每一个连接中。TCP流量和拥塞控制会影响整个网络到吞吐量。</p></li><li><p>解析DNS必然会产生一些延迟。</p></li><li><p>最快获得资源的方式，莫过于还没传，就已拿到。充分利用缓存。</p></li><li><p>最少的延迟就是什么都不传。而没有延迟。</p></li></ol></li></ul><h3 id="针对HTTP1-X做过的优化"><a href="#针对HTTP1-X做过的优化" class="headerlink" title="针对HTTP1.X做过的优化"></a>针对HTTP1.X做过的优化</h3><ul><li><p>由于TCP层的特性，在提高web性能时，我们不得不做一些优化， <a href="https://developer.yahoo.com/performance/rules.html" target="_blank" rel="noopener">Best Practices for Speeding Up Your Web Site</a>，这些优化中针对HTTP协议特点的，我们做了哪些呢，从总体来说有以下几大点。</p><ol><li><p>连接和拼接</p><ul><li>连接或拼接JS和CSS文件，雪碧图，以减少HTTP请求，同时浏览器可缓存这些静态资源，为下次访问节约时间。但是这样带来的副作用是，维护成本高，其中某一个小改动都会使得整个拼接后的文件发生改变，重新缓存。</li></ul></li><li><p>域名分区</p><ul><li>由于浏览器的限制，同一个域下最多只能建立6个连接。我们通常使用子域名来减少所有资源在只有一个连接时的产生的排队延迟。这个显然不适用在HTTP2中，因为不同的域需要建立不同的连接。</li></ul></li><li><p>资源内嵌</p><ul><li>对于不常用的，较小大资源内嵌在文档中，比如base64的图片，以减少HTTP请求，但是这样的资源不能在浏览器中缓存，也不可能被其他页面共享，同时还有可能编码之后的资源变等更大了。在HTTP2中，这样的资源就可以使用SERVER PUSH来推送。</li></ul></li><li><p>HTTP管道（额外的）</p><ul><li><p>在HTTP1.x中已经实现了持久连接，但是却依然需要排队来发送和接收请求，这样不能充分利用网络资源。因此提出了HTTP管道的概念。客户端可以将所有请求都一起发给服务器端，服务器端或者按顺序处理，或者并行处理这些请求。但是返回响应的顺序是按照其自己内部的优先级来的。</p></li><li><p>但是，其缺点也很多，以至于现在的浏览器对它还是默认关闭的：</p></li></ul></li><li><p>队首阻塞</p><ul><li>并行处理时，需要占用缓存资源，服务器容易受到攻击</li><li>响应失败后，会断开tcp连接，并要求重发之后的所有请求，造成资源浪费</li><li>中间代理对其兼容性不是很好，有可能还会串行所有请求</li></ul></li></ol></li></ul><h3 id="针对HTTP2需要做的优化"><a href="#针对HTTP2需要做的优化" class="headerlink" title="针对HTTP2需要做的优化"></a>针对HTTP2需要做的优化</h3><ul><li><p>坚决去掉在HTTP1.X中的域名分区，连接和拼接和资源内嵌的优化方式。</p></li><li><p>尽量让所有资源在同一域名下</p></li><li><p>利用服务器推送</p></li><li><p>继续保留CDN</p></li></ul><h3 id="脚注"><a href="#脚注" class="headerlink" title="脚注"></a>脚注</h3><ul><li>TCP慢开始与拥塞避免示意图<br>  <img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/HTTP/six/slow-start.png" alt=""></li></ul><h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><ul><li><a href="https://imjiaolong.cn/post/http2vshttp1.1.html" target="_blank" rel="noopener">https://imjiaolong.cn/post/http2vshttp1.1.html</a></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;为了让我们的网站访问速度快变，我们不断增加带宽，做针对HTTP协议的特点对应用做各种优化。希望能通常高带宽，低延迟来提高网站到访问速度。带宽与延迟两者间，延迟才是性能的真正瓶颈。&lt;/li&gt;
 &lt;/ul&gt;
     
     </summary>
@@ -329,20 +380,26 @@
   </entry>
   
   <entry>
-    <title>HTTP2.0</title>
-    <link href="http://roux.top/2018/04/22/HTTP2.0/"/>
-    <id>http://roux.top/2018/04/22/HTTP2.0/</id>
-    <published>2018-04-21T16:00:00.000Z</published>
-    <updated>2018-10-21T13:47:33.398Z</updated>
+    <title>HTTP学习（五）——HTTP2 VS SPDY</title>
+    <link href="http://roux.top/2018/04/21/HTTP%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%BA%94%EF%BC%89/"/>
+    <id>http://roux.top/2018/04/21/HTTP学习（五）/</id>
+    <published>2018-04-20T16:00:00.000Z</published>
+    <updated>2018-04-22T05:45:56.796Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><ul><li><p>这篇文章主要是对HTTP2.0进行一个总结，把零散的知识点进行连接。</p></li><li><p>HTTP2.0 的目的是通过支持请求与响应的多路复用来较少延迟，通过压缩 HTTPS 首部字段将协议开销降低，同时增加请求优先级和服务器端推送的支持.</p></li></ul><a id="more"></a><h3 id="二进制分帧层"><a href="#二进制分帧层" class="headerlink" title="二进制分帧层"></a>二进制分帧层</h3><ul><li><p>二进制分帧层，是HTTP 2.0性能增强的核心。 </p><ul><li>HTTP 1.x在应用层以纯文本的形式进行通信，而HTTP 2.0将所有的传输信息分割为更小的消息和帧，并对它们采用二进制格式编码。这样，客户端和服务端都需要引入新的二进制编码和解码的机制。</li></ul></li><li><p><strong>帧</strong></p><ol><li><p><strong>帧的分类</strong></p><ol><li>DATA：用于传输 HTTP 消息体；</li><li>HEADERS：用于传输首部字段；</li><li>SETTINGS：用于约定客户端和服务端的配置数据。比如设置初识的双向流量控制窗口大小；</li><li>WINDOW_UPDATE：用于调整个别流或个别连接的流量</li><li>PRIORITY： 用于指定或重新指定引用资源的优先级。</li><li>RST_STREAM： 用于通知流的非正常终止。</li><li>PUSH_ PROMISE： 服务端推送许可。</li><li>PING： 用于计算往返时间，执行 “活性” 检活。</li><li>GOAWAY： 用于通知对端停止在当前连接中创建流<br><img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/HTTP/HTTP2.0.png" alt=""></li></ol><ul><li>标志位用于不同的帧类型定义特定的消息标志。比如 DATA 帧就可以使用End Stream: true表示该条消息通信完毕。流标识位表示帧所属的流 ID。优先值用于 HEADERS 帧，表示请求优先级。R 表示保留位。</li></ul></li><li><p><strong>消息</strong></p><ul><li>消息是指逻辑上的HTTP消息（请求/响应）。一系列数据帧组成了一个完整的消息。比如一系列DATA帧和一个HEADERS帧组成了请求消息。</li></ul></li><li><p><strong>流</strong></p><ol><li>流是连接中的一个虚拟信道，可以承载双向消息传输。每个流有唯一整数标识符。为了防止两端流 ID 冲突，客户端发起的流具有奇数 ID，服务器端发起的流具有偶数 ID。 </li><li>所有 HTTP2.0通信都在一个 TCP 连接上完成，慢启动时间减少,拥塞和丢包恢复速度更快，这个连接可以承载任意数量的双向数据流 Stream。相应地，每个数据流以 消息的形式发送，而消息由一 或多个帧组成，这些帧可以乱序发送，然后根据每个帧首部的流标识符重新组装。</li></ol></li></ol></li><li><p><strong><a href="https://www.nihaoshijie.com.cn/index.php/archives/698/" target="_blank" rel="noopener">多路复用</a></strong></p><ol><li><p>HTTP1.X如果不用<a href="https://blog.csdn.net/qq_28885149/article/details/52922107" target="_blank" rel="noopener">pipeling</a>的话会实现串行传输（一个得到应答才继续下一个），如果使用<a href="https://blog.csdn.net/qq_28885149/article/details/52922107" target="_blank" rel="noopener">pipeling</a>的话会<a href="https://blog.csdn.net/jiyiqinlovexx/article/details/50500246" target="_blank" rel="noopener">建立多条TCP连接</a>，这会导致开销增大</p></li><li><p>HTTP2.0建立一条TCP连接后，会并行传输数据。HTTP 2.0成功解决了HTTP 1.x的队首阻塞问题（TCP层的阻塞仍无法解决），同时，也不需要通过pipeline机制多条TCP连接来实现并行请求与响应。减少了TCP连接数对服务器性能也有很大的提升。</p></li><li><p>HTTP1.X虽然可以采用keep alive来解决复用TCP的问题，但是还是无法解决请求阻塞问题。</p><ul><li>所谓请求阻塞意思就是一条TCP的connection在同一时间只能允许一个请求经过，这样假如后续请求想要复用这个链接就必须等到前一个完成才行，正如上图左边表示的。</li><li>之所以有这个问题就是因为HTTP1.x需要每条请求都是可是识别，按顺序发送，否则server就无法判断该相应哪个具体的请求。</li><li>HTTP2采用多路复用是指，在同一个域名下，开启一个TCP的connection，每个请求以stream的方式传输，每个stream有唯一标识，connection一旦建立，后续的请求都可以复用这个connection并且可以同时发送，server端可以根据stream的唯一标识来相应对应的请求。</li></ul></li></ol></li><li><p><strong>请求优先级</strong></p><ul><li><p>流可以带有一个31bit的优先级：</p><ul><li>0：表示最高优先级</li><li>2^31-1：表示最低优先级</li></ul></li><li><p>客户端明确指定优先级，服务端可以根据这个优先级作为依据交互数据，比如客户端优先级设置为.css&gt;.js&gt;.jpg（具体可参见《高性能网站建设指南》）， 服务端按优先级返回结果有利于高效利用底层连接，提高用户体验。 </p></li><li><p>然而，也不能过分迷信请求优先级，仍然要注意以下问题：</p><ul><li>服务端是否支持请求优先级</li><li>会否引起队首阻塞问题，比如高优先级的慢响应请求会阻塞其他资源的交互。</li></ul></li></ul></li><li><p><strong>服务端推送</strong></p><ul><li>HTTP 2.0增加了服务端推送功能，服务端可以根据客户端的请求，提前返回多个响应，推送额外的资源给客户端。<ul><li>比如：客户端请求stream 1，/page.html。服务端在返回stream 1消息的同时推送了stream 2（/script.js）和stream 4（/style.css）。</li></ul></li></ul></li><li><p><strong>首部压缩</strong></p><ol><li>HTTP1.x在每一次通信都会携带首部信息描述资源属性</li><li>HTTP2.0会在双方之间使用“首部表”来跟踪之前发送和存储的键值对，首部表在链接过程中始终存在，新增的键值对会更新到表尾，因此不需要每次通信都携带首部</li><li>HTTP2.0用到了首部压缩技术，压缩算法为HPACK<ul><li>HTTP 2.0关注的是首部压缩，而我们常用的gzip等是报文内容（body）的压缩。二者不仅不冲突，且能够一起达到更好的压缩效果。</li></ul></li></ol></li></ul><h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><ul><li><a href="https://blog.csdn.net/zhuyiquan/article/details/69257126" target="_blank" rel="noopener">https://blog.csdn.net/zhuyiquan/article/details/69257126</a></li><li><a href="https://segmentfault.com/a/1190000013028798" target="_blank" rel="noopener">https://segmentfault.com/a/1190000013028798</a></li><li><a href="https://www.nihaoshijie.com.cn/index.php/archives/698/" target="_blank" rel="noopener">https://www.nihaoshijie.com.cn/index.php/archives/698/</a></li></ul>]]></content>
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><ul><li>SPDY是HTTP2的催化剂，但SPDY不是HTTP2。 本文主要针对SPDY与HTTP2之间的区别，而不太多的涉及它俩之间与HTTP1.X的区别。</li></ul><h3 id="SPDY的出现"><a href="#SPDY的出现" class="headerlink" title="SPDY的出现"></a>SPDY的出现</h3><ul><li><p>SPDY是谷歌在09年年中时发布的，它的主要目标时通过解决HTTP1.1中一些显著的性能限制，来减少网页额的加载时间。目前为止，Chrome,Firefox和Opera都支持了这一协议。</p></li><li><p>SPDY引入了新的二进制分帧层，以实现多路复用、优先次序、最小化的消除网络延迟，同时对HTTP首部进行压缩，减少HTTP报文的冗余数据。</p><blockquote><p>目前为止，我们只在实验室条件下测试过 SPDY。最初的成果很激动人心：通过模拟的家庭上网线路下载了 25 个最流行的网站之后，我们发现性能的改进特别明显，页面加载速度最多快了 55%。 ——A 2x Faster Web Chromium Blog</p></blockquote></li></ul><a id="more"></a><ul><li><p>一方面由于随着web应用的发展，HTTP1.1协议的局限性突显的越来越严重，另一方面由于SPDY的优秀表现，12年初，W3C向全社会征集HTTP2的建议，最终决定将SPDY规范作为制定标准的基础。随后的时间内，SPDY与HTTP2共同进化，HTTP2提出新规范或新功能，SPDY为它进行测试和验证。当HTTP2一切就绪之日，就是SPDY退出舞台之时。事实上，在今年2月谷歌公司已经宣布将在16年年初放弃对SPDY的支持。</p></li><li><p>目前各浏览器对SPDY和HTTP2的支持情况分别如下:<br>  <img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/HTTP/five/spdy-caniuse.png" alt=""><br>  <img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/HTTP/five/http2-caniuse.png" alt=""></p><h3 id="SPDY与HTTP2的区别"><a href="#SPDY与HTTP2的区别" class="headerlink" title="SPDY与HTTP2的区别"></a>SPDY与HTTP2的区别</h3></li><li><p>头部压缩算法，SPDY，通用的deflate算法[注1]；HTTP2，专门为压缩头部设计的HPACK算法</p></li><li>SPDY必须在TLS上运行，HTTP2可在TCP上直接使用，因为增加了HTTP1.1的Upgrade机制</li><li>更加完善的协议商讨和确认流程</li><li>更加完善的Server Push流程</li><li>增加控制帧的种类，并对帧的格式考虑的更细致</li></ul><h3 id="脚注"><a href="#脚注" class="headerlink" title="脚注"></a>脚注</h3><ul><li><p>deflate算法 这个算法是由2个算法组合而成，哈夫曼编码和LZ77编码。</p><ul><li><p>哈夫曼编码 一种无前缀编码，简单来说就是长字符串用短编码表示，以最终达到减少总大小的目的。具体编码过程可参考Huffman 编码压缩算法</p></li><li><p>例如，在一篇英语文章中，字母“E”出现的频率最高，“Z”最低，如果我们采用字符编码，那么每一个字母都是8bit表示；但是如果，我们使用不定长的bit编码，频率高的字母用比较短的编码表示，频率低的字母用长的编码表示，就会大大缩小文件的空间。</p>  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">字符编码</span><br><span class="line">A00101001</span><br><span class="line">B00101010</span><br><span class="line">C00101011……</span><br><span class="line">哈夫曼编码</span><br><span class="line">A    <span class="number">0</span></span><br><span class="line">B    <span class="number">10</span></span><br><span class="line">C    <span class="number">110</span></span><br><span class="line">D    <span class="number">1110</span></span><br><span class="line">E    <span class="number">11110</span></span><br></pre></td></tr></table></figure><p>大致思路：每次总是选取频率最小两个节点，将其频率相加，最终构成一个最优二叉树。 例如：有A,B,C,D,E五个字符，出现的频率（即权值）分别为5,4,3,2,1,那么我们第一步先取两个最小权值作为左右子树构造一个新树，即取1，2构成新树，其结点为1+2=3<br>  <img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/HTTP/five/hfm-1.png" alt=""><br>虚线为新生成的结点，第二步再把新生成的权值为3的结点放到剩下的集合中，所以集合变成{5,4,3,3}，再根据第二步，取最小的两个权值构成新树，如图：<br>  <img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/HTTP/five/hfm-2.png" alt=""><br>再依次建立哈夫曼树:<br>  <img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/HTTP/five/hfm-3.png" alt=""><br>其中各个权值替换对应的字符即为下图:<br>  <img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/HTTP/five/hfm-4.png" alt=""><br>所以各字符对应的编码为：A-&gt;11,B-&gt;10,C-&gt;00,D-&gt;011,E-&gt;010</p></li><li><p>LZ77编码 字典压缩算法,用到的场景比如gzip。</p><ul><li><p>这个算法的主要思想是：文件中有两块内容相同的话，那么只要知道前一块的位置和大小，我们就可以确定后一块的内容。所以我们可以用（两者之间的距离，相同内容的长度）这样一对信息，来替换后一块内容。由于（两者之间的距离，相同内容的长度）这一对信息的大小，小于被替换内容的大小，所以文件得到了压缩。</p></li><li><p>大致流程如下： 可构想出2个窗口，一个作为搜索缓存区（已完成搜索的字符），一个作为待搜索窗口。如下图:<br>  <img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/HTTP/five/lz77.jpg" alt=""></p></li><li>编码过程：<ul><li>如果待搜索字符c没在搜索缓存区中找到，则输出(0,0,c),同时，整个窗口向前移动1位</li><li>如果待搜索字符c在搜索缓存区中找到，起始位置在搜索缓存区中x，连续长度是offset，待搜索窗口中offset之后的一个字符是d，则输出(x, offset, d)。之后，整个窗口向前移动offset位。</li><li>最终输出的三元组就是压缩码</li></ul></li></ul></li></ul></li></ul><h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><ul><li><a href="https://imjiaolong.cn/post/http2%26spdy.html" target="_blank" rel="noopener">https://imjiaolong.cn/post/http2%26spdy.html</a></li></ul>]]></content>
     
     <summary type="html">
     
       &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;这篇文章主要是对HTTP2.0进行一个总结，把零散的知识点进行连接。&lt;/p&gt;
+&lt;li&gt;SPDY是HTTP2的催化剂，但SPDY不是HTTP2。 本文主要针对SPDY与HTTP2之间的区别，而不太多的涉及它俩之间与HTTP1.X的区别。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;SPDY的出现&quot;&gt;&lt;a href=&quot;#SPDY的出现&quot; class=&quot;headerlink&quot; title=&quot;SPDY的出现&quot;&gt;&lt;/a&gt;SPDY的出现&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;SPDY是谷歌在09年年中时发布的，它的主要目标时通过解决HTTP1.1中一些显著的性能限制，来减少网页额的加载时间。目前为止，Chrome,Firefox和Opera都支持了这一协议。&lt;/p&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p&gt;HTTP2.0 的目的是通过支持请求与响应的多路复用来较少延迟，通过压缩 HTTPS 首部字段将协议开销降低，同时增加请求优先级和服务器端推送的支持.&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;SPDY引入了新的二进制分帧层，以实现多路复用、优先次序、最小化的消除网络延迟，同时对HTTP首部进行压缩，减少HTTP报文的冗余数据。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;目前为止，我们只在实验室条件下测试过 SPDY。最初的成果很激动人心：通过模拟的家庭上网线路下载了 25 个最流行的网站之后，我们发现性能的改进特别明显，页面加载速度最多快了 55%。 ——A 2x Faster Web Chromium Blog&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
     
@@ -350,8 +407,6 @@
     
       <category term="Protocol" scheme="http://roux.top/categories/Protocol/"/>
     
-    
-      <category term="HTTP" scheme="http://roux.top/tags/HTTP/"/>
     
   </entry>
   
@@ -387,26 +442,20 @@
   </entry>
   
   <entry>
-    <title>HTTP学习（五）——HTTP2 VS SPDY</title>
-    <link href="http://roux.top/2018/04/21/HTTP%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%BA%94%EF%BC%89/"/>
-    <id>http://roux.top/2018/04/21/HTTP学习（五）/</id>
-    <published>2018-04-20T16:00:00.000Z</published>
-    <updated>2018-04-22T05:45:56.796Z</updated>
+    <title>HTTP学习（二）——一条消息的历程</title>
+    <link href="http://roux.top/2018/04/20/HTTP%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%BA%8C%EF%BC%89/"/>
+    <id>http://roux.top/2018/04/20/HTTP学习（二）/</id>
+    <published>2018-04-19T16:00:00.000Z</published>
+    <updated>2018-04-22T05:45:53.227Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><ul><li>SPDY是HTTP2的催化剂，但SPDY不是HTTP2。 本文主要针对SPDY与HTTP2之间的区别，而不太多的涉及它俩之间与HTTP1.X的区别。</li></ul><h3 id="SPDY的出现"><a href="#SPDY的出现" class="headerlink" title="SPDY的出现"></a>SPDY的出现</h3><ul><li><p>SPDY是谷歌在09年年中时发布的，它的主要目标时通过解决HTTP1.1中一些显著的性能限制，来减少网页额的加载时间。目前为止，Chrome,Firefox和Opera都支持了这一协议。</p></li><li><p>SPDY引入了新的二进制分帧层，以实现多路复用、优先次序、最小化的消除网络延迟，同时对HTTP首部进行压缩，减少HTTP报文的冗余数据。</p><blockquote><p>目前为止，我们只在实验室条件下测试过 SPDY。最初的成果很激动人心：通过模拟的家庭上网线路下载了 25 个最流行的网站之后，我们发现性能的改进特别明显，页面加载速度最多快了 55%。 ——A 2x Faster Web Chromium Blog</p></blockquote></li></ul><a id="more"></a><ul><li><p>一方面由于随着web应用的发展，HTTP1.1协议的局限性突显的越来越严重，另一方面由于SPDY的优秀表现，12年初，W3C向全社会征集HTTP2的建议，最终决定将SPDY规范作为制定标准的基础。随后的时间内，SPDY与HTTP2共同进化，HTTP2提出新规范或新功能，SPDY为它进行测试和验证。当HTTP2一切就绪之日，就是SPDY退出舞台之时。事实上，在今年2月谷歌公司已经宣布将在16年年初放弃对SPDY的支持。</p></li><li><p>目前各浏览器对SPDY和HTTP2的支持情况分别如下:<br>  <img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/HTTP/five/spdy-caniuse.png" alt=""><br>  <img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/HTTP/five/http2-caniuse.png" alt=""></p><h3 id="SPDY与HTTP2的区别"><a href="#SPDY与HTTP2的区别" class="headerlink" title="SPDY与HTTP2的区别"></a>SPDY与HTTP2的区别</h3></li><li><p>头部压缩算法，SPDY，通用的deflate算法[注1]；HTTP2，专门为压缩头部设计的HPACK算法</p></li><li>SPDY必须在TLS上运行，HTTP2可在TCP上直接使用，因为增加了HTTP1.1的Upgrade机制</li><li>更加完善的协议商讨和确认流程</li><li>更加完善的Server Push流程</li><li>增加控制帧的种类，并对帧的格式考虑的更细致</li></ul><h3 id="脚注"><a href="#脚注" class="headerlink" title="脚注"></a>脚注</h3><ul><li><p>deflate算法 这个算法是由2个算法组合而成，哈夫曼编码和LZ77编码。</p><ul><li><p>哈夫曼编码 一种无前缀编码，简单来说就是长字符串用短编码表示，以最终达到减少总大小的目的。具体编码过程可参考Huffman 编码压缩算法</p></li><li><p>例如，在一篇英语文章中，字母“E”出现的频率最高，“Z”最低，如果我们采用字符编码，那么每一个字母都是8bit表示；但是如果，我们使用不定长的bit编码，频率高的字母用比较短的编码表示，频率低的字母用长的编码表示，就会大大缩小文件的空间。</p>  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">字符编码</span><br><span class="line">A00101001</span><br><span class="line">B00101010</span><br><span class="line">C00101011……</span><br><span class="line">哈夫曼编码</span><br><span class="line">A    <span class="number">0</span></span><br><span class="line">B    <span class="number">10</span></span><br><span class="line">C    <span class="number">110</span></span><br><span class="line">D    <span class="number">1110</span></span><br><span class="line">E    <span class="number">11110</span></span><br></pre></td></tr></table></figure><p>大致思路：每次总是选取频率最小两个节点，将其频率相加，最终构成一个最优二叉树。 例如：有A,B,C,D,E五个字符，出现的频率（即权值）分别为5,4,3,2,1,那么我们第一步先取两个最小权值作为左右子树构造一个新树，即取1，2构成新树，其结点为1+2=3<br>  <img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/HTTP/five/hfm-1.png" alt=""><br>虚线为新生成的结点，第二步再把新生成的权值为3的结点放到剩下的集合中，所以集合变成{5,4,3,3}，再根据第二步，取最小的两个权值构成新树，如图：<br>  <img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/HTTP/five/hfm-2.png" alt=""><br>再依次建立哈夫曼树:<br>  <img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/HTTP/five/hfm-3.png" alt=""><br>其中各个权值替换对应的字符即为下图:<br>  <img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/HTTP/five/hfm-4.png" alt=""><br>所以各字符对应的编码为：A-&gt;11,B-&gt;10,C-&gt;00,D-&gt;011,E-&gt;010</p></li><li><p>LZ77编码 字典压缩算法,用到的场景比如gzip。</p><ul><li><p>这个算法的主要思想是：文件中有两块内容相同的话，那么只要知道前一块的位置和大小，我们就可以确定后一块的内容。所以我们可以用（两者之间的距离，相同内容的长度）这样一对信息，来替换后一块内容。由于（两者之间的距离，相同内容的长度）这一对信息的大小，小于被替换内容的大小，所以文件得到了压缩。</p></li><li><p>大致流程如下： 可构想出2个窗口，一个作为搜索缓存区（已完成搜索的字符），一个作为待搜索窗口。如下图:<br>  <img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/HTTP/five/lz77.jpg" alt=""></p></li><li>编码过程：<ul><li>如果待搜索字符c没在搜索缓存区中找到，则输出(0,0,c),同时，整个窗口向前移动1位</li><li>如果待搜索字符c在搜索缓存区中找到，起始位置在搜索缓存区中x，连续长度是offset，待搜索窗口中offset之后的一个字符是d，则输出(x, offset, d)。之后，整个窗口向前移动offset位。</li><li>最终输出的三元组就是压缩码</li></ul></li></ul></li></ul></li></ul><h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><ul><li><a href="https://imjiaolong.cn/post/http2%26spdy.html" target="_blank" rel="noopener">https://imjiaolong.cn/post/http2%26spdy.html</a></li></ul>]]></content>
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><ul><li>我们都知道HTTP底层还是调用TCP协议进行传输的，那么具体怎样调用的呢（如下图）？在这个过程中一条消息都经历了什么过程呢？<ul><li><img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/HTTP/two/%E5%8E%86%E7%A8%8B.jpg" alt="历程"></li></ul></li></ul><a id="more"></a><h3 id="历程"><a href="#历程" class="headerlink" title="历程"></a>历程</h3><ul><li><p>应用层（HTTP, HTTP报文）</p><ul><li><p>HTTP报文是基于文本的，<strong>是没有长度限制</strong>的。也就是说资源有多大，就会一次性都会发过去。HTTP报文的首部行之间是用换行回车来分隔。另外，发送过去的报文实际内容就是将一个个的字符用ASCII码来表示。</p><p><img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/HTTP/two/http-layer.png" alt=""></p></li></ul></li><li><p>运输层(TCP，报文段)</p><ul><li>如果TCP需要发送一个很大的数据，TCP通常会把文件化成长度为<strong>MSS</strong>[1]的若干块再发送。也就是将长报文划分成短报文，并提供拥塞控制机制。TCP报文的首部一般是20字节，包括端口号，序号[3]和确认号[4]，以及做验证的一些字段。<ul><li><img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/HTTP/two/tcp-layer.png" alt=""></li></ul></li></ul></li><li><p>网络层(IP, 数据报)</p><ul><li><p>增加了源IP地址和目的IP地址；同时规定了数据报长度（包括首部长），理论上是<strong>65535字节</strong>。</p></li><li><p>有可能从发送方到接受方这一路径中每段链路使用的<strong>链路层协议不同，且这些协议具有不同的MTU</strong>[2],因此就需要对ip数据报进行分片。</p></li><li><p>只有完全重构为初始ip的数据报才会被交付到上层，否则会被直接丢弃。如果运输层是TCP，那么TCP会要求源重传。</p><p><img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/HTTP/two/ip-layer.png" alt=""></p></li></ul></li><li><p>链路层(帧)</p><ul><li><p>传输的数据量有<strong>固定大小</strong>，不同的链路层协议能传送的最大数据量不同。可见<a href="http://blog.chinaunix.net/uid-20530497-id-2878069.html" target="_blank" rel="noopener">此文</a></p></li><li><p>会增加源mac地址和目的mac地址。</p><p><img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/HTTP/two/datalink-layer.png" alt=""></p></li></ul></li></ul><h3 id="脚注"><a href="#脚注" class="headerlink" title="脚注"></a>脚注</h3><ol><li>MSS: 最大报文段长度，不包括TCP报文的头部。受最大链路层帧长度<strong>MTU</strong>的限制。</li><li>MTU: 最大传输单元，链路层协议不同，议具的MTU也有可能不同，其中以太网和PPP链路层的MTU是1500字节。</li><li>序号：这个分组的第一字节排在整个消息的第几位。</li><li>确认号：期望下次从主机那儿获得字节的序号。</li></ol><h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><ul><li><a href="https://imjiaolong.cn/post/message-road.html" target="_blank" rel="noopener">https://imjiaolong.cn/post/message-road.html</a></li></ul>]]></content>
     
     <summary type="html">
     
       &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;SPDY是HTTP2的催化剂，但SPDY不是HTTP2。 本文主要针对SPDY与HTTP2之间的区别，而不太多的涉及它俩之间与HTTP1.X的区别。&lt;/li&gt;
+&lt;li&gt;我们都知道HTTP底层还是调用TCP协议进行传输的，那么具体怎样调用的呢（如下图）？在这个过程中一条消息都经历了什么过程呢？&lt;ul&gt;
+&lt;li&gt;&lt;img src=&quot;https://raw.githubusercontent.com/paulRoux/Pictures/master/HTTP/two/%E5%8E%86%E7%A8%8B.jpg&quot; alt=&quot;历程&quot;&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&quot;SPDY的出现&quot;&gt;&lt;a href=&quot;#SPDY的出现&quot; class=&quot;headerlink&quot; title=&quot;SPDY的出现&quot;&gt;&lt;/a&gt;SPDY的出现&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;SPDY是谷歌在09年年中时发布的，它的主要目标时通过解决HTTP1.1中一些显著的性能限制，来减少网页额的加载时间。目前为止，Chrome,Firefox和Opera都支持了这一协议。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;SPDY引入了新的二进制分帧层，以实现多路复用、优先次序、最小化的消除网络延迟，同时对HTTP首部进行压缩，减少HTTP报文的冗余数据。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;目前为止，我们只在实验室条件下测试过 SPDY。最初的成果很激动人心：通过模拟的家庭上网线路下载了 25 个最流行的网站之后，我们发现性能的改进特别明显，页面加载速度最多快了 55%。 ——A 2x Faster Web Chromium Blog&lt;/p&gt;
-&lt;/blockquote&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
     
@@ -414,6 +463,8 @@
     
       <category term="Protocol" scheme="http://roux.top/categories/Protocol/"/>
     
+    
+      <category term="HTTP" scheme="http://roux.top/tags/HTTP/"/>
     
   </entry>
   
@@ -472,63 +523,6 @@
     
     
       <category term="HTTP" scheme="http://roux.top/tags/HTTP/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>HTTP学习（二）——一条消息的历程</title>
-    <link href="http://roux.top/2018/04/20/HTTP%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%BA%8C%EF%BC%89/"/>
-    <id>http://roux.top/2018/04/20/HTTP学习（二）/</id>
-    <published>2018-04-19T16:00:00.000Z</published>
-    <updated>2018-04-22T05:45:53.227Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><ul><li>我们都知道HTTP底层还是调用TCP协议进行传输的，那么具体怎样调用的呢（如下图）？在这个过程中一条消息都经历了什么过程呢？<ul><li><img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/HTTP/two/%E5%8E%86%E7%A8%8B.jpg" alt="历程"></li></ul></li></ul><a id="more"></a><h3 id="历程"><a href="#历程" class="headerlink" title="历程"></a>历程</h3><ul><li><p>应用层（HTTP, HTTP报文）</p><ul><li><p>HTTP报文是基于文本的，<strong>是没有长度限制</strong>的。也就是说资源有多大，就会一次性都会发过去。HTTP报文的首部行之间是用换行回车来分隔。另外，发送过去的报文实际内容就是将一个个的字符用ASCII码来表示。</p><p><img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/HTTP/two/http-layer.png" alt=""></p></li></ul></li><li><p>运输层(TCP，报文段)</p><ul><li>如果TCP需要发送一个很大的数据，TCP通常会把文件化成长度为<strong>MSS</strong>[1]的若干块再发送。也就是将长报文划分成短报文，并提供拥塞控制机制。TCP报文的首部一般是20字节，包括端口号，序号[3]和确认号[4]，以及做验证的一些字段。<ul><li><img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/HTTP/two/tcp-layer.png" alt=""></li></ul></li></ul></li><li><p>网络层(IP, 数据报)</p><ul><li><p>增加了源IP地址和目的IP地址；同时规定了数据报长度（包括首部长），理论上是<strong>65535字节</strong>。</p></li><li><p>有可能从发送方到接受方这一路径中每段链路使用的<strong>链路层协议不同，且这些协议具有不同的MTU</strong>[2],因此就需要对ip数据报进行分片。</p></li><li><p>只有完全重构为初始ip的数据报才会被交付到上层，否则会被直接丢弃。如果运输层是TCP，那么TCP会要求源重传。</p><p><img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/HTTP/two/ip-layer.png" alt=""></p></li></ul></li><li><p>链路层(帧)</p><ul><li><p>传输的数据量有<strong>固定大小</strong>，不同的链路层协议能传送的最大数据量不同。可见<a href="http://blog.chinaunix.net/uid-20530497-id-2878069.html" target="_blank" rel="noopener">此文</a></p></li><li><p>会增加源mac地址和目的mac地址。</p><p><img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/HTTP/two/datalink-layer.png" alt=""></p></li></ul></li></ul><h3 id="脚注"><a href="#脚注" class="headerlink" title="脚注"></a>脚注</h3><ol><li>MSS: 最大报文段长度，不包括TCP报文的头部。受最大链路层帧长度<strong>MTU</strong>的限制。</li><li>MTU: 最大传输单元，链路层协议不同，议具的MTU也有可能不同，其中以太网和PPP链路层的MTU是1500字节。</li><li>序号：这个分组的第一字节排在整个消息的第几位。</li><li>确认号：期望下次从主机那儿获得字节的序号。</li></ol><h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><ul><li><a href="https://imjiaolong.cn/post/message-road.html" target="_blank" rel="noopener">https://imjiaolong.cn/post/message-road.html</a></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;我们都知道HTTP底层还是调用TCP协议进行传输的，那么具体怎样调用的呢（如下图）？在这个过程中一条消息都经历了什么过程呢？&lt;ul&gt;
-&lt;li&gt;&lt;img src=&quot;https://raw.githubusercontent.com/paulRoux/Pictures/master/HTTP/two/%E5%8E%86%E7%A8%8B.jpg&quot; alt=&quot;历程&quot;&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-    
-    </summary>
-    
-      <category term="Protocol" scheme="http://roux.top/categories/Protocol/"/>
-    
-    
-      <category term="HTTP" scheme="http://roux.top/tags/HTTP/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>TCP流量控制</title>
-    <link href="http://roux.top/2018/04/08/TCP%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6/"/>
-    <id>http://roux.top/2018/04/08/TCP流量控制/</id>
-    <published>2018-04-07T16:00:00.000Z</published>
-    <updated>2018-04-22T13:00:30.351Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="滑动窗口"><a href="#滑动窗口" class="headerlink" title="滑动窗口"></a>滑动窗口</h3><ul><li>问题：如果发送方把数据发送得过快，接收方可能会来不及接收，这就会造成数据的丢失。<ul><li>所谓流量控制就是让发送方的发送速率不要太快，要让接收方来得及接收。利用滑动窗口机制可以很方便地在TCP连接上实现对发送方的流量控制。<ul><li>滑动窗口理解起来的话可以想象要发送的数据在一个首尾连接的数组上，而滑动窗口则是这个上面的一部分（大小由收发双方进行协商（协商的过程也就是对数据的发送和确认的过程）动态变化）。</li></ul></li></ul></li></ul><a id="more"></a><h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><ul><li>设A向B发送数据。在连接建立时，B告诉了A：“我的接收窗口是 rwnd = 400 ”(这里的 rwnd 表示 receiver window) 。因此，发送方的发送窗口不能超过接收方给出的接收窗口的数值。<ul><li>请注意，TCP的窗口单位是字节，不是报文段。TCP连接建立时的窗口协商过程在图中没有显示出来。</li><li>设每一个报文段为100字节长，而数据报文段序号的初始值设为1。大写ACK表示首部中的确认位ACK，小写ack表示确认字段的值ack<br><img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/TCP/SouthEast.jpg" alt=""></li><li>从图中可以看出，B进行了三次流量控制。第一次把窗口减少到 rwnd = 300 ，第二次又减到了 rwnd = 100 ，最后减到 rwnd = 0 ，即不允许发送方再发送数据了。这种使发送方暂停发送的状态将持续到主机B重新发出一个新的窗口值为止。B向A发送的三个报文段都设置了 ACK = 1 ，只有在ACK=1时确认号字段才有意义。</li><li>TCP为每一个连接设有一个持续计时器(persistence timer)。只要TCP连接的一方收到对方的零窗口通知，就启动持续计时器。若持续计时器设置的时间到期，就发送一个零窗口控测报文段（携1字节的数据），那么收到这个报文段的一方就重新设置持续计时器。</li></ul></li></ul><h3 id="糊涂窗口综合症（Silly-Window-Syndrome）"><a href="#糊涂窗口综合症（Silly-Window-Syndrome）" class="headerlink" title="糊涂窗口综合症（Silly Window Syndrome）"></a>糊涂窗口综合症（Silly Window Syndrome）</h3><ul><li>解释<ul><li>当发送端应用进程产生数据很慢、或接收端应用进程处理接收缓冲区数据很慢，或二者兼而有之；就会使应用进程间传送的报文段很小，特别是有效载荷很小。极端情况下，有效载荷可能只有1个字节；而传输开销有40字节(20字节的IP头+20字节的TCP头) 这种现象就叫糊涂窗口综合症。</li></ul></li><li>发送端引起的SWS<ul><li>如果发送端为产生数据很慢的应用程序服务(典型的有telnet应用)，例如，一次产生一个字节。这个应用程序一次将一个字节的数据写入发送端的TCP的缓存。如果发送端的TCP没有特定的指令，它就产生只包括一个字节数据的报文段。结果有很多41字节的IP数据报就在互连网中传来传去。</li><li>解决方法<ul><li>为了防止发送端的TCP逐个字节地发送数据。必须强迫发送端的TCP收集数据，然后用一个更大的数据块来发送。发送端的TCP要等待多长时间呢？如果它等待过长，它就会使整个的过程产生较长的时延。如果它的等待时间不够长，它就可能发送较小的报文段，于是，Nagle找到了一个很好的解决方法，发明了Nagle算法。而他选择的等待时间是一个RTT,即下个ACK来到时。</li></ul></li></ul></li><li>接收端引起的SWS<ul><li>接收端的TCP可能产生糊涂窗口综合症，如果它为消耗数据很慢的应用程序服务，例如，一次消耗一个字节。假定发送应用程序产生了1000字节的数据块，但接收应用程序每次只吸收1字节的数据。再假定接收端的TCP的输入缓存为4000字节。发送端先发送第一个4000字节的数据。接收端将它存储在其缓存中。现在缓存满了。它通知窗口大小为零，这表示发送端必须停止发送数据。接收应用程序从接收端的TCP的输入缓存中读取第一个字节的数据。在入缓存中现在有了1字节的空间。接收端的TCP宣布其窗口大小为1字节，这表示正渴望等待发送数据的发送端的TCP会把这个宣布当作一个好消息，并发送只包括一个字节数据的报文段。这样的过程一直继续下去。一个字节的数据被消耗掉，然后发送只包含一个字节数据的报文段。</li><li>解决方法<ul><li>第一个解决方法是只要有数据到达就发送确认，但宣布的窗口大小为零，直到或者缓存空间已能放入具有最大长度的报文段，或者缓存空间的一半已经空了。</li><li>延迟确认。第二个解决方法是延迟一段时间后再发送确认。这表示当一个报文段到达时并不立即发送确认。接收端在确认收到的报文段之前一直等待，直到入缓存有足够的空间为止。延迟的确认防止了发送端的TCP滑动其窗口。当发送端的TCP发送完其数据后，它就停下来了。这样就防止了这种症状。<ul><li>优点：它减少了通信量。接收端不需要确认每一个报文段。</li><li>缺点，就是迟延的确认有可能迫使发送端重传其未被确认的报文段。可以用协议来平衡这个优点和缺点，例如现在定义了确认的延迟不能超过500毫秒。</li></ul></li></ul></li></ul></li></ul><h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><ul><li><a href="https://blog.csdn.net/hzhsan/article/details/46429749" target="_blank" rel="noopener">https://blog.csdn.net/hzhsan/article/details/46429749</a></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;滑动窗口&quot;&gt;&lt;a href=&quot;#滑动窗口&quot; class=&quot;headerlink&quot; title=&quot;滑动窗口&quot;&gt;&lt;/a&gt;滑动窗口&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;问题：如果发送方把数据发送得过快，接收方可能会来不及接收，这就会造成数据的丢失。&lt;ul&gt;
-&lt;li&gt;所谓流量控制就是让发送方的发送速率不要太快，要让接收方来得及接收。利用滑动窗口机制可以很方便地在TCP连接上实现对发送方的流量控制。&lt;ul&gt;
-&lt;li&gt;滑动窗口理解起来的话可以想象要发送的数据在一个首尾连接的数组上，而滑动窗口则是这个上面的一部分（大小由收发双方进行协商（协商的过程也就是对数据的发送和确认的过程）动态变化）。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-    
-    </summary>
-    
-      <category term="Protocol" scheme="http://roux.top/categories/Protocol/"/>
-    
-    
-      <category term="TCP" scheme="http://roux.top/tags/TCP/"/>
     
   </entry>
   
