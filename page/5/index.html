@@ -1082,7 +1082,7 @@ A进程通过TCP向另一台机器上的B进程发送了一个字符串“hello�
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://roux.top/2018/01/08/TIME_WAIT/">
+    <link itemprop="mainEntityOfPage" href="http://roux.top/2018/01/08/信号量和自旋锁的区别/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Shirsen">
@@ -1101,7 +1101,7 @@ A进程通过TCP向另一台机器上的B进程发送了一个字符串“hello�
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/08/TIME_WAIT/" itemprop="url">TIME_WAIT状态</a></h1>
+                <a class="post-title-link" href="/2018/01/08/信号量和自旋锁的区别/" itemprop="url">信号量与自旋锁的区别</a></h1>
         
 
         <div class="post-meta">
@@ -1136,8 +1136,8 @@ A进程通过TCP向另一台机器上的B进程发送了一个字符串“hello�
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Protocol/" itemprop="url" rel="index">
-                    <span itemprop="name">Protocol</span>
+                  <a href="/categories/网络编程/" itemprop="url" rel="index">
+                    <span itemprop="name">网络编程</span>
                   </a>
                 </span>
 
@@ -1155,8 +1155,8 @@ A进程通过TCP向另一台机器上的B进程发送了一个字符串“hello�
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2018/01/08/TIME_WAIT/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://roux.top/2018/01/08/TIME_WAIT/" class="cy_cmt_count" data-xid="2018/01/08/TIME_WAIT/" itemprop="commentsCount" ></span>
+                <a href="/2018/01/08/信号量和自旋锁的区别/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://roux.top/2018/01/08/信号量和自旋锁的区别/" class="cy_cmt_count" data-xid="2018/01/08/信号量和自旋锁的区别/" itemprop="commentsCount" ></span>
                 </a>
               
             
@@ -1164,7 +1164,7 @@ A进程通过TCP向另一台机器上的B进程发送了一个字符串“hello�
 
           
           
-             <span id="/2018/01/08/TIME_WAIT/" class="leancloud_visitors" data-flag-title="TIME_WAIT状态">
+             <span id="/2018/01/08/信号量和自旋锁的区别/" class="leancloud_visitors" data-flag-title="信号量与自旋锁的区别">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1200,12 +1200,19 @@ A进程通过TCP向另一台机器上的B进程发送了一个字符串“hello�
 		  
 			
         
-          <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><ul>
-<li>关于TCP的<code>TIME_WAIT</code>，一直停留在明白有什么作用的层次。想着《计算机网络》都学完了，也应该把TCP的问题给实实在在的弄明白。</li>
+          <h4 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h4><ul>
+<li><p>区别一：实现方式</p>
+<ul>
+<li><p>自旋锁是自旋等待，进程状态始终处于<code>TASK_RUNNING</code>。</p>
+</li>
+<li><p>信号量是睡眠等待，进程在等待时处于<code>TASK_INTERRUPTIBLE</code>。</p>
+</li>
+</ul>
+</li>
 </ul>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/01/08/TIME_WAIT/#more" rel="contents">
+            <a class="btn" href="/2018/01/08/信号量和自旋锁的区别/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
