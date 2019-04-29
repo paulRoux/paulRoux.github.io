@@ -105,7 +105,7 @@
 <meta property="og:site_name" content="Shirsen’s Blog">
 <meta property="og:description" content="前言 昨天更新windows10家庭版的1803版本到最新的版本，更新完成后发现控制台和部分软件出现了乱码的现象，网上找了不少的解决办法，最终自己完全解决了！">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-29T04:08:27.404Z">
+<meta property="og:updated_time" content="2019-04-29T04:23:26.140Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Windows10更新系统导致控制台和部分软件中文乱码">
 <meta name="twitter:description" content="前言 昨天更新windows10家庭版的1803版本到最新的版本，更新完成后发现控制台和部分软件出现了乱码的现象，网上找了不少的解决办法，最终自己完全解决了！">
@@ -468,7 +468,7 @@
 </ul>
 <a id="more"></a>
 <h4 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h4><ol>
-<li><p>首先，定位到 <code>C:\Users\用户\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Windows PowerShell</code>，鼠标右击windows powershell以管理员运行，复制粘贴以下命令运行， <code>Get-AppxPackage -AllUsers| Foreach {Add-AppxPackage -DisableDevelopmentMode -Register “$($_.InstallLocation)\AppXManifest.xml”}</code> 或者 <code>Get-AppxPackage | % { Add-AppxPackage -DisableDevelopmentMode -Register &quot;$($_.InstallLocation)\AppxManifest.xml&quot; -verbose }</code></p>
+<li><p>首先，定位到 <code>C:\Users\用户\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Windows PowerShell</code>，鼠标右击windows powershell以管理员运行，复制粘贴以下命令运行，<code>Get-AppxPackage -AllUsers| Foreach {Add-AppxPackage -DisableDevelopmentMode -Register “$($_.InstallLocation)\AppXManifest.xml”}</code> 或者 <code>Get-AppxPackage | % { Add-AppxPackage -DisableDevelopmentMode -Register &quot;$($_.InstallLocation)\AppxManifest.xml&quot; -verbose }</code></p>
 </li>
 <li><p>上个阶段会出现很多的错误，第一个命令执行完了可以执行第二个的。完成后会解决部分的软件乱码，但是还有很多无法解决。</p>
 </li>
@@ -672,9 +672,11 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
+			<a href="/">
               <img class="site-author-image" itemprop="image"
                 src="/assets/img/header.jpeg"
                 alt="Shirsen" />
+			</a>
             
               <p class="site-author-name" itemprop="name">Shirsen</p>
               <p class="site-description motion-element" itemprop="description">我思故我在......</p>
@@ -1440,21 +1442,6 @@
 
 
   
-<script>
-(function(){
-    var bp = document.createElement('script');
-    var curProtocol = window.location.protocol.split(':')[0];
-    if (curProtocol === 'https') {
-        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
-    }
-    else {
-        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-    }
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(bp, s);
-})();
-</script>
-
 
   
   
