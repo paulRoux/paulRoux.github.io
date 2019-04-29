@@ -1080,7 +1080,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://roux.top/2017/11/18/basename函数与dirname函数/">
+    <link itemprop="mainEntityOfPage" href="http://roux.top/2017/11/18/select函数/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Shirsen">
@@ -1099,7 +1099,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/11/18/basename函数与dirname函数/" itemprop="url">dirname函数与basename函数</a></h1>
+                <a class="post-title-link" href="/2017/11/18/select函数/" itemprop="url">select函数</a></h1>
         
 
         <div class="post-meta">
@@ -1134,8 +1134,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/语言/" itemprop="url" rel="index">
-                    <span itemprop="name">语言</span>
+                  <a href="/categories/网络编程/" itemprop="url" rel="index">
+                    <span itemprop="name">网络编程</span>
                   </a>
                 </span>
 
@@ -1153,8 +1153,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2017/11/18/basename函数与dirname函数/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://roux.top/2017/11/18/basename函数与dirname函数/" class="cy_cmt_count" data-xid="2017/11/18/basename函数与dirname函数/" itemprop="commentsCount" ></span>
+                <a href="/2017/11/18/select函数/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://roux.top/2017/11/18/select函数/" class="cy_cmt_count" data-xid="2017/11/18/select函数/" itemprop="commentsCount" ></span>
                 </a>
               
             
@@ -1162,7 +1162,7 @@
 
           
           
-             <span id="/2017/11/18/basename函数与dirname函数/" class="leancloud_visitors" data-flag-title="dirname函数与basename函数">
+             <span id="/2017/11/18/select函数/" class="leancloud_visitors" data-flag-title="select函数">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1198,18 +1198,15 @@
 		  
 			
         
-          <h4 id="dirname函数"><a href="#dirname函数" class="headerlink" title="dirname函数"></a>dirname函数</h4><ul>
-<li><p>说明：截取给定路径的目录部分(以 ‘/‘ 为分隔符)</p>
+          <h4 id="select函数"><a href="#select函数" class="headerlink" title="select函数"></a>select函数</h4><ul>
+<li><p>说明： select()用来等待文件描述词状态的改变</p>
 </li>
-<li><p>头文件：<code>#include &lt;libgen.h&gt;</code></p>
+<li><p>头文件： <code>#include &lt;sys/time.h&gt;</code>  <code>#include &lt;sys/types.h&gt;</code>   <code>#include &lt;unistd.h&gt;</code></p>
 </li>
-<li><p>原型：<code>char *dirname(char *path);</code></p>
-<ul>
-<li>path参数：指向一个文件的全路径的字符串</li>
-<li><p>此函数可以修改路径的内容，所以传递参数时需要传递一个副本</p>
+<li><p>原型： <code>int select(int nfds, fd_set *readfds, fd_set *writefds, fd_set *exceptfds, struct timeval *timeout);</code></p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/11/18/basename函数与dirname函数/#more" rel="contents">
+            <a class="btn" href="/2017/11/18/select函数/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
