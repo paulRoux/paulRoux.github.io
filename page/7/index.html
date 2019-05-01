@@ -351,7 +351,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://roux.top/2017/12/12/前缀-后缀-中缀/">
+    <link itemprop="mainEntityOfPage" href="http://roux.top/2017/12/12/线程池/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Shirsen">
@@ -370,7 +370,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/12/12/前缀-后缀-中缀/" itemprop="url">前缀、中缀、后缀表达式转换详解</a></h1>
+                <a class="post-title-link" href="/2017/12/12/线程池/" itemprop="url">线程池浅析</a></h1>
         
 
         <div class="post-meta">
@@ -405,8 +405,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/数据结构/" itemprop="url" rel="index">
-                    <span itemprop="name">数据结构</span>
+                  <a href="/categories/网络编程/" itemprop="url" rel="index">
+                    <span itemprop="name">网络编程</span>
                   </a>
                 </span>
 
@@ -424,8 +424,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2017/12/12/前缀-后缀-中缀/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://roux.top/2017/12/12/前缀-后缀-中缀/" class="cy_cmt_count" data-xid="2017/12/12/前缀-后缀-中缀/" itemprop="commentsCount" ></span>
+                <a href="/2017/12/12/线程池/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://roux.top/2017/12/12/线程池/" class="cy_cmt_count" data-xid="2017/12/12/线程池/" itemprop="commentsCount" ></span>
                 </a>
               
             
@@ -433,7 +433,7 @@
 
           
           
-             <span id="/2017/12/12/前缀-后缀-中缀/" class="leancloud_visitors" data-flag-title="前缀、中缀、后缀表达式转换详解">
+             <span id="/2017/12/12/线程池/" class="leancloud_visitors" data-flag-title="线程池浅析">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -469,12 +469,15 @@
 		  
 			
         
-          <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><ul>
-<li>前面学过树的遍历及转换，感触不是很深，今天回头来看，另有感悟。这种感悟也是得益于大神的博文，记录于此。</li>
+          <h4 id="池"><a href="#池" class="headerlink" title="池"></a>池</h4><ul>
+<li><p>由于服务器的硬件资源“充裕”，那么提高服务器性能的一个很直接的方法就是以空间换时间，即“浪费”服务器的硬件资源，以换取其运行效率。这就是池的概念。池是一组资源的集合，这组资源在服务器启动之初就完全被创建并初始化，这称为静态资源分配。当服务器进入正是运行阶段，即开始处理客户请求的时候，如果它需要相关的资源，就可以直接从池中获取，无需动态分配。很显然，直接从池中取得所需资源比动态分配资源的速度要快得多，因为分配系统资源的系统调用都是很耗时的。当服务器处理完一个客户连接后，可以把相关的资源放回池中，无需执行系统调用来释放资源。从最终效果来看，池相当于服务器管理系统资源的应用设施，它避免了服务器对内核的频繁访问。</p>
+</li>
+<li><p>池可以分为多种，常见的有内存池、进程池、线程池和连接池。</p>
+</li>
 </ul>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/12/12/前缀-后缀-中缀/#more" rel="contents">
+            <a class="btn" href="/2017/12/12/线程池/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
