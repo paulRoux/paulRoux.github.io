@@ -351,6 +351,184 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://roux.top/2017/11/16/IO复用及同(异)步和(非)阻塞/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Shirsen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/assets/img/header.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shirsen’s Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/11/16/IO复用及同(异)步和(非)阻塞/" itemprop="url">I/O复用及同步、异步、阻塞、非阻塞</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-16T00:00:00+08:00">
+                2017-11-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/网络编程/" itemprop="url" rel="index">
+                    <span itemprop="name">网络编程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2017/11/16/IO复用及同(异)步和(非)阻塞/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://roux.top/2017/11/16/IO复用及同(异)步和(非)阻塞/" class="cy_cmt_count" data-xid="2017/11/16/IO复用及同(异)步和(非)阻塞/" itemprop="commentsCount" ></span>
+                </a>
+              
+            
+          
+
+          
+          
+             <span id="/2017/11/16/IO复用及同(异)步和(非)阻塞/" class="leancloud_visitors" data-flag-title="I/O复用及同步、异步、阻塞、非阻塞">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+	  
+	  <!--摘要-->
+		  
+			
+        
+          <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><ul>
+<li><p>用户空间与内核空间</p>
+<p>  现在操作系统都是采用虚拟存储器，那么对32位操作系统而言，它的寻址空间（虚拟存储空间）为4G（2的32次方）。操作系统的核心是内核，独立于普通的应用程序，可以访问受保护的内存空间，也有访问底层硬件设备的所有权限。为了保证用户进程不能直接操作内核（kernel），保证内核的安全，操作系统将虚拟空间划分为两部分，一部分为内核空间，一部分为用户空间。针对linux操作系统而言，将最高的1G字节（从虚拟地址0xC0000000到0xFFFFFFFF），供内核使用，称为内核空间，而将较低的3G字节（从虚拟地址0x00000000到0xBFFFFFFF），供各个进程使用，称为用户空间。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/11/16/IO复用及同(异)步和(非)阻塞/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+<div>
+  
+</div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://roux.top/2017/11/15/随笔17.11.15/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -715,187 +893,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://roux.top/2017/11/05/centos7MySQL安装/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Shirsen">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/assets/img/header.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Shirsen’s Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/11/05/centos7MySQL安装/" itemprop="url">centos7 mysql数据库安装和配置</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-05T00:00:00+08:00">
-                2017-11-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Database/" itemprop="url" rel="index">
-                    <span itemprop="name">Database</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-comment-o"></i>
-              </span>
-              
-                <a href="/2017/11/05/centos7MySQL安装/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://roux.top/2017/11/05/centos7MySQL安装/" class="cy_cmt_count" data-xid="2017/11/05/centos7MySQL安装/" itemprop="commentsCount" ></span>
-                </a>
-              
-            
-          
-
-          
-          
-             <span id="/2017/11/05/centos7MySQL安装/" class="leancloud_visitors" data-flag-title="centos7 mysql数据库安装和配置">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-	  
-	  <!--摘要-->
-		  
-			
-        
-          <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><ul>
-<li><p>在 centos 7 安装 MySQL 时遇见了一些问题，后面按照这篇转载的文章安装成功，而且网上许多的文章都过时了，故在此记录，以备以后使用。</p>
-</li>
-<li><p>目前我用的是 centos6.9 就不演示了，下面是原文的环境及安装操作。</p>
-</li>
-</ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/11/05/centos7MySQL安装/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-<div>
-  
-</div>
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://roux.top/2017/11/05/看书&积累/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1079,7 +1076,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://roux.top/2017/11/03/STDIN_FILENO/">
+    <link itemprop="mainEntityOfPage" href="http://roux.top/2017/11/05/centos7MySQL安装/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Shirsen">
@@ -1098,7 +1095,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/11/03/STDIN_FILENO/" itemprop="url">STDIN_FILENO 的作用及与 stdin 的区别</a></h1>
+                <a class="post-title-link" href="/2017/11/05/centos7MySQL安装/" itemprop="url">centos7 mysql数据库安装和配置</a></h1>
         
 
         <div class="post-meta">
@@ -1110,8 +1107,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-03T00:00:00+08:00">
-                2017-11-03
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-05T00:00:00+08:00">
+                2017-11-05
               </time>
             
 
@@ -1133,8 +1130,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/网络编程/" itemprop="url" rel="index">
-                    <span itemprop="name">网络编程</span>
+                  <a href="/categories/Database/" itemprop="url" rel="index">
+                    <span itemprop="name">Database</span>
                   </a>
                 </span>
 
@@ -1152,8 +1149,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2017/11/03/STDIN_FILENO/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://roux.top/2017/11/03/STDIN_FILENO/" class="cy_cmt_count" data-xid="2017/11/03/STDIN_FILENO/" itemprop="commentsCount" ></span>
+                <a href="/2017/11/05/centos7MySQL安装/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://roux.top/2017/11/05/centos7MySQL安装/" class="cy_cmt_count" data-xid="2017/11/05/centos7MySQL安装/" itemprop="commentsCount" ></span>
                 </a>
               
             
@@ -1161,7 +1158,7 @@
 
           
           
-             <span id="/2017/11/03/STDIN_FILENO/" class="leancloud_visitors" data-flag-title="STDIN_FILENO 的作用及与 stdin 的区别">
+             <span id="/2017/11/05/centos7MySQL安装/" class="leancloud_visitors" data-flag-title="centos7 mysql数据库安装和配置">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1197,31 +1194,15 @@
 		  
 			
         
-          <h4 id="1-STDIN-FILENO-的作用及与-stdin-的区别"><a href="#1-STDIN-FILENO-的作用及与-stdin-的区别" class="headerlink" title="1. STDIN_FILENO 的作用及与 stdin 的区别"></a>1. STDIN_FILENO 的作用及与 stdin 的区别</h4><ul>
-<li><p>STDIN_FILENO的作用</p>
-<ul>
-<li><p>STDIN_FILENO属于系统API接口库，其声明为 int 型，是一个打开文件句柄，对应的函数主要包括 <code>open/read/write/close</code> 等系统级调用。</p>
+          <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><ul>
+<li><p>在 centos 7 安装 MySQL 时遇见了一些问题，后面按照这篇转载的文章安装成功，而且网上许多的文章都过时了，故在此记录，以备以后使用。</p>
 </li>
-<li><p>操作系统一级提供的文件API都是以文件描述符来表示文件。STDIN_FILENO 就是标准输入设备（一般是键盘）的文件描述符。</p>
-</li>
-</ul>
-</li>
-<li><p>区别</p>
-<ul>
-<li><p>数据类型不一致：</p>
-<ul>
-<li><p>stdin 类型为 FILE*</p>
-</li>
-<li><p>STDIN_FILENO 类型为 int</p>
-</li>
-<li><p>使用 <code>stdin</code> 的函数主要有：fread、fwrite、fclose等，基本上都以f开头</p>
-</li>
-<li><p>使用 <code>STDIN_FILENO</code> 的函数有：read、write、close等</p>
+<li><p>目前我用的是 centos6.9 就不演示了，下面是原文的环境及安装操作。</p>
 </li>
 </ul>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/11/03/STDIN_FILENO/#more" rel="contents">
+            <a class="btn" href="/2017/11/05/centos7MySQL安装/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1319,7 +1300,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">83</span>
+                  <span class="site-state-item-count">84</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
