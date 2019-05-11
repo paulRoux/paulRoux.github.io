@@ -6,10 +6,10 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 <meta name="theme-color" content="#222">
 
@@ -20,8 +20,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -54,7 +54,7 @@
   
     
   
-  <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+  <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css">
 
 
 
@@ -64,9 +64,9 @@
 
   
 
-<link href="//cdn.bootcss.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<link href="//cdn.bootcss.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
@@ -84,13 +84,13 @@
 
 
 
-  <meta name="keywords" content="内存分配," />
+  <meta name="keywords" content="内存分配,">
 
 
 
 
 
-  <link rel="alternate" href="/atom.xml" title="Shirsen’s Blog" type="application/atom+xml" />
+  <link rel="alternate" href="/atom.xml" title="Shirsen’s Blog" type="application/atom+xml">
 
 
 
@@ -142,7 +142,7 @@
 
 
 
-  <link rel="canonical" href="http://roux.top/2017/10/27/mmap函数详解/"/>
+  <link rel="canonical" href="http://roux.top/2017/10/27/mmap函数详解/">
 
 
 
@@ -182,7 +182,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Shirsen’s Blog</span>
         <span class="logo-line-after"><i></i></span>
@@ -212,7 +212,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -222,7 +222,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -232,7 +232,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
             分类
           </a>
@@ -242,7 +242,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -252,7 +252,7 @@
         <li class="menu-item menu-item-书单">
           <a href="/books" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
             
             书单
           </a>
@@ -262,7 +262,7 @@
         <li class="menu-item menu-item-电影">
           <a href="/movies" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>
             
             电影
           </a>
@@ -272,7 +272,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
             关于
           </a>
@@ -285,7 +285,7 @@
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
             
             搜索
           </a>
@@ -306,9 +306,7 @@
       <i class="fa fa-times-circle"></i>
     </span>
     <div class="local-search-input-wrapper">
-      <input autocomplete="off"
-             placeholder="搜索..." spellcheck="false"
-             type="text" id="local-search-input">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
     </div>
   </div>
   <div id="local-search-result"></div>
@@ -360,7 +358,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Shirsen">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/assets/img/header.jpeg">
     </span>
 
@@ -396,7 +394,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -454,7 +452,7 @@
 
           
 
-        </div>
+        </span></div>
       </header>
     
 
@@ -479,7 +477,7 @@
 </li>
 </ul>
 <h4 id="mmap概念"><a href="#mmap概念" class="headerlink" title="mmap概念"></a>mmap概念</h4><ul>
-<li><p>mmap是一种内存映射文件的方法，即将一个文件或者其它对象映射到进程的地址空间，实现文件磁盘地址和进程虚拟地址空间中一段虚拟地址的一一对映关系。实现这样的映射关系后，进程就可以采用指针的方式读写操作这一段内存，而系统会自动回写脏页面到对应的文件磁盘上，即完成了对文件的操作而不必再调用read,write等系统调用函数。相反，内核空间对这段区域的修改也直接反映用户空间，从而可以实现不同进程间的文件共享。如下图所示：<br><img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/%E5%9C%B0%E5%9D%80%E6%98%A0%E5%B0%84.png" alt=""></p>
+<li><p>mmap是一种内存映射文件的方法，即将一个文件或者其它对象映射到进程的地址空间，实现文件磁盘地址和进程虚拟地址空间中一段虚拟地址的一一对映关系。实现这样的映射关系后，进程就可以采用指针的方式读写操作这一段内存，而系统会自动回写脏页面到对应的文件磁盘上，即完成了对文件的操作而不必再调用read,write等系统调用函数。相反，内核空间对这段区域的修改也直接反映用户空间，从而可以实现不同进程间的文件共享。如下图所示：<br><img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/%E5%9C%B0%E5%9D%80%E6%98%A0%E5%B0%84.png" alt></p>
 </li>
 <li><p>由上图可以看出，进程的虚拟地址空间，由多个虚拟内存区域构成。虚拟内存区域是进程的虚拟地址空间中的一个同质区间，即具有同样特性的连续地址范围。上图中所示的text数据段（代码段）、初始数据段、BSS数据段、堆、栈和内存映射，都是一个独立的虚拟内存区域。而为内存映射服务的地址空间处在堆栈之间的空余部分。</p>
 </li>
@@ -491,7 +489,7 @@
 <li>经过这些步骤之后，应用程序就可以正常访问相应的内存区域了。</li>
 </ul>
 </li>
-<li><p><span id="task_struct">linux内核</span>使用vm_area_struct结构来表示一个独立的虚拟内存区域，由于每个不同质的虚拟内存区域功能和内部机制都不同，因此一个进程使用多个vm_area_struct结构来分别表示不同类型的虚拟内存区域。各个vm_area_struct结构使用链表或者树形结构链接，方便进程快速访问，如下图所示：<br><img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/vm_area_struct.png" alt=""></p>
+<li><p><span id="task_struct">linux内核</span>使用vm_area_struct结构来表示一个独立的虚拟内存区域，由于每个不同质的虚拟内存区域功能和内部机制都不同，因此一个进程使用多个vm_area_struct结构来分别表示不同类型的虚拟内存区域。各个vm_area_struct结构使用链表或者树形结构链接，方便进程快速访问，如下图所示：<br><img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/vm_area_struct.png" alt></p>
 </li>
 <li><p>vm_area_struct结构中包含区域起始和终止地址以及其他相关信息，同时也包含一个vm_ops指针，其内部可引出所有针对这个区域可以使用的系统调用函数。这样，进程对某一虚拟内存区域的任何操作需要用要的信息，都可以从vm_area_struct中获得。mmap函数就是要创建一个新的vm_area_struct结构，并将其与文件的物理磁盘地址相连。</p>
 </li>
@@ -722,7 +720,7 @@
 </li>
 <li><p>映射建立之后，即使文件关闭，映射依然存在。因为映射的是磁盘的地址，不是文件本身，和文件句柄无关。同时可用于进程间通信的有效地址空间不完全受限于被映射文件的大小，因为是按页映射。</p>
 </li>
-<li><p>文件大小, mmap的参数 len 都不能决定进程能访问的大小, 而是容纳文件被映射部分的最小页面数决定<br>进程能访问的大小<br><img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/mmap%E5%9C%B0%E5%9D%80%E6%98%A0%E5%B0%84.gif" alt=""></p>
+<li><p>文件大小, mmap的参数 len 都不能决定进程能访问的大小, 而是容纳文件被映射部分的最小页面数决定<br>进程能访问的大小<br><img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/mmap%E5%9C%B0%E5%9D%80%E6%98%A0%E5%B0%84.gif" alt></p>
 <ul>
 <li>对于用mmap()映射普通文件来说，进程会在自己的地址空间新增一块空间，空间大<br>小由mmap()的len参数指定</li>
 <li>注意，进程并不一定能够对全部新增空间都能进行有效访问。进程能够访问的有效地址大小取决于文件被映射部分的大小。简单的说，能够容纳文件被映射部分大小的最少页面个数决定了进程从mmap()返回的地址开始，能够有效访问的地址空间大小。超过这个空间大小，内核会根据超过的严重程度返回发送不同的信号给进程</li>
@@ -777,14 +775,14 @@
 
     
       <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="https://blog-1257906047.cos.ap-chengdu.myqcloud.com/hexo/reward/weixin.png" alt="Shirsen 微信支付"/>
+        <img id="wechat_qr" src="https://blog-1257906047.cos.ap-chengdu.myqcloud.com/hexo/reward/weixin.png" alt="Shirsen 微信支付">
         <p>微信支付</p>
       </div>
     
 
     
       <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="https://blog-1257906047.cos.ap-chengdu.myqcloud.com/hexo/reward/alipay.jpg" alt="Shirsen 支付宝"/>
+        <img id="alipay_qr" src="https://blog-1257906047.cos.ap-chengdu.myqcloud.com/hexo/reward/alipay.jpg" alt="Shirsen 支付宝">
         <p>支付宝</p>
       </div>
     
@@ -821,7 +819,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/内存分配/" <i class="fa fa-tag"></i> 内存分配</a>
+            <a href="/tags/内存分配/" <i class="fa fa-tag"> 内存分配</a>
           
         </div>
       
@@ -834,8 +832,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/10/28/随笔/" rel="prev" title="关于最近学习的一点思考">
-                <i class="fa fa-chevron-left"></i> 关于最近学习的一点思考
+              <a href="/2017/10/27/linux查看多线程运行状态/" rel="prev" title="linux查看多线程运行状态">
+                <i class="fa fa-chevron-left"></i> linux查看多线程运行状态
               </a>
             
           </div>
@@ -844,8 +842,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/10/27/linux查看多线程运行状态/" rel="next" title="linux查看多线程运行状态">
-                linux查看多线程运行状态 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/10/26/popen函数/" rel="next" title="一次命令行与程序间的交流">
+                一次命令行与程序间的交流 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -945,9 +943,7 @@
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
 			<a href="/">
-              <img class="site-author-image" itemprop="image"
-                src="/assets/img/header.jpeg"
-                alt="Shirsen" />
+              <img class="site-author-image" itemprop="image" src="/assets/img/header.jpeg" alt="Shirsen">
 			</a>
             
               <p class="site-author-name" itemprop="name">Shirsen</p>
