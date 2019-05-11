@@ -401,30 +401,6 @@
   </entry>
   
   <entry>
-    <title>DNS解析的过程</title>
-    <link href="http://roux.top/2018/04/22/DNS%E8%A7%A3%E6%9E%90/"/>
-    <id>http://roux.top/2018/04/22/DNS解析/</id>
-    <published>2018-04-21T16:00:00.000Z</published>
-    <updated>2018-04-22T06:26:43.626Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><ul><li>对于网络这一块，有太多的学问，而且这个也是后面重点需要优化的方向，所以最近会写一些这方面的文章。</li></ul><a id="more"></a><h3 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h3><ol><li>在浏览器中输入<a href="http://www.qq.com域名，操作系统会先检查自己本地的hosts文件是否有这个网址映射关系，如果有，就先调用这个IP地址映射，完成域名解析。" target="_blank" rel="noopener">www.qq.com域名，操作系统会先检查自己本地的hosts文件是否有这个网址映射关系，如果有，就先调用这个IP地址映射，完成域名解析。</a> </li><li>如果hosts里没有这个域名的映射，则查找本地DNS解析器缓存，是否有这个网址映射关系，如果有，直接返回，完成域名解析。 </li><li>如果hosts与本地DNS解析器缓存都没有相应的网址映射关系，首先会找TCP/ip参数中设置的首选DNS服务器，在此我们叫它本地DNS服务器，此服务器收到查询时，如果要查询的域名，包含在本地配置区域资源中，则返回解析结果给客户机，完成域名解析，此解析具有权威性。 </li><li>如果要查询的域名，不由本地DNS服务器区域解析，但该服务器已缓存了此网址映射关系，则调用这个IP地址映射，完成域名解析，此解析不具有权威性。 </li><li>如果本地DNS服务器本地区域文件与缓存解析都失效，则根据本地DNS服务器的设置（是否设置转发器）进行查询，如果未用转发模式，本地DNS就把请求发至13台根DNS，根DNS服务器收到请求后会判断这个域名(.com)是谁来授权管理，并会返回一个负责该顶级域名服务器的一个IP。本地DNS服务器收到IP信息后，将会联系负责.com域的这台服务器。这台负责.com域的服务器收到请求后，如果自己无法解析，它就会找一个管理.com域的下一级DNS服务器地址(qq.com)给本地DNS服务器。当本地DNS服务器收到这个地址后，就会找qq.com域服务器，重复上面的动作，进行查询，直至找到<a href="http://www.qq.com主机。" target="_blank" rel="noopener">www.qq.com主机。</a> </li><li>如果用的是转发模式，此DNS服务器就会把请求转发至上一级DNS服务器，由上一级服务器进行解析，上一级服务器如果不能解析，或找根DNS或把转请求转至上上级，以此循环。不管是本地DNS服务器用是是转发，还是根提示，最后都是把结果返回给本地DNS服务器，由此DNS服务器再返回给客户机。 </li></ol><h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><ul><li><p>人们在 DNS 中发现了一些漏洞，攻击者可以利用这些漏洞劫持这一使用名称在 互联网 上搜寻某个人或某个站点的过程。这种攻击的目的是取得对会话的控制以实施某种操作，例如使用户进入劫持者自己设立的欺骗性网站，以便收集用户的帐户和密码。</p></li><li><p>安全的DNS—<a href="https://www.icann.org/resources/pages/dnssec-qaa-2014-01-29-zh" target="_blank" rel="noopener">DNSSEC</a></p></li></ul><h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><ul><li><a href="https://www.nowcoder.com/profile/2286733/myFollowings/detail/4794271" target="_blank" rel="noopener">https://www.nowcoder.com/profile/2286733/myFollowings/detail/4794271</a></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;对于网络这一块，有太多的学问，而且这个也是后面重点需要优化的方向，所以最近会写一些这方面的文章。&lt;/li&gt;
-&lt;/ul&gt;
-    
-    </summary>
-    
-      <category term="Protocol" scheme="http://roux.top/categories/Protocol/"/>
-    
-    
-      <category term="DNS" scheme="http://roux.top/tags/DNS/"/>
-    
-  </entry>
-  
-  <entry>
     <title>HTTP2.0</title>
     <link href="http://roux.top/2018/04/22/HTTP2.0/"/>
     <id>http://roux.top/2018/04/22/HTTP2.0/</id>
@@ -448,6 +424,30 @@
     
     
       <category term="HTTP" scheme="http://roux.top/tags/HTTP/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>DNS解析的过程</title>
+    <link href="http://roux.top/2018/04/22/DNS%E8%A7%A3%E6%9E%90/"/>
+    <id>http://roux.top/2018/04/22/DNS解析/</id>
+    <published>2018-04-21T16:00:00.000Z</published>
+    <updated>2018-04-22T06:26:43.626Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><ul><li>对于网络这一块，有太多的学问，而且这个也是后面重点需要优化的方向，所以最近会写一些这方面的文章。</li></ul><a id="more"></a><h3 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h3><ol><li>在浏览器中输入<a href="http://www.qq.com域名，操作系统会先检查自己本地的hosts文件是否有这个网址映射关系，如果有，就先调用这个IP地址映射，完成域名解析。" target="_blank" rel="noopener">www.qq.com域名，操作系统会先检查自己本地的hosts文件是否有这个网址映射关系，如果有，就先调用这个IP地址映射，完成域名解析。</a> </li><li>如果hosts里没有这个域名的映射，则查找本地DNS解析器缓存，是否有这个网址映射关系，如果有，直接返回，完成域名解析。 </li><li>如果hosts与本地DNS解析器缓存都没有相应的网址映射关系，首先会找TCP/ip参数中设置的首选DNS服务器，在此我们叫它本地DNS服务器，此服务器收到查询时，如果要查询的域名，包含在本地配置区域资源中，则返回解析结果给客户机，完成域名解析，此解析具有权威性。 </li><li>如果要查询的域名，不由本地DNS服务器区域解析，但该服务器已缓存了此网址映射关系，则调用这个IP地址映射，完成域名解析，此解析不具有权威性。 </li><li>如果本地DNS服务器本地区域文件与缓存解析都失效，则根据本地DNS服务器的设置（是否设置转发器）进行查询，如果未用转发模式，本地DNS就把请求发至13台根DNS，根DNS服务器收到请求后会判断这个域名(.com)是谁来授权管理，并会返回一个负责该顶级域名服务器的一个IP。本地DNS服务器收到IP信息后，将会联系负责.com域的这台服务器。这台负责.com域的服务器收到请求后，如果自己无法解析，它就会找一个管理.com域的下一级DNS服务器地址(qq.com)给本地DNS服务器。当本地DNS服务器收到这个地址后，就会找qq.com域服务器，重复上面的动作，进行查询，直至找到<a href="http://www.qq.com主机。" target="_blank" rel="noopener">www.qq.com主机。</a> </li><li>如果用的是转发模式，此DNS服务器就会把请求转发至上一级DNS服务器，由上一级服务器进行解析，上一级服务器如果不能解析，或找根DNS或把转请求转至上上级，以此循环。不管是本地DNS服务器用是是转发，还是根提示，最后都是把结果返回给本地DNS服务器，由此DNS服务器再返回给客户机。 </li></ol><h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><ul><li><p>人们在 DNS 中发现了一些漏洞，攻击者可以利用这些漏洞劫持这一使用名称在 互联网 上搜寻某个人或某个站点的过程。这种攻击的目的是取得对会话的控制以实施某种操作，例如使用户进入劫持者自己设立的欺骗性网站，以便收集用户的帐户和密码。</p></li><li><p>安全的DNS—<a href="https://www.icann.org/resources/pages/dnssec-qaa-2014-01-29-zh" target="_blank" rel="noopener">DNSSEC</a></p></li></ul><h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><ul><li><a href="https://www.nowcoder.com/profile/2286733/myFollowings/detail/4794271" target="_blank" rel="noopener">https://www.nowcoder.com/profile/2286733/myFollowings/detail/4794271</a></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;对于网络这一块，有太多的学问，而且这个也是后面重点需要优化的方向，所以最近会写一些这方面的文章。&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+      <category term="Protocol" scheme="http://roux.top/categories/Protocol/"/>
+    
+    
+      <category term="DNS" scheme="http://roux.top/tags/DNS/"/>
     
   </entry>
   
