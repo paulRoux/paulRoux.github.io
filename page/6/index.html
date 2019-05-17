@@ -714,7 +714,7 @@ A进程通过TCP向另一台机器上的B进程发送了一个字符串“hello�
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://roux.top/2018/01/08/TCP拥塞控制/">
+    <link itemprop="mainEntityOfPage" href="http://roux.top/2018/01/08/TIME_WAIT/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Shirsen">
@@ -733,7 +733,7 @@ A进程通过TCP向另一台机器上的B进程发送了一个字符串“hello�
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/08/TCP拥塞控制/" itemprop="url">TCP拥塞控制</a></h1>
+                <a class="post-title-link" href="/2018/01/08/TIME_WAIT/" itemprop="url">TIME_WAIT状态</a></h1>
         
 
         <div class="post-meta">
@@ -787,8 +787,8 @@ A进程通过TCP向另一台机器上的B进程发送了一个字符串“hello�
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2018/01/08/TCP拥塞控制/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://roux.top/2018/01/08/TCP拥塞控制/" class="cy_cmt_count" data-xid="2018/01/08/TCP拥塞控制/" itemprop="commentsCount"></span>
+                <a href="/2018/01/08/TIME_WAIT/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://roux.top/2018/01/08/TIME_WAIT/" class="cy_cmt_count" data-xid="2018/01/08/TIME_WAIT/" itemprop="commentsCount"></span>
                 </a>
               
             
@@ -796,7 +796,7 @@ A进程通过TCP向另一台机器上的B进程发送了一个字符串“hello�
 
           
           
-             <span id="/2018/01/08/TCP拥塞控制/" class="leancloud_visitors" data-flag-title="TCP拥塞控制">
+             <span id="/2018/01/08/TIME_WAIT/" class="leancloud_visitors" data-flag-title="TIME_WAIT状态">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -832,17 +832,12 @@ A进程通过TCP向另一台机器上的B进程发送了一个字符串“hello�
 		  
 			
         
-          <h3 id="拥塞控制与流量控制"><a href="#拥塞控制与流量控制" class="headerlink" title="拥塞控制与流量控制"></a>拥塞控制与流量控制</h3><ul>
-<li><p>拥塞控制：防止过多的数据注入到网络中，这样可以使网络中的路由器或链路不致过载。拥塞控制所要做的都有一个前提：网络能够承受现有的网络负荷。拥塞控制是一个全局性的过程，涉及到所有的主机、路由器，以及与降低网络传输性能有关的所有因素</p>
-</li>
-<li><p>流量控制：指点对点通信量的控制，是端到端正的问题。流量控制所要做的就是抑制发送端发送数据的速率，以便使接收端来得及接收</p>
-</li>
-<li><p>拥塞控制代价：需要获得网络内部流量分布的信息。在实施拥塞控制之前，还需要在结点之间交换信息和各种命令，以便选择控制的策略和实施控制。这样就产生了额外的开销。拥塞控制还需要将一些资源分配给各个用户单独使用，使得网络资源不能更好地实现共享。</p>
-</li>
+          <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><ul>
+<li>关于TCP的<code>TIME_WAIT</code>，一直停留在明白有什么作用的层次。想着《计算机网络》都学完了，也应该把TCP的问题给实实在在的弄明白。</li>
 </ul>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/01/08/TCP拥塞控制/#more" rel="contents">
+            <a class="btn" href="/2018/01/08/TIME_WAIT/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1082,7 +1077,7 @@ A进程通过TCP向另一台机器上的B进程发送了一个字符串“hello�
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://roux.top/2018/01/08/TIME_WAIT/">
+    <link itemprop="mainEntityOfPage" href="http://roux.top/2018/01/08/TCP拥塞控制/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Shirsen">
@@ -1101,7 +1096,7 @@ A进程通过TCP向另一台机器上的B进程发送了一个字符串“hello�
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/08/TIME_WAIT/" itemprop="url">TIME_WAIT状态</a></h1>
+                <a class="post-title-link" href="/2018/01/08/TCP拥塞控制/" itemprop="url">TCP拥塞控制</a></h1>
         
 
         <div class="post-meta">
@@ -1155,8 +1150,8 @@ A进程通过TCP向另一台机器上的B进程发送了一个字符串“hello�
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2018/01/08/TIME_WAIT/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://roux.top/2018/01/08/TIME_WAIT/" class="cy_cmt_count" data-xid="2018/01/08/TIME_WAIT/" itemprop="commentsCount"></span>
+                <a href="/2018/01/08/TCP拥塞控制/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://roux.top/2018/01/08/TCP拥塞控制/" class="cy_cmt_count" data-xid="2018/01/08/TCP拥塞控制/" itemprop="commentsCount"></span>
                 </a>
               
             
@@ -1164,7 +1159,7 @@ A进程通过TCP向另一台机器上的B进程发送了一个字符串“hello�
 
           
           
-             <span id="/2018/01/08/TIME_WAIT/" class="leancloud_visitors" data-flag-title="TIME_WAIT状态">
+             <span id="/2018/01/08/TCP拥塞控制/" class="leancloud_visitors" data-flag-title="TCP拥塞控制">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1200,12 +1195,17 @@ A进程通过TCP向另一台机器上的B进程发送了一个字符串“hello�
 		  
 			
         
-          <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><ul>
-<li>关于TCP的<code>TIME_WAIT</code>，一直停留在明白有什么作用的层次。想着《计算机网络》都学完了，也应该把TCP的问题给实实在在的弄明白。</li>
+          <h3 id="拥塞控制与流量控制"><a href="#拥塞控制与流量控制" class="headerlink" title="拥塞控制与流量控制"></a>拥塞控制与流量控制</h3><ul>
+<li><p>拥塞控制：防止过多的数据注入到网络中，这样可以使网络中的路由器或链路不致过载。拥塞控制所要做的都有一个前提：网络能够承受现有的网络负荷。拥塞控制是一个全局性的过程，涉及到所有的主机、路由器，以及与降低网络传输性能有关的所有因素</p>
+</li>
+<li><p>流量控制：指点对点通信量的控制，是端到端正的问题。流量控制所要做的就是抑制发送端发送数据的速率，以便使接收端来得及接收</p>
+</li>
+<li><p>拥塞控制代价：需要获得网络内部流量分布的信息。在实施拥塞控制之前，还需要在结点之间交换信息和各种命令，以便选择控制的策略和实施控制。这样就产生了额外的开销。拥塞控制还需要将一些资源分配给各个用户单独使用，使得网络资源不能更好地实现共享。</p>
+</li>
 </ul>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/01/08/TIME_WAIT/#more" rel="contents">
+            <a class="btn" href="/2018/01/08/TCP拥塞控制/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
