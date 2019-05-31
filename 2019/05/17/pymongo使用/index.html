@@ -105,7 +105,7 @@
 <meta property="og:site_name" content="Shirsen’s Blog">
 <meta property="og:description" content="前言 最近做毕设用到pymongo，对平常的使用记录一下。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-31T08:43:27.873Z">
+<meta property="og:updated_time" content="2019-05-31T16:29:51.803Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="pymongo使用">
 <meta name="twitter:description" content="前言 最近做毕设用到pymongo，对平常的使用记录一下。">
@@ -525,20 +525,46 @@
 <h4 id="特殊查询"><a href="#特殊查询" class="headerlink" title="特殊查询"></a>特殊查询</h4><ul>
 <li><p><strong>忽略大小写</strong></p>
 <ul>
-<li>可以使用正则查询<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> pymongo</span><br><span class="line"></span><br><span class="line">name = <span class="string">r"^&#123;&#125;s$"</span>.format(filename)</span><br><span class="line">name = re.complie(name, re.I)</span><br><span class="line">client = pymongo.MongoClient(host, port)</span><br><span class="line">db = client[<span class="string">'database'</span>]</span><br><span class="line">col = db[<span class="string">'collection'</span>]</span><br><span class="line">result = col.find(&#123;<span class="string">'filename'</span>: name&#125;, project=&#123;<span class="string">'_id'</span>: <span class="keyword">False</span>&#125;)</span><br><span class="line"><span class="comment"># 或者使用 $regex 表达式</span></span><br><span class="line">result = col.find(&#123;<span class="string">'filename'</span>: &#123;<span class="string">'$regex'</span>: <span class="string">r"^&#123;&#125;s$"</span>.format(filename), <span class="string">'$options'</span>: <span class="string">'i'</span>&#125;&#125;, project=&#123;<span class="string">'_id'</span>: <span class="keyword">False</span>&#125;)</span><br></pre></td></tr></table></figure>
+<li><p>可以使用正则查询</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> pymongo</span><br><span class="line"></span><br><span class="line">name = <span class="string">r"^&#123;&#125;s$"</span>.format(filename)</span><br><span class="line">name = re.complie(name, re.I)</span><br><span class="line">client = pymongo.MongoClient(host, port)</span><br><span class="line">db = client[<span class="string">'database'</span>]</span><br><span class="line">col = db[<span class="string">'collection'</span>]</span><br><span class="line">result = col.find(&#123;<span class="string">'filename'</span>: name&#125;, project=&#123;<span class="string">'_id'</span>: <span class="keyword">False</span>&#125;)</span><br><span class="line"><span class="comment"># 或者使用 $regex 表达式</span></span><br><span class="line">result = col.find(&#123;<span class="string">'filename'</span>: &#123;<span class="string">'$regex'</span>: <span class="string">r"^&#123;&#125;s$"</span>.format(filename), <span class="string">'$options'</span>: <span class="string">'i'</span>&#125;&#125;, project=&#123;<span class="string">'_id'</span>: <span class="keyword">False</span>&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>$options</strong> 支持如下：</p>
 </li>
 </ul>
 </li>
 </ul>
-<pre><code>- `$options`支持如下：
-
-选型|含义|要求
--|------|----
-i|大小写不敏感|
-m|查询中使用了锚，如`^`或者`$`，以及匹配`\n`后的字符串|
-x|忽视所有空白字符|要求`$regex`与`$option`合用
-s|允许点字符 `.` 匹配所有的字符，包括换行符|要求`$regex`与`$option`合用
-</code></pre><ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">选型</th>
+<th style="text-align:left">含义</th>
+<th style="text-align:left">要求</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">i</td>
+<td style="text-align:left">大小写不敏感</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">m</td>
+<td style="text-align:left">查询中使用了锚，如<code>^</code>或者<code>$</code>，以及匹配<code>\n</code>后的字符串</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">x</td>
+<td style="text-align:left">忽视所有空白字符</td>
+<td style="text-align:left">要求<code>$regex</code>与<code>$option</code>合用</td>
+</tr>
+<tr>
+<td style="text-align:left">s</td>
+<td style="text-align:left">允许点字符 <code>.</code> 匹配所有的字符，包括换行符</td>
+<td style="text-align:left">要求<code>$regex</code>与<code>$option</code>合用</td>
+</tr>
+</tbody>
+</table>
+<ul>
 <li><p><strong>是否含有</strong></p>
 <ul>
 <li><p>代码：</p>
