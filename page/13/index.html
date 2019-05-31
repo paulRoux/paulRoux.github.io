@@ -349,6 +349,191 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://roux.top/2017/11/02/splice函数/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Shirsen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/assets/img/header.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shirsen’s Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/11/02/splice函数/" itemprop="url">splice函数</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-02T00:00:00+08:00">
+                2017-11-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/网络编程/" itemprop="url" rel="index">
+                    <span itemprop="name">网络编程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2017/11/02/splice函数/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://roux.top/2017/11/02/splice函数/" class="cy_cmt_count" data-xid="2017/11/02/splice函数/" itemprop="commentsCount"></span>
+                </a>
+              
+            
+          
+
+          
+          
+             <span id="/2017/11/02/splice函数/" class="leancloud_visitors" data-flag-title="splice函数">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </span></div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+	  
+	  <!--摘要-->
+		  
+			
+        
+          <h4 id="splice"><a href="#splice" class="headerlink" title="splice"></a>splice</h4><ul>
+<li><p>说明：splice函数用于在两个文件描述符(官方文档解释为管道)之间的移动数据</p>
+</li>
+<li><p>头文件：<code>#define _GNU_SOURCE 1</code> <code>#include &lt;fcntl.h&gt;</code></p>
+<ul>
+<li><code>#define _GNU_SOURCE 1</code>：一定要放在 <code>#include &lt;fcntl.h&gt;</code> 的前面</li>
+<li>因为 <code>#include &lt;fcntl.h&gt;</code> 头文件的加载需要用到，否则会报错，错误在隐式声明 <code>splice</code> 函数，而且对于 <code>splice</code> 函数的flags 参数不识别</li>
+</ul>
+</li>
+<li><p>原型：<code>long splice(int fd_in, loff_t *off_in, int fd_out, loff_t *off_out, size_t len, unsigned int flags);</code></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/11/02/splice函数/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </li></ul></div>
+    
+    
+    
+
+<div>
+  
+</div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://roux.top/2017/10/31/sendfile函数/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -709,7 +894,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://roux.top/2017/10/28/dup与dup2详解/">
+    <link itemprop="mainEntityOfPage" href="http://roux.top/2017/10/28/随笔/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Shirsen">
@@ -728,7 +913,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/10/28/dup与dup2详解/" itemprop="url">dup与dup2详解</a></h1>
+                <a class="post-title-link" href="/2017/10/28/随笔/" itemprop="url">关于最近学习的一点思考</a></h1>
         
 
         <div class="post-meta">
@@ -763,8 +948,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/网络编程/" itemprop="url" rel="index">
-                    <span itemprop="name">网络编程</span>
+                  <a href="/categories/生活/" itemprop="url" rel="index">
+                    <span itemprop="name">生活</span>
                   </a>
                 </span>
 
@@ -782,8 +967,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2017/10/28/dup与dup2详解/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://roux.top/2017/10/28/dup与dup2详解/" class="cy_cmt_count" data-xid="2017/10/28/dup与dup2详解/" itemprop="commentsCount"></span>
+                <a href="/2017/10/28/随笔/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://roux.top/2017/10/28/随笔/" class="cy_cmt_count" data-xid="2017/10/28/随笔/" itemprop="commentsCount"></span>
                 </a>
               
             
@@ -791,7 +976,7 @@
 
           
           
-             <span id="/2017/10/28/dup与dup2详解/" class="leancloud_visitors" data-flag-title="dup与dup2详解">
+             <span id="/2017/10/28/随笔/" class="leancloud_visitors" data-flag-title="关于最近学习的一点思考">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -825,29 +1010,23 @@
 	  
 	  <!--摘要-->
 		  
+			<div class="out-img-topic">
+			<img src="https://blog-1257906047.cos.ap-chengdu.myqcloud.com/%E9%9A%8F%E7%AC%94/back.jpg" class="img-topic">
+			</div>
+			
 			
         
-          <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><ul>
-<li><p>三个Linux默认的描述符</p>
-<ul>
-<li>0：标准输入</li>
-<li>1：标准输出</li>
-<li>2：标准错误</li>
-</ul>
-</li>
-<li><p>dup和dup2的作用都是用来复制一个文件的描述符，它们经常用来重定向进程的stdin、stdout和stderr</p>
-</li>
-</ul>
+          <p>&emsp;&emsp;晃眼到了大三，所认识的一些同学都已经找到了满意的工作，而我还满足在自己比别人起步早的那么一点扯淡的事情上(比我起步早的大有人在)。<br>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/10/28/dup与dup2详解/#more" rel="contents">
+            <a class="btn" href="/2017/10/28/随笔/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
           <!--/noindex-->
         
       
-    </div>
+    </p></div>
     
     
     
@@ -1061,186 +1240,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://roux.top/2017/10/28/随笔/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Shirsen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/assets/img/header.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Shirsen’s Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/28/随笔/" itemprop="url">关于最近学习的一点思考</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-28T00:00:00+08:00">
-                2017-10-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/生活/" itemprop="url" rel="index">
-                    <span itemprop="name">生活</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-comment-o"></i>
-              </span>
-              
-                <a href="/2017/10/28/随笔/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://roux.top/2017/10/28/随笔/" class="cy_cmt_count" data-xid="2017/10/28/随笔/" itemprop="commentsCount"></span>
-                </a>
-              
-            
-          
-
-          
-          
-             <span id="/2017/10/28/随笔/" class="leancloud_visitors" data-flag-title="关于最近学习的一点思考">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </span></div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-	  
-	  <!--摘要-->
-		  
-			<div class="out-img-topic">
-			<img src="https://blog-1257906047.cos.ap-chengdu.myqcloud.com/%E9%9A%8F%E7%AC%94/back.jpg" class="img-topic">
-			</div>
-			
-			
-        
-          <p>&emsp;&emsp;晃眼到了大三，所认识的一些同学都已经找到了满意的工作，而我还满足在自己比别人起步早的那么一点扯淡的事情上(比我起步早的大有人在)。<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/10/28/随笔/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </p></div>
-    
-    
-    
-
-<div>
-  
-</div>
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1295,7 +1294,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">86</span>
+                  <span class="site-state-item-count">87</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
