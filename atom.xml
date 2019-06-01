@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://roux.top/"/>
-  <updated>2019-06-01T12:37:50.027Z</updated>
+  <updated>2019-06-01T13:54:59.346Z</updated>
   <id>http://roux.top/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="http://roux.top/2019/06/01/%E9%82%A3%E4%BA%9B%E5%BF%A7%E4%BC%A4%E7%9A%84%E5%B9%B4%E8%BD%BB%E4%BA%BA/"/>
     <id>http://roux.top/2019/06/01/那些忧伤的年轻人/</id>
     <published>2019-05-31T16:00:00.000Z</published>
-    <updated>2019-06-01T12:37:50.027Z</updated>
+    <updated>2019-06-01T13:54:59.346Z</updated>
     
-    <content type="html"><![CDATA[<h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><ul><li>其实，每一代人的青春都有相通的地方，他们的迷茫、彷徨和忧伤。</li></ul><a id="more"></a><h4 id="那些忧伤的年轻人"><a href="#那些忧伤的年轻人" class="headerlink" title="那些忧伤的年轻人"></a>那些忧伤的年轻人</h4><p>&emsp;&emsp;起初看到这本书，就像是发现了不一样的“蓝天”一般，一瞬间就被他的名字所吸引。这本书，读时发现讲了不少的东西，读完才明白其实也就讲了一件事——“青春”。<br>&emsp;&emsp;其实我们不难发现：每个年代，都会有“那些忧伤的年轻人”在路上，迷茫、彷徨。这就如同“轮回”一样，不变的是这个过程，变得只是每一代的迷茫与彷徨。这一代的我们，也被称作“最幸福”的一代，却一直在“流浪”，身体和心灵尽无处安放。我们接受更好的教育，也目睹着大学沦为“工厂”；我们追逐风口，也被割了一季又一季；我们那些无从说起的忧伤，也只能藏了又藏。<br>&emsp;&emsp;我不喜欢定义或是去概括一个时代，这样显得过于草率与无知。年轻人的忧伤也是如此，三两句话，是无法明了的，因为那可是我们的“青春”啊！“青春”这个词代表了太多太多的东西，对一切幻想，也对一切迷茫，见证着我们的成长。以后来看现在的一切，<a href="https://music.163.com/#/song?id=1305960097" target="_blank" rel="noopener">我还年轻</a>，也许就是最好的解释。</p><h4 id="RE"><a href="#RE" class="headerlink" title="RE"></a>RE</h4><p><a href="https://book.douban.com/subject/6802373/" target="_blank" rel="noopener">那些忧伤的年轻人</a></p>]]></content>
+    <content type="html"><![CDATA[<h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><ul><li>其实，每一代人的青春都有相通的地方，他们的迷茫、彷徨和忧伤。</li></ul><a id="more"></a><h4 id="那些忧伤的年轻人"><a href="#那些忧伤的年轻人" class="headerlink" title="那些忧伤的年轻人"></a>那些忧伤的年轻人</h4><p>&emsp;&emsp;起初看到这本书，就像是发现了不一样的“蓝天”一般，一瞬间就被他的名字所吸引。这本书，读时也许会觉得写的挺杂乱的，读完回想一番就会明了其实一直在说一件事——“青春”。<br>&emsp;&emsp;其实我们不难发现：每个年代，都会有“那些忧伤的年轻人”在路上，迷茫、彷徨。这就如同“轮回”一样，不变的是这个过程，变得只是每一代的迷茫与彷徨。这一代的我们，也被称作“最幸福”的一代，却一直在“流浪”，身体和心灵尽无处安放。我们接受更好的教育，也目睹着大学沦为“工厂”；我们追逐风口，也被割了一季又一季；我们那些无从说起的忧伤，也只能藏了又藏。<br>&emsp;&emsp;我不喜欢定义或是去概括一个时代，这样显得过于草率与无知。年轻人的忧伤也是如此，三两句话，是无法明了的，因为那可是我们的“青春”啊！“青春”这个词代表了太多太多的东西，对一切幻想，也对一切迷茫，见证着我们的成长。大学里的日子，荒废了太多的时光，用来打游戏或是无所事事。还好一切领悟的都不太晚，现在还能保持一丝“轻狂”，还愿意去反抗。以后再来看现在的一切，<a href="https://music.163.com/#/song?id=1305960097" target="_blank" rel="noopener">我还年轻</a>，也许就是最好的解释。</p><h4 id="RE"><a href="#RE" class="headerlink" title="RE"></a>RE</h4><p><a href="https://book.douban.com/subject/6802373/" target="_blank" rel="noopener">那些忧伤的年轻人</a></p>]]></content>
     
     <summary type="html">
     
@@ -306,6 +306,30 @@
   </entry>
   
   <entry>
+    <title>C++ 严格弱序</title>
+    <link href="http://roux.top/2018/12/13/%E4%B8%A5%E6%A0%BC%E5%BC%B1%E5%BA%8F/"/>
+    <id>http://roux.top/2018/12/13/严格弱序/</id>
+    <published>2018-12-12T16:00:00.000Z</published>
+    <updated>2018-12-18T10:54:22.378Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><ul><li>学习C++11遇到的重要的点。</li></ul><a id="more"></a><h4 id="什么是严格弱序"><a href="#什么是严格弱序" class="headerlink" title="什么是严格弱序"></a>什么是严格弱序</h4><ul><li><code>C++关联容器</code>的有序容器对元素关键字的类型有要求，元素关键字的类型必须定义了<code>严格序（stick weak ordering）</code> ，以内置类型来说，C++都定义了<code>“&lt;”</code>操作符，这就是一个严格弱序，而<code>“&lt;=”</code>就不是一个严格弱序</li></ul><h4 id="表示与作用"><a href="#表示与作用" class="headerlink" title="表示与作用"></a>表示与作用</h4><ul><li><p>a小于b：<code>a &lt; b</code></p></li><li><p>a大于b：<code>a &gt; b</code></p></li><li><p>a等于b：<code>!(a &lt; b) &amp;&amp; !(a &gt; b)</code></p></li></ul><h4 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h4><ul><li>非自反性： 如果存在两个关键字，任何一个都不<code>严格弱序</code>于另一个，则这两个关键字是相等的，<code>即comp(a, a)必须是false</code></li><li>非对称性： 两个关键字不能同时<code>严格弱序</code>于对方，<code>即如果comp(a, b)和comp(b, a)的结果必然相反</code></li><li>传递性：如果a<code>严格弱序</code>于b，且b<code>严格弱序</code>于c，则a必须<code>严格弱序</code>于c，<code>即如果comp(a, b)为true，comp(b, c)为true，那么comp(a, c)必然为true</code></li></ul><h4 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h4><ul><li>有序关联容器不允许存在相同的关键字，在用<code>compare函数</code>判断时，会认为相同的关键字是不相等的，因此会将两个相同的关键字插入容器中，这个行为是未定义的</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;学习C++11遇到的重要的点。&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+      <category term="Others" scheme="http://roux.top/categories/Others/"/>
+    
+    
+      <category term="C++" scheme="http://roux.top/tags/C/"/>
+    
+  </entry>
+  
+  <entry>
     <title>C++之POD类型</title>
     <link href="http://roux.top/2018/12/13/C++%E4%B9%8BPOD%E7%B1%BB%E5%9E%8B/"/>
     <id>http://roux.top/2018/12/13/C++之POD类型/</id>
@@ -326,30 +350,6 @@
     </summary>
     
       <category term="语言" scheme="http://roux.top/categories/%E8%AF%AD%E8%A8%80/"/>
-    
-    
-      <category term="C++" scheme="http://roux.top/tags/C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>C++ 严格弱序</title>
-    <link href="http://roux.top/2018/12/13/%E4%B8%A5%E6%A0%BC%E5%BC%B1%E5%BA%8F/"/>
-    <id>http://roux.top/2018/12/13/严格弱序/</id>
-    <published>2018-12-12T16:00:00.000Z</published>
-    <updated>2018-12-18T10:54:22.378Z</updated>
-    
-    <content type="html"><![CDATA[<h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><ul><li>学习C++11遇到的重要的点。</li></ul><a id="more"></a><h4 id="什么是严格弱序"><a href="#什么是严格弱序" class="headerlink" title="什么是严格弱序"></a>什么是严格弱序</h4><ul><li><code>C++关联容器</code>的有序容器对元素关键字的类型有要求，元素关键字的类型必须定义了<code>严格序（stick weak ordering）</code> ，以内置类型来说，C++都定义了<code>“&lt;”</code>操作符，这就是一个严格弱序，而<code>“&lt;=”</code>就不是一个严格弱序</li></ul><h4 id="表示与作用"><a href="#表示与作用" class="headerlink" title="表示与作用"></a>表示与作用</h4><ul><li><p>a小于b：<code>a &lt; b</code></p></li><li><p>a大于b：<code>a &gt; b</code></p></li><li><p>a等于b：<code>!(a &lt; b) &amp;&amp; !(a &gt; b)</code></p></li></ul><h4 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h4><ul><li>非自反性： 如果存在两个关键字，任何一个都不<code>严格弱序</code>于另一个，则这两个关键字是相等的，<code>即comp(a, a)必须是false</code></li><li>非对称性： 两个关键字不能同时<code>严格弱序</code>于对方，<code>即如果comp(a, b)和comp(b, a)的结果必然相反</code></li><li>传递性：如果a<code>严格弱序</code>于b，且b<code>严格弱序</code>于c，则a必须<code>严格弱序</code>于c，<code>即如果comp(a, b)为true，comp(b, c)为true，那么comp(a, c)必然为true</code></li></ul><h4 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h4><ul><li>有序关联容器不允许存在相同的关键字，在用<code>compare函数</code>判断时，会认为相同的关键字是不相等的，因此会将两个相同的关键字插入容器中，这个行为是未定义的</li></ul>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h4 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h4&gt;&lt;ul&gt;
-&lt;li&gt;学习C++11遇到的重要的点。&lt;/li&gt;
-&lt;/ul&gt;
-    
-    </summary>
-    
-      <category term="Others" scheme="http://roux.top/categories/Others/"/>
     
     
       <category term="C++" scheme="http://roux.top/tags/C/"/>
@@ -425,30 +425,6 @@
   </entry>
   
   <entry>
-    <title>HTTP与HTTPS</title>
-    <link href="http://roux.top/2018/04/22/HTTP%E4%B8%8EHTTPS/"/>
-    <id>http://roux.top/2018/04/22/HTTP与HTTPS/</id>
-    <published>2018-04-21T16:00:00.000Z</published>
-    <updated>2018-04-22T06:28:42.803Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><ul><li>HTTPS是对HTTP在安全方面上做的一个改进，HTTPS = HTTP + <a href="https://zh.wikipedia.org/wiki/%E5%82%B3%E8%BC%B8%E5%B1%A4%E5%AE%89%E5%85%A8%E6%80%A7%E5%8D%94%E5%AE%9A" target="_blank" rel="noopener">SSL/TLS</a></li></ul><a id="more"></a><h3 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h3><ol><li><p>https需要申请CA证书，需要一定的费用</p></li><li><p>http是明文传输，https是有安全性的ssl加密传输</p></li><li><p>http的端口是80，https是443</p></li><li><p>http是简单的，<a href="http://www.cnblogs.com/bellkosmos/p/5237146.html" target="_blank" rel="noopener">无状态</a>的，https是由http+sslL组成的进行加密传输、身份认证的协议，更加安全</p></li></ol><h3 id="HTTPS过程"><a href="#HTTPS过程" class="headerlink" title="HTTPS过程"></a>HTTPS过程</h3><ol><li><p>客户端发起请求，将自己支持的加密算法，打个包告诉服务器端</p></li><li><p>服务器端从客户端发来的加密算法中，选出一组加密算法和HASH算法（注，HASH也属于加密），并将自己的身份信息以证书的形式发回给客户端。而证书中包含了网站的地址，加密用的公钥，以及证书的颁发机构等；这里，服务器就将自己用来加密用的公钥一同发还给客户端，而私钥则服务器保存着，用户解密客户端加密过后的内容。</p></li><li><p>客户端收到内容</p><ol><li>验证一下证书是否合法。一般来说，证书是用来标示一个站点是否合法的标志。如果说该证书由权威的第三方颁发和签名的，则说明证书合法。</li><li>如果证书合法，或者客户端接受和信任了不合法的证书，则客户端就会随机产生一串序列号，使用服务器发来的公钥进行加密。这时候，一条返回的消息就基本就绪。</li><li>最后使用服务器挑选的HASH算法，将刚才的消息使用刚才的随机数进行加密，生成相应的消息校验值，与刚才的消息一同发还给服务器。</li></ol></li><li><p>服务器接受到客户端发来的消息后</p><ol><li>使用私钥解密上面客户端公钥加密的消息，得到客户端产生的随机序列号</li><li>使用该随机序列号，对该消息进行加密，验证的到的校验值是否与客户端发来的一致。如果一致则说明消息未被篡改，可以信任</li><li>最后，使用该随机序列号，加上之前第2步中选择的加密算法，加密一段握手消息，发还给客户端。同时HASH值也带上</li></ol></li><li><p>客户端收到服务器端的消息后</p><ol><li>计算HASH值是否与发回的消息一致</li><li>检查消息是否为握手消息</li></ol></li><li><p>握手结束后，客户端和服务器端使用握手阶段产生的随机数以及挑选出来的算法进行对称加解密的传输</p></li></ol><h3 id="为什么不直接全程使用非对称加密算法进行数据传输"><a href="#为什么不直接全程使用非对称加密算法进行数据传输" class="headerlink" title="为什么不直接全程使用非对称加密算法进行数据传输"></a>为什么不直接全程使用非对称加密算法进行数据传输</h3><ol><li><p>因为非对称算法的效率对比起对称算法来说，要低得多得多；因此往往只用在HTTPS的握手阶段。</p></li><li><p>http建立连接114ms，https为436ms（ssl为322ms），针对computer science house（计算机科学院CSH）的测试</p></li></ol><h3 id="经常使用的加密算法"><a href="#经常使用的加密算法" class="headerlink" title="经常使用的加密算法"></a>经常使用的加密算法</h3><ol><li>非对称加密算法：RSA, DSA/DSS</li><li>对称加密算法： AES, 3DES</li><li>HASH算法：MD5, SHA1, SHA256</li></ol>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;HTTPS是对HTTP在安全方面上做的一个改进，HTTPS = HTTP + &lt;a href=&quot;https://zh.wikipedia.org/wiki/%E5%82%B3%E8%BC%B8%E5%B1%A4%E5%AE%89%E5%85%A8%E6%80%A7%E5%8D%94%E5%AE%9A&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;SSL/TLS&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-    
-    </summary>
-    
-      <category term="Protocol" scheme="http://roux.top/categories/Protocol/"/>
-    
-    
-      <category term="HTTP" scheme="http://roux.top/tags/HTTP/"/>
-    
-  </entry>
-  
-  <entry>
     <title>HTTP1.0与HTTP1.1</title>
     <link href="http://roux.top/2018/04/22/HTTP1.0%E4%B8%8EHTTP1.1/"/>
     <id>http://roux.top/2018/04/22/HTTP1.0与HTTP1.1/</id>
@@ -473,18 +449,21 @@
   </entry>
   
   <entry>
-    <title>DNS解析的过程</title>
-    <link href="http://roux.top/2018/04/22/DNS%E8%A7%A3%E6%9E%90/"/>
-    <id>http://roux.top/2018/04/22/DNS解析/</id>
+    <title>HTTP2.0</title>
+    <link href="http://roux.top/2018/04/22/HTTP2.0/"/>
+    <id>http://roux.top/2018/04/22/HTTP2.0/</id>
     <published>2018-04-21T16:00:00.000Z</published>
-    <updated>2018-04-22T06:26:43.626Z</updated>
+    <updated>2018-10-21T13:47:33.398Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><ul><li>对于网络这一块，有太多的学问，而且这个也是后面重点需要优化的方向，所以最近会写一些这方面的文章。</li></ul><a id="more"></a><h3 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h3><ol><li>在浏览器中输入<a href="http://www.qq.com域名，操作系统会先检查自己本地的hosts文件是否有这个网址映射关系，如果有，就先调用这个IP地址映射，完成域名解析。" target="_blank" rel="noopener">www.qq.com域名，操作系统会先检查自己本地的hosts文件是否有这个网址映射关系，如果有，就先调用这个IP地址映射，完成域名解析。</a> </li><li>如果hosts里没有这个域名的映射，则查找本地DNS解析器缓存，是否有这个网址映射关系，如果有，直接返回，完成域名解析。 </li><li>如果hosts与本地DNS解析器缓存都没有相应的网址映射关系，首先会找TCP/ip参数中设置的首选DNS服务器，在此我们叫它本地DNS服务器，此服务器收到查询时，如果要查询的域名，包含在本地配置区域资源中，则返回解析结果给客户机，完成域名解析，此解析具有权威性。 </li><li>如果要查询的域名，不由本地DNS服务器区域解析，但该服务器已缓存了此网址映射关系，则调用这个IP地址映射，完成域名解析，此解析不具有权威性。 </li><li>如果本地DNS服务器本地区域文件与缓存解析都失效，则根据本地DNS服务器的设置（是否设置转发器）进行查询，如果未用转发模式，本地DNS就把请求发至13台根DNS，根DNS服务器收到请求后会判断这个域名(.com)是谁来授权管理，并会返回一个负责该顶级域名服务器的一个IP。本地DNS服务器收到IP信息后，将会联系负责.com域的这台服务器。这台负责.com域的服务器收到请求后，如果自己无法解析，它就会找一个管理.com域的下一级DNS服务器地址(qq.com)给本地DNS服务器。当本地DNS服务器收到这个地址后，就会找qq.com域服务器，重复上面的动作，进行查询，直至找到<a href="http://www.qq.com主机。" target="_blank" rel="noopener">www.qq.com主机。</a> </li><li>如果用的是转发模式，此DNS服务器就会把请求转发至上一级DNS服务器，由上一级服务器进行解析，上一级服务器如果不能解析，或找根DNS或把转请求转至上上级，以此循环。不管是本地DNS服务器用是是转发，还是根提示，最后都是把结果返回给本地DNS服务器，由此DNS服务器再返回给客户机。 </li></ol><h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><ul><li><p>人们在 DNS 中发现了一些漏洞，攻击者可以利用这些漏洞劫持这一使用名称在 互联网 上搜寻某个人或某个站点的过程。这种攻击的目的是取得对会话的控制以实施某种操作，例如使用户进入劫持者自己设立的欺骗性网站，以便收集用户的帐户和密码。</p></li><li><p>安全的DNS—<a href="https://www.icann.org/resources/pages/dnssec-qaa-2014-01-29-zh" target="_blank" rel="noopener">DNSSEC</a></p></li></ul><h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><ul><li><a href="https://www.nowcoder.com/profile/2286733/myFollowings/detail/4794271" target="_blank" rel="noopener">https://www.nowcoder.com/profile/2286733/myFollowings/detail/4794271</a></li></ul>]]></content>
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><ul><li><p>这篇文章主要是对HTTP2.0进行一个总结，把零散的知识点进行连接。</p></li><li><p>HTTP2.0 的目的是通过支持请求与响应的多路复用来较少延迟，通过压缩 HTTPS 首部字段将协议开销降低，同时增加请求优先级和服务器端推送的支持.</p></li></ul><a id="more"></a><h3 id="二进制分帧层"><a href="#二进制分帧层" class="headerlink" title="二进制分帧层"></a>二进制分帧层</h3><ul><li><p>二进制分帧层，是HTTP 2.0性能增强的核心。 </p><ul><li>HTTP 1.x在应用层以纯文本的形式进行通信，而HTTP 2.0将所有的传输信息分割为更小的消息和帧，并对它们采用二进制格式编码。这样，客户端和服务端都需要引入新的二进制编码和解码的机制。</li></ul></li><li><p><strong>帧</strong></p><ol><li><p><strong>帧的分类</strong></p><ol><li>DATA：用于传输 HTTP 消息体；</li><li>HEADERS：用于传输首部字段；</li><li>SETTINGS：用于约定客户端和服务端的配置数据。比如设置初识的双向流量控制窗口大小；</li><li>WINDOW_UPDATE：用于调整个别流或个别连接的流量</li><li>PRIORITY： 用于指定或重新指定引用资源的优先级。</li><li>RST_STREAM： 用于通知流的非正常终止。</li><li>PUSH_ PROMISE： 服务端推送许可。</li><li>PING： 用于计算往返时间，执行 “活性” 检活。</li><li>GOAWAY： 用于通知对端停止在当前连接中创建流<br><img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/HTTP/HTTP2.0.png" alt></li></ol><ul><li>标志位用于不同的帧类型定义特定的消息标志。比如 DATA 帧就可以使用End Stream: true表示该条消息通信完毕。流标识位表示帧所属的流 ID。优先值用于 HEADERS 帧，表示请求优先级。R 表示保留位。</li></ul></li><li><p><strong>消息</strong></p><ul><li>消息是指逻辑上的HTTP消息（请求/响应）。一系列数据帧组成了一个完整的消息。比如一系列DATA帧和一个HEADERS帧组成了请求消息。</li></ul></li><li><p><strong>流</strong></p><ol><li>流是连接中的一个虚拟信道，可以承载双向消息传输。每个流有唯一整数标识符。为了防止两端流 ID 冲突，客户端发起的流具有奇数 ID，服务器端发起的流具有偶数 ID。 </li><li>所有 HTTP2.0通信都在一个 TCP 连接上完成，慢启动时间减少,拥塞和丢包恢复速度更快，这个连接可以承载任意数量的双向数据流 Stream。相应地，每个数据流以 消息的形式发送，而消息由一 或多个帧组成，这些帧可以乱序发送，然后根据每个帧首部的流标识符重新组装。</li></ol></li></ol></li><li><p><strong><a href="https://www.nihaoshijie.com.cn/index.php/archives/698/" target="_blank" rel="noopener">多路复用</a></strong></p><ol><li><p>HTTP1.X如果不用<a href="https://blog.csdn.net/qq_28885149/article/details/52922107" target="_blank" rel="noopener">pipeling</a>的话会实现串行传输（一个得到应答才继续下一个），如果使用<a href="https://blog.csdn.net/qq_28885149/article/details/52922107" target="_blank" rel="noopener">pipeling</a>的话会<a href="https://blog.csdn.net/jiyiqinlovexx/article/details/50500246" target="_blank" rel="noopener">建立多条TCP连接</a>，这会导致开销增大</p></li><li><p>HTTP2.0建立一条TCP连接后，会并行传输数据。HTTP 2.0成功解决了HTTP 1.x的队首阻塞问题（TCP层的阻塞仍无法解决），同时，也不需要通过pipeline机制多条TCP连接来实现并行请求与响应。减少了TCP连接数对服务器性能也有很大的提升。</p></li><li><p>HTTP1.X虽然可以采用keep alive来解决复用TCP的问题，但是还是无法解决请求阻塞问题。</p><ul><li>所谓请求阻塞意思就是一条TCP的connection在同一时间只能允许一个请求经过，这样假如后续请求想要复用这个链接就必须等到前一个完成才行，正如上图左边表示的。</li><li>之所以有这个问题就是因为HTTP1.x需要每条请求都是可是识别，按顺序发送，否则server就无法判断该相应哪个具体的请求。</li><li>HTTP2采用多路复用是指，在同一个域名下，开启一个TCP的connection，每个请求以stream的方式传输，每个stream有唯一标识，connection一旦建立，后续的请求都可以复用这个connection并且可以同时发送，server端可以根据stream的唯一标识来相应对应的请求。</li></ul></li></ol></li><li><p><strong>请求优先级</strong></p><ul><li><p>流可以带有一个31bit的优先级：</p><ul><li>0：表示最高优先级</li><li>2^31-1：表示最低优先级</li></ul></li><li><p>客户端明确指定优先级，服务端可以根据这个优先级作为依据交互数据，比如客户端优先级设置为.css&gt;.js&gt;.jpg（具体可参见《高性能网站建设指南》）， 服务端按优先级返回结果有利于高效利用底层连接，提高用户体验。 </p></li><li><p>然而，也不能过分迷信请求优先级，仍然要注意以下问题：</p><ul><li>服务端是否支持请求优先级</li><li>会否引起队首阻塞问题，比如高优先级的慢响应请求会阻塞其他资源的交互。</li></ul></li></ul></li><li><p><strong>服务端推送</strong></p><ul><li>HTTP 2.0增加了服务端推送功能，服务端可以根据客户端的请求，提前返回多个响应，推送额外的资源给客户端。<ul><li>比如：客户端请求stream 1，/page.html。服务端在返回stream 1消息的同时推送了stream 2（/script.js）和stream 4（/style.css）。</li></ul></li></ul></li><li><p><strong>首部压缩</strong></p><ol><li>HTTP1.x在每一次通信都会携带首部信息描述资源属性</li><li>HTTP2.0会在双方之间使用“首部表”来跟踪之前发送和存储的键值对，首部表在链接过程中始终存在，新增的键值对会更新到表尾，因此不需要每次通信都携带首部</li><li>HTTP2.0用到了首部压缩技术，压缩算法为HPACK<ul><li>HTTP 2.0关注的是首部压缩，而我们常用的gzip等是报文内容（body）的压缩。二者不仅不冲突，且能够一起达到更好的压缩效果。</li></ul></li></ol></li></ul><h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><ul><li><a href="https://blog.csdn.net/zhuyiquan/article/details/69257126" target="_blank" rel="noopener">https://blog.csdn.net/zhuyiquan/article/details/69257126</a></li><li><a href="https://segmentfault.com/a/1190000013028798" target="_blank" rel="noopener">https://segmentfault.com/a/1190000013028798</a></li><li><a href="https://www.nihaoshijie.com.cn/index.php/archives/698/" target="_blank" rel="noopener">https://www.nihaoshijie.com.cn/index.php/archives/698/</a></li></ul>]]></content>
     
     <summary type="html">
     
       &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;对于网络这一块，有太多的学问，而且这个也是后面重点需要优化的方向，所以最近会写一些这方面的文章。&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;这篇文章主要是对HTTP2.0进行一个总结，把零散的知识点进行连接。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;HTTP2.0 的目的是通过支持请求与响应的多路复用来较少延迟，通过压缩 HTTPS 首部字段将协议开销降低，同时增加请求优先级和服务器端推送的支持.&lt;/p&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
     
     </summary>
@@ -492,7 +471,31 @@
       <category term="Protocol" scheme="http://roux.top/categories/Protocol/"/>
     
     
-      <category term="DNS" scheme="http://roux.top/tags/DNS/"/>
+      <category term="HTTP" scheme="http://roux.top/tags/HTTP/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>HTTP学习（六）——HTTP2性能优化实践</title>
+    <link href="http://roux.top/2018/04/22/HTTP%E5%AD%A6%E4%B9%A0%EF%BC%88%E5%85%AD%EF%BC%89/"/>
+    <id>http://roux.top/2018/04/22/HTTP学习（六）/</id>
+    <published>2018-04-21T16:00:00.000Z</published>
+    <updated>2018-04-22T06:06:02.928Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><ul><li>为了让我们的网站访问速度快变，我们不断增加带宽，做针对HTTP协议的特点对应用做各种优化。希望能通常高带宽，低延迟来提高网站到访问速度。带宽与延迟两者间，延迟才是性能的真正瓶颈。</li></ul><a id="more"></a><h3 id="客观原因"><a href="#客观原因" class="headerlink" title="客观原因"></a>客观原因</h3><ul><li><p>当我们针对HTTP协议进行性能优化时，我们不得不注意到这样的一些客观原因。通常当我们改变不了底层协议特性时，我们只能在更高层处做文章。</p><ol><li><p>带宽受物理层介质的影响，最快快不过光速，但是即便在今天越来越高的带宽，我们依然没有感觉到网站访问速度有多快。 </p></li><li><p>延迟包括传输延迟，传播延迟，处理延迟和排队延迟。</p></li><li><p>每次连接都需要经过3次握手才能建立，增加整整一个RTT。</p></li><li><p>TCP拥塞控制策略：慢启动，拥塞避免[注1]。其中慢启动会被应用到每一个连接中。TCP流量和拥塞控制会影响整个网络到吞吐量。</p></li><li><p>解析DNS必然会产生一些延迟。</p></li><li><p>最快获得资源的方式，莫过于还没传，就已拿到。充分利用缓存。</p></li><li><p>最少的延迟就是什么都不传。而没有延迟。</p></li></ol></li></ul><h3 id="针对HTTP1-X做过的优化"><a href="#针对HTTP1-X做过的优化" class="headerlink" title="针对HTTP1.X做过的优化"></a>针对HTTP1.X做过的优化</h3><ul><li><p>由于TCP层的特性，在提高web性能时，我们不得不做一些优化， <a href="https://developer.yahoo.com/performance/rules.html" target="_blank" rel="noopener">Best Practices for Speeding Up Your Web Site</a>，这些优化中针对HTTP协议特点的，我们做了哪些呢，从总体来说有以下几大点。</p><ol><li><p>连接和拼接</p><ul><li>连接或拼接JS和CSS文件，雪碧图，以减少HTTP请求，同时浏览器可缓存这些静态资源，为下次访问节约时间。但是这样带来的副作用是，维护成本高，其中某一个小改动都会使得整个拼接后的文件发生改变，重新缓存。</li></ul></li><li><p>域名分区</p><ul><li>由于浏览器的限制，同一个域下最多只能建立6个连接。我们通常使用子域名来减少所有资源在只有一个连接时的产生的排队延迟。这个显然不适用在HTTP2中，因为不同的域需要建立不同的连接。</li></ul></li><li><p>资源内嵌</p><ul><li>对于不常用的，较小大资源内嵌在文档中，比如base64的图片，以减少HTTP请求，但是这样的资源不能在浏览器中缓存，也不可能被其他页面共享，同时还有可能编码之后的资源变等更大了。在HTTP2中，这样的资源就可以使用SERVER PUSH来推送。</li></ul></li><li><p>HTTP管道（额外的）</p><ul><li><p>在HTTP1.x中已经实现了持久连接，但是却依然需要排队来发送和接收请求，这样不能充分利用网络资源。因此提出了HTTP管道的概念。客户端可以将所有请求都一起发给服务器端，服务器端或者按顺序处理，或者并行处理这些请求。但是返回响应的顺序是按照其自己内部的优先级来的。</p></li><li><p>但是，其缺点也很多，以至于现在的浏览器对它还是默认关闭的：</p></li></ul></li><li><p>队首阻塞</p><ul><li>并行处理时，需要占用缓存资源，服务器容易受到攻击</li><li>响应失败后，会断开tcp连接，并要求重发之后的所有请求，造成资源浪费</li><li>中间代理对其兼容性不是很好，有可能还会串行所有请求</li></ul></li></ol></li></ul><h3 id="针对HTTP2需要做的优化"><a href="#针对HTTP2需要做的优化" class="headerlink" title="针对HTTP2需要做的优化"></a>针对HTTP2需要做的优化</h3><ul><li><p>坚决去掉在HTTP1.X中的域名分区，连接和拼接和资源内嵌的优化方式。</p></li><li><p>尽量让所有资源在同一域名下</p></li><li><p>利用服务器推送</p></li><li><p>继续保留CDN</p></li></ul><h3 id="脚注"><a href="#脚注" class="headerlink" title="脚注"></a>脚注</h3><ul><li>TCP慢开始与拥塞避免示意图<br>  <img src="https://raw.githubusercontent.com/paulRoux/Pictures/master/HTTP/six/slow-start.png" alt></li></ul><h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><ul><li><a href="https://imjiaolong.cn/post/http2vshttp1.1.html" target="_blank" rel="noopener">https://imjiaolong.cn/post/http2vshttp1.1.html</a></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;为了让我们的网站访问速度快变，我们不断增加带宽，做针对HTTP协议的特点对应用做各种优化。希望能通常高带宽，低延迟来提高网站到访问速度。带宽与延迟两者间，延迟才是性能的真正瓶颈。&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+      <category term="Protocol" scheme="http://roux.top/categories/Protocol/"/>
+    
+    
+      <category term="HTTP" scheme="http://roux.top/tags/HTTP/"/>
     
   </entry>
   
