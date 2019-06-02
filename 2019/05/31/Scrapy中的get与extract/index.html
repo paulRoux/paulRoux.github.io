@@ -105,7 +105,7 @@
 <meta property="og:site_name" content="Shirsen’s Blog">
 <meta property="og:description" content="前言 在使用Scrapy框架爬取页面数据的时候经常会出现数据获取不到或者数据并非想要的数据，于是对这里面的get()、getall()、extract()、extract_first()函数的使用进行记录。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-31T09:51:18.862Z">
+<meta property="og:updated_time" content="2019-06-02T06:00:42.245Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Scrapy中的get与extract系列函数">
 <meta name="twitter:description" content="前言 在使用Scrapy框架爬取页面数据的时候经常会出现数据获取不到或者数据并非想要的数据，于是对这里面的get()、getall()、extract()、extract_first()函数的使用进行记录。">
@@ -480,7 +480,7 @@
 </li>
 </ul>
 </li>
-<li><p>对于<code>Selector</code>，<code>getall()</code>与<code>extract()</code>函数会得到所有的数据(<code>getall()</code>得到的是一个列表，<code>extract()</code>得到的是字符串)。<code>get()</code>会获得元素的数据，<code>extract_first()</code>会出错。</p>
+<li><p>对于<code>Selector</code>，<code>getall()</code>与<code>extract()</code>函数会得到所有的数据(一个元素的情况下，<code>getall()</code>得到的是一个列表，<code>extract()</code>得到的是字符串。多个元素都是列表)。<code>get()</code>会获得元素的数据，<code>extract_first()</code>会出错。</p>
 <ul>
 <li><p>测试：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>type(res[<span class="number">1</span>])</span><br><span class="line">&lt;<span class="class"><span class="keyword">class</span> '<span class="title">scrapy</span>.<span class="title">selector</span>.<span class="title">unified</span>.<span class="title">Selector</span>'&gt;</span></span><br><span class="line"><span class="class">&gt;&gt;&gt; <span class="title">res</span>[1].<span class="title">get</span><span class="params">()</span></span></span><br><span class="line"><span class="class">'百度一下'</span></span><br><span class="line"><span class="class">&gt;&gt;&gt; <span class="title">type</span><span class="params">(res[<span class="number">1</span>].get<span class="params">()</span>)</span></span></span><br><span class="line"><span class="class">&lt;<span class="title">class</span> '<span class="title">str</span>'&gt;</span></span><br><span class="line"><span class="class">&gt;&gt;&gt; <span class="title">res</span>[1].<span class="title">getall</span><span class="params">()</span></span></span><br><span class="line"><span class="class">['百度一下']</span></span><br><span class="line"><span class="class">&gt;&gt;&gt; <span class="title">type</span><span class="params">(res[<span class="number">1</span>].getall<span class="params">()</span>)</span></span></span><br><span class="line"><span class="class">&lt;<span class="title">class</span> '<span class="title">list</span>'&gt;</span></span><br><span class="line"><span class="class">&gt;&gt;&gt; <span class="title">res</span>[1].<span class="title">extract</span><span class="params">()</span></span></span><br><span class="line"><span class="class">'百度一下'</span></span><br><span class="line"><span class="class">&gt;&gt;&gt; <span class="title">type</span><span class="params">(res[<span class="number">1</span>].extract<span class="params">()</span>)</span></span></span><br><span class="line"><span class="class">&lt;<span class="title">class</span> '<span class="title">str</span>'&gt;</span></span><br><span class="line"><span class="class">&gt;&gt;&gt; <span class="title">res</span>[1].<span class="title">extract_first</span><span class="params">()</span></span></span><br><span class="line"><span class="class"><span class="title">Traceback</span> <span class="params">(most recent call last)</span>:</span></span><br><span class="line">	File <span class="string">"&lt;console&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">AttributeError: <span class="string">'Selector'</span> object has no attribute <span class="string">'extract_first'</span></span><br></pre></td></tr></table></figure>
@@ -490,7 +490,7 @@
 </ul>
 <h4 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h4><ul>
 <li>对于<code>scrapy.selector.unified.SelectorList</code>对象，<code>getall() == extract()</code>返回字符串, <code>get() == extract_first()</code>返回列表。</li>
-<li>对于<code>scrapy.selector.unified.Selector</code>对象， <code>get() != extract_first()</code>,<code>getall() != extract()</code></li>
+<li>对于<code>scrapy.selector.unified.Selector</code>对象， <code>get() != extract_first()</code>,<code>getall()与extract()看元素个数多少</code></li>
 </ul>
 <h4 id="RE"><a href="#RE" class="headerlink" title="RE"></a>RE</h4><ul>
 <li><a href="https://docs.scrapy.org/en/latest/topics/selectors.html" target="_blank" rel="noopener">官方文档</a></li>
@@ -707,7 +707,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">88</span>
+                  <span class="site-state-item-count">89</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
