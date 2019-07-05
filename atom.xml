@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://roux.top/"/>
-  <updated>2019-06-02T13:07:18.286Z</updated>
+  <updated>2019-07-05T04:36:36.164Z</updated>
   <id>http://roux.top/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>我的大学啊</title>
+    <link href="http://roux.top/2019/07/05/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6%E5%95%8A/"/>
+    <id>http://roux.top/2019/07/05/我的大学啊/</id>
+    <published>2019-07-04T16:00:00.000Z</published>
+    <updated>2019-07-05T04:36:36.164Z</updated>
+    
+    <content type="html"><![CDATA[<a id="more"></a><h4 id="我的大学啊"><a href="#我的大学啊" class="headerlink" title="我的大学啊"></a>我的大学啊</h4><p>&emsp;&emsp;2015到2019年，四年的时光匆匆而逝，白驹过隙般。回顾这四年，收获了很多， 也留下了那么多的遗憾！<br>&emsp;&emsp;大一大二这两年，虽然时间尽在和小伙伴们的游戏中流逝，但却收获了最多的快乐。唯一觉得美中不足的就是没有多和小伙伴们出去游玩。也许就是缘分吧，让我在大学半数时光快要结束的时候认识了那些牛逼的人，也找到了一路上志同道合的人儿。<br>&emsp;&emsp;怀念那些一起努力学习，一起为了目标奋斗的日子。所有日子的点点滴滴串成我的大三生活，所有的努力在那些迷茫的日子里指引着我们前行，期待着，东升的初阳。<br>&emsp;&emsp;大四一年做的最多的便是积累和沉淀。我一直坚信“知识在于积累，更在于沉淀”，所以在这一年我读了更多的“书”，看了更多的“人和事”。我不知道它们会不会有用上的一天，但我知道它们是我的隐形财富。<br>&emsp;&emsp;四年走来，很开心我遇到了我的一群“儿子们”。那些吹过的牛皮、各自的小秘密、心酸与难过，都会记得。希望往后我们的时间单位不会以“年”来算。<br>&emsp;&emsp;大学这趟旅程，我错过了很多，但不是每次旅程都有返程票。人生里看似偶然却又必经的告别，如约而至，无人可免。感谢那些让我痛或暖，让我快乐也让我难过的人儿，都是珍藏在回忆里的温暖，感谢一路上有你们！如今北上已找到一个小窝，一群小伙伴，充满期待。我爱母校，那座城，那些人。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h4 id=&quot;我的大学啊&quot;&gt;&lt;a href=&quot;#我的大学啊&quot; class=&quot;headerlink&quot; title=&quot;我的大学啊&quot;&gt;&lt;/a&gt;我的大学啊&lt;/h4&gt;&lt;p&gt;&amp;emsp;&amp;emsp;2015到2019年，四年的时光匆匆而逝，白驹过隙般。回
+      
+    
+    </summary>
+    
+      <category term="生活" scheme="http://roux.top/categories/%E7%94%9F%E6%B4%BB/"/>
+    
+    
+      <category term="随笔" scheme="http://roux.top/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
   
   <entry>
     <title>随笔2019-06-02</title>
@@ -330,30 +356,6 @@
   </entry>
   
   <entry>
-    <title>C++ 严格弱序</title>
-    <link href="http://roux.top/2018/12/13/%E4%B8%A5%E6%A0%BC%E5%BC%B1%E5%BA%8F/"/>
-    <id>http://roux.top/2018/12/13/严格弱序/</id>
-    <published>2018-12-12T16:00:00.000Z</published>
-    <updated>2018-12-18T10:54:22.378Z</updated>
-    
-    <content type="html"><![CDATA[<h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><ul><li>学习C++11遇到的重要的点。</li></ul><a id="more"></a><h4 id="什么是严格弱序"><a href="#什么是严格弱序" class="headerlink" title="什么是严格弱序"></a>什么是严格弱序</h4><ul><li><code>C++关联容器</code>的有序容器对元素关键字的类型有要求，元素关键字的类型必须定义了<code>严格序（stick weak ordering）</code> ，以内置类型来说，C++都定义了<code>“&lt;”</code>操作符，这就是一个严格弱序，而<code>“&lt;=”</code>就不是一个严格弱序</li></ul><h4 id="表示与作用"><a href="#表示与作用" class="headerlink" title="表示与作用"></a>表示与作用</h4><ul><li><p>a小于b：<code>a &lt; b</code></p></li><li><p>a大于b：<code>a &gt; b</code></p></li><li><p>a等于b：<code>!(a &lt; b) &amp;&amp; !(a &gt; b)</code></p></li></ul><h4 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h4><ul><li>非自反性： 如果存在两个关键字，任何一个都不<code>严格弱序</code>于另一个，则这两个关键字是相等的，<code>即comp(a, a)必须是false</code></li><li>非对称性： 两个关键字不能同时<code>严格弱序</code>于对方，<code>即如果comp(a, b)和comp(b, a)的结果必然相反</code></li><li>传递性：如果a<code>严格弱序</code>于b，且b<code>严格弱序</code>于c，则a必须<code>严格弱序</code>于c，<code>即如果comp(a, b)为true，comp(b, c)为true，那么comp(a, c)必然为true</code></li></ul><h4 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h4><ul><li>有序关联容器不允许存在相同的关键字，在用<code>compare函数</code>判断时，会认为相同的关键字是不相等的，因此会将两个相同的关键字插入容器中，这个行为是未定义的</li></ul>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h4 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h4&gt;&lt;ul&gt;
-&lt;li&gt;学习C++11遇到的重要的点。&lt;/li&gt;
-&lt;/ul&gt;
-    
-    </summary>
-    
-      <category term="Others" scheme="http://roux.top/categories/Others/"/>
-    
-    
-      <category term="C++" scheme="http://roux.top/tags/C/"/>
-    
-  </entry>
-  
-  <entry>
     <title>C++之POD类型</title>
     <link href="http://roux.top/2018/12/13/C++%E4%B9%8BPOD%E7%B1%BB%E5%9E%8B/"/>
     <id>http://roux.top/2018/12/13/C++之POD类型/</id>
@@ -374,6 +376,30 @@
     </summary>
     
       <category term="语言" scheme="http://roux.top/categories/%E8%AF%AD%E8%A8%80/"/>
+    
+    
+      <category term="C++" scheme="http://roux.top/tags/C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>C++ 严格弱序</title>
+    <link href="http://roux.top/2018/12/13/%E4%B8%A5%E6%A0%BC%E5%BC%B1%E5%BA%8F/"/>
+    <id>http://roux.top/2018/12/13/严格弱序/</id>
+    <published>2018-12-12T16:00:00.000Z</published>
+    <updated>2018-12-18T10:54:22.378Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><ul><li>学习C++11遇到的重要的点。</li></ul><a id="more"></a><h4 id="什么是严格弱序"><a href="#什么是严格弱序" class="headerlink" title="什么是严格弱序"></a>什么是严格弱序</h4><ul><li><code>C++关联容器</code>的有序容器对元素关键字的类型有要求，元素关键字的类型必须定义了<code>严格序（stick weak ordering）</code> ，以内置类型来说，C++都定义了<code>“&lt;”</code>操作符，这就是一个严格弱序，而<code>“&lt;=”</code>就不是一个严格弱序</li></ul><h4 id="表示与作用"><a href="#表示与作用" class="headerlink" title="表示与作用"></a>表示与作用</h4><ul><li><p>a小于b：<code>a &lt; b</code></p></li><li><p>a大于b：<code>a &gt; b</code></p></li><li><p>a等于b：<code>!(a &lt; b) &amp;&amp; !(a &gt; b)</code></p></li></ul><h4 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h4><ul><li>非自反性： 如果存在两个关键字，任何一个都不<code>严格弱序</code>于另一个，则这两个关键字是相等的，<code>即comp(a, a)必须是false</code></li><li>非对称性： 两个关键字不能同时<code>严格弱序</code>于对方，<code>即如果comp(a, b)和comp(b, a)的结果必然相反</code></li><li>传递性：如果a<code>严格弱序</code>于b，且b<code>严格弱序</code>于c，则a必须<code>严格弱序</code>于c，<code>即如果comp(a, b)为true，comp(b, c)为true，那么comp(a, c)必然为true</code></li></ul><h4 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h4><ul><li>有序关联容器不允许存在相同的关键字，在用<code>compare函数</code>判断时，会认为相同的关键字是不相等的，因此会将两个相同的关键字插入容器中，这个行为是未定义的</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;学习C++11遇到的重要的点。&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+      <category term="Others" scheme="http://roux.top/categories/Others/"/>
     
     
       <category term="C++" scheme="http://roux.top/tags/C/"/>
@@ -461,30 +487,6 @@
     
       &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;为了让我们的网站访问速度快变，我们不断增加带宽，做针对HTTP协议的特点对应用做各种优化。希望能通常高带宽，低延迟来提高网站到访问速度。带宽与延迟两者间，延迟才是性能的真正瓶颈。&lt;/li&gt;
-&lt;/ul&gt;
-    
-    </summary>
-    
-      <category term="Protocol" scheme="http://roux.top/categories/Protocol/"/>
-    
-    
-      <category term="HTTP" scheme="http://roux.top/tags/HTTP/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>HTTP与HTTPS</title>
-    <link href="http://roux.top/2018/04/22/HTTP%E4%B8%8EHTTPS/"/>
-    <id>http://roux.top/2018/04/22/HTTP与HTTPS/</id>
-    <published>2018-04-21T16:00:00.000Z</published>
-    <updated>2018-04-22T06:28:42.803Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><ul><li>HTTPS是对HTTP在安全方面上做的一个改进，HTTPS = HTTP + <a href="https://zh.wikipedia.org/wiki/%E5%82%B3%E8%BC%B8%E5%B1%A4%E5%AE%89%E5%85%A8%E6%80%A7%E5%8D%94%E5%AE%9A" target="_blank" rel="noopener">SSL/TLS</a></li></ul><a id="more"></a><h3 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h3><ol><li><p>https需要申请CA证书，需要一定的费用</p></li><li><p>http是明文传输，https是有安全性的ssl加密传输</p></li><li><p>http的端口是80，https是443</p></li><li><p>http是简单的，<a href="http://www.cnblogs.com/bellkosmos/p/5237146.html" target="_blank" rel="noopener">无状态</a>的，https是由http+sslL组成的进行加密传输、身份认证的协议，更加安全</p></li></ol><h3 id="HTTPS过程"><a href="#HTTPS过程" class="headerlink" title="HTTPS过程"></a>HTTPS过程</h3><ol><li><p>客户端发起请求，将自己支持的加密算法，打个包告诉服务器端</p></li><li><p>服务器端从客户端发来的加密算法中，选出一组加密算法和HASH算法（注，HASH也属于加密），并将自己的身份信息以证书的形式发回给客户端。而证书中包含了网站的地址，加密用的公钥，以及证书的颁发机构等；这里，服务器就将自己用来加密用的公钥一同发还给客户端，而私钥则服务器保存着，用户解密客户端加密过后的内容。</p></li><li><p>客户端收到内容</p><ol><li>验证一下证书是否合法。一般来说，证书是用来标示一个站点是否合法的标志。如果说该证书由权威的第三方颁发和签名的，则说明证书合法。</li><li>如果证书合法，或者客户端接受和信任了不合法的证书，则客户端就会随机产生一串序列号，使用服务器发来的公钥进行加密。这时候，一条返回的消息就基本就绪。</li><li>最后使用服务器挑选的HASH算法，将刚才的消息使用刚才的随机数进行加密，生成相应的消息校验值，与刚才的消息一同发还给服务器。</li></ol></li><li><p>服务器接受到客户端发来的消息后</p><ol><li>使用私钥解密上面客户端公钥加密的消息，得到客户端产生的随机序列号</li><li>使用该随机序列号，对该消息进行加密，验证的到的校验值是否与客户端发来的一致。如果一致则说明消息未被篡改，可以信任</li><li>最后，使用该随机序列号，加上之前第2步中选择的加密算法，加密一段握手消息，发还给客户端。同时HASH值也带上</li></ol></li><li><p>客户端收到服务器端的消息后</p><ol><li>计算HASH值是否与发回的消息一致</li><li>检查消息是否为握手消息</li></ol></li><li><p>握手结束后，客户端和服务器端使用握手阶段产生的随机数以及挑选出来的算法进行对称加解密的传输</p></li></ol><h3 id="为什么不直接全程使用非对称加密算法进行数据传输"><a href="#为什么不直接全程使用非对称加密算法进行数据传输" class="headerlink" title="为什么不直接全程使用非对称加密算法进行数据传输"></a>为什么不直接全程使用非对称加密算法进行数据传输</h3><ol><li><p>因为非对称算法的效率对比起对称算法来说，要低得多得多；因此往往只用在HTTPS的握手阶段。</p></li><li><p>http建立连接114ms，https为436ms（ssl为322ms），针对computer science house（计算机科学院CSH）的测试</p></li></ol><h3 id="经常使用的加密算法"><a href="#经常使用的加密算法" class="headerlink" title="经常使用的加密算法"></a>经常使用的加密算法</h3><ol><li>非对称加密算法：RSA, DSA/DSS</li><li>对称加密算法： AES, 3DES</li><li>HASH算法：MD5, SHA1, SHA256</li></ol>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;HTTPS是对HTTP在安全方面上做的一个改进，HTTPS = HTTP + &lt;a href=&quot;https://zh.wikipedia.org/wiki/%E5%82%B3%E8%BC%B8%E5%B1%A4%E5%AE%89%E5%85%A8%E6%80%A7%E5%8D%94%E5%AE%9A&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;SSL/TLS&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
     
     </summary>
