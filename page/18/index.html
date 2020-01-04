@@ -349,7 +349,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://roux.top/2017/10/11/VMware无法上网/">
+    <link itemprop="mainEntityOfPage" href="http://roux.top/2017/10/11/wait函数/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Shirsen">
@@ -368,7 +368,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/10/11/VMware无法上网/" itemprop="url">解决锐捷校园网环境下VMware虚拟机无法上网问题</a></h1>
+                <a class="post-title-link" href="/2017/10/11/wait函数/" itemprop="url">wait函数和waitpid函数</a></h1>
         
 
         <div class="post-meta">
@@ -403,8 +403,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Tools/" itemprop="url" rel="index">
-                    <span itemprop="name">Tools</span>
+                  <a href="/categories/网络编程/" itemprop="url" rel="index">
+                    <span itemprop="name">网络编程</span>
                   </a>
                 </span>
 
@@ -422,8 +422,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2017/10/11/VMware无法上网/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://roux.top/2017/10/11/VMware无法上网/" class="cy_cmt_count" data-xid="2017/10/11/VMware无法上网/" itemprop="commentsCount"></span>
+                <a href="/2017/10/11/wait函数/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://roux.top/2017/10/11/wait函数/" class="cy_cmt_count" data-xid="2017/10/11/wait函数/" itemprop="commentsCount"></span>
                 </a>
               
             
@@ -431,7 +431,7 @@
 
           
           
-             <span id="/2017/10/11/VMware无法上网/" class="leancloud_visitors" data-flag-title="解决锐捷校园网环境下VMware虚拟机无法上网问题">
+             <span id="/2017/10/11/wait函数/" class="leancloud_visitors" data-flag-title="wait函数和waitpid函数">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -467,22 +467,26 @@
 		  
 			
         
-          <h4 id="1-介绍："><a href="#1-介绍：" class="headerlink" title="1.介绍："></a>1.介绍：</h4><ul>
-<li><p>在介绍笨方法之前首先得说一下VMware虚拟机无法上网的原因，虚拟机要想要上网主机里的VMnetDHCP和VMware NAT Service就必须要开启，可能很多人都没留意这个问题，因为这两个服务好像装好软件之后是默认开启的，在其他网络环境下虚拟机直接选择NAT方式就可以上网了，所以网上请教很多大牛时他们对我们的虚拟机无法上网感到非常费解呀。</p>
-</li>
-<li><p>不过在校园网的话，情况又不一样了，我不知道其他的校园网客户端有没有这种情况，可是使用锐捷校园网客户端的话会自动阻断VMware NAT Service服务的开启，也就是说即使你手动开启了VMware NAT Service过了一会又会被自动关闭，这样就导致不管在虚拟机里面怎么设置都无法上网（注意这里使用的NAT方式，或许其他连接方式有新的解决方法，这里只说NAT方式）。</p>
-</li>
+          <h4 id="僵尸进程"><a href="#僵尸进程" class="headerlink" title="僵尸进程"></a>僵尸进程</h4><ul>
+<li><p>说明</p>
+<ul>
+<li>子进程结束但是没有完全释放内存(在内核中的task_struct没有释放)，该进程就会成为僵尸进程</li>
+<li>当僵尸进程的父进程结束后就会被init进程(1号进程)接管，最终被回收</li>
 </ul>
+</li>
+<li><p>僵尸进程的危害</p>
+<ul>
+<li><p>如果你不处理僵尸进程的话，那么保留的那段信息就不会释放，其进程号就会一定被占用，但是系统所能使用的进程号是有限的，如果大量的产生僵尸进程，将因为没有可用的进程号而导致系统不能产生新的进程</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/10/11/VMware无法上网/#more" rel="contents">
+            <a class="btn" href="/2017/10/11/wait函数/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
           <!--/noindex-->
         
       
-    </div>
+    </li></ul></li></ul></div>
     
     
     
@@ -1418,7 +1422,7 @@
         <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
-<div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2019</span>
+<div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
