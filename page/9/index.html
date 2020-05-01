@@ -1073,7 +1073,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://roux.top/2017/11/29/线程安全/">
+    <link itemprop="mainEntityOfPage" href="http://roux.top/2017/11/29/惊群现象/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Shirsen">
@@ -1092,7 +1092,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/11/29/线程安全/" itemprop="url">线程安全</a></h1>
+                <a class="post-title-link" href="/2017/11/29/惊群现象/" itemprop="url">惊群现象</a></h1>
         
 
         <div class="post-meta">
@@ -1146,8 +1146,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2017/11/29/线程安全/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://roux.top/2017/11/29/线程安全/" class="cy_cmt_count" data-xid="2017/11/29/线程安全/" itemprop="commentsCount"></span>
+                <a href="/2017/11/29/惊群现象/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://roux.top/2017/11/29/惊群现象/" class="cy_cmt_count" data-xid="2017/11/29/惊群现象/" itemprop="commentsCount"></span>
                 </a>
               
             
@@ -1155,7 +1155,7 @@
 
           
           
-             <span id="/2017/11/29/线程安全/" class="leancloud_visitors" data-flag-title="线程安全">
+             <span id="/2017/11/29/惊群现象/" class="leancloud_visitors" data-flag-title="惊群现象">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1192,21 +1192,25 @@
 			
         
           <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><ul>
-<li><p>在单线程进程中，只存在一个控制流。因此，这些进程所执行的代码无需重入或是线程安全的。在多线程程序中，相同的功能和资源可以通过多个控制流并发访问。</p>
+<li><p>什么是“惊群”，会产生什么问题？</p>
+<ul>
+<li><p>惊群是当许多进(线)程等待一个事件，事件发生后这些进(线)程被唤醒，单只有一个进(线)程能获得CPU执行权，其他进(线)程又得被阻塞，这造成了严重的系统上下文切换代价。</p>
+<ul>
+<li><p>系统对用户进程/线程频繁的无效调度，大幅度的降低系统效率</p>
 </li>
-<li><p>要保护资源的完整性，编写的多线程程序代码必须能重入并是线程安全的。重入和线程安全都与函数处理资源的方式相关。</p>
+<li><p>为了确保只有一个进程或线程得到资源，用户必须对资源加锁，这就进一步增加了系统开销</p>
 </li>
 </ul>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/11/29/线程安全/#more" rel="contents">
+            <a class="btn" href="/2017/11/29/惊群现象/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
           <!--/noindex-->
         
       
-    </div>
+    </li></ul></li></ul></div>
     
     
     
